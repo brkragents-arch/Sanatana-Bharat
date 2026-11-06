@@ -275,23 +275,6 @@ export const IndianHistoryView: React.FC = () => {
                   </p>
                 </div>
               </div>
-
-              <button
-                onClick={() => {
-                  setLightboxZoom(1);
-                  setLightboxImage({
-                    src: './images/indian_history/historic_periods_timeline.jpg',
-                    title: isEn ? 'Historic Periods Timeline' : 'చారిత్రక కాలాల మూల కాలరేఖ (Historic Periods Timeline)',
-                    subtitle: isEn 
-                      ? 'Important Events in Ancient History Timeline: Prehistory (3M–3000 BC) & History (3000 BC to Present)'
-                      : 'చరిత్రపూర్వ యుగం (30 లక్షల-3000 BC) & చారిత్రక యుగం (3000 BC నుండి నేటి వరకు)'
-                  });
-                }}
-                className="px-3.5 py-2 rounded-xl bg-[#7B1113] hover:bg-[#8E1C1E] text-[#FFE57F] text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 cursor-pointer shrink-0 self-start sm:self-auto"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>{isEn ? 'View Original Chart' : 'మూల పటం చూడండి'}</span>
-              </button>
             </div>
 
             {/* Scrollable Horizontal Interactive Timeline Bar */}
@@ -530,6 +513,31 @@ export const IndianHistoryView: React.FC = () => {
                     <div className="text-[10px] font-mono font-extrabold text-[#37474F]">1789 AC</div>
                   </div>
 
+                </div>
+
+                {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+                <div className="pt-2.5 mt-1 border-t border-amber-200/80 flex items-center justify-between flex-wrap gap-2 text-xs">
+                  <span className="font-bold text-[#7B1113] font-telugu-serif flex items-center gap-1.5">
+                    <span>🖼️</span>
+                    <span>{isEn ? 'మూల సచిత్ర పటం:' : 'మూల సచిత్ర పటం:'}</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLightboxZoom(1);
+                      setLightboxImage({
+                        src: './images/indian_history/historic_periods_timeline.jpg',
+                        title: isEn ? 'Historic Periods Timeline' : 'చారిత్రక కాలాల మూల కాలరేఖ (Historic Periods Timeline)',
+                        subtitle: isEn 
+                          ? 'Important Events in Ancient History Timeline: Prehistory (3M–3000 BC) & History (3000 BC to Present)'
+                          : 'చరిత్రపూర్వ యుగం (30 లక్షల-3000 BC) & చారిత్రక యుగం (3000 BC నుండి నేటి వరకు)'
+                      });
+                    }}
+                    className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-amber-50/80 hover:bg-amber-100/80 px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs hover:shadow-xs transition-all"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                    <span>{isEn ? 'Historic Periods Timeline Original Chart (Click to View & Zoom)' : 'చారిత్రక కాలాల మూల కాలరేఖ పటం (వీక్షించండి)'}</span>
+                  </button>
                 </div>
 
               </div>

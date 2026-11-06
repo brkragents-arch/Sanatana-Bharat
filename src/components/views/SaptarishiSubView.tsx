@@ -279,6 +279,32 @@ export const SaptarishiSubView: React.FC<SaptarishiSubViewProps> = ({
               </div>
             ))}
           </div>
+
+          {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+          <div className="pt-3.5 mt-2 border-t-2 border-[#D4AF37]/50 flex items-center justify-between flex-wrap gap-2 text-xs bg-amber-50/70 p-3 rounded-2xl border border-amber-200">
+            <span className="font-bold text-[#7B1113] font-telugu-serif flex items-center gap-1.5">
+              <span>🖼️</span>
+              <span>{isEn ? 'మూల సచిత్ర పటాలు (Original Illustrated Source Posters):' : 'మూల సచిత్ర పటాలు:'}</span>
+            </span>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => { setActivePosterKey('source2'); setSubTab('posters'); setPosterZoom(1); }}
+                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'Source 2: Sapta Rishis with Wives (View Chart)' : 'మూలం 2: సప్త ఋషులు పత్నులు సమేత పటం'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setActivePosterKey('source1'); setSubTab('posters'); setPosterZoom(1); }}
+                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'Source 1: Mind-Born Rishis (View Chart)' : 'మూలం 1: బ్రహ్మ మానసపుత్రుల పటం'}</span>
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -357,6 +383,32 @@ export const SaptarishiSubView: React.FC<SaptarishiSubViewProps> = ({
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+          <div className="pt-3.5 mt-2 border-t-2 border-[#D4AF37]/50 flex items-center justify-between flex-wrap gap-2 text-xs bg-amber-50/70 p-3 rounded-2xl border border-amber-200">
+            <span className="font-bold text-[#7B1113] font-telugu-serif flex items-center gap-1.5">
+              <span>🖼️</span>
+              <span>{isEn ? 'మూల సచిత్ర పటాలు (Original Illustrated Source Posters):' : 'మూల సచిత్ర పటాలు:'}</span>
+            </span>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => { setActivePosterKey('source2'); setSubTab('posters'); setPosterZoom(1); }}
+                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'Source 2: Sapta Rishis with Wives (View Chart)' : 'మూలం 2: సప్త ఋషులు పత్నులు సమేత పటం'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => { setActivePosterKey('source1'); setSubTab('posters'); setPosterZoom(1); }}
+                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'Source 1: Mind-Born Rishis (View Chart)' : 'మూలం 1: బ్రహ్మ మానసపుత్రుల పటం'}</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

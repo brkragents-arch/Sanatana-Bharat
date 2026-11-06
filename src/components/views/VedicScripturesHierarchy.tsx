@@ -95,19 +95,6 @@ export const VedicScripturesHierarchy: React.FC<VedicScripturesHierarchyProps> =
             </button>
           </div>
 
-          {/* View Original Infographic Image Button */}
-          <button
-            onClick={() => {
-              setIsImageModalOpen(true);
-              setImageZoom(1);
-            }}
-            className="px-2.5 py-1.5 rounded-lg bg-[#FAF7F0] hover:bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] font-bold text-xs flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer"
-            title={isEn ? "View Original Manuscript Chart" : "మూల చిత్ర పటాన్ని చూడండి"}
-          >
-            <span>🖼️</span>
-            <span className="hidden sm:inline">{isEn ? "Original Chart" : "మూల పటం"}</span>
-          </button>
-
           {/* Collapse / Expand Toggle */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
@@ -394,16 +381,21 @@ export const VedicScripturesHierarchy: React.FC<VedicScripturesHierarchyProps> =
                   : 'వేదవ్యాస, వాల్మీకి, వశిష్ఠ, అగస్త్య, ఆదిశంకర, రామానుజ, మధ్వ మరియు భక్త కవులు అందించిన అక్షయ జ్ఞాన భాండాగారము.'}
               </p>
             </div>
-            <button
-              onClick={() => {
-                setIsImageModalOpen(true);
-                setImageZoom(1);
-              }}
-              className="text-[#D84315] font-bold hover:underline flex items-center gap-1 text-[11px] cursor-pointer whitespace-nowrap ml-auto"
-            >
-              <span>{isEn ? 'Inspect Chart Manuscript' : 'మూల పట పరిశీలన'}</span>
-              <span>➔</span>
-            </button>
+            <div className="flex items-center gap-2 shrink-0 ml-auto flex-wrap">
+              <span className="font-bold text-[#7B1113] text-xs font-telugu-serif">మూల సచిత్ర పటాలు:</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsImageModalOpen(true);
+                  setImageZoom(1);
+                }}
+                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 text-xs cursor-pointer whitespace-nowrap bg-white px-2.5 py-1 rounded-lg border border-[#D4AF37]/60 shadow-2xs hover:shadow-xs transition-all"
+              >
+                <span>🖼️</span>
+                <span>{isEn ? 'Vedic Scriptures Manuscript Chart (View & Zoom)' : 'భారతీయ వైదిక వాఙ్మయ మూల చిత్ర పటము (వీక్షించండి)'}</span>
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+              </button>
+            </div>
           </div>
 
         </div>

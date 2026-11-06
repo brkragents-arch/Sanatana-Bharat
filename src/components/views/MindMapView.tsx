@@ -1067,19 +1067,6 @@ export const MindMapView: React.FC = () => {
                   </p>
                 </div>
               </div>
-
-              {/* View Chart Button */}
-              <button
-                type="button"
-                onClick={() => {
-                  setPreservationZoom(1);
-                  setIsPreservationModalOpen(true);
-                }}
-                className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#7B1113] to-[#991B1B] hover:from-[#5C0D0E] hover:to-[#7B1113] text-[#FFE082] text-xs font-black flex items-center gap-1.5 shadow-sm transition-all cursor-pointer whitespace-nowrap self-stretch sm:self-auto justify-center"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>{isEn ? 'View Original Infographic Chart' : 'మూల చార్ట్ పోస్టర్ చూడండి'}</span>
-              </button>
             </div>
 
             {/* 4 Grand Vedic Preservation Metrics */}
@@ -1169,6 +1156,25 @@ export const MindMapView: React.FC = () => {
                   🌿 అథర్వణవేదం: 2 లభ్యం / 7+ నష్టం (9+)
                 </button>
               </div>
+            </div>
+
+            {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+            <div className="pt-2.5 mt-2 border-t border-amber-300/80 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span className="font-bold text-[#7B1113] font-telugu-serif flex items-center gap-1.5">
+                <span>🖼️</span>
+                <span>{isEn ? 'మూల సచిత్ర పటం:' : 'మూల సచిత్ర పటం:'}</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  setPreservationZoom(1);
+                  setIsPreservationModalOpen(true);
+                }}
+                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs hover:shadow-xs transition-all"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'Vedas Preservation Master Chart (Click to View & Zoom)' : '1,180 వేద శాఖల పరిరక్షణ మూల సచిత్ర పటం (వీక్షించండి)'}</span>
+              </button>
             </div>
           </div>
           

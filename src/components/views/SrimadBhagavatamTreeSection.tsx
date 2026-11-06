@@ -535,18 +535,6 @@ export const SrimadBhagavatamTreeSection: React.FC = () => {
               సూచిక ప్రకారం ఎడమనుండి కుడికి విస్తరించే ఆర్గానిక్ వంశవృక్షం • విస్తరించు (+) మరియు కుదించు (-) సదుపాయంతో
             </p>
           </div>
-
-          {/* Lightbox Trigger for Original Chart */}
-          <button
-            onClick={() => {
-              setPosterZoom(1);
-              setIsPosterModalOpen(true);
-            }}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#FFE082] hover:from-[#FFE082] hover:to-[#FFF9C4] text-[#3E0A0C] font-bold text-xs sm:text-sm shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer shrink-0"
-          >
-            <Maximize2 className="w-4 h-4" />
-            <span>మూల పటం వీక్షించండి (View Original Poster in HD)</span>
-          </button>
         </div>
 
         {/* Tree Toolbar: Expand/Collapse All, Search & Zoom */}
@@ -659,14 +647,26 @@ export const SrimadBhagavatamTreeSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Tree Bottom Legend */}
-        <div className="p-3 bg-gradient-to-r from-[#F5E6CA] via-[#FFF8E7] to-[#F5E6CA] border-t border-[#D4AF37]/50 flex flex-wrap items-center justify-between text-xs text-[#7B1113] font-semibold gap-2">
-          <div className="flex items-center gap-1.5">
-            <Compass className="w-4 h-4 text-[#D84315]" />
-            <span>సూచన: ఏదైనా కార్డ్ లోని <strong>[ + / - ]</strong> బటన్ పై క్లిక్ చేసి శాఖలను విస్తరించవచ్చు లేదా కుదించవచ్చు. కార్డ్ పై క్లిక్ చేస్తే పూర్తి కథనం ప్రత్యక్షమవుతుంది.</span>
+        {/* Tree Bottom Legend & మూల సచిత్ర పటాలు at the bottom of the section */}
+        <div className="p-3 bg-gradient-to-r from-[#F5E6CA] via-[#FFF8E7] to-[#F5E6CA] border-t border-[#D4AF37]/50 flex flex-wrap items-center justify-between text-xs text-[#7B1113] font-semibold gap-3">
+          <div className="flex items-center gap-1.5 flex-1 min-w-[260px]">
+            <Compass className="w-4 h-4 text-[#D84315] shrink-0" />
+            <span>సూచన: ఏదైనా కార్డ్ లోని <strong>[ + / - ]</strong> బటన్ పై క్లిక్ చేసి శాఖలను విస్తరించవచ్చు లేదా కుదించవచ్చు.</span>
           </div>
-          <div className="text-[11px] text-[#5D4037]">
-            33 మెరుగుపరచబడిన దివ్య పతకాలు & శ్రీమద్భాగవత శ్లోక సూచనలతో.
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="font-bold text-[#7B1113]">మూల సచిత్ర పటాలు:</span>
+            <button
+              type="button"
+              onClick={() => {
+                setPosterZoom(1);
+                setIsPosterModalOpen(true);
+              }}
+              className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white/80 hover:bg-white px-2.5 py-1 rounded-lg border border-[#D4AF37]/60 shadow-2xs transition-all"
+            >
+              <span>🖼️</span>
+              <span>శ్రీమద్భాగవత సంపూర్ణ వంశవృక్ష మూల పటం (వీక్షించండి)</span>
+              <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+            </button>
           </div>
         </div>
       </div>

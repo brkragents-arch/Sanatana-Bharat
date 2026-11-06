@@ -1406,19 +1406,6 @@ export const BrahmaFamilyView: React.FC<BrahmaFamilyViewProps> = ({ initialTab =
                             </div>
                           </div>
                         </div>
-
-                        <button
-                          type="button"
-                          onClick={() => setLightboxImg({
-                            src: KASHYAP_RISHI_KASHMIR_LEGEND.fullPosterImg,
-                            title: isEn ? 'Kashyap Rishi & Kashmir - Full Source Infographic' : 'కశ్యప మహర్షి & కశ్మీర్ - పూర్తి సచిత్ర పోస్టర్',
-                            subtitle: isEn ? 'Original high-resolution poster' : 'మూల హై-రిజల్యూషన్ సచిత్ర పటం'
-                          })}
-                          className="w-full mt-1 py-1.5 px-2 rounded-xl bg-[#F59E0B] hover:bg-[#FBBF24] text-[#0F172A] font-extrabold text-[11px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                        >
-                          <Maximize2 className="w-3.5 h-3.5" />
-                          <span>{isEn ? 'View Original Poster' : 'మూల పోస్టర్ చూడండి'}</span>
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -1717,6 +1704,26 @@ export const BrahmaFamilyView: React.FC<BrahmaFamilyViewProps> = ({ initialTab =
                     </div>
                   </div>
 
+                  {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+                  <div className="pt-3 border-t-2 border-[#F59E0B]/50 flex items-center justify-between flex-wrap gap-2 text-xs bg-[#0F172A] p-3 rounded-2xl border border-[#F59E0B]/30">
+                    <span className="font-bold text-[#FEF08A] font-telugu-serif flex items-center gap-1.5">
+                      <span>🖼️</span>
+                      <span>{isEn ? 'మూల సచిత్ర పటాలు (Source Illustrated Posters):' : 'మూల సచిత్ర పటాలు:'}</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setLightboxImg({
+                        src: KASHYAP_RISHI_KASHMIR_LEGEND.fullPosterImg,
+                        title: isEn ? 'Kashyap Rishi & Kashmir - Full Source Infographic' : 'కశ్యప మహర్షి & కశ్మీర్ - పూర్తి సచిత్ర పోస్టర్',
+                        subtitle: isEn ? 'Original high-resolution poster' : 'మూల హై-రిజల్యూషన్ సచిత్ర పటం'
+                      })}
+                      className="text-[#FEF08A] hover:text-[#FBBF24] font-bold underline flex items-center gap-1.5 cursor-pointer bg-[#1E293B] px-3 py-1.5 rounded-xl border border-[#F59E0B]/50 shadow-2xs hover:shadow-xs transition-all"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-[#F59E0B]" />
+                      <span>{isEn ? 'Kashyap Rishi & Kashmir Legend Original Poster (Click to View & Zoom)' : 'కశ్యప మహర్షి & కశ్మీర్ ఆవిర్భావ మూల సచిత్ర పటం (వీక్షించండి)'}</span>
+                    </button>
+                  </div>
+
                 </div>
               )}
 
@@ -1889,6 +1896,26 @@ export const BrahmaFamilyView: React.FC<BrahmaFamilyViewProps> = ({ initialTab =
                     <div className="text-sm sm:text-base font-extrabold text-[#F59E0B] tracking-widest uppercase pt-1">
                       {isEn ? KASHYAPA_CHILDREN_POSTER_DETAILS.harmonyBannerEn : KASHYAPA_CHILDREN_POSTER_DETAILS.harmonyBannerTe}
                     </div>
+                  </div>
+
+                  {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+                  <div className="pt-3 border-t-2 border-[#F59E0B]/50 flex items-center justify-between flex-wrap gap-2 text-xs bg-[#0F172A] p-3 rounded-2xl border border-[#F59E0B]/30">
+                    <span className="font-bold text-[#FEF08A] font-telugu-serif flex items-center gap-1.5">
+                      <span>🖼️</span>
+                      <span>{isEn ? 'మూల సచిత్ర పటాలు (Source Illustrated Posters):' : 'మూల సచిత్ర పటాలు:'}</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setLightboxImg({
+                        src: KASHYAPA_CHILDREN_POSTER_DETAILS.posterImg,
+                        title: isEn ? 'Kashyapa Prajapati Descendants Infographic' : 'కశ్యప ప్రజాపతి సకల ప్రాణి సృష్టి మూల పటం',
+                        subtitle: isEn ? '13 Wives & Lineages Poster' : '13 మంది భార్యలు & సమస్త ప్రాణిజాల మూల సచిత్ర పటం'
+                      })}
+                      className="text-[#FEF08A] hover:text-[#FBBF24] font-bold underline flex items-center gap-1.5 cursor-pointer bg-[#1E293B] px-3 py-1.5 rounded-xl border border-[#F59E0B]/50 shadow-2xs hover:shadow-xs transition-all"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-[#F59E0B]" />
+                      <span>{isEn ? 'Kashyapa Children Complete Poster (Click to View & Zoom)' : 'కశ్యప సంతతి సంపూర్ణ మూల సచిత్ర పటం (వీక్షించండి)'}</span>
+                    </button>
                   </div>
 
                 </div>
