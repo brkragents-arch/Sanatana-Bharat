@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-maroon: #7B1113;
+    --deep-maroon: #4A0012;
+    --sacred-saffron: #D84315;
+    --saffron-gold: #FF8F00;
+    --vedic-gold: #C99700;
+    --gold-light: #FFE082;
+    --gold-subtle: #FFF8E1;
+    --parchment-bg: #FAF7F0;
+    --canvas-bg: #FFFDF7;
+    --card-white: #FFFFFF;
+    --border-parchment: #E8DCC4;
+    --border-gold: #D4AF37;
+    --text-main: #2C1810;
+    --text-sub: #5D4037;
+  }
+
+  body {
+    font-family: 'Noto Sans Telugu', 'Mandali', sans-serif;
+    background-color: var(--parchment-bg);
+    color: var(--text-main);
+  }
+
+  h1, h2, h3, h4, .font-telugu-serif {
+    font-family: 'Noto Serif Telugu', 'Suranna', 'Tenali Ramakrishna', serif;
+  }
+
+  .font-sacred-display {
+    font-family: 'Cinzel', 'Noto Serif Telugu', serif;
+  }
+}
+
+/* Custom Devotional Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4EEDF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C99700;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7B1113;
+}
+
+/* Sacred Traditional Border Motif */
+.sacred-border {
+  border: 1.5px solid #D4AF37;
+  box-shadow: 0 4px 16px rgba(123, 17, 19, 0.08);
+}
+
+.sacred-card-glow {
+  transition: all 0.25s ease-in-out;
+}
+.sacred-card-glow:hover {
+  box-shadow: 0 8px 24px rgba(216, 67, 21, 0.16);
+  border-color: #D84315;
+  transform: translateY(-2px);
+}
+
+/* Ornamental Divider */
+.ornamental-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+.ornamental-divider::before,
+.ornamental-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1.5px solid #E8DCC4;
+}
+.ornamental-divider::before {
+  margin-right: 1rem;
+}
+.ornamental-divider::after {
+  margin-left: 1rem;
+}
