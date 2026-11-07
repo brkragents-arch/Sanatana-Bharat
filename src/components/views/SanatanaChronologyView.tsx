@@ -32,7 +32,7 @@ export const SanatanaChronologyView: React.FC = () => {
   const [activeSubTab, setActiveSubTab] = useState<'lineage' | 'sources'>('lineage');
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
   const [showSacredDarshan, setShowSacredDarshan] = useState<boolean>(false);
-  const [showIntroExpanded, setShowIntroExpanded] = useState<boolean>(true);
+  const [showIntroExpanded, setShowIntroExpanded] = useState<boolean>(false);
 
   const isEn = language === 'en';
   const selectedStep = SANATANA_CHRONOLOGY_STEPS[selectedStepIndex];
