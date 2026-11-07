@@ -352,7 +352,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#F1F8E9] border border-[#C5E1A5] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#33691E] uppercase tracking-wide">{isEn ? 'Paleolithic' : 'తొలి శిలాయుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#AED581] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#AED581] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/1_first_humans.jpg" 
                         alt="First human species" 
@@ -384,7 +384,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#F1F8E9] border border-[#C5E1A5] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#33691E] uppercase tracking-wide">{isEn ? 'Paleolithic' : 'శిలాయుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#AED581] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#AED581] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/2_use_of_fire.jpg" 
                         alt="Use of fire" 
@@ -416,7 +416,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#E8F5E9] border border-[#A5D6A7] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#1B5E20] uppercase tracking-wide">{isEn ? 'Neolithic' : 'నవీన శిలాయుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#81C784] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#81C784] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/3_agriculture.jpg" 
                         alt="Agriculture begins" 
@@ -448,7 +448,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#FFF3E0] border border-[#FFCC80] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#E65100] uppercase tracking-wide">{isEn ? 'Ancient' : 'ప్రాచీన యుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#FFA726] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#FFA726] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/4_writing.jpg" 
                         alt="Invention of writing" 
@@ -480,7 +480,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#FBE9E7] border border-[#FFAB91] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#BF360C] uppercase tracking-wide">{isEn ? 'Medieval' : 'మధ్యయుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#FF8A65] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#FF8A65] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/5_roman_fall.jpg" 
                         alt="Fall of Western Roman Empire" 
@@ -512,7 +512,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#EFEBE9] border border-[#BCAAA4] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#4E342E] uppercase tracking-wide">{isEn ? 'Modern' : 'ఆధునిక యుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#A1887F] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#A1887F] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/6_columbus.jpg" 
                         alt="Columbus discovered America" 
@@ -544,7 +544,7 @@ export const IndianHistoryView: React.FC = () => {
                     className="p-2 rounded-xl bg-[#ECEFF1] border border-[#B0BEC5] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
                     <div className="text-[9px] font-bold text-[#263238] uppercase tracking-wide">{isEn ? 'Contemporary' : 'సమకాలీన యుగం'}</div>
-                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#90A4AE] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
+                    <div className="aspect-[16/9] w-full rounded-lg overflow-hidden bg-stone-950 border border-[#90A4AE] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/7_french_rev.jpg" 
                         alt="French Revolution" 
