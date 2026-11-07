@@ -478,12 +478,12 @@ export const SANATANA_CREATION_INTRODUCTION = {
       headingTe: 'సారాంశం (సమన్వయం) — శ్రీకృష్ణుడు చెప్పిన దాని ప్రకారం:',
       headingEn: 'Synthesis (Samanvayam) — According to Lord Sri Krishna:',
       pointsTe: [
-        '1. సర్వేశ్వరుడు: శ్రీకృష్ణుడే మూల కేంద్రం (అధ్యక్షుడు).',
+        '1. సర్వేశ్వరుడు: పరబ్రహ్మ మూల కేంద్రం (అధ్యక్షుడు).',
         '2. కాలం: ఆయనే కాల స్వరూపుడై సృష్టి, స్థితి, లయాల క్రమాన్ని శాసిస్తాడు.',
         '3. స్వభావం/ప్రకృతి: ఆయనకు ఆధీనమైన దైవీ ప్రకృతి ద్వారా జీవుల గుణాలను వ్యక్తపరుస్తూ ఈ జగన్నాటకాన్ని నడిపిస్తాడు.'
       ],
       pointsEn: [
-        '1. Sarveshvara (The Supreme Lord): Sri Krishna Himself is the primordial center and presiding Superintendent (Adhyaksha).',
+        '1. Sarveshvara (The Supreme Lord): Parabrahman is the primordial center and presiding Superintendent (Adhyaksha).',
         '2. Kala (Time): As the embodiment of Time, He ordains the sequence of creation, maintenance, and dissolution.',
         '3. Svabhava / Prakriti (Nature): Through His subordinate Divine Prakriti, He manifests the gunas of living beings and directs the cosmic drama.'
       ]
