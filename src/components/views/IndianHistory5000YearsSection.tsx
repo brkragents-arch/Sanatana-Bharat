@@ -167,7 +167,7 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
                     isEn ? `${epoch.yearsEn}: ${epoch.keyFeaturesEn}` : `${epoch.yearsTe}: ${epoch.keyFeaturesTe}`
                   )
                 }
-                className="relative h-36 sm:h-40 w-full bg-stone-900 border-y border-[#D4AF37]/40 overflow-hidden cursor-pointer group shadow-inner"
+                className="relative aspect-[16/9] w-full bg-stone-950 border-y border-[#D4AF37]/40 overflow-hidden cursor-pointer group shadow-inner"
               >
                 <img
                   src={epoch.image}
