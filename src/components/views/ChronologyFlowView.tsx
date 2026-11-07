@@ -25,7 +25,6 @@ export const ChronologyFlowView: React.FC = () => {
 
   const isEn = language === 'en';
   const [selectedMilestone, setSelectedMilestone] = useState<CreationMilestone>(CREATION_STAGES[0]);
-  const [clickTrigger, setClickTrigger] = useState<number>(0);
   const [inspectorTop, setInspectorTop] = useState<number>(0);
   const leftColRef = useRef<HTMLDivElement | null>(null);
   const rightCardRef = useRef<HTMLDivElement | null>(null);
@@ -67,7 +66,7 @@ export const ChronologyFlowView: React.FC = () => {
       window.clearTimeout(timer);
       window.removeEventListener('resize', updatePosition);
     };
-  }, [selectedMilestone, clickTrigger, language]);
+  }, [selectedMilestone, language]);
 
   // Specific routing targets for each creation step to navigate to particular items
   const getStepNavActions = (step: number) => {
