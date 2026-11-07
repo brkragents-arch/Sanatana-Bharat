@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useMythology } from '../../context/MythologyContext';
 import { 
   SANATANA_CHRONOLOGY_STEPS, 
-  CHRONOLOGICAL_SOURCES_LIST 
+  CHRONOLOGICAL_SOURCES_LIST,
+  SANATANA_CREATION_INTRODUCTION
 } from '../../data/sanatanaChronologyData';
 import { 
   Clock, 
@@ -16,6 +17,8 @@ import {
   Compass,
   Users,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   Eye,
   EyeOff
 } from 'lucide-react';
@@ -29,6 +32,7 @@ export const SanatanaChronologyView: React.FC = () => {
   const [activeSubTab, setActiveSubTab] = useState<'lineage' | 'sources'>('lineage');
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
   const [showSacredDarshan, setShowSacredDarshan] = useState<boolean>(false);
+  const [showIntroExpanded, setShowIntroExpanded] = useState<boolean>(true);
 
   const isEn = language === 'en';
   const selectedStep = SANATANA_CHRONOLOGY_STEPS[selectedStepIndex];
@@ -308,7 +312,7 @@ export const SanatanaChronologyView: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 p-4 sm:p-6 gap-6">
           
           {/* Left Column: 13 Stages Cards connected by downward flow */}
-          <div className="lg:col-span-7 space-y-3 overflow-y-auto max-h-[750px] pr-2">
+          <div className="lg:col-span-7 space-y-3 pr-1">
             
             {/* Intro Ribbon */}
             <div className="p-3 rounded-xl bg-[#FFF9E6] border border-[#D4AF37]/50 text-xs text-[#7B1113] font-semibold flex items-center gap-2">
@@ -318,6 +322,263 @@ export const SanatanaChronologyView: React.FC = () => {
                   ? 'Authenticated from Srimad Bhagavatam Canto 2 & 3: The precise ontological descent from Supreme Consciousness down to the physical cosmos.'
                   : 'పోతన తెలుగు భాగవతము ఆధారంగా: సర్వేశ్వరుని నుండి కాలము, ప్రకృతి, మహత్తత్త్వము, అహంకారము, పంచభూతములు, విరాట్పురుషుడు, బ్రహ్మ వరకు క్రమశిక్షణ.'}
               </span>
+            </div>
+
+            {/* ============================================================ */}
+            {/* PRELUDE / INTRODUCTION BEFORE STEP 1 (సోపానం 1 కి ముందు ఉపోద్ఘాతము) */}
+            {/* ============================================================ */}
+            <div className="flex flex-col items-center">
+              <div className="w-full rounded-2xl border-2 border-[#7B1113] bg-gradient-to-br from-[#FFFDF7] via-[#FFF9E6] to-[#FFF3E0] shadow-md overflow-hidden">
+                {/* Introduction Header Banner */}
+                <div 
+                  onClick={() => setShowIntroExpanded(!showIntroExpanded)}
+                  className="bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#4A0012] text-[#FFE082] px-4 py-3.5 flex items-center justify-between gap-3 cursor-pointer border-b-2 border-[#D4AF37]"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FFE082] to-[#FF8F00] text-[#7B1113] flex items-center justify-center text-xl font-bold shadow-xs border border-[#FFF8E1] shrink-0">
+                      📜
+                    </div>
+                    <div>
+                      <span className="inline-block px-2 py-0.5 rounded-full bg-[#D84315] text-white text-[10px] font-extrabold uppercase tracking-wider mb-0.5">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.badgeEn : SANATANA_CREATION_INTRODUCTION.badgeTe}
+                      </span>
+                      <h4 className="text-sm sm:text-base font-extrabold text-white font-telugu-serif leading-snug">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.mainTitleEn : SANATANA_CREATION_INTRODUCTION.mainTitleTe}
+                      </h4>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className="px-2.5 py-1 rounded-lg bg-white/15 hover:bg-white/25 text-[#FFE082] text-xs font-bold flex items-center gap-1 shrink-0 cursor-pointer"
+                  >
+                    <span>{showIntroExpanded ? (isEn ? 'Collapse' : 'కుదించు') : (isEn ? 'Read Full Intro' : 'పూర్తి పీఠిక')}</span>
+                    {showIntroExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  </button>
+                </div>
+
+                {/* Expandable Body of the Introduction before Step 1 */}
+                {showIntroExpanded && (
+                  <div className="p-4 sm:p-5 space-y-5 text-left">
+
+                    {/* ============================================================ */}
+                    {/* PART 0: WHY DID SARVESHVARA DESIRE TO CREATE? (సృష్టి ఎందుకు ప్రారంభమైంది?) */}
+                    {/* ============================================================ */}
+                    <div className="bg-[#FFFFFF] p-4 rounded-2xl border-2 border-[#D84315] space-y-3.5 shadow-xs">
+                      <div className="border-b border-[#E8DCC4] pb-2.5 space-y-1.5">
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#D84315] text-white text-[10px] font-extrabold uppercase tracking-wider">
+                          <span>🕉️</span>
+                          <span>{isEn ? 'Foundational Vedantic Question' : 'వేదాంత మూల ప్రశ్న • సృష్టి ఆరంభ రహస్యం'}</span>
+                        </div>
+                        <h5 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.whyCreationSection.titleEn : SANATANA_CREATION_INTRODUCTION.whyCreationSection.titleTe}
+                        </h5>
+                        <p className="text-xs sm:text-sm text-[#2C1810] leading-relaxed font-medium font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.whyCreationSection.openingEn : SANATANA_CREATION_INTRODUCTION.whyCreationSection.openingTe}
+                        </p>
+                      </div>
+
+                      {/* 4 Primary Reasons for Creation */}
+                      <div className="space-y-3">
+                        {SANATANA_CREATION_INTRODUCTION.whyCreationSection.fourReasons.map((item) => (
+                          <div 
+                            key={item.num}
+                            className="bg-[#FFFDF7] p-3.5 rounded-xl border-l-4 border-[#7B1113] border border-[#E8DCC4] space-y-1.5"
+                          >
+                            <h6 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                              {isEn ? item.titleEn : item.titleTe}
+                            </h6>
+                            <p className="text-xs text-[#5D4037] leading-relaxed font-semibold">
+                              {isEn ? item.introEn : item.introTe}
+                            </p>
+                            <ul className="space-y-1.5 pl-1 pt-0.5">
+                              {(isEn ? item.bulletsEn : item.bulletsTe).map((b, bIdx) => (
+                                <li key={bIdx} className="text-xs text-[#2C1810] flex items-start gap-2 leading-relaxed">
+                                  <span className="text-[#D84315] font-extrabold mt-0.5">•</span>
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Summary of Why Creation Began */}
+                      <div className="p-3 rounded-xl bg-gradient-to-r from-[#FFF8E1] via-[#FFE082]/50 to-[#FFF8E1] border border-[#D4AF37] text-xs text-[#2C1810] leading-relaxed">
+                        <strong className="text-[#7B1113] font-extrabold">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.whyCreationSection.summaryLabelEn : SANATANA_CREATION_INTRODUCTION.whyCreationSection.summaryLabelTe}{' '}
+                        </strong>
+                        <span className="font-bold text-[#4A0012] font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.whyCreationSection.summaryTextEn : SANATANA_CREATION_INTRODUCTION.whyCreationSection.summaryTextTe}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* ============================================================ */}
+                    {/* PART 1: WHY TIME & SVABHAVA MANIFEST FROM DIVINE WILL */}
+                    {/* ============================================================ */}
+                    <div className="bg-[#FFFFFF] p-3.5 rounded-xl border-2 border-[#D4AF37] space-y-2 shadow-2xs">
+                      <h5 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif border-b border-[#E8DCC4] pb-1.5">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.mainTitleEn : SANATANA_CREATION_INTRODUCTION.mainTitleTe}
+                      </h5>
+                      <p className="text-xs sm:text-sm text-[#2C1810] leading-relaxed font-medium font-telugu-serif">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.openingPara1En : SANATANA_CREATION_INTRODUCTION.openingPara1Te}
+                      </p>
+                      <p className="text-xs sm:text-sm text-[#7B1113] leading-relaxed font-bold font-telugu-serif">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.openingPara2En : SANATANA_CREATION_INTRODUCTION.openingPara2Te}
+                      </p>
+                    </div>
+
+                    {/* Part 1: 3 Core Reasons (1. To Awaken Material Nature, 2. To Manifest Karma, 3. From One to Many) */}
+                    <div className="space-y-3">
+                      {SANATANA_CREATION_INTRODUCTION.threeReasons.map((reason) => (
+                        <div 
+                          key={reason.num}
+                          className="bg-[#FFFFFF] p-3.5 sm:p-4 rounded-xl border-l-4 border-[#D84315] border border-[#E8DCC4] shadow-2xs space-y-2"
+                        >
+                          <h5 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                            {isEn ? reason.titleEn : reason.titleTe}
+                          </h5>
+                          <p className="text-xs text-[#5D4037] leading-relaxed font-medium">
+                            {isEn ? reason.introEn : reason.introTe}
+                          </p>
+                          <ul className="space-y-1.5 pl-1 pt-1">
+                            {(isEn ? reason.bulletsEn : reason.bulletsTe).map((b, bIdx) => (
+                              <li key={bIdx} className="text-xs text-[#2C1810] flex items-start gap-2 leading-relaxed">
+                                <span className="text-[#D84315] font-extrabold mt-0.5">•</span>
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Scriptural Proof 1: Srimad Bhagavatam (3.26) — Kapila Maharshi to Devahuti */}
+                    <div className="bg-gradient-to-r from-[#FFF8E1] via-[#FFE082]/40 to-[#FFF8E1] p-4 rounded-xl border-2 border-[#D4AF37] space-y-2.5 shadow-xs">
+                      <div className="flex items-center gap-1.5 text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                        <span>📖</span>
+                        <span>{isEn ? SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.headingEn : SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.headingTe}</span>
+                      </div>
+                      <p className="text-xs text-[#5D4037] font-semibold">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.sourceLineEn : SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.sourceLineTe}
+                      </p>
+                      <blockquote className="p-3 rounded-lg bg-[#FFFFFF] border-l-4 border-[#7B1113] text-xs sm:text-sm font-bold text-[#4A0012] font-telugu-serif italic leading-relaxed shadow-2xs">
+                        {isEn ? SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.quoteEn : SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.quoteTe}
+                      </blockquote>
+                      <div className="p-2.5 rounded-lg bg-[#FAF7F0] border border-[#D4AF37]/60 text-xs text-[#2C1810] leading-relaxed">
+                        <strong className="text-[#D84315] font-extrabold">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.summaryLabelEn : SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.summaryLabelTe}{' '}
+                        </strong>
+                        <span className="font-semibold">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.summaryTextEn : SANATANA_CREATION_INTRODUCTION.bhagavatamPramanam.summaryTextTe}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Part 2: Bhagavad Gita Pramana (Gita 11.32, 9.10 & 7.14) */}
+                    <div className="bg-[#FFFFFF] p-4 rounded-2xl border-2 border-[#7B1113] space-y-4 shadow-xs">
+                      <div className="border-b border-[#E8DCC4] pb-2.5 space-y-1.5">
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#7B1113] text-[#FFE082] text-[10px] font-bold">
+                          <span>🐚</span>
+                          <span>{isEn ? 'Bhagavad Gita Pramana' : 'భగవద్గీత పరమ ప్రమాణాలు'}</span>
+                        </div>
+                        <h5 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.headingEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.headingTe}
+                        </h5>
+                        <p className="text-xs text-[#5D4037] leading-relaxed font-medium">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.introEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.introTe}
+                        </p>
+                      </div>
+
+                      {/* 1. Kala Swaroopam (Gita 11.32) */}
+                      <div className="bg-[#FFFDF7] p-3.5 rounded-xl border border-[#D4AF37] space-y-2">
+                        <h6 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.titleEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.titleTe}
+                        </h6>
+                        <p className="text-xs text-[#5D4037] leading-relaxed">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.contextEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.contextTe}
+                        </p>
+                        <div className="p-3 rounded-lg bg-[#FFF8E1] border-l-4 border-[#D84315] text-center space-y-0.5">
+                          <div className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                            {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.shlokaEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.shlokaTe}
+                          </div>
+                          <div className="text-[11px] font-semibold text-[#5D4037] italic">
+                            {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.refEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.refTe}
+                          </div>
+                        </div>
+                        <ul className="space-y-1.5 text-xs text-[#2C1810] pt-1">
+                          <li className="flex items-start gap-2 leading-relaxed">
+                            <span className="text-[#D84315] font-bold">•</span>
+                            <span className="font-semibold">{isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.bhavamEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.bhavamTe}</span>
+                          </li>
+                          <li className="flex items-start gap-2 leading-relaxed">
+                            <span className="text-[#D84315] font-bold">•</span>
+                            <span>{isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.antararthamEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.kalaSection.antararthamTe}</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* 2. Daivi Prakriti & Svabhava (Gita 9.10 & 7.14) */}
+                      <div className="bg-[#FFFDF7] p-3.5 rounded-xl border border-[#D4AF37] space-y-3">
+                        <h6 className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.prakritiSection.titleEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.prakritiSection.titleTe}
+                        </h6>
+                        <p className="text-xs text-[#5D4037] leading-relaxed">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.prakritiSection.introEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.prakritiSection.introTe}
+                        </p>
+
+                        <div className="space-y-3">
+                          {SANATANA_CREATION_INTRODUCTION.gitaPramanam.prakritiSection.subSections.map((sub, sIdx) => (
+                            <div key={sIdx} className="p-3 rounded-xl bg-[#FFFFFF] border border-[#E8DCC4] space-y-2">
+                              <div className="text-xs font-extrabold text-[#D84315] font-telugu-serif">
+                                {isEn ? sub.headingEn : sub.headingTe}
+                              </div>
+                              <div className="p-2.5 rounded-lg bg-[#FFF8E1] border-l-4 border-[#7B1113] text-center space-y-0.5">
+                                <div className="text-xs sm:text-sm font-extrabold text-[#7B1113] font-telugu-serif">
+                                  {isEn ? sub.shlokaEn : sub.shlokaTe}
+                                </div>
+                                <div className="text-[11px] font-semibold text-[#5D4037] italic">
+                                  {isEn ? sub.refEn : sub.refTe}
+                                </div>
+                              </div>
+                              <ul className="space-y-1 text-xs text-[#2C1810]">
+                                <li className="flex items-start gap-2 leading-relaxed font-semibold">
+                                  <span className="text-[#D84315] font-bold">•</span>
+                                  <span>{isEn ? sub.bhavamEn : sub.bhavamTe}</span>
+                                </li>
+                                <li className="flex items-start gap-2 leading-relaxed">
+                                  <span className="text-[#D84315] font-bold">•</span>
+                                  <span>{isEn ? sub.noteEn : sub.noteTe}</span>
+                                </li>
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Synthesis / Samanvayam (1. Sarveshvara, 2. Kala, 3. Svabhava/Prakriti) */}
+                      <div className="p-3.5 rounded-xl bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#4A0012] text-[#FFE082] border border-[#D4AF37] space-y-2">
+                        <h6 className="text-xs sm:text-sm font-extrabold text-[#FFD54F] font-telugu-serif">
+                          {isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.synthesis.headingEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.synthesis.headingTe}
+                        </h6>
+                        <ul className="space-y-1.5 text-xs text-white font-semibold">
+                          {(isEn ? SANATANA_CREATION_INTRODUCTION.gitaPramanam.synthesis.pointsEn : SANATANA_CREATION_INTRODUCTION.gitaPramanam.synthesis.pointsTe).map((pt, pIdx) => (
+                            <li key={pIdx} className="leading-relaxed">
+                              {pt}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Downward Connector Arrow leading directly into సోపానం 1 */}
+              <div className="my-1.5 flex flex-col items-center">
+                <div className="w-0.5 h-3.5 bg-[#7B1113]" />
+                <ArrowDown className="w-4 h-4 text-[#7B1113]" />
+              </div>
             </div>
 
             {SANATANA_CHRONOLOGY_STEPS.map((step, idx) => {
