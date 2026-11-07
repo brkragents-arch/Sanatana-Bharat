@@ -456,7 +456,7 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
           </div>
 
           {/* 6 Freedom Fighters Portraits Grid */}
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
             {data.freedomFighters.fighters.map((fighter) => (
               <div
                 key={fighter.id}
@@ -477,10 +477,10 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
                     loading="lazy"
                   />
                 </div>
-                <h6 className="font-extrabold text-[10px] text-[#7B1113] leading-tight line-clamp-1">
+                <h6 className="font-extrabold text-[10.5px] sm:text-[11px] text-[#7B1113] leading-snug break-words">
                   {isEn ? fighter.nameEn : fighter.nameTe}
                 </h6>
-                <p className="text-[8px] text-[#5D4037] leading-tight line-clamp-1 mt-0.5">
+                <p className="text-[9px] sm:text-[9.5px] text-[#5D4037] font-medium leading-snug mt-1 break-words">
                   {isEn ? fighter.roleEn : fighter.roleTe}
                 </p>
               </div>
