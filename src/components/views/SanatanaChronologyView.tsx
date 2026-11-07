@@ -44,16 +44,35 @@ export const SanatanaChronologyView: React.FC = () => {
       const leftEl = leftColRef.current;
       const rightEl = rightCardRef.current;
       if (stepEl && leftEl) {
-        const rawTop = stepEl.offsetTop - leftEl.offsetTop;
+        const leftRect = leftEl.getBoundingClientRect();
+        const stepRect = stepEl.getBoundingClientRect();
         const leftHeight = leftEl.offsetHeight;
-        const rightHeight = rightEl ? rightEl.offsetHeight : 380;
+        const rightHeight = rightEl ? rightEl.offsetHeight : 420;
+
+        // Start aligned with the clicked step card's top in the viewport
+        let viewportTop = stepRect.top;
+        const margin = 16;
+
+        // If the bottom of the popup would go below the visible screen, shift it up into view
+        if (viewportTop + rightHeight > window.innerHeight - margin) {
+          viewportTop = window.innerHeight - margin - rightHeight;
+        }
+        // Ensure the top of the popup never goes above the top of the visible screen
+        if (viewportTop < margin) {
+          viewportTop = margin;
+        }
+
+        const rawTop = viewportTop - leftRect.top;
         const maxAllowedTop = Math.max(0, leftHeight - rightHeight);
         setInspectorTop(Math.max(0, Math.min(rawTop, maxAllowedTop)));
       }
     };
-    const timer = window.setTimeout(updatePosition, 30);
+    updatePosition();
+    const rafId = window.requestAnimationFrame(updatePosition);
+    const timer = window.setTimeout(updatePosition, 60);
     window.addEventListener('resize', updatePosition);
     return () => {
+      window.cancelAnimationFrame(rafId);
       window.clearTimeout(timer);
       window.removeEventListener('resize', updatePosition);
     };

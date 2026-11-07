@@ -25,24 +25,49 @@ export const ChronologyFlowView: React.FC = () => {
 
   const isEn = language === 'en';
   const [selectedMilestone, setSelectedMilestone] = useState<CreationMilestone>(CREATION_STAGES[0]);
+  const [clickTrigger, setClickTrigger] = useState<number>(0);
   const [inspectorTop, setInspectorTop] = useState<number>(0);
   const leftColRef = useRef<HTMLDivElement | null>(null);
   const rightCardRef = useRef<HTMLDivElement | null>(null);
   const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const idx = CREATION_STAGES.findIndex(s => s.step === selectedMilestone.step);
-    const stepEl = stageRefs.current[idx];
-    const leftEl = leftColRef.current;
-    const rightEl = rightCardRef.current;
-    if (stepEl && leftEl) {
-      const rawTop = stepEl.offsetTop - leftEl.offsetTop;
-      const leftHeight = leftEl.offsetHeight;
-      const rightHeight = rightEl ? rightEl.offsetHeight : 420;
-      const maxAllowedTop = Math.max(0, leftHeight - rightHeight);
-      setInspectorTop(Math.max(0, Math.min(rawTop, maxAllowedTop)));
-    }
-  }, [selectedMilestone, language]);
+    const updatePosition = () => {
+      const idx = CREATION_STAGES.findIndex(s => s.step === selectedMilestone.step);
+      const stepEl = stageRefs.current[idx];
+      const leftEl = leftColRef.current;
+      const rightEl = rightCardRef.current;
+      if (stepEl && leftEl) {
+        const leftRect = leftEl.getBoundingClientRect();
+        const stepRect = stepEl.getBoundingClientRect();
+        const leftHeight = leftEl.offsetHeight;
+        const rightHeight = rightEl ? rightEl.offsetHeight : 440;
+
+        let viewportTop = stepRect.top;
+        const margin = 16;
+
+        if (viewportTop + rightHeight > window.innerHeight - margin) {
+          viewportTop = window.innerHeight - margin - rightHeight;
+        }
+        if (viewportTop < margin) {
+          viewportTop = margin;
+        }
+
+        const rawTop = viewportTop - leftRect.top;
+        const maxAllowedTop = Math.max(0, leftHeight - rightHeight);
+        setInspectorTop(Math.max(0, Math.min(rawTop, maxAllowedTop)));
+      }
+    };
+    updatePosition();
+    const rafId = window.requestAnimationFrame(updatePosition);
+    const timer = window.setTimeout(updatePosition, 60);
+    window.addEventListener('resize', updatePosition);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(timer);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [selectedMilestone, clickTrigger, language]);
 
   // Specific routing targets for each creation step to navigate to particular items
   const getStepNavActions = (step: number) => {
