@@ -337,7 +337,7 @@ export const IndianHistoryView: React.FC = () => {
                 </div>
 
                 {/* 3. The 7 Key Milestones with Extracted Pictures */}
-                <div className="grid grid-cols-7 gap-2 pt-2 items-start">
+                <div className="grid grid-cols-7 gap-2.5 pt-2 items-stretch">
                   
                   {/* Milestone 1: First Human Species */}
                   <div 
@@ -349,19 +349,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Dawn of Early Hominids in the Paleolithic Era' : 'ప్రాచీన శిలాయుగంలో హోమినిడ్ జాతుల పరిణామం'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#F1F8E9] border border-[#C5E1A5] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#F1F8E9] border border-[#C5E1A5] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#33691E] uppercase">{isEn ? 'Paleolithic' : 'తొలి శిలాయుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#AED581] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#33691E] uppercase tracking-wide">{isEn ? 'Paleolithic' : 'తొలి శిలాయుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#AED581] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/1_first_humans.jpg" 
                         alt="First human species" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#1B5E20] leading-tight">{isEn ? 'First Human Species' : 'తొలి మానవ జాతులు'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#D84315]">2.5 Million BC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#1B5E20] leading-tight line-clamp-1">{isEn ? 'First Human Species' : 'తొలి మానవ జాతులు'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#D84315] mt-0.5">2.5 Million BC</div>
+                    </div>
                   </div>
 
                   {/* Milestone 2: Use of Fire */}
@@ -374,19 +381,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Major technological breakthrough of early humans' : 'మానవ పరిణామంలో అగ్ని వినియోగం మహా మలుపు'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#F1F8E9] border border-[#C5E1A5] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#F1F8E9] border border-[#C5E1A5] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#33691E] uppercase">{isEn ? 'Paleolithic' : 'శిలాయుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#AED581] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#33691E] uppercase tracking-wide">{isEn ? 'Paleolithic' : 'శిలాయుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#AED581] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/2_use_of_fire.jpg" 
                         alt="Use of fire" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#1B5E20] leading-tight">{isEn ? 'Use of Fire' : 'నిప్పు వాడకం'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#D84315]">1 Million BC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#1B5E20] leading-tight line-clamp-1">{isEn ? 'Use of Fire' : 'నిప్పు వాడకం'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#D84315] mt-0.5">1 Million BC</div>
+                    </div>
                   </div>
 
                   {/* Milestone 3: Agriculture Begins */}
@@ -399,19 +413,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Neolithic Revolution: Settled communities & crop cultivation' : 'నవీన శిలాయుగ విప్లవం: స్థిర నివాసాలు & పంటల సాగు'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#E8F5E9] border border-[#A5D6A7] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#E8F5E9] border border-[#A5D6A7] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#1B5E20] uppercase">{isEn ? 'Neolithic' : 'నవీన శిలాయుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#81C784] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#1B5E20] uppercase tracking-wide">{isEn ? 'Neolithic' : 'నవీన శిలాయుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#81C784] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/3_agriculture.jpg" 
                         alt="Agriculture begins" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#1B5E20] leading-tight">{isEn ? 'Agriculture Begins' : 'వ్యవసాయం ప్రారంభం'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#2E7D32]">10,000 BC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#1B5E20] leading-tight line-clamp-1">{isEn ? 'Agriculture Begins' : 'వ్యవసాయం ప్రారంభం'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#2E7D32] mt-0.5">10,000 BC</div>
+                    </div>
                   </div>
 
                   {/* Milestone 4: Invention of Writing */}
@@ -424,19 +445,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Transition from Prehistory to History: Written records emerge' : 'చరిత్రపూర్వ యుగం నుండి చారిత్రక యుగానికి మార్పు'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#FFF3E0] border border-[#FFCC80] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#FFF3E0] border border-[#FFCC80] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#E65100] uppercase">{isEn ? 'Ancient' : 'ప్రాచీన యుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#FFA726] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#E65100] uppercase tracking-wide">{isEn ? 'Ancient' : 'ప్రాచీన యుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#FFA726] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/4_writing.jpg" 
                         alt="Invention of writing" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#7B1113] leading-tight">{isEn ? 'Invention of Writing' : 'లిపి ఆవిర్భావం'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#D84315]">3,000 BC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#7B1113] leading-tight line-clamp-1">{isEn ? 'Invention of Writing' : 'లిపి ఆవిర్భావం'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#D84315] mt-0.5">3,000 BC</div>
+                    </div>
                   </div>
 
                   {/* Milestone 5: Fall of Western Roman Empire */}
@@ -449,19 +477,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Marks the transition from Antiquity into the Medieval Age' : 'ప్రాచీన యుగం ముగిసి మధ్యయుగం ఆరంభమైన చారిత్రక ఘట్టం'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#FBE9E7] border border-[#FFAB91] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#FBE9E7] border border-[#FFAB91] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#BF360C] uppercase">{isEn ? 'Medieval' : 'మధ్యయుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#FF8A65] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#BF360C] uppercase tracking-wide">{isEn ? 'Medieval' : 'మధ్యయుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#FF8A65] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/5_roman_fall.jpg" 
                         alt="Fall of Western Roman Empire" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#7B1113] leading-tight">{isEn ? 'Fall of Roman Empire' : 'రోమన్ పతనం'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#D84315]">476 AC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#7B1113] leading-tight line-clamp-1">{isEn ? 'Fall of Roman Empire' : 'రోమన్ పతనం'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#D84315] mt-0.5">476 AC</div>
+                    </div>
                   </div>
 
                   {/* Milestone 6: Columbus Discovered America */}
@@ -474,19 +509,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Age of Exploration: Beginning of the Modern Age' : 'సముద్ర మార్గాల అన్వేషణ & ఆధునిక యుగారంభం'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#EFEBE9] border border-[#BCAAA4] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#EFEBE9] border border-[#BCAAA4] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#4E342E] uppercase">{isEn ? 'Modern' : 'ఆధునిక యుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#A1887F] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#4E342E] uppercase tracking-wide">{isEn ? 'Modern' : 'ఆధునిక యుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#A1887F] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/6_columbus.jpg" 
                         alt="Columbus discovered America" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#4E342E] leading-tight">{isEn ? 'Columbus Voyages' : 'కొలంబస్ ప్రయాణం'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#5D4037]">1492 AC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#4E342E] leading-tight line-clamp-1">{isEn ? 'Columbus Voyages' : 'కొలంబస్ ప్రయాణం'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#5D4037] mt-0.5">1492 AC</div>
+                    </div>
                   </div>
 
                   {/* Milestone 7: French Revolution */}
@@ -499,19 +541,26 @@ export const IndianHistoryView: React.FC = () => {
                         subtitle: isEn ? 'Dawn of the Contemporary Age: Liberty, Equality & Fraternity' : 'స్వేచ్ఛ, సమానత్వం, సౌభ్రాతృత్వాలతో సమకాలీన యుగారంభం'
                       });
                     }}
-                    className="p-2 rounded-xl bg-[#ECEFF1] border border-[#B0BEC5] text-center space-y-1.5 hover:shadow-md transition-all cursor-pointer group"
+                    className="p-2 rounded-xl bg-[#ECEFF1] border border-[#B0BEC5] text-center flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
                   >
-                    <div className="text-[9px] font-bold text-[#263238] uppercase">{isEn ? 'Contemporary' : 'సమకాలీన యుగం'}</div>
-                    <div className="h-14 w-full rounded-lg overflow-hidden bg-white border border-[#90A4AE] p-0.5 shadow-2xs group-hover:scale-105 transition-transform flex items-center justify-center">
+                    <div className="text-[9px] font-bold text-[#263238] uppercase tracking-wide">{isEn ? 'Contemporary' : 'సమకాలీన యుగం'}</div>
+                    <div className="h-20 sm:h-24 w-full rounded-lg overflow-hidden bg-stone-900 border border-[#90A4AE] my-1 shadow-2xs relative group-hover:shadow-md transition-all">
                       <img 
                         src="./images/indian_history/historic_periods/7_french_rev.jpg" 
                         alt="French Revolution" 
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-300"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span className="p-1 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs">
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-[#263238] leading-tight">{isEn ? 'French Revolution' : 'ఫ్రెంచ్ విప్లవం'}</div>
-                    <div className="text-[10px] font-mono font-extrabold text-[#37474F]">1789 AC</div>
+                    <div>
+                      <div className="text-xs font-bold text-[#263238] leading-tight line-clamp-1">{isEn ? 'French Revolution' : 'ఫ్రెంచ్ విప్లవం'}</div>
+                      <div className="text-[10px] font-mono font-extrabold text-[#37474F] mt-0.5">1789 AC</div>
+                    </div>
                   </div>
 
                 </div>
