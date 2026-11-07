@@ -167,12 +167,12 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
                     isEn ? `${epoch.yearsEn}: ${epoch.keyFeaturesEn}` : `${epoch.yearsTe}: ${epoch.keyFeaturesTe}`
                   )
                 }
-                className="relative aspect-[16/9] w-full bg-stone-950 border-y border-[#D4AF37]/40 overflow-hidden cursor-pointer group shadow-inner"
+                className="relative aspect-[3/4] w-full bg-[#FAF7F0] border-y border-[#D4AF37]/40 overflow-hidden cursor-pointer group shadow-inner"
               >
                 <img
                   src={epoch.image}
                   alt={epoch.titleEn}
-                  className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
