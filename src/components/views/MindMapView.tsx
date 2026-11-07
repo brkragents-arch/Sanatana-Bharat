@@ -21,7 +21,8 @@ import {
   CheckCircle2,
   Maximize2,
   X,
-  AlertTriangle
+  AlertTriangle,
+  ExternalLink
 } from 'lucide-react';
 
 interface MindMapNode {
@@ -1164,17 +1165,29 @@ export const MindMapView: React.FC = () => {
                 <span>🖼️</span>
                 <span>{isEn ? 'మూల సచిత్ర పటం:' : 'మూల సచిత్ర పటం:'}</span>
               </span>
-              <button
-                type="button"
-                onClick={() => {
-                  setPreservationZoom(1);
-                  setIsPreservationModalOpen(true);
-                }}
-                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs hover:shadow-xs transition-all"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                <span>{isEn ? 'Vedas Preservation Master Chart (Click to View & Zoom)' : '1,180 వేద శాఖల పరిరక్షణ మూల సచిత్ర పటం (వీక్షించండి)'}</span>
-              </button>
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPreservationZoom(1);
+                    setIsPreservationModalOpen(true);
+                  }}
+                  className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs hover:shadow-xs transition-all"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                  <span>{isEn ? 'Vedas Preservation Master Chart (Click to View & Zoom)' : '1,180 వేద శాఖల పరిరక్షణ మూల సచిత్ర పటం (వీక్షించండి)'}</span>
+                </button>
+                <a
+                  href={VEDAS_PRESERVATION_CHART_DATA.chartImageSrc}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+                  title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+                  <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+                </a>
+              </div>
             </div>
           </div>
           
@@ -2039,7 +2052,17 @@ export const MindMapView: React.FC = () => {
               </div>
 
               {/* Zoom & Close Controls */}
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <a
+                  href={VEDAS_PRESERVATION_CHART_DATA.chartImageSrc}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-lg bg-[#FFE082] hover:bg-white text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1 shadow-xs cursor-pointer mr-1"
+                  title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => setPreservationZoom(prev => Math.min(prev + 0.25, 3))}
@@ -2168,7 +2191,17 @@ export const MindMapView: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <a
+                  href={VEDIC_INDIAN_SCRIPTURES_DATA.imageSrc}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-lg bg-[#FFE082] hover:bg-white text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1 shadow-xs cursor-pointer mr-1"
+                  title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => setScripturesZoom(prev => Math.min(prev + 0.25, 2.8))}

@@ -11,7 +11,8 @@ import {
   ZoomOut, 
   RotateCcw,
   Flame,
-  Maximize2
+  Maximize2,
+  ExternalLink
 } from 'lucide-react';
 import { BhagavadGitaTimelineModal } from './BhagavadGitaTimelineModal';
 
@@ -395,6 +396,16 @@ export const VedicScripturesHierarchy: React.FC<VedicScripturesHierarchyProps> =
                 <span>{isEn ? 'Vedic Scriptures Manuscript Chart (View & Zoom)' : 'భారతీయ వైదిక వాఙ్మయ మూల చిత్ర పటము (వీక్షించండి)'}</span>
                 <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
               </button>
+              <a
+                href={VEDIC_INDIAN_SCRIPTURES_DATA.imageSrc}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+                title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్ ↗'}</span>
+              </a>
             </div>
           </div>
 
@@ -428,7 +439,17 @@ export const VedicScripturesHierarchy: React.FC<VedicScripturesHierarchyProps> =
               </div>
 
               {/* Controls */}
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <a
+                  href={VEDIC_INDIAN_SCRIPTURES_DATA.imageSrc}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 rounded-lg bg-[#FFE082] hover:bg-white text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1 shadow-xs cursor-pointer mr-1"
+                  title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+                </a>
                 <button
                   onClick={() => setImageZoom(prev => Math.min(prev + 0.25, 2.5))}
                   className="p-1.5 rounded-lg bg-[#FFFFFF]/10 hover:bg-[#FFFFFF]/25 text-[#FFE082] cursor-pointer"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ZoomIn, ZoomOut, RotateCcw, Clock, BookOpen, Layers, Sparkles, Filter, Search, Heart, ShieldAlert, Maximize2 } from 'lucide-react';
+import { X, ZoomIn, ZoomOut, RotateCcw, Clock, BookOpen, Layers, Sparkles, Filter, Search, Heart, ShieldAlert, Maximize2, ExternalLink } from 'lucide-react';
 import { useMythology } from '../../context/MythologyContext';
 
 interface BhagavadGitaTimelineModalProps {
@@ -1148,75 +1148,74 @@ export const BhagavadGitaTimelineModal: React.FC<BhagavadGitaTimelineModalProps>
             </div>
 
             <div className="flex flex-wrap gap-2 pt-1">
-              <button
-                type="button"
-                onClick={() => setEnlargedPoster({
+              {[
+                {
                   src: './images/indian_history/bhagavad_gita_18_chapters.jpg',
-                  title: isEn ? '18 Chapters of Bhagavad Gita' : 'భగవద్గీత 18 అధ్యాయాలు & శ్లోక సంఖ్యల పట్టిక',
-                  subtitle: isEn ? 'Sanskrit Chapter Names and Verse Counts (Total 700 Verses)' : 'అధ్యాయాల పేర్లు & మొత్తం 700 శ్లోకాల మూల పటం'
-                })}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFF8E7] border border-[#D4AF37] hover:border-[#7B1113] text-xs font-bold text-[#7B1113] hover:text-[#D84315] flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer"
-              >
-                <span>📜</span>
-                <span>{isEn ? '18 Chapters & 700 Verses Chart' : '18 అధ్యాయాలు & 700 శ్లోకాల మూల పటం'}</span>
-                <Maximize2 className="w-3 h-3 text-[#D84315]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setEnlargedPoster({
+                  icon: '📜',
+                  titleEn: '18 Chapters & 700 Verses Chart',
+                  titleTe: '18 అధ్యాయాలు & 700 శ్లోకాల మూల పటం',
+                  subtitleEn: 'Sanskrit Chapter Names and Verse Counts (Total 700 Verses)',
+                  subtitleTe: 'అధ్యాయాల పేర్లు & మొత్తం 700 శ్లోకాల మూల పటం'
+                },
+                {
                   src: './images/indian_history/bhagavad_gita_18_lessons.jpg',
-                  title: isEn ? 'All Lessons from Bhagwat Geeta' : 'భగవద్గీత 18 దివ్య జీవన పాఠాలు',
-                  subtitle: isEn ? '18 Core Principles for Daily Life and Self-Mastery' : 'జీవిత సాఫల్యానికి 18 ప్రధాన ఆధ్యాత్మిక సూత్రాలు'
-                })}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFF8E7] border border-[#D4AF37] hover:border-[#7B1113] text-xs font-bold text-[#7B1113] hover:text-[#D84315] flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer"
-              >
-                <span>🧘</span>
-                <span>{isEn ? '18 Core Life Lessons Chart' : '18 జీవన పాఠాల మూల పటం'}</span>
-                <Maximize2 className="w-3 h-3 text-[#D84315]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setEnlargedPoster({
+                  icon: '🧘',
+                  titleEn: '18 Core Life Lessons Chart',
+                  titleTe: '18 జీవన పాఠాల మూల పటం',
+                  subtitleEn: '18 Core Principles for Daily Life and Self-Mastery',
+                  subtitleTe: 'జీవిత సాఫల్యానికి 18 ప్రధాన ఆధ్యాత్మిక సూత్రాలు'
+                },
+                {
                   src: './images/indian_history/find_solutions_in_bhagavad_gita.jpg',
-                  title: isEn ? 'Find Solutions for your problems in Bhagavad Gita' : 'జీవిత సమస్యలకు భగవద్గీతలో దివ్య పరిష్కారాలు',
-                  subtitle: isEn ? '20 Common Emotional & Life Struggles and Exact Gita Shloka Remedies' : '20 మానసిక-జీవన సమస్యలకు గీతా శ్లోక నివారణల సమగ్ర పట్టిక'
-                })}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFF8E7] border border-[#D84315] hover:border-[#7B1113] text-xs font-bold text-[#D84315] flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer"
-              >
-                <span>💡</span>
-                <span>{isEn ? '20 Life Problem Remedies Chart' : '20 మానసిక సమస్యల నివారణల మూల పటం'}</span>
-                <Maximize2 className="w-3 h-3 text-[#D84315]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setEnlargedPoster({
+                  icon: '💡',
+                  titleEn: '20 Life Problem Remedies Chart',
+                  titleTe: '20 మానసిక సమస్యల నివారణల మూల పటం',
+                  subtitleEn: '20 Common Emotional & Life Struggles and Exact Gita Shloka Remedies',
+                  subtitleTe: '20 మానసిక-జీవన సమస్యలకు గీతా శ్లోక నివారణల సమగ్ర పట్టిక'
+                },
+                {
                   src: './images/indian_history/timeline_of_bhagavad_gita.jpg',
-                  title: isEn ? 'Timeline of the Bhagavad Gita' : 'శ్రీమద్భగవద్గీత దైవిక కాలరేఖ (సూర్యుని నుండి అర్జునునికి)',
-                  subtitle: isEn ? 'From Sun-God Vivasvan to Kurukshetra War (~120M to 5,000 Yrs)' : '12 కోట్ల సంవత్సరాల పురాతన పరంపర'
-                })}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFF8E7] border border-[#D4AF37] hover:border-[#7B1113] text-xs font-bold text-[#7B1113] hover:text-[#D84315] flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer"
-              >
-                <span>⏳</span>
-                <span>{isEn ? 'Cosmic Timeline Chart' : 'దైవిక కాలరేఖ మూల పటం'}</span>
-                <Maximize2 className="w-3 h-3 text-[#D84315]" />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setEnlargedPoster({
+                  icon: '⏳',
+                  titleEn: 'Cosmic Timeline Chart',
+                  titleTe: 'దైవిక కాలరేఖ మూల పటం',
+                  subtitleEn: 'From Sun-God Vivasvan to Kurukshetra War (~120M to 5,000 Yrs)',
+                  subtitleTe: '12 కోట్ల సంవత్సరాల పురాతన పరంపర'
+                },
+                {
                   src: './images/indian_history/history_of_the_bhagavad_gita_commentaries.jpg',
-                  title: isEn ? 'History of the Bhagavad-gita (Commentaries & Acharyas)' : 'భగవద్గీతా భాష్య పరంపర (శంకరుల నుండి ప్రభుపాదుల వరకు)',
-                  subtitle: isEn ? '8 Great Acharyas from 1200 Yrs ago to 1972 AD' : 'ఆచార్యులు, వ్యాఖ్యానాలు & విశ్వవ్యాప్తి'
-                })}
-                className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FFF8E7] border border-[#D4AF37] hover:border-[#7B1113] text-xs font-bold text-[#7B1113] hover:text-[#D84315] flex items-center gap-1.5 shadow-2xs transition-all cursor-pointer"
-              >
-                <span>🏛️</span>
-                <span>{isEn ? 'History of Commentaries & Acharyas Chart' : 'ఆచార్యుల భాష్య పరంపర మూల పటం'}</span>
-                <Maximize2 className="w-3 h-3 text-[#D84315]" />
-              </button>
+                  icon: '🏛️',
+                  titleEn: 'History of Commentaries & Acharyas Chart',
+                  titleTe: 'ఆచార్యుల భాష్య పరంపర మూల పటం',
+                  subtitleEn: '8 Great Acharyas from 1200 Yrs ago to 1972 AD',
+                  subtitleTe: 'ఆచార్యులు, వ్యాఖ్యానాలు & విశ్వవ్యాప్తి'
+                }
+              ].map((p, pIdx) => (
+                <div key={pIdx} className="flex items-center rounded-xl bg-white border border-[#D4AF37] hover:border-[#7B1113] shadow-2xs overflow-hidden transition-all">
+                  <button
+                    type="button"
+                    onClick={() => setEnlargedPoster({
+                      src: p.src,
+                      title: isEn ? p.titleEn : p.titleTe,
+                      subtitle: isEn ? p.subtitleEn : p.subtitleTe
+                    })}
+                    className="px-3 py-1.5 text-xs font-bold text-[#7B1113] hover:text-[#D84315] hover:bg-[#FFF8E7] flex items-center gap-1.5 cursor-pointer transition-colors"
+                  >
+                    <span>{p.icon}</span>
+                    <span>{isEn ? p.titleEn : p.titleTe}</span>
+                    <Maximize2 className="w-3 h-3 text-[#D84315]" />
+                  </button>
+                  <a
+                    href={p.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 py-1.5 border-l border-[#D4AF37]/50 bg-amber-50 hover:bg-amber-100 text-[#7B1113] hover:text-[#D84315] flex items-center gap-1 text-[11px] font-bold transition-colors cursor-pointer"
+                    title={isEn ? "Open picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                  >
+                    <ExternalLink className="w-3 h-3 text-[#D84315]" />
+                    <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -1255,6 +1254,17 @@ export const BhagavadGitaTimelineModal: React.FC<BhagavadGitaTimelineModalProps>
             </div>
 
             <div className="flex items-center gap-2">
+              <a
+                href={enlargedPoster.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                className="px-3 py-1.5 rounded-lg bg-[#FFE57F] hover:bg-[#FFF9C4] text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
+                title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+              </a>
               <button
                 onClick={(e) => { e.stopPropagation(); setPosterZoom(prev => Math.min(prev + 0.25, 3)); }}
                 className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#FFE57F] transition-colors cursor-pointer"

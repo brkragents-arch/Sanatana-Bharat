@@ -46,7 +46,8 @@ import {
   CheckCircle2,
   GraduationCap,
   Landmark,
-  Feather
+  Feather,
+  ExternalLink
 } from 'lucide-react';
 
 // Exact crop percentages for illustrations from the uploaded Gupta Empire notebook infographic
@@ -521,23 +522,35 @@ export const IndianHistoryView: React.FC = () => {
                     <span>🖼️</span>
                     <span>{isEn ? 'మూల సచిత్ర పటం:' : 'మూల సచిత్ర పటం:'}</span>
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setLightboxZoom(1);
-                      setLightboxImage({
-                        src: './images/indian_history/historic_periods_timeline.jpg',
-                        title: isEn ? 'Historic Periods Timeline' : 'చారిత్రక కాలాల మూల కాలరేఖ (Historic Periods Timeline)',
-                        subtitle: isEn 
-                          ? 'Important Events in Ancient History Timeline: Prehistory (3M–3000 BC) & History (3000 BC to Present)'
-                          : 'చరిత్రపూర్వ యుగం (30 లక్షల-3000 BC) & చారిత్రక యుగం (3000 BC నుండి నేటి వరకు)'
-                      });
-                    }}
-                    className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-amber-50/80 hover:bg-amber-100/80 px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs hover:shadow-xs transition-all"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                    <span>{isEn ? 'Historic Periods Timeline Original Chart (Click to View & Zoom)' : 'చారిత్రక కాలాల మూల కాలరేఖ పటం (వీక్షించండి)'}</span>
-                  </button>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setLightboxZoom(1);
+                        setLightboxImage({
+                          src: './images/indian_history/historic_periods_timeline.jpg',
+                          title: isEn ? 'Historic Periods Timeline' : 'చారిత్రక కాలాల మూల కాలరేఖ (Historic Periods Timeline)',
+                          subtitle: isEn 
+                            ? 'Important Events in Ancient History Timeline: Prehistory (3M–3000 BC) & History (3000 BC to Present)'
+                            : 'చరిత్రపూర్వ యుగం (30 లక్షల-3000 BC) & చారిత్రక యుగం (3000 BC నుండి నేటి వరకు)'
+                        });
+                      }}
+                      className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-amber-50/80 hover:bg-amber-100/80 px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs hover:shadow-xs transition-all"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                      <span>{isEn ? 'Historic Periods Timeline Original Chart (Click to View & Zoom)' : 'చారిత్రక కాలాల మూల కాలరేఖ పటం (వీక్షించండి)'}</span>
+                    </button>
+                    <a
+                      href="./images/indian_history/historic_periods_timeline.jpg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+                      title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+                      <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+                    </a>
+                  </div>
                 </div>
 
               </div>
@@ -3306,8 +3319,18 @@ export const IndianHistoryView: React.FC = () => {
                       {isEn ? img.subtitleEn : img.subtitleTe}
                     </p>
                   </div>
-                  <div className="pt-3 mt-3 border-t border-[#E8DCC4] flex items-center justify-between text-xs font-semibold text-[#D84315]">
-                    <span>{isEn ? 'Source Manuscript' : 'మూల పరిశోధనా పత్రం'}</span>
+                  <div className="pt-3 mt-3 border-t border-[#E8DCC4] flex items-center justify-between text-xs font-semibold text-[#D84315] flex-wrap gap-2">
+                    <a
+                      href={img.src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      className="text-[#7B1113] hover:text-[#D84315] hover:underline flex items-center gap-1 font-bold"
+                      title={isEn ? "Open image in new tab" : "చిత్రాన్ని కొత్త ట్యాబ్‌లో తెరవండి"}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+                      <span>{isEn ? 'Direct Picture Link' : 'చిత్రం లింక్ ↗'}</span>
+                    </a>
                     <span className="flex items-center gap-1 group-hover:underline">
                       <span>{isEn ? 'View High-Res' : 'హై-రెస్ దర్శనం'}</span>
                       <ChevronRight className="w-4 h-4" />
@@ -8559,7 +8582,17 @@ export const IndianHistoryView: React.FC = () => {
               </div>
 
               {/* Interactive Zoom Buttons */}
-              <div className="flex items-center gap-1.5 shrink-0">
+              <div className="flex items-center gap-1.5 shrink-0 flex-wrap">
+                <a
+                  href={lightboxImage.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 rounded-lg bg-[#FFE082] hover:bg-white text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer mr-1"
+                  title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+                </a>
                 <button
                   onClick={() => setLightboxZoom(z => Math.max(0.75, +(z - 0.5).toFixed(2)))}
                   className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-[#FFE082] text-xs font-extrabold border border-[#D4AF37]/50 cursor-pointer"

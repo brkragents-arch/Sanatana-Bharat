@@ -23,7 +23,8 @@ import {
   CheckCircle2,
   ChevronRight,
   Info,
-  ArrowDown
+  ArrowDown,
+  ExternalLink
 } from 'lucide-react';
 import { BhagavadGitaTimelineModal } from './BhagavadGitaTimelineModal';
 
@@ -946,18 +947,30 @@ export const VedicItihasaChronologySection: React.FC<VedicItihasaChronologySecti
             <span>🖼️</span>
             <span>{isEn ? 'మూల సచిత్ర పటాలు (Source Illustrated Charts):' : 'మూల సచిత్ర పటాలు:'}</span>
           </span>
-          <button
-            type="button"
-            onClick={() => setEnlargedPoster({
-              src: RAMAYANA_FAMILY_TREE_DATA.imageSrc,
-              title: isEn ? RAMAYANA_FAMILY_TREE_DATA.titleEn : RAMAYANA_FAMILY_TREE_DATA.titleTe,
-              subtitle: isEn ? 'Original Visual Family Tree Chart (Ramayana)' : 'మూల సచిత్ర వంశవృక్ష పటం'
-            })}
-            className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-          >
-            <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-            <span>{isEn ? 'Ramayana Family Tree Original Poster (Click to View & Zoom)' : 'రామాయణ సంపూర్ణ వంశవృక్ష మూల సచిత్ర పటం (వీక్షించండి)'}</span>
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setEnlargedPoster({
+                src: RAMAYANA_FAMILY_TREE_DATA.imageSrc,
+                title: isEn ? RAMAYANA_FAMILY_TREE_DATA.titleEn : RAMAYANA_FAMILY_TREE_DATA.titleTe,
+                subtitle: isEn ? 'Original Visual Family Tree Chart (Ramayana)' : 'మూల సచిత్ర వంశవృక్ష పటం'
+              })}
+              className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>{isEn ? 'Ramayana Family Tree Original Poster (Click to View & Zoom)' : 'రామాయణ సంపూర్ణ వంశవృక్ష మూల సచిత్ర పటం (వీక్షించండి)'}</span>
+            </button>
+            <a
+              href={RAMAYANA_FAMILY_TREE_DATA.imageSrc}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+              title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -1489,18 +1502,30 @@ export const VedicItihasaChronologySection: React.FC<VedicItihasaChronologySecti
             <span>🖼️</span>
             <span>{isEn ? 'మూల సచిత్ర పటాలు (Source Illustrated Charts):' : 'మూల సచిత్ర పటాలు:'}</span>
           </span>
-          <button
-            type="button"
-            onClick={() => setEnlargedPoster({
-              src: './images/indian_history/mahabharata_kuru_family_tree.png',
-              title: isEn ? 'Family Tree of the Kuru Dynasty' : 'కురువంశ సంపూర్ణ వంశవృక్ష పటం',
-              subtitle: isEn ? 'Original Visual Chart of Kuru Lineage' : 'మూల సచిత్ర వంశవృక్ష పటం (జూమ్ చేసి చూడండి)'
-            })}
-            className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-          >
-            <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-            <span>{isEn ? 'Family Tree of the Kuru Dynasty Original Poster (Click to View & Zoom)' : 'కురువంశ సంపూర్ణ వంశవృక్ష మూల సచిత్ర పటం (వీక్షించండి)'}</span>
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setEnlargedPoster({
+                src: './images/indian_history/mahabharata_kuru_family_tree.png',
+                title: isEn ? 'Family Tree of the Kuru Dynasty' : 'కురువంశ సంపూర్ణ వంశవృక్ష పటం',
+                subtitle: isEn ? 'Original Visual Chart of Kuru Lineage' : 'మూల సచిత్ర వంశవృక్ష పటం (జూమ్ చేసి చూడండి)'
+              })}
+              className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>{isEn ? 'Family Tree of the Kuru Dynasty Original Poster (Click to View & Zoom)' : 'కురువంశ సంపూర్ణ వంశవృక్ష మూల సచిత్ర పటం (వీక్షించండి)'}</span>
+            </button>
+            <a
+              href="./images/indian_history/mahabharata_kuru_family_tree.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+              title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -3066,18 +3091,30 @@ export const VedicItihasaChronologySection: React.FC<VedicItihasaChronologySecti
                       <span>🖼️</span>
                       <span>{isEn ? 'మూల సచిత్ర పటం:' : 'మూల సచిత్ర పటం:'}</span>
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => setEnlargedPoster({
-                        src: RAMA_SHLOKA_ORIGIN_DATA.posterImageSrc,
-                        title: isEn ? RAMA_SHLOKA_ORIGIN_DATA.titleEn : RAMA_SHLOKA_ORIGIN_DATA.titleTe,
-                        subtitle: isEn ? 'How Rama is called by each one' : 'మూల సచిత్ర పటం (జూమ్ చేసి చూడండి)'
-                      })}
-                      className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                      <span>{isEn ? 'Source Poster: "How Rama is called by each one" (View & Zoom)' : 'మూల సచిత్ర పటం: "రాముని 7 దివ్య సంబోధనల చార్ట్" (వీక్షించండి)'}</span>
-                    </button>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <button
+                        type="button"
+                        onClick={() => setEnlargedPoster({
+                          src: RAMA_SHLOKA_ORIGIN_DATA.posterImageSrc,
+                          title: isEn ? RAMA_SHLOKA_ORIGIN_DATA.titleEn : RAMA_SHLOKA_ORIGIN_DATA.titleTe,
+                          subtitle: isEn ? 'How Rama is called by each one' : 'మూల సచిత్ర పటం (జూమ్ చేసి చూడండి)'
+                        })}
+                        className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                        <span>{isEn ? 'Source Poster: "How Rama is called by each one" (View & Zoom)' : 'మూల సచిత్ర పటం: "రాముని 7 దివ్య సంబోధనల చార్ట్" (వీక్షించండి)'}</span>
+                      </button>
+                      <a
+                        href={RAMA_SHLOKA_ORIGIN_DATA.posterImageSrc}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+                        title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+                        <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               )}
@@ -3912,6 +3949,17 @@ export const VedicItihasaChronologySection: React.FC<VedicItihasaChronologySecti
             </div>
 
             <div className="flex items-center gap-2">
+              <a
+                href={enlargedPoster.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                className="px-3 py-1.5 rounded-lg bg-[#FFE57F] hover:bg-[#FFF9C4] text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
+                title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+              </a>
               <button
                 onClick={(e) => { e.stopPropagation(); setEnlargedPosterZoom(prev => Math.min(prev + 0.25, 3)); }}
                 className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#FFE57F] transition-colors"

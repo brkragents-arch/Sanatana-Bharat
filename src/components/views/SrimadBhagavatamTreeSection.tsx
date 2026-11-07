@@ -15,7 +15,8 @@ import {
   ChevronDown,
   Layers,
   Minimize2,
-  Move
+  Move,
+  ExternalLink
 } from 'lucide-react';
 import { 
   BHAGAVATAM_TREE_ROOT, 
@@ -653,7 +654,7 @@ export const SrimadBhagavatamTreeSection: React.FC = () => {
             <Compass className="w-4 h-4 text-[#D84315] shrink-0" />
             <span>సూచన: ఏదైనా కార్డ్ లోని <strong>[ + / - ]</strong> బటన్ పై క్లిక్ చేసి శాఖలను విస్తరించవచ్చు లేదా కుదించవచ్చు.</span>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 flex-wrap">
             <span className="font-bold text-[#7B1113]">మూల సచిత్ర పటాలు:</span>
             <button
               type="button"
@@ -667,6 +668,16 @@ export const SrimadBhagavatamTreeSection: React.FC = () => {
               <span>శ్రీమద్భాగవత సంపూర్ణ వంశవృక్ష మూల పటం (వీక్షించండి)</span>
               <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
             </button>
+            <a
+              href="./images/srimad_bhagavatam_tree_full.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+              title="చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>చిత్రం లింక్ ↗</span>
+            </a>
           </div>
         </div>
       </div>
@@ -858,6 +869,16 @@ export const SrimadBhagavatamTreeSection: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2">
+              <a
+                href="./images/srimad_bhagavatam_tree_full.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg bg-[#FFE57F] hover:bg-[#FFF9C4] text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer mr-1"
+                title="చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"
+              >
+                <ExternalLink className="w-4 h-4 text-[#7B1113]" />
+                <span>చిత్రం లింక్ (Direct Picture Link)</span>
+              </a>
               <button
                 onClick={() => setPosterZoom(prev => Math.min(prev + 0.25, 3))}
                 className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#FFE57F] transition-colors"

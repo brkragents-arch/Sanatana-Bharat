@@ -17,7 +17,8 @@ import {
   X,
   Maximize2,
   ChevronRight,
-  ArrowLeft
+  ArrowLeft,
+  ExternalLink
 } from 'lucide-react';
 
 interface SaptarishiSubViewProps {
@@ -287,22 +288,47 @@ export const SaptarishiSubView: React.FC<SaptarishiSubViewProps> = ({
               <span>{isEn ? 'మూల సచిత్ర పటాలు (Original Illustrated Source Posters):' : 'మూల సచిత్ర పటాలు:'}</span>
             </span>
             <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => { setActivePosterKey('source2'); setSubTab('posters'); setPosterZoom(1); }}
-                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                <span>{isEn ? 'Source 2: Sapta Rishis with Wives (View Chart)' : 'మూలం 2: సప్త ఋషులు పత్నులు సమేత పటం'}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => { setActivePosterKey('source1'); setSubTab('posters'); setPosterZoom(1); }}
-                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                <span>{isEn ? 'Source 1: Mind-Born Rishis (View Chart)' : 'మూలం 1: బ్రహ్మ మానసపుత్రుల పటం'}</span>
-              </button>
+              <div className="flex items-center rounded-xl bg-white border border-[#D4AF37] shadow-2xs overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => { setActivePosterKey('source2'); setSubTab('posters'); setPosterZoom(1); }}
+                  className="px-2.5 py-1 text-xs font-bold text-[#7B1113] hover:text-[#D84315] hover:bg-[#FFF8E7] flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                  <span>{isEn ? 'Source 2: Sapta Rishis with Wives' : 'మూలం 2: సప్త ఋషులు పత్నులు సమేత పటం'}</span>
+                </button>
+                <a
+                  href={SAPTARISHI_SOURCE_POSTERS.source2.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 border-l border-[#D4AF37]/50 bg-amber-50 hover:bg-amber-100 text-[#7B1113] hover:text-[#D84315] flex items-center gap-1 text-[11px] font-bold transition-colors cursor-pointer"
+                  title={isEn ? "Open picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3 h-3 text-[#D84315]" />
+                  <span>{isEn ? 'Link' : 'లింక్'}</span>
+                </a>
+              </div>
+
+              <div className="flex items-center rounded-xl bg-white border border-[#D4AF37] shadow-2xs overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => { setActivePosterKey('source1'); setSubTab('posters'); setPosterZoom(1); }}
+                  className="px-2.5 py-1 text-xs font-bold text-[#7B1113] hover:text-[#D84315] hover:bg-[#FFF8E7] flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                  <span>{isEn ? 'Source 1: Mind-Born Rishis' : 'మూలం 1: బ్రహ్మ మానసపుత్రుల పటం'}</span>
+                </button>
+                <a
+                  href={SAPTARISHI_SOURCE_POSTERS.source1.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 border-l border-[#D4AF37]/50 bg-amber-50 hover:bg-amber-100 text-[#7B1113] hover:text-[#D84315] flex items-center gap-1 text-[11px] font-bold transition-colors cursor-pointer"
+                  title={isEn ? "Open picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3 h-3 text-[#D84315]" />
+                  <span>{isEn ? 'Link' : 'లింక్'}</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -392,22 +418,47 @@ export const SaptarishiSubView: React.FC<SaptarishiSubViewProps> = ({
               <span>{isEn ? 'మూల సచిత్ర పటాలు (Original Illustrated Source Posters):' : 'మూల సచిత్ర పటాలు:'}</span>
             </span>
             <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => { setActivePosterKey('source2'); setSubTab('posters'); setPosterZoom(1); }}
-                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                <span>{isEn ? 'Source 2: Sapta Rishis with Wives (View Chart)' : 'మూలం 2: సప్త ఋషులు పత్నులు సమేత పటం'}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => { setActivePosterKey('source1'); setSubTab('posters'); setPosterZoom(1); }}
-                className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-2.5 py-1 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
-              >
-                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-                <span>{isEn ? 'Source 1: Mind-Born Rishis (View Chart)' : 'మూలం 1: బ్రహ్మ మానసపుత్రుల పటం'}</span>
-              </button>
+              <div className="flex items-center rounded-xl bg-white border border-[#D4AF37] shadow-2xs overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => { setActivePosterKey('source2'); setSubTab('posters'); setPosterZoom(1); }}
+                  className="px-2.5 py-1 text-xs font-bold text-[#7B1113] hover:text-[#D84315] hover:bg-[#FFF8E7] flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                  <span>{isEn ? 'Source 2: Sapta Rishis with Wives' : 'మూలం 2: సప్త ఋషులు పత్నులు సమేత పటం'}</span>
+                </button>
+                <a
+                  href={SAPTARISHI_SOURCE_POSTERS.source2.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 border-l border-[#D4AF37]/50 bg-amber-50 hover:bg-amber-100 text-[#7B1113] hover:text-[#D84315] flex items-center gap-1 text-[11px] font-bold transition-colors cursor-pointer"
+                  title={isEn ? "Open picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3 h-3 text-[#D84315]" />
+                  <span>{isEn ? 'Link' : 'లింక్'}</span>
+                </a>
+              </div>
+
+              <div className="flex items-center rounded-xl bg-white border border-[#D4AF37] shadow-2xs overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => { setActivePosterKey('source1'); setSubTab('posters'); setPosterZoom(1); }}
+                  className="px-2.5 py-1 text-xs font-bold text-[#7B1113] hover:text-[#D84315] hover:bg-[#FFF8E7] flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                  <span>{isEn ? 'Source 1: Mind-Born Rishis' : 'మూలం 1: బ్రహ్మ మానసపుత్రుల పటం'}</span>
+                </button>
+                <a
+                  href={SAPTARISHI_SOURCE_POSTERS.source1.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2 py-1 border-l border-[#D4AF37]/50 bg-amber-50 hover:bg-amber-100 text-[#7B1113] hover:text-[#D84315] flex items-center gap-1 text-[11px] font-bold transition-colors cursor-pointer"
+                  title={isEn ? "Open picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3 h-3 text-[#D84315]" />
+                  <span>{isEn ? 'Link' : 'లింక్'}</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -458,8 +509,18 @@ export const SaptarishiSubView: React.FC<SaptarishiSubViewProps> = ({
               </button>
             </div>
 
-            {/* Zoom Controls */}
-            <div className="flex items-center gap-1.5">
+            {/* Zoom Controls & Direct Link */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <a
+                href={SAPTARISHI_SOURCE_POSTERS[activePosterKey].path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded-lg bg-[#FFE082] hover:bg-[#FFF9C4] text-[#7B1113] text-xs font-bold transition-colors flex items-center gap-1 shadow-xs cursor-pointer mr-1"
+                title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>{isEn ? "Picture Link" : "చిత్రం లింక్"}</span>
+              </a>
               <button
                 onClick={() => setPosterZoom(prev => Math.min(prev + 0.25, 3))}
                 className="p-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-[#7B1113]"
