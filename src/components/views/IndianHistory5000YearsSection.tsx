@@ -7,7 +7,8 @@ import {
   Calendar,
   Compass,
   Flame,
-  Users
+  Users,
+  ExternalLink
 } from 'lucide-react';
 
 interface Props {
@@ -55,17 +56,28 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
 
           {/* Master Infographic Button */}
           <div className="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2.5">
-            <button
-              onClick={() => handleOpenImage(
-                data.header.posterImage,
-                isEn ? 'Indian History: 5,000 Years Master Infographic (HD)' : 'భారతీయ చరిత్ర: 5,000 సంవత్సరాల సమగ్ర ఇన్ఫోగ్రాఫిక్ (HD)',
-                isEn ? data.header.descriptionEn : data.header.descriptionTe
-              )}
-              className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-[#7B1113] text-[#FFE082] hover:bg-[#5c0d0e] border border-[#D4AF37] flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all hover:scale-102"
-            >
-              <Maximize2 className="w-4 h-4 text-[#FFE082]" />
-              <span>{isEn ? 'View Original Master Poster (HD)' : 'మూల సమగ్ర పోస్టర్ (HD) లో చూడండి'}</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => handleOpenImage(
+                  data.header.posterImage,
+                  isEn ? 'Indian History: 5,000 Years Master Infographic (HD)' : 'భారతీయ చరిత్ర: 5,000 సంవత్సరాల సమగ్ర ఇన్ఫోగ్రాఫిక్ (HD)',
+                  isEn ? data.header.descriptionEn : data.header.descriptionTe
+                )}
+                className="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-[#7B1113] text-[#FFE082] hover:bg-[#5c0d0e] border border-[#D4AF37] flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all hover:scale-102 flex-1"
+              >
+                <Maximize2 className="w-4 h-4 text-[#FFE082]" />
+                <span>{isEn ? 'View Master Poster (HD)' : 'మూల సమగ్ర పోస్టర్ (HD)'}</span>
+              </button>
+              <a
+                href={data.header.posterImage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl bg-[#FAF7F0] hover:bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] shadow-xs transition-colors flex items-center justify-center cursor-pointer"
+                title={isEn ? "Open master poster directly in new tab" : "పోస్టర్‌ను నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
 
             <div className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-[#FAF7F0] border border-[#D4AF37]/50 text-[11px] text-[#7B1113] font-bold">
               <span>{isEn ? '11 Historic Epochs' : '11 చారిత్రక యుగాలు'}</span>
@@ -155,20 +167,32 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
                     isEn ? `${epoch.yearsEn}: ${epoch.keyFeaturesEn}` : `${epoch.yearsTe}: ${epoch.keyFeaturesTe}`
                   )
                 }
-                className="relative h-28 w-full bg-[#2C1810] overflow-hidden cursor-pointer group"
+                className="relative h-36 sm:h-40 w-full bg-stone-900 border-y border-[#D4AF37]/40 overflow-hidden cursor-pointer group shadow-inner"
               >
                 <img
                   src={epoch.image}
                   alt={epoch.titleEn}
-                  className="w-full h-full object-contain p-1 group-hover:scale-108 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-300"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[10px] font-bold">
-                  <Maximize2 className="w-3.5 h-3.5 text-[#FFE082]" />
+                <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <span className="p-1.5 rounded-full bg-black/60 text-[#FFE082] backdrop-blur-xs shadow-md">
+                    <Maximize2 className="w-4 h-4" />
+                  </span>
                 </div>
-                <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/70 text-[#FFE082] text-[9px] font-mono font-bold">
+                <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md bg-black/75 text-[#FFE082] text-[10px] font-mono font-bold shadow-xs">
                   #{idx + 1}
                 </span>
+                <a
+                  href={epoch.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="absolute top-1.5 right-1.5 p-1 rounded-md bg-black/75 hover:bg-[#FFE082] text-[#FFE082] hover:text-[#7B1113] transition-colors shadow-xs cursor-pointer"
+                  title={isEn ? "Open picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
 
               {/* Content Body: Key Features & What Changed */}
@@ -501,6 +525,39 @@ export const IndianHistory5000YearsSection: React.FC<Props> = ({
           </div>
         </div>
       </div>
+
+      {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
+      <div className="pt-3 border-t-2 border-[#D4AF37]/50 flex items-center justify-between flex-wrap gap-2 text-xs">
+        <span className="font-bold text-[#7B1113] font-telugu-serif flex items-center gap-1.5">
+          <span>🖼️</span>
+          <span>మూల సచిత్ర పటం:</span>
+        </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            type="button"
+            onClick={() => handleOpenImage(
+              data.header.posterImage,
+              isEn ? 'Indian History: 5,000 Years Master Infographic' : 'భారతీయ చరిత్ర: 5,000 సంవత్సరాల సమగ్ర ఇన్ఫోగ్రాఫిక్',
+              isEn ? data.header.descriptionEn : data.header.descriptionTe
+            )}
+            className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-amber-50/80 hover:bg-amber-100/80 px-3 py-1.5 rounded-xl border border-amber-300 shadow-2xs transition-all"
+          >
+            <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+            <span>{isEn ? 'Indian History 5,000 Years Master Poster (Click to View & Zoom)' : 'భారతీయ చరిత్ర 5,000 సంవత్సరాల సమగ్ర పటం (వీక్షించండి)'}</span>
+          </button>
+          <a
+            href={data.header.posterImage}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+            title={isEn ? "Open full picture directly in new tab" : "చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+          >
+            <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+            <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
+          </a>
+        </div>
+      </div>
+
     </div>
   );
 };
