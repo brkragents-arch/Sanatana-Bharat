@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useMythology } from '../../context/MythologyContext';
 import { 
   SANATANA_CHRONOLOGY_STEPS, 
@@ -33,12 +33,37 @@ export const SanatanaChronologyView: React.FC = () => {
   const [selectedStepIndex, setSelectedStepIndex] = useState<number>(0);
   const [showSacredDarshan, setShowSacredDarshan] = useState<boolean>(false);
   const [showIntroExpanded, setShowIntroExpanded] = useState<boolean>(false);
+  const [inspectorTop, setInspectorTop] = useState<number>(0);
+  const leftColRef = useRef<HTMLDivElement | null>(null);
+  const rightCardRef = useRef<HTMLDivElement | null>(null);
+  const stepCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const updatePosition = () => {
+      const stepEl = stepCardRefs.current[selectedStepIndex];
+      const leftEl = leftColRef.current;
+      const rightEl = rightCardRef.current;
+      if (stepEl && leftEl) {
+        const rawTop = stepEl.offsetTop - leftEl.offsetTop;
+        const leftHeight = leftEl.offsetHeight;
+        const rightHeight = rightEl ? rightEl.offsetHeight : 380;
+        const maxAllowedTop = Math.max(0, leftHeight - rightHeight);
+        setInspectorTop(Math.max(0, Math.min(rawTop, maxAllowedTop)));
+      }
+    };
+    const timer = window.setTimeout(updatePosition, 30);
+    window.addEventListener('resize', updatePosition);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [selectedStepIndex, showIntroExpanded, activeSubTab, language]);
 
   const isEn = language === 'en';
   const selectedStep = SANATANA_CHRONOLOGY_STEPS[selectedStepIndex];
 
   return (
-    <div className="flex flex-col bg-[#FAF7F0] rounded-2xl border-2 border-[#D4AF37] shadow-lg overflow-hidden min-h-[750px]">
+    <div className="flex flex-col bg-[#FAF7F0] rounded-2xl border-2 border-[#D4AF37] shadow-lg min-h-[750px]">
       
       {/* ============================================================ */}
       {/* 1. TOP HEADER BANNER */}
@@ -309,10 +334,10 @@ export const SanatanaChronologyView: React.FC = () => {
       {/* (Directly transcribed from user's uploaded manuscript image) */}
       {/* ============================================================ */}
       {activeSubTab === 'lineage' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 p-4 sm:p-6 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-start flex-1 p-4 sm:p-6 gap-6">
           
           {/* Left Column: 13 Stages Cards connected by downward flow */}
-          <div className="lg:col-span-7 space-y-3 pr-1">
+          <div ref={leftColRef} className="lg:col-span-7 space-y-3 pr-1 relative">
             
             {/* Intro Ribbon */}
             <div className="p-3 rounded-xl bg-[#FFF9E6] border border-[#D4AF37]/50 text-xs text-[#7B1113] font-semibold flex items-center gap-2">
@@ -585,7 +610,7 @@ export const SanatanaChronologyView: React.FC = () => {
               const isSelected = selectedStepIndex === idx;
 
               return (
-                <div key={step.step} className="flex flex-col items-center">
+                <div key={step.step} ref={(el) => { stepCardRefs.current[idx] = el; }} className="flex flex-col items-center">
                   <div
                     onClick={() => setSelectedStepIndex(idx)}
                     className={`w-full p-4 rounded-xl transition-all duration-200 cursor-pointer shadow-xs border-2 text-left relative ${
@@ -726,7 +751,7 @@ export const SanatanaChronologyView: React.FC = () => {
           </div>
 
           {/* Right Column: Deep-Dive Step Explanation Inspector */}
-          <div className="lg:col-span-5 bg-[#FFFFFF] rounded-2xl border-2 border-[#D4AF37] p-5 shadow-md flex flex-col justify-between sticky top-4 max-h-[750px] overflow-y-auto">
+          <div ref={rightCardRef} style={{ marginTop: `${inspectorTop}px` }} className="lg:col-span-5 bg-[#FFFFFF] rounded-2xl border-2 border-[#D84315] p-5 shadow-xl flex flex-col gap-4 self-start transition-all duration-200 ring-2 ring-[#FFE082]">
             <div className="space-y-4">
               {/* Header */}
               <div className="flex items-center gap-3 pb-3 border-b border-[#E8DCC4]">

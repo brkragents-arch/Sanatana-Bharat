@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useMythology } from '../../context/MythologyContext';
 import { CREATION_STAGES } from '../../data/creationStagesData';
 import type { CreationMilestone } from '../../types/mythology';
@@ -25,6 +25,24 @@ export const ChronologyFlowView: React.FC = () => {
 
   const isEn = language === 'en';
   const [selectedMilestone, setSelectedMilestone] = useState<CreationMilestone>(CREATION_STAGES[0]);
+  const [inspectorTop, setInspectorTop] = useState<number>(0);
+  const leftColRef = useRef<HTMLDivElement | null>(null);
+  const rightCardRef = useRef<HTMLDivElement | null>(null);
+  const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const idx = CREATION_STAGES.findIndex(s => s.step === selectedMilestone.step);
+    const stepEl = stageRefs.current[idx];
+    const leftEl = leftColRef.current;
+    const rightEl = rightCardRef.current;
+    if (stepEl && leftEl) {
+      const rawTop = stepEl.offsetTop - leftEl.offsetTop;
+      const leftHeight = leftEl.offsetHeight;
+      const rightHeight = rightEl ? rightEl.offsetHeight : 420;
+      const maxAllowedTop = Math.max(0, leftHeight - rightHeight);
+      setInspectorTop(Math.max(0, Math.min(rawTop, maxAllowedTop)));
+    }
+  }, [selectedMilestone, language]);
 
   // Specific routing targets for each creation step to navigate to particular items
   const getStepNavActions = (step: number) => {
@@ -136,7 +154,7 @@ export const ChronologyFlowView: React.FC = () => {
   const navMeta = getStepNavActions(selectedMilestone.step);
 
   return (
-    <div className="flex flex-col bg-[#FAF7F0] rounded-2xl border-2 border-[#D4AF37] shadow-xl overflow-hidden min-h-[800px]">
+    <div className="flex flex-col bg-[#FAF7F0] rounded-2xl border-2 border-[#D4AF37] shadow-xl min-h-[800px]">
       
       {/* ============================================================ */}
       {/* MASTER HOME HEADER: CREATION PROCESS (సృష్టి క్రమము) */}
@@ -238,10 +256,10 @@ export const ChronologyFlowView: React.FC = () => {
       {/* ============================================================ */}
       {/* MAIN TWO-COLUMN STAGE AREA */}
       {/* ============================================================ */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 flex-1 p-4 sm:p-6 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-start flex-1 p-4 sm:p-6 gap-6">
         
         {/* Left Column: Interactive Stages with Distinct Direct Gateway Links */}
-        <div className="lg:col-span-7 space-y-4 overflow-y-auto max-h-[750px] pr-2">
+        <div ref={leftColRef} className="lg:col-span-7 space-y-4 pr-1 relative">
           
           <div className="p-3 rounded-xl bg-[#FFF9E6] border border-[#D4AF37]/50 text-xs text-[#7B1113] font-semibold flex items-center gap-2">
             <Info className="w-4 h-4 text-[#D84315] shrink-0" />
@@ -257,7 +275,7 @@ export const ChronologyFlowView: React.FC = () => {
             const actions = getStepNavActions(milestone.step);
 
             return (
-              <div key={milestone.step} className="flex flex-col items-center">
+              <div key={milestone.step} ref={(el) => { stageRefs.current[idx] = el; }} className="flex flex-col items-center">
                 <div
                   onClick={() => setSelectedMilestone(milestone)}
                   className={`w-full p-4 rounded-xl transition-all duration-200 cursor-pointer shadow-xs border-2 text-left relative ${
@@ -388,7 +406,7 @@ export const ChronologyFlowView: React.FC = () => {
         </div>
 
         {/* Right Column: Deep-Dive Stage Inspector with Cross-Navigation Gateways */}
-        <div className="lg:col-span-5 bg-[#FFFFFF] rounded-2xl border-2 border-[#D4AF37] p-5 shadow-md flex flex-col justify-between sticky top-4 max-h-[750px] overflow-y-auto">
+        <div ref={rightCardRef} style={{ marginTop: `${inspectorTop}px` }} className="lg:col-span-5 bg-[#FFFFFF] rounded-2xl border-2 border-[#D84315] p-5 shadow-xl flex flex-col gap-4 self-start transition-all duration-200 ring-2 ring-[#FFE082]">
           <div>
             {/* Header Badge */}
             <div className="flex items-center justify-between gap-2 border-b border-[#E8DCC4] pb-3 mb-4">
