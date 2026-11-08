@@ -13,7 +13,8 @@ import {
   Home, 
   ExternalLink,
   Languages,
-  Landmark
+  Landmark,
+  Sparkles
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
@@ -207,6 +208,23 @@ export const Header: React.FC = () => {
           >
             <Home className="w-4 h-4 text-[#D84315]" />
             <span>{isEn ? 'Introduction' : 'పరిచయం'}</span>
+          </button>
+
+                    {/* SPECIAL FEATURED SUBPAGE: సృష్టి రహస్యం (Creation Secret) */}
+          <button
+            onClick={() => {
+              setViewMode('srushti_rahasyam');
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+              viewMode === 'srushti_rahasyam'
+                ? 'bg-gradient-to-r from-[#D4AF37] via-[#FF8F00] to-[#7B1113] text-stone-950 font-bold shadow-lg ring-2 ring-[#FFD54F]'
+                : 'bg-gradient-to-r from-[#FFF8E1] to-[#FFE082] text-[#4A0012] hover:bg-[#FFE082] border-2 border-[#D4AF37] font-bold shadow-xs'
+            }`}
+            title={isEn ? 'Cosmic Creation Secret (Paramatma to Moksha)' : 'సృష్టి రహస్యం (సంకల్పం నుండి మోక్షం వరకు సమగ్ర వేదాంతం)'}
+          >
+            <Sparkles className="w-4 h-4 text-[#D84315] animate-pulse" />
+            <span>{isEn ? 'Creation Secret' : 'సృష్టి రహస్యం'}</span>
           </button>
 
           {/* 2. సనాతన ధర్మ ఆవిర్భావము (Sanatana Chronology Page) */}

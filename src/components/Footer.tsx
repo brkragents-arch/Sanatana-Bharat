@@ -35,6 +35,14 @@ export const Footer: React.FC<{ onNavigateToSection: (mode: any) => void }> = ({
               విషయ సూచిక
             </h4>
             <ul className="space-y-1.5 text-xs text-[#5D4037]">
+                            <li>
+                <button 
+                  onClick={() => onNavigateToSection('srushti_rahasyam')}
+                  className="hover:text-[#D84315] hover:underline cursor-pointer flex items-center gap-1.5 font-bold text-[#D84315]"
+                >
+                  <span>✨</span> <span>సృష్టి రహస్యం (సంకల్పం నుండి మోక్షం వరకు)</span>
+                </button>
+              </li>
               <li>
                 <button 
                   onClick={() => onNavigateToSection('brahma_family')}
