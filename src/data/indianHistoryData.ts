@@ -1993,7 +1993,7 @@ export const VIJAYANAGARA_EMPIRE_DETAILS: VijayanagaraEmpireDetails = {
       reignTe: 'క్రీ.శ. 1336 – 1356',
       achievementEn: 'Co-founder of the empire; laid the initial territorial foundations.',
       achievementTe: 'సామ్రాజ్య సహ-వ్యవస్థాపకుడు; తొలి సరిహద్దులను సురక్షితం చేశాడు.',
-      image: './images/indian_history/vijayanagara_portraits/vj_ruler_harihara_1.jpg?v=2'
+      image: './images/indian_history/vijayanagara_portraits/vj_ruler_harihara_1.jpg?v=3'
     },
     {
       nameEn: 'Bukka Raya I',
@@ -2002,7 +2002,7 @@ export const VIJAYANAGARA_EMPIRE_DETAILS: VijayanagaraEmpireDetails = {
       reignTe: 'క్రీ.శ. 1356 – 1377',
       achievementEn: 'Consolidated the kingdom; patronized Sayana for writing commentaries on all Four Vedas.',
       achievementTe: 'రాజ్యాన్ని సుస్థిరం చేశాడు; సాయణాచార్యుల చేత చతుర్వేదాలకు భాష్యం రచింపజేశాడు.',
-      image: './images/indian_history/vijayanagara_portraits/vj_ruler_bukka_1.jpg?v=2'
+      image: './images/indian_history/vijayanagara_portraits/vj_ruler_bukka_1.jpg?v=3'
     },
     {
       nameEn: 'Deva Raya I',
@@ -2011,7 +2011,7 @@ export const VIJAYANAGARA_EMPIRE_DETAILS: VijayanagaraEmpireDetails = {
       reignTe: 'క్రీ.శ. 1406 – 1422',
       achievementEn: 'Expanded the empire; engineered massive barrages & canals on Tungabhadra for city water.',
       achievementTe: 'రాజ్యాన్ని విస్తరించాడు; తుంగభద్ర నదిపై ఆనకట్టలు కట్టి హంపికి తాగునీరు తెచ్చాడు.',
-      image: './images/indian_history/vijayanagara_portraits/vj_ruler_deva_raya_1.jpg?v=2'
+      image: './images/indian_history/vijayanagara_portraits/vj_ruler_deva_raya_1.jpg?v=3'
     },
     {
       nameEn: 'Deva Raya II (Proudha Deva Raya)',
@@ -2020,7 +2020,7 @@ export const VIJAYANAGARA_EMPIRE_DETAILS: VijayanagaraEmpireDetails = {
       reignTe: 'క్రీ.శ. 1424 – 1446',
       achievementEn: 'Strengthened military; recruited skilled archers & cavalry; expanded rule across South India & Sri Lanka.',
       achievementTe: 'సైన్యాన్ని ఆధునీకరించాడు; విలుకాండ్రు, అశ్వదళాన్ని బలోపేతం చేసి శ్రీలంక వరకు కప్పం వసూలు చేశాడు.',
-      image: './images/indian_history/vijayanagara_portraits/vj_ruler_deva_raya_2.jpg?v=2'
+      image: './images/indian_history/vijayanagara_portraits/vj_ruler_deva_raya_2.jpg?v=3'
     },
     {
       nameEn: 'Sri Krishnadeva Raya',
@@ -2029,7 +2029,7 @@ export const VIJAYANAGARA_EMPIRE_DETAILS: VijayanagaraEmpireDetails = {
       reignTe: 'క్రీ.శ. 1509 – 1529',
       achievementEn: 'The greatest emperor; golden zenith of military victory, arts, Telugu literature & architectural splendors.',
       achievementTe: 'విజయనగర సామ్రాజ్య చక్రవర్తులలో అగ్రగణ్యుడు; సాహితీ సమరాంగణ సార్వభౌముడు, స్వర్ణయుగ నిర్మాత.',
-      image: './images/indian_history/vijayanagara_portraits/vj_ruler_krishnadeva_raya.jpg?v=2'
+      image: './images/indian_history/vijayanagara_portraits/vj_ruler_krishnadeva_raya.jpg?v=3'
     },
     {
       nameEn: 'Achyuta Raya',
@@ -2038,7 +2038,7 @@ export const VIJAYANAGARA_EMPIRE_DETAILS: VijayanagaraEmpireDetails = {
       reignTe: 'క్రీ.శ. 1529 – 1542',
       achievementEn: 'Maintained imperial stability; patronized grand temple construction and music.',
       achievementTe: 'సామ్రాజ్య స్థిరత్వాన్ని కాపాడాడు; తిరుమల వేంకటేశ్వరుని భక్తుడు, అచ్యుతరాయ ఆలయ నిర్మాత.',
-      image: './images/indian_history/vijayanagara_portraits/vj_ruler_achyuta_raya.jpg?v=2'
+      image: './images/indian_history/vijayanagara_portraits/vj_ruler_achyuta_raya.jpg?v=3'
     }
   ],
   administration: {
