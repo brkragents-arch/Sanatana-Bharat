@@ -27,6 +27,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { BhagavadGitaTimelineModal } from './BhagavadGitaTimelineModal';
+import { MahabharataKuruTimelineSection } from './MahabharataKuruTimelineSection';
 
 interface VedicItihasaChronologySectionProps {
   onOpenMasterChart?: (src: string, title: string, subtitle?: string) => void;
@@ -970,6 +971,29 @@ export const VedicItihasaChronologySection: React.FC<VedicItihasaChronologySecti
               <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
               <span>{isEn ? 'Picture Link' : 'చిత్రం లింక్'}</span>
             </a>
+            <button
+              type="button"
+              onClick={() => setEnlargedPoster({
+                src: './images/indian_history/mahabharata_timeline_chart.png',
+                title: isEn ? 'Chronological Timeline of the Mahabharata Era' : 'కురువంశ మహాభారత కాలరేఖ (ఖగోళ కాలగణన)',
+                subtitle: isEn ? 'BCE 3329 (Birth of Bhishma) to BCE 3102 (End of Pandavas)' : 'క్రీ.పూ. 3329 (భీష్ముని జననం) నుండి క్రీ.పూ. 3102 (కలియుగారంభం) వరకు'
+              })}
+              className="text-[#7B1113] hover:text-[#D84315] font-bold underline flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shadow-2xs hover:shadow-xs transition-all"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>{isEn ? 'Mahabharata Timeline Chart (Click to View & Zoom)' : 'కురువంశ మహాభారత కాలరేఖ మూల పటం (వీక్షించండి)'}</span>
+            </button>
+            <a
+              href="./images/indian_history/mahabharata_timeline_chart.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-[#7B1113] hover:text-[#D84315] font-bold flex items-center gap-1 text-[11px] border border-amber-300 shadow-2xs transition-all cursor-pointer"
+              title={isEn ? "Open timeline chart directly in new tab" : "కాలరేఖ చిత్రాన్ని నేరుగా కొత్త ట్యాబ్‌లో తెరవండి"}
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-[#D84315]" />
+              <span>{isEn ? 'Timeline Link' : 'కాలరేఖ చిత్రం లింక్'}</span>
+            </a>
+
           </div>
         </div>
       </div>
@@ -1495,6 +1519,12 @@ export const VedicItihasaChronologySection: React.FC<VedicItihasaChronologySecti
             <span>{isEn ? "Drag to Pan • Wheel to Zoom" : "లాగి తరలించండి (Pan) • చక్రంతో జూమ్"}</span>
           </div>
         </div>
+
+        {/* ================================================================== */}
+        {/* MAHABHARATA KURU CHRONOLOGY & ASTRONOMICAL TIMELINE (BCE 3329 - 3102) */}
+        {/* Added to Kuru Family Tree as requested by user */}
+        {/* ================================================================== */}
+        <MahabharataKuruTimelineSection onOpenChartModal={setEnlargedPoster} />
 
         {/* మూల సచిత్ర పటాలు at the bottom of the section (just text and link) */}
         <div className="pt-3.5 mt-2 border-t-2 border-[#D4AF37]/50 flex items-center justify-between flex-wrap gap-2 text-xs bg-amber-50/70 p-3 rounded-2xl border border-amber-200">
