@@ -31,6 +31,19 @@ export const GuruParamparaSection: React.FC<GuruParamparaSectionProps> = ({ embe
   const [selectedGuru, setSelectedGuru] = useState<GuruParamparaItem | null>(null);
   const [isPosterModalOpen, setIsPosterModalOpen] = useState<boolean>(false);
   const [posterZoom, setPosterZoom] = useState<number>(1);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const resolveImgUrl = (url: string) => {
+    if (!url) return '';
+    if (url.startsWith('http') || url.startsWith('data:')) return url;
+    if (url.startsWith('./')) return url;
+    if (url.startsWith('/')) return '.' + url;
+    return './' + url;
+  };
+
+  const handleImageError = (id: string) => {
+    setFailedImages(prev => ({ ...prev, [id]: true }));
+  };
 
   // Filtered Gurus based on section & search query
   const filteredGurus = useMemo(() => {
@@ -186,12 +199,20 @@ export const GuruParamparaSection: React.FC<GuruParamparaSectionProps> = ({ embe
 
             {/* Extracted Picture as it is from Source with Vintage Framing */}
             <div className="relative p-2.5 bg-gradient-to-b from-[#FAF7F0] to-[#F5EEDC] flex items-center justify-center min-h-[140px] max-h-[170px] overflow-hidden group-hover:bg-[#FFFDF7] transition-colors">
-              <img
-                src={guru.imageSrc}
-                alt={isEn ? guru.nameEn : guru.nameTe}
-                className="max-h-[135px] w-auto object-contain drop-shadow-md group-hover:scale-108 transition-transform duration-300 rounded-md"
-                loading="lazy"
-              />
+              {!failedImages[guru.id] ? (
+                <img
+                  src={resolveImgUrl(guru.imageSrc)}
+                  alt={isEn ? guru.nameEn : guru.nameTe}
+                  onError={() => handleImageError(guru.id)}
+                  className="max-h-[135px] w-auto object-contain drop-shadow-md group-hover:scale-108 transition-transform duration-300 rounded-md"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#7B1113] to-[#D84315] flex flex-col items-center justify-center text-[#FFE082] shadow-md border-2 border-[#D4AF37]">
+                  <span className="text-2xl">🕉️</span>
+                  <span className="text-[10px] font-bold mt-0.5">#{guru.order}</span>
+                </div>
+              )}
 
               {/* Quick Preview Hover Overlay */}
               <div className="absolute inset-0 bg-[#7B1113]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -267,7 +288,7 @@ export const GuruParamparaSection: React.FC<GuruParamparaSectionProps> = ({ embe
               {/* Centered High-Res Guru Image Frame */}
               <div className="p-4 bg-gradient-to-b from-[#FFFDF7] to-[#FAF7F0] rounded-2xl border-2 border-[#D4AF37] flex flex-col items-center justify-center shadow-inner">
                 <img
-                  src={selectedGuru.imageSrc}
+                  src={resolveImgUrl(selectedGuru.imageSrc)}
                   alt={isEn ? selectedGuru.nameEn : selectedGuru.nameTe}
                   className="max-h-56 w-auto object-contain drop-shadow-xl rounded-lg"
                 />
@@ -399,7 +420,7 @@ export const GuruParamparaSection: React.FC<GuruParamparaSectionProps> = ({ embe
                 className="shadow-2xl rounded-xl overflow-hidden max-w-2xl"
               >
                 <img
-                  src={GURU_PARAMPARA_SHLOKA.sourcePosterSrc}
+                  src={resolveImgUrl(GURU_PARAMPARA_SHLOKA.sourcePosterSrc)}
                   alt="Guru Parampara Source Poster"
                   className="w-full h-auto block select-none"
                 />

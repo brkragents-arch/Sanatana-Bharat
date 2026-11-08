@@ -24,7 +24,7 @@ export const GURU_PARAMPARA_SHLOKA = {
   english: 'Sadashiva Samarambham Shankaracharya Madhyamam |\nAsmadacharya Paryantam Vande Guru Paramparam ||',
   meaningTe: 'ఆదిదేవుడైన సదాశివునితో ప్రారంభమై, జగద్గురు ఆదిశంకరాచార్యులు మధ్యలో నిలిచి, మన ప్రస్తుత గురువుల వరకు కొనసాగుతున్న దివ్య గురుపరంపరకు నా భక్తిపూర్వక ప్రణామాలు.',
   meaningEn: 'Beginning with Lord Sadashiva, with Sri Shankaracharya in the middle, and extending up to our own revered Guru, I bow to this sacred lineage of Gurus.',
-  sourcePosterSrc: '/images/gurus/guru_parampara_poster.png'
+  sourcePosterSrc: './images/gurus/guru_parampara_poster.png'
 };
 
 export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
@@ -44,7 +44,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 80,
       "height": 142
     },
-    "imageSrc": "/images/gurus/guru_01_dakshinamurthy.png"
+    "imageSrc": "./images/gurus/guru_01_dakshinamurthy.png"
   },
   {
     "id": "guru_02_vedavyasa",
@@ -62,7 +62,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 82,
       "height": 122
     },
-    "imageSrc": "/images/gurus/guru_02_vedavyasa.png"
+    "imageSrc": "./images/gurus/guru_02_vedavyasa.png"
   },
   {
     "id": "guru_03_shuka_maharshi",
@@ -80,7 +80,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 154,
       "height": 130
     },
-    "imageSrc": "/images/gurus/guru_03_shuka_maharshi.png"
+    "imageSrc": "./images/gurus/guru_03_shuka_maharshi.png"
   },
   {
     "id": "guru_04_narada_maharshi",
@@ -98,7 +98,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 72,
       "height": 124
     },
-    "imageSrc": "/images/gurus/guru_04_narada_maharshi.png"
+    "imageSrc": "./images/gurus/guru_04_narada_maharshi.png"
   },
   {
     "id": "guru_05_valmiki_maharshi",
@@ -116,7 +116,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 94,
       "height": 118
     },
-    "imageSrc": "/images/gurus/guru_05_valmiki_maharshi.png"
+    "imageSrc": "./images/gurus/guru_05_valmiki_maharshi.png"
   },
   {
     "id": "guru_06_sri_krishna",
@@ -134,7 +134,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 114,
       "height": 140
     },
-    "imageSrc": "/images/gurus/guru_06_sri_krishna.png"
+    "imageSrc": "./images/gurus/guru_06_sri_krishna.png"
   },
   {
     "id": "guru_07_dattatreya",
@@ -152,7 +152,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 94,
       "height": 124
     },
-    "imageSrc": "/images/gurus/guru_07_dattatreya.png"
+    "imageSrc": "./images/gurus/guru_07_dattatreya.png"
   },
   {
     "id": "guru_08_babaji",
@@ -170,7 +170,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 82,
       "height": 116
     },
-    "imageSrc": "/images/gurus/guru_08_babaji.png"
+    "imageSrc": "./images/gurus/guru_08_babaji.png"
   },
   {
     "id": "guru_09_gautama_buddha",
@@ -188,7 +188,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 92,
       "height": 120
     },
-    "imageSrc": "/images/gurus/guru_09_gautama_buddha.png"
+    "imageSrc": "./images/gurus/guru_09_gautama_buddha.png"
   },
   {
     "id": "guru_10_adi_shankaracharya",
@@ -206,7 +206,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 90,
       "height": 126
     },
-    "imageSrc": "/images/gurus/guru_10_adi_shankaracharya.png"
+    "imageSrc": "./images/gurus/guru_10_adi_shankaracharya.png"
   },
   {
     "id": "guru_11_ramanujacharya",
@@ -224,7 +224,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 96,
       "height": 126
     },
-    "imageSrc": "/images/gurus/guru_11_ramanujacharya.png"
+    "imageSrc": "./images/gurus/guru_11_ramanujacharya.png"
   },
   {
     "id": "guru_12_dnyaneshwar",
@@ -242,7 +242,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 90,
       "height": 124
     },
-    "imageSrc": "/images/gurus/guru_12_dnyaneshwar.png"
+    "imageSrc": "./images/gurus/guru_12_dnyaneshwar.png"
   },
   {
     "id": "guru_13_ravidas",
@@ -260,7 +260,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 78,
       "height": 122
     },
-    "imageSrc": "/images/gurus/guru_13_ravidas.png"
+    "imageSrc": "./images/gurus/guru_13_ravidas.png"
   },
   {
     "id": "guru_14_kabir_das",
@@ -278,7 +278,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 68,
       "height": 116
     },
-    "imageSrc": "/images/gurus/guru_14_kabir_das.png"
+    "imageSrc": "./images/gurus/guru_14_kabir_das.png"
   },
   {
     "id": "guru_15_chaitanya_mahaprabhu",
@@ -296,7 +296,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 86,
       "height": 122
     },
-    "imageSrc": "/images/gurus/guru_15_chaitanya_mahaprabhu.png"
+    "imageSrc": "./images/gurus/guru_15_chaitanya_mahaprabhu.png"
   },
   {
     "id": "guru_16_guru_nanak",
@@ -314,7 +314,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 98,
       "height": 102
     },
-    "imageSrc": "/images/gurus/guru_16_guru_nanak.png"
+    "imageSrc": "./images/gurus/guru_16_guru_nanak.png"
   },
   {
     "id": "guru_17_raghavendra_swami",
@@ -332,7 +332,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 88,
       "height": 118
     },
-    "imageSrc": "/images/gurus/guru_17_raghavendra_swami.png"
+    "imageSrc": "./images/gurus/guru_17_raghavendra_swami.png"
   },
   {
     "id": "guru_18_veerabrahmendra_swami",
@@ -350,7 +350,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 118,
       "height": 124
     },
-    "imageSrc": "/images/gurus/guru_18_veerabrahmendra_swami.png"
+    "imageSrc": "./images/gurus/guru_18_veerabrahmendra_swami.png"
   },
   {
     "id": "guru_19_yogi_vemana",
@@ -368,7 +368,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 86,
       "height": 114
     },
-    "imageSrc": "/images/gurus/guru_19_yogi_vemana.png"
+    "imageSrc": "./images/gurus/guru_19_yogi_vemana.png"
   },
   {
     "id": "guru_20_trailanga_swami",
@@ -386,7 +386,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 94,
       "height": 122
     },
-    "imageSrc": "/images/gurus/guru_20_trailanga_swami.png"
+    "imageSrc": "./images/gurus/guru_20_trailanga_swami.png"
   },
   {
     "id": "guru_21_lahiri_mahasaya",
@@ -404,7 +404,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 90,
       "height": 120
     },
-    "imageSrc": "/images/gurus/guru_21_lahiri_mahasaya.png"
+    "imageSrc": "./images/gurus/guru_21_lahiri_mahasaya.png"
   },
   {
     "id": "guru_22_ramakrishna_sharada",
@@ -422,7 +422,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 188,
       "height": 126
     },
-    "imageSrc": "/images/gurus/guru_22_ramakrishna_sharada.png"
+    "imageSrc": "./images/gurus/guru_22_ramakrishna_sharada.png"
   },
   {
     "id": "guru_23_vivekananda",
@@ -440,7 +440,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 76,
       "height": 124
     },
-    "imageSrc": "/images/gurus/guru_23_vivekananda.png"
+    "imageSrc": "./images/gurus/guru_23_vivekananda.png"
   },
   {
     "id": "guru_24_sai_baba",
@@ -458,7 +458,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 92,
       "height": 128
     },
-    "imageSrc": "/images/gurus/guru_24_sai_baba.png"
+    "imageSrc": "./images/gurus/guru_24_sai_baba.png"
   },
   {
     "id": "guru_25_aurobindo",
@@ -476,7 +476,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 74,
       "height": 108
     },
-    "imageSrc": "/images/gurus/guru_25_aurobindo.png"
+    "imageSrc": "./images/gurus/guru_25_aurobindo.png"
   },
   {
     "id": "guru_26_ramana_maharshi",
@@ -494,7 +494,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 92,
       "height": 130
     },
-    "imageSrc": "/images/gurus/guru_26_ramana_maharshi.png"
+    "imageSrc": "./images/gurus/guru_26_ramana_maharshi.png"
   },
   {
     "id": "guru_27_yogananda",
@@ -512,7 +512,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 84,
       "height": 106
     },
-    "imageSrc": "/images/gurus/guru_27_yogananda.png"
+    "imageSrc": "./images/gurus/guru_27_yogananda.png"
   },
   {
     "id": "guru_28_bhaktivedanta_prabhupada",
@@ -530,7 +530,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 114,
       "height": 130
     },
-    "imageSrc": "/images/gurus/guru_28_bhaktivedanta_prabhupada.png"
+    "imageSrc": "./images/gurus/guru_28_bhaktivedanta_prabhupada.png"
   },
   {
     "id": "guru_29_malayala_swami",
@@ -548,7 +548,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 88,
       "height": 126
     },
-    "imageSrc": "/images/gurus/guru_29_malayala_swami.png"
+    "imageSrc": "./images/gurus/guru_29_malayala_swami.png"
   },
   {
     "id": "guru_30_vidyaprakashanandagiri",
@@ -566,7 +566,7 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 104,
       "height": 116
     },
-    "imageSrc": "/images/gurus/guru_30_vidyaprakashanandagiri.png"
+    "imageSrc": "./images/gurus/guru_30_vidyaprakashanandagiri.png"
   },
   {
     "id": "guru_31_chandrashekhara_paramacharya",
@@ -584,6 +584,6 @@ export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = [
       "width": 98,
       "height": 142
     },
-    "imageSrc": "/images/gurus/guru_31_chandrashekhara_paramacharya.png"
+    "imageSrc": "./images/gurus/guru_31_chandrashekhara_paramacharya.png"
   }
 ];

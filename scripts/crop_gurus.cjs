@@ -414,7 +414,7 @@ async function extractGurus() {
       .png({ quality: 100 })
       .toFile(dest);
 
-    guru.imageSrc = `/images/gurus/${filename}`;
+    guru.imageSrc = `./images/gurus/${filename}`;
   }
 
   // Also write the metadata as JSON data file for the application
@@ -439,7 +439,7 @@ export const GURU_PARAMPARA_SHLOKA = {
   english: 'Sadashiva Samarambham Shankaracharya Madhyamam |\\nAsmadacharya Paryantam Vande Guru Paramparam ||',
   meaningTe: 'ఆదిదేవుడైన సదాశివునితో ప్రారంభమై, జగద్గురు ఆదిశంకరాచార్యులు మధ్యలో నిలిచి, మన ప్రస్తుత గురువుల వరకు కొనసాగుతున్న దివ్య గురుపరంపరకు నా భక్తిపూర్వక ప్రణామాలు.',
   meaningEn: 'Beginning with Lord Sadashiva, with Sri Shankaracharya in the middle, and extending up to our own revered Guru, I bow to this sacred lineage of Gurus.',
-  sourcePosterSrc: '/images/gurus/guru_parampara_poster.png'
+  sourcePosterSrc: './images/gurus/guru_parampara_poster.png'
 };
 
 export const GURU_PARAMPARA_DATA: GuruParamparaItem[] = ${JSON.stringify(guruCrops, null, 2)};
