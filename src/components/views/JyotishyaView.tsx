@@ -24,10 +24,12 @@ import {
   Maximize2,
   X
 } from 'lucide-react';
+import { SouthIndianRasiChart } from './SouthIndianRasiChart';
 
 type ActiveSectionTab =
   | 'all'
   | 'foundations_chakras'
+  | 'south_chart_transits'
   | 'grahas_lagnas'
   | 'karma_houses'
   | 'attributes_matrix'
@@ -286,12 +288,13 @@ export const JyotishyaView: React.FC = () => {
         {[
           { id: 'all', label: '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' },
           { id: 'foundations_chakras', label: '☸️ 1. 4 చక్రాలు & 324 కర్మలు' },
-          { id: 'grahas_lagnas', label: '🪐 2. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
-          { id: 'karma_houses', label: '🏛️ 3. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
-          { id: 'attributes_matrix', label: '📊 4. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
-          { id: 'nakshatra_dashas', label: '⏳ 5. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
-          { id: 'case_studies', label: '📜 6. ప్రముఖుల జాతక విశ్లేషణలు' },
-          { id: 'chapters_qa', label: '❓ 7. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
+          { id: 'south_chart_transits', label: '🧭 2. దక్షిణ భారత చక్రం & గోచార సంక్రమణం' },
+          { id: 'grahas_lagnas', label: '🪐 3. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
+          { id: 'karma_houses', label: '🏛️ 4. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
+          { id: 'attributes_matrix', label: '📊 5. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
+          { id: 'nakshatra_dashas', label: '⏳ 6. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
+          { id: 'case_studies', label: '📜 7. ప్రముఖుల జాతక విశ్లేషణలు' },
+          { id: 'chapters_qa', label: '❓ 8. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
         ].map(tab => (
           <button
             key={tab.id}
@@ -619,6 +622,15 @@ export const JyotishyaView: React.FC = () => {
               ))}
             </div>
           </div>
+        </section>
+      )}
+
+      {/* =================================================================== */}
+      {/* SECTION: SOUTH INDIAN RASI CHART & LIVE PLANETARY TRANSITIONS */}
+      {/* =================================================================== */}
+      {showSection('south_chart_transits') && (
+        <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
+          <SouthIndianRasiChart />
         </section>
       )}
 
