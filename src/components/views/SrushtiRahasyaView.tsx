@@ -505,7 +505,7 @@ export const SrushtiRahasyaView: React.FC = () => {
                   <h4 className="font-bold font-serif text-sm text-amber-800 dark:text-amber-300 group-hover:text-amber-600">
                     {hl.titleTe}
                   </h4>
-                  <p className="text-xs text-stone-600 dark:text-slate-400 mt-1 line-clamp-2">
+                  <p className="text-xs text-stone-600 dark:text-slate-400 mt-1 leading-relaxed">
                     {hl.descTe}
                   </p>
                 </button>
@@ -524,6 +524,84 @@ export const SrushtiRahasyaView: React.FC = () => {
             subtitle="సర్వేశ్వరునికి కోరికలు లేనప్పటికీ సృష్టి సంకల్పం ఎందుకు కలిగింది? వేదాంత దృక్కోణం"
             isParchmentMode={isParchmentMode}
           />
+
+          {/* PDF Slide 2 – మౌలిక ప్రశ్న: భగవంతునికి ఏ లోటూ లేనప్పుడు సృష్టి ఎందుకు? */}
+          <div className={`p-6 md:p-8 rounded-3xl border ${
+            isParchmentMode
+              ? 'bg-[#fffaf0]/90 border-[#d4af37]/50 shadow-lg'
+              : 'bg-slate-900/80 border-amber-500/30 shadow-xl'
+          }`}>
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-amber-500/20 mb-5">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+                  వేదాంత మౌలిక ప్రశ్న • PDF ఆధారం (Slide 2)
+                </span>
+                <h3 className="text-xl md:text-2xl font-bold font-serif text-amber-950 dark:text-amber-200 mt-0.5">
+                  భగవంతునికి ఏ లోటూ లేనప్పుడు సృష్టి ఎందుకు? (Why did the Supreme Divine desire to create?)
+                </h3>
+              </div>
+              <span className="text-xs font-serif font-bold px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200">
+                &ldquo;పూర్ణమదః పూర్ణమిదం పూర్ణాత్ పూర్ణముదచ్యతే&rdquo; — ఈశావాస్య ఉపనిషత్తు
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Left Column: పరమాత్మ పూర్ణత్వ లక్షణాలు */}
+              <div className={`p-5 rounded-2xl border space-y-3 ${
+                isParchmentMode ? 'bg-amber-50/70 border-amber-200' : 'bg-slate-800/60 border-slate-700'
+              }`}>
+                <h4 className="font-bold font-serif text-base text-amber-900 dark:text-amber-200 flex items-center gap-2">
+                  <span>✧</span>
+                  <span>పరమాత్మ పూర్ణత్వ లక్షణాలు (Attributes of Divine Completeness)</span>
+                </h4>
+                <div className="space-y-2.5 text-xs md:text-sm">
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-amber-800 dark:text-amber-300">• అవాప్త సమస్త కాముడు: </span>
+                    <span className="text-stone-700 dark:text-slate-300">పరమాత్మ తనలో తాను పరిపూర్ణుడు; ఆయనకు తీరని కోరికలు కానీ, పొందవలసిన కొత్త వస్తువులు కానీ ఏవీ లేవు.</span>
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-amber-800 dark:text-amber-300">• నిరపేక్ష పూర్ణుడు: </span>
+                    <span className="text-stone-700 dark:text-slate-300">ఆయన ఉనికికి, ఆనందానికి బాహ్యమైన ఏ వస్తువు లేదా జీవిపైనా ఆధారపడవలసిన అవసరం లేదు.</span>
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-amber-800 dark:text-amber-300">• శూన్యం లేని పూర్ణత్వం: </span>
+                    <span className="text-stone-700 dark:text-slate-300">ఆయనలో ఎలాంటి వెలితి, అసంతృప్తి లేదా కొరత అనేవి లేశమాత్రమైనా లేవు.</span>
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-amber-800 dark:text-amber-300">• లాభనష్టాలు లేని స్థితి: </span>
+                    <span className="text-stone-700 dark:text-slate-300">సృష్టి చేయడం వల్ల ఆయనకు వచ్చే లాభం కానీ, చేయకపోతే వచ్చే నష్టం కానీ ఏమీ లేదు (భగవద్గీత 3.22).</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: తాత్విక అన్వేషణ & వేదాంత సమాధానం */}
+              <div className={`p-5 rounded-2xl border space-y-3 ${
+                isParchmentMode ? 'bg-amber-50/70 border-amber-200' : 'bg-slate-800/60 border-slate-700'
+              }`}>
+                <h4 className="font-bold font-serif text-base text-amber-900 dark:text-amber-200 flex items-center gap-2">
+                  <span>✦</span>
+                  <span>తాత్విక అన్వేషణ & వేదాంత సమాధానం</span>
+                </h4>
+                <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed">
+                  <strong>మౌలిక ప్రశ్న:</strong> సాధారణంగా లోకంలో ఏదైనా పని చేయాలంటే ఒక ప్రయోజనం లేదా కొరత ఉండాలి. మరి సర్వసంపూర్ణుడైన భగవంతుడు ఈ అనంత విశ్వాన్ని ఎందుకు సృష్టించాడు?
+                </p>
+                <div className="space-y-2 text-xs md:text-sm">
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-emerald-700 dark:text-emerald-400">1. ఆనందోల్లాస ప్రవాహం: </span>
+                    <span className="text-stone-700 dark:text-slate-300">సృష్టి అనేది భగవంతునిలోని వెలితి నుండి పుట్టలేదు; అది ఆయనలోని నిరతిశయ ఆనందం యొక్క సహజ ప్రవాహం (Overflow of Infinite Bliss).</span>
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-emerald-700 dark:text-emerald-400">2. సహజ స్వభావం: </span>
+                    <span className="text-stone-700 dark:text-slate-300">సూర్యుడు ప్రకాశించడం, పువ్వు సువాసన వెదజల్లడం ఎలాగైతే వాటి సహజ లక్షణమో, పరమాత్మ తన శక్తిని సృష్టిగా వ్యక్తపరచడం ఆయన సహజ లీల.</span>
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/70' : 'bg-slate-900/60 border-slate-700'}`}>
+                    <span className="font-bold text-emerald-700 dark:text-emerald-400">3. కరుణాపూరిత వేదిక: </span>
+                    <span className="text-stone-700 dark:text-slate-300">అనాదిగా నిద్రాణమై ఉన్న జీవులకు తమ కర్మలను క్షయింపజేసుకుని, పరమానందాన్ని పొందే అవకాశం కల్పించడమే సృష్టి వెనుక ఉన్న పరమ రహస్యం.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* 4 Reasons Selector */}
@@ -556,7 +634,7 @@ export const SrushtiRahasyaView: React.FC = () => {
                     <p className="text-xs text-amber-700 dark:text-amber-400 font-mono mt-0.5">
                       &ldquo;{reason.sanskritQuote}&rdquo;
                     </p>
-                    <p className="text-xs text-stone-600 dark:text-slate-400 mt-1 line-clamp-2">
+                    <p className="text-xs text-stone-600 dark:text-slate-400 mt-1 leading-relaxed">
                       {reason.summaryTe}
                     </p>
                   </div>
@@ -993,8 +1071,8 @@ export const SrushtiRahasyaView: React.FC = () => {
         <section id="kala-svabhava" className="space-y-6 pt-8">
           <SectionHeader
             badge="మాడ్యూల్ 4"
-            title="కాలం మరియు స్వభావం (రాజ రూపక తాత్త్వికత)"
-            subtitle="కాలం కర్మలను ఎలా పక్వానికి తెస్తుంది? స్వభావం జీవుడిని ఎలా నడిపిస్తుంది?"
+            title="కాలం మరియు స్వభావం (రాజ రూపక తాత్త్వికత & కపిల సాంఖ్య దర్శనం)"
+            subtitle="కాలం కర్మలను ఎలా పక్వానికి తెస్తుంది? స్వభావం జీవుడిని ఎలా నడిపిస్తుంది? (PDF Slides 10–13, 17)"
             isParchmentMode={isParchmentMode}
           />
 
@@ -1033,6 +1111,125 @@ export const SrushtiRahasyaView: React.FC = () => {
             <p className="text-center text-xs md:text-sm text-stone-700 dark:text-slate-300 mt-6 max-w-3xl mx-auto italic">
               {KALA_SVABHAVA_ANALOGY.deepInsightTe}
             </p>
+          </div>
+
+          {/* PDF Slides 10 & 11: కాలం పాత్ర మరియు స్వభావం ప్రత్యేకత */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* PDF Slide 10: కాలం పాత్ర */}
+            <div className={`p-6 rounded-3xl border space-y-4 ${
+              isParchmentMode ? 'bg-[#fffaf0] border-[#d4af37]/50 shadow-lg' : 'bg-slate-900/80 border-slate-700 shadow-xl'
+            }`}>
+              <div className="flex items-center justify-between border-b border-amber-500/20 pb-3">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-600">PDF Slide 10 • కాల శక్తి</span>
+                  <h4 className="text-xl font-bold font-serif text-amber-900 dark:text-amber-200">
+                    ⏳ కాలం పాత్ర – జడ ప్రకృతిని కదిలించే శక్తి
+                  </h4>
+                </div>
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-300">
+                  &ldquo;కాలోఽస్మి లోకక్షయకృత్&rdquo; (గీత 11.32)
+                </span>
+              </div>
+              <div className="space-y-2.5 text-xs md:text-sm">
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-amber-800 dark:text-amber-300">1. ప్రళయానంతర మేల్కొలుపు: </span>
+                  <span className="text-stone-700 dark:text-slate-300">సృష్టికి ముందు ప్రకృతి, జీవులు భగవంతునిలో లీనమై నిద్రాణ స్థితిలో ఉంటాయి. భగవంతుని సంకల్పం కలగగానే మొదట <strong>&lsquo;కాలం&rsquo;</strong> మేల్కొంటుంది.</span>
+                </div>
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-amber-800 dark:text-amber-300">2. గుణ సామ్యావస్థను చెదరగొట్టడం (Catalyst): </span>
+                  <span className="text-stone-700 dark:text-slate-300">సమాన స్థితిలో నిశ్చలంగా ఉన్న సత్వ, రజో, తమో గుణాలలో మొదటి కదలిక (క్షోభం) కలిగించేది కాలమే.</span>
+                </div>
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-amber-800 dark:text-amber-300">3. కర్మ పరిపాకం (Ripening of Karma): </span>
+                  <span className="text-stone-700 dark:text-slate-300">జీవుల పూర్వజన్మ కర్మలు ఏ సమయంలో ఫలించాలో, ఎప్పుడు జన్మించాలో నిర్ణయించేది కాలశక్తి.</span>
+                </div>
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-amber-800 dark:text-amber-300">4. పరిణామ చక్రం: </span>
+                  <span className="text-stone-700 dark:text-slate-300">ఉత్పత్తి (పుట్టుక) → స్థితి (పెరుగుదల) → పరిణామం (మార్పు) → క్షయం (తరుగుదల) → లయం (నాశనం) అనే పంచ దశలను కాలం శాసిస్తుంది.</span>
+                </div>
+              </div>
+            </div>
+
+            {/* PDF Slide 11: స్వభావం ప్రత్యేకత */}
+            <div className={`p-6 rounded-3xl border space-y-4 ${
+              isParchmentMode ? 'bg-[#fffaf0] border-[#d4af37]/50 shadow-lg' : 'bg-slate-900/80 border-slate-700 shadow-xl'
+            }`}>
+              <div className="flex items-center justify-between border-b border-amber-500/20 pb-3">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-600">PDF Slide 11 • స్వభావ శక్తి</span>
+                  <h4 className="text-xl font-bold font-serif text-amber-900 dark:text-amber-200">
+                    🌱 స్వభావం ప్రత్యేకత – వైవిధ్యాన్ని నిర్ణయించే అంతర్గత శక్తి
+                  </h4>
+                </div>
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-300">
+                  &ldquo;స్వభావస్తు ప్రవర్తతే&rdquo; (గీత 5.14)
+                </span>
+              </div>
+              <div className="space-y-2.5 text-xs md:text-sm">
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-emerald-800 dark:text-emerald-300">1. సహజ లక్షణాల మూలం: </span>
+                  <span className="text-stone-700 dark:text-slate-300">సృష్టిలో ప్రతి పదార్థానికి, ప్రతి జీవికి ఒక నిర్దిష్టమైన సహజ గుణం (Inherent Nature) ఉండేలా చేసేదే స్వభావం.</span>
+                </div>
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-emerald-800 dark:text-emerald-300">2. పంచభూతాల ధర్మాలు: </span>
+                  <span className="text-stone-700 dark:text-slate-300">🔥 అగ్ని కాల్చడం, 💧 నీరు చల్లబరచడం, 🌬️ వాయువు వీచడం, 🌍 భూమి భరించడం — ఇవన్నీ భగవత్ సంకల్పం చేత నిర్ణయించబడిన స్వభావ నియమాలే.</span>
+                </div>
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-emerald-800 dark:text-emerald-300">3. జీవుల సంస్కార ముద్రలు: </span>
+                  <span className="text-stone-700 dark:text-slate-300">గత జన్మల కర్మ వాసనలు సూక్ష్మ శరీరంలో <strong>&lsquo;స్వభావం&rsquo;</strong>గా నిక్షిప్తమై ఉండి, కొత్త జన్మలో జీవి యొక్క అభిరుచులను, ఆలోచనలను నడిపిస్తాయి (గీత 18.60).</span>
+                </div>
+                <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-white border-amber-200/80' : 'bg-slate-800/60 border-slate-700'}`}>
+                  <span className="font-bold text-emerald-800 dark:text-emerald-300">4. విత్తన ఉపమానం: </span>
+                  <span className="text-stone-700 dark:text-slate-300">వర్షపు నీరు (కాలం) ఒక్కటే అయినా, వేప విత్తనం చేదుగాను, మామిడి విత్తనం తీయగాను మారడానికి కారణం ఆ విత్తనాలలో దాగి ఉన్న <strong>&lsquo;స్వభావమే&rsquo;</strong>!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* PDF Slides 12 & 13: సమన్వయ సూత్రం & కపిల మహర్షి సాంఖ్య వేదాంత దర్శనం */}
+          <div className={`p-6 md:p-8 rounded-3xl border ${
+            isParchmentMode ? 'bg-[#fffaf0]/95 border-[#d4af37]/50 shadow-lg' : 'bg-slate-900/90 border-amber-500/30 shadow-xl'
+          }`}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+                  PDF Slide 12 • సమన్వయ సూత్రం (Synthesis Formula)
+                </span>
+                <h4 className="text-xl font-bold font-serif text-amber-950 dark:text-amber-200">
+                  కాలం, స్వభావం, కర్మల సమగ్ర సమన్వయం
+                </h4>
+                <div className="space-y-2 text-xs md:text-sm">
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-amber-50 border-amber-200' : 'bg-slate-800 border-slate-700'}`}>
+                    <strong>• కాలం లేకపోతే:</strong> సృష్టిలో కదలిక (Motion) ఉండదు; ప్రకృతి నిశ్చలంగా ఉండిపోతుంది.
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-amber-50 border-amber-200' : 'bg-slate-800 border-slate-700'}`}>
+                    <strong>• స్వభావం లేకపోతే:</strong> సృష్టిలో వైవిధ్యం (Diversity) ఉండదు; అన్నీ ఒకేలా జడంగా ఉంటాయి.
+                  </div>
+                  <div className={`p-3 rounded-xl border ${isParchmentMode ? 'bg-amber-50 border-amber-200' : 'bg-slate-800 border-slate-700'}`}>
+                    <strong>• కర్మ లేకపోతే:</strong> జీవుల జన్మలలో న్యాయం (Cosmic Justice) మరియు పరిణామ క్రమం ఉండవు.
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+                    PDF Slide 13 • శ్రీమద్భాగవతం 3వ స్కంధం, 26వ అధ్యాయం (కపిల గీత)
+                  </span>
+                  <span className="text-xs font-serif font-bold px-3 py-1 rounded-full bg-amber-500/20 text-amber-900 dark:text-amber-200">
+                    కపిల మహర్షి – దేవహూతి సంవాదం
+                  </span>
+                </div>
+                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-2">
+                  <p className="text-sm md:text-base font-serif font-bold text-amber-950 dark:text-amber-100">
+                    &ldquo;దైవాత్ క్షుభితధర్మిణ్యాం స్వస్యాం యోనౌ పరః పుమాన్ । ఆధత్త వీర్యం సాఽసూత మహత్తత్త్వం హిరణ్మయమ్ ॥&rdquo; (భాగవతం 3.26.19)
+                  </p>
+                  <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed">
+                    <strong>తాత్పర్యం:</strong> భగవంతుని అవతారమైన కపిల మహర్షి తల్లి దేవహూతికి ఉపదేశిస్తూ — పరమపురుషుడు జీవుల అదృష్ట (కర్మ) వశాత్తు క్షోభించిన ప్రకృతి యందు తన కాల-స్వభావాత్మక చైతన్య వీర్యాన్ని (ఈక్షణ శక్తిని) ప్రవేశపెట్టగా, ఆ మూలప్రకృతి నుండి మొట్టమొదట విశ్వవ్యాప్త బుద్ధి రూపమైన <strong>&lsquo;హిరణ్మయ మహత్తత్త్వము&rsquo;</strong>, ఆపై అహంకారం, పంచ తన్మాత్రలు, ఇంద్రియాలు మరియు పంచ మహాభూతాలతో కూడిన <strong>24 తత్త్వాల విశ్వ నిర్మాణం</strong> ఆవిర్భవించింది.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1186,35 +1383,229 @@ export const SrushtiRahasyaView: React.FC = () => {
           </div>
 
           {/* Karma Reincarnation Flow Cycle (6 steps) */}
-          <div className={`p-6 rounded-3xl border ${
-            isParchmentMode ? 'bg-[#fffaf0]/80 border-amber-300' : 'bg-slate-900/60 border-slate-800'
+          <div className={`p-6 md:p-8 rounded-3xl border space-y-6 ${
+            isParchmentMode ? 'bg-[#fffaf0]/90 border-amber-300 shadow-lg' : 'bg-slate-900/80 border-slate-800 shadow-xl'
           }`}>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-amber-600 mb-4 text-center">
-              సంసార చక్రం: కర్మ నుండి మోక్షం వరకు 6 ముఖ్య సోపానాలు
-            </h5>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-              {KARMA_CYCLE_STEPS.map((st) => (
-                <button
-                  key={st.id}
-                  onClick={() => setActiveKarmaStepId(st.id)}
-                  className={`p-3.5 rounded-xl border text-center transition-all ${
-                    activeKarmaStepId === st.id
-                      ? isParchmentMode ? 'bg-amber-100 border-amber-600 shadow-md ring-2 ring-amber-400' : 'bg-slate-750 border-amber-400 shadow-lg'
-                      : isParchmentMode ? 'bg-white border-amber-200 hover:bg-amber-50' : 'bg-slate-850 border-slate-700'
-                  }`}
-                >
-                  <div className="w-6 h-6 rounded-full bg-amber-600 text-white text-xs font-bold flex items-center justify-center mx-auto mb-1.5">
-                    {st.order}
-                  </div>
-                  <div className="font-bold text-xs font-serif text-amber-900 dark:text-amber-200">
-                    {st.nameTe}
-                  </div>
-                  <p className="text-[11px] text-stone-600 dark:text-slate-400 mt-1 line-clamp-3">
-                    {st.descriptionTe}
-                  </p>
-                </button>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h5 className="text-sm md:text-base font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                సంసార చక్రం: కర్మ నుండి మోక్షం వరకు 6 ముఖ్య సోపానాలు (సోపానాన్ని క్లిక్ చేసి పూర్తి PDF వివరాలను చూడండి)
+              </h5>
+              <span className="text-xs font-mono px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300">
+                ప్రస్తుత సోపానం: {(KARMA_CYCLE_STEPS.find(s => s.id === activeKarmaStepId) || KARMA_CYCLE_STEPS[0]).order} / 6
+              </span>
             </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5">
+              {KARMA_CYCLE_STEPS.map((st) => {
+                const isActive = activeKarmaStepId === st.id;
+                return (
+                  <button
+                    key={st.id}
+                    onClick={() => setActiveKarmaStepId(st.id)}
+                    className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-start ${
+                      isActive
+                        ? isParchmentMode
+                          ? 'bg-amber-100/95 border-amber-600 shadow-md ring-2 ring-amber-500 scale-[1.02]'
+                          : 'bg-slate-800 border-amber-400 shadow-lg ring-2 ring-amber-400/50 scale-[1.02]'
+                        : isParchmentMode
+                          ? 'bg-white border-amber-200 hover:bg-amber-50/80 hover:border-amber-400'
+                          : 'bg-slate-850 border-slate-700 hover:bg-slate-800'
+                    }`}
+                  >
+                    <div className="flex items-center justify-center gap-1.5 mb-2">
+                      <div className={`w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center shadow-sm ${
+                        isActive ? 'bg-amber-700 text-white' : 'bg-amber-600 text-white'
+                      }`}>
+                        {st.order}
+                      </div>
+                      <span className="text-lg">{st.icon}</span>
+                    </div>
+                    <div className="font-bold text-xs md:text-sm font-serif text-amber-900 dark:text-amber-200 leading-snug">
+                      {st.nameTe}
+                    </div>
+                    <div className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 mt-0.5">
+                      {st.subtitleTe}
+                    </div>
+                    <p className="text-[11px] text-stone-700 dark:text-slate-300 mt-2 leading-relaxed">
+                      {st.descriptionTe}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Selected Karma Step Detailed View (from PDF Source) */}
+            {(() => {
+              const activeKarmaStep = KARMA_CYCLE_STEPS.find(s => s.id === activeKarmaStepId) || KARMA_CYCLE_STEPS[0];
+              const currentIndex = KARMA_CYCLE_STEPS.findIndex(s => s.id === activeKarmaStep.id);
+              return (
+                <div className={`p-6 md:p-8 rounded-2xl border-2 transition-all space-y-6 ${
+                  isParchmentMode
+                    ? 'bg-[#fffdf7] border-amber-500/60 shadow-md'
+                    : 'bg-slate-900 border-amber-500/40 shadow-xl'
+                }`}>
+                  {/* Step Header */}
+                  <div className="flex flex-wrap items-start justify-between gap-4 pb-4 border-b border-amber-500/20">
+                    <div className="flex items-start gap-3.5">
+                      <div className="w-12 h-12 rounded-2xl bg-amber-600 text-white font-serif font-bold text-2xl flex items-center justify-center shadow-md flex-shrink-0">
+                        {activeKarmaStep.icon}
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-600 text-white">
+                            సోపానం {activeKarmaStep.order} / 6
+                          </span>
+                          <span className="text-xs font-semibold text-amber-700 dark:text-amber-300">
+                            {activeKarmaStep.pdfSlideRefTe}
+                          </span>
+                        </div>
+                        <h4 className="text-2xl md:text-3xl font-bold font-serif text-amber-950 dark:text-amber-100 mt-1">
+                          {activeKarmaStep.nameTe} ({activeKarmaStep.nameEn})
+                        </h4>
+                        <p className="text-xs md:text-sm font-semibold text-amber-800 dark:text-amber-300 mt-0.5">
+                          {activeKarmaStep.subtitleTe} • {activeKarmaStep.subtitleEn}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => toggleBookmark(activeKarmaStep.nameTe)}
+                        className={`p-2 rounded-lg border transition ${
+                          bookmarks.includes(activeKarmaStep.nameTe)
+                            ? 'bg-amber-600 text-white border-amber-600'
+                            : 'border-amber-500/30 text-amber-600 hover:bg-amber-500/10'
+                        }`}
+                        title="బుక్‌మార్క్ చేయండి"
+                      >
+                        {bookmarks.includes(activeKarmaStep.nameTe) ? (
+                          <BookmarkCheck className="w-4 h-4" />
+                        ) : (
+                          <Bookmark className="w-4 h-4" />
+                        )}
+                      </button>
+                      <button
+                        onClick={() => handleReadAloud(`${activeKarmaStep.nameTe}. ${activeKarmaStep.descriptionTe} ${activeKarmaStep.philosophicalDepthTe}`)}
+                        className="px-3 py-1.5 rounded-xl border border-amber-500/30 text-amber-700 dark:text-amber-300 hover:bg-amber-500/10 transition flex items-center gap-1.5 text-xs font-medium"
+                        title="వినండి"
+                      >
+                        <Volume2 className="w-4 h-4" />
+                        <span>వినండి</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Sanskrit Shloka & Meaning Banner */}
+                  <div className="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-amber-600/10 to-transparent border border-amber-500/30 space-y-1.5">
+                    <div className="text-xs font-bold uppercase tracking-widest text-amber-700 dark:text-amber-300">
+                      ప్రామాణిక వేదాంత / గీతా శ్లోక సూత్రం
+                    </div>
+                    <div className="text-base md:text-lg font-bold font-serif text-amber-950 dark:text-amber-100">
+                      &ldquo;{activeKarmaStep.sanskritShlokaTe}&rdquo;
+                    </div>
+                    <div className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed">
+                      <strong>తాత్పర్యం:</strong> {activeKarmaStep.shlokaMeaningTe}
+                    </div>
+                  </div>
+
+                  {/* Complete Overview Paragraph */}
+                  <div>
+                    <h6 className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-1.5">
+                      సమగ్ర వివరణ (Complete Explanation):
+                    </h6>
+                    <p className={`text-base leading-relaxed ${getFontSizeClass()} ${
+                      isParchmentMode ? 'text-stone-800' : 'text-slate-200'
+                    }`}>
+                      {activeKarmaStep.descriptionTe}
+                    </p>
+                  </div>
+
+                  {/* 4 Key Points from PDF Source */}
+                  <div className="space-y-3">
+                    <h6 className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                      PDF ఆధారిత ముఖ్య అంశాలు (Detailed Key Points from PDF Source):
+                    </h6>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                      {activeKarmaStep.keyPointsTe.map((pt, idx) => (
+                        <div
+                          key={idx}
+                          className={`p-4 rounded-xl border space-y-1.5 ${
+                            isParchmentMode
+                              ? 'bg-amber-50/70 border-amber-200 text-stone-800'
+                              : 'bg-slate-800/70 border-slate-700 text-slate-200'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full bg-amber-600 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">
+                              {idx + 1}
+                            </span>
+                            <span className="font-bold font-serif text-sm md:text-base text-amber-900 dark:text-amber-200">
+                              {pt.heading}
+                            </span>
+                          </div>
+                          <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed pl-7">
+                            {pt.detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Philosophical Depth & Analogy Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className={`p-4 rounded-xl border space-y-1.5 ${
+                      isParchmentMode ? 'bg-white border-amber-300/60' : 'bg-slate-800/60 border-slate-700'
+                    }`}>
+                      <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 block">
+                        తాత్త్విక లోతు & వేదాంత రహస్యం (Philosophical Depth):
+                      </span>
+                      <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed">
+                        {activeKarmaStep.philosophicalDepthTe}
+                      </p>
+                    </div>
+
+                    <div className={`p-4 rounded-xl border space-y-1.5 ${
+                      isParchmentMode ? 'bg-amber-50/80 border-amber-300/60' : 'bg-slate-800/60 border-slate-700'
+                    }`}>
+                      <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 block">
+                        సులభ ఉపమానం (Vedic Analogy):
+                      </span>
+                      <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed italic">
+                        {activeKarmaStep.analogyTe}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Footer: Scriptural Source + Prev/Next Step Navigation */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-amber-500/20">
+                    <div className="flex items-center gap-2 text-xs">
+                      <BookOpen className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                      <span className="font-bold text-amber-800 dark:text-amber-300">శాస్త్ర ప్రమాణం:</span>
+                      <span className="text-stone-600 dark:text-slate-400">{activeKarmaStep.sourceNoteTe}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      {currentIndex > 0 && (
+                        <button
+                          onClick={() => setActiveKarmaStepId(KARMA_CYCLE_STEPS[currentIndex - 1].id)}
+                          className="px-3.5 py-1.5 rounded-xl border border-amber-500/40 text-xs font-bold text-amber-800 dark:text-amber-300 hover:bg-amber-500/15 transition"
+                        >
+                          ← సోపానం {KARMA_CYCLE_STEPS[currentIndex - 1].order}: {KARMA_CYCLE_STEPS[currentIndex - 1].nameTe}
+                        </button>
+                      )}
+                      {currentIndex < KARMA_CYCLE_STEPS.length - 1 && (
+                        <button
+                          onClick={() => setActiveKarmaStepId(KARMA_CYCLE_STEPS[currentIndex + 1].id)}
+                          className="px-3.5 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition shadow"
+                        >
+                          సోపానం {KARMA_CYCLE_STEPS[currentIndex + 1].order}: {KARMA_CYCLE_STEPS[currentIndex + 1].nameTe} →
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </section>
 
@@ -1225,9 +1616,60 @@ export const SrushtiRahasyaView: React.FC = () => {
           <SectionHeader
             badge="మాడ్యూల్ 7"
             title="మోక్షానికి నాలుగు మార్గాలు (చతుర్విధ యోగాలు)"
-            subtitle="జ్ఞాన, భక్తి, కర్మ మరియు రాజ యోగాల సమగ్ర తాత్త్విక మార్గదర్శనం"
+            subtitle="జ్ఞాన, భక్తి, కర్మ మరియు రాజ యోగాల సమగ్ర తాత్త్విక మార్గదర్శనం (PDF Slides 18–23)"
             isParchmentMode={isParchmentMode}
           />
+
+          {/* PDF Slide 18: మోక్షం అంటే ఏమిటి? – బంధం vs మోక్షం */}
+          <div className={`p-6 md:p-8 rounded-3xl border space-y-5 ${
+            isParchmentMode ? 'bg-[#fffaf0]/95 border-[#d4af37]/50 shadow-lg' : 'bg-slate-900/80 border-amber-500/30 shadow-xl'
+          }`}>
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-amber-500/20">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+                  PDF Slide 18 • మోక్ష తత్వ నిర్వచనం
+                </span>
+                <h4 className="text-xl md:text-2xl font-bold font-serif text-amber-950 dark:text-amber-200">
+                  మోక్షం అంటే ఏమిటి? — జనన మరణ చక్రం నుండి శాశ్వత విముక్తి
+                </h4>
+              </div>
+              <span className="text-xs font-serif font-bold px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200">
+                &ldquo;న స పునరావర్తతే&rdquo; — ఛాందోగ్య ఉపనిషత్తు 8.15.1
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* బంధం (Bondage) */}
+              <div className={`p-5 rounded-2xl border space-y-2.5 ${
+                isParchmentMode ? 'bg-red-50/50 border-red-200' : 'bg-red-950/20 border-red-800/40'
+              }`}>
+                <h5 className="font-bold font-serif text-base text-red-900 dark:text-red-300">
+                  ⛓️ సంసార బంధం (Bondage – Samsara)
+                </h5>
+                <ul className="text-xs md:text-sm space-y-1.5 text-stone-700 dark:text-slate-300">
+                  <li><strong>• అవిద్య (అజ్ఞానం):</strong> నిత్యమైన ఆత్మను మర్చిపోయి, నశించే దేహమే &lsquo;నేను&rsquo; అని భ్రమపడటం.</li>
+                  <li><strong>• త్రిగుణ బంధం:</strong> సత్వ, రజో, తమో గుణాల ప్రవాహంలో కొట్టుకుపోతూ కామ-క్రోధాలకు బానిస కావడం.</li>
+                  <li><strong>• కర్తృత్వ అహంకారం:</strong> &ldquo;ఈ పనులన్నీ నేనే చేస్తున్నాను, ఫలితాలన్నీ నాకే కావాలి&rdquo; అనే అహంకార మమకారాలు.</li>
+                  <li><strong>• పునర్జన్మ చక్రం:</strong> కర్మఫలాలను అనుభవించడానికి మళ్లీ మళ్లీ గర్భవాసం, జన్మ, జరామరణ దుఃఖాలను పొందడం.</li>
+                </ul>
+              </div>
+
+              {/* మోక్షం (Liberation) */}
+              <div className={`p-5 rounded-2xl border space-y-2.5 ${
+                isParchmentMode ? 'bg-emerald-50/50 border-emerald-200' : 'bg-emerald-950/20 border-emerald-800/40'
+              }`}>
+                <h5 className="font-bold font-serif text-base text-emerald-900 dark:text-emerald-300">
+                  🕊️ మోక్ష స్థితి (Liberation – Moksha)
+                </h5>
+                <ul className="text-xs md:text-sm space-y-1.5 text-stone-700 dark:text-slate-300">
+                  <li><strong>• ఆత్మ సాక్షాత్కారం:</strong> &ldquo;నేను శరీరాన్ని కాదు, పరమాత్మతో ఏకమైన సచ్చిదానంద ఆత్మను&rdquo; అనే అపరోక్ష జ్ఞానం.</li>
+                  <li><strong>• త్రిగుణాతీత స్థితి:</strong> మూడు గుణాల ఆటుపోట్లకు అతీతమై, సుఖదుఃఖాలలో నిశ్చలమైన సమత్వ బుద్ధిని కలిగి ఉండటం.</li>
+                  <li><strong>• కర్మక్షయం:</strong> జ్ఞానాగ్ని చేత మరియు భగవత్ కృప చేత సంచిత, ఆగామి కర్మలన్నీ పూర్తిగా దగ్ధం కావడం.</li>
+                  <li><strong>• పునరావృత్తి రహిత శాశ్వత ఆనందం:</strong> మళ్లీ ఈ భౌతిక సంసారంలోకి తిరిగి రాని శాశ్వత పరమానంద స్థితి (గీత 8.15, 15.6).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
           {/* 4 Yogas Selector Tabs */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1302,26 +1744,90 @@ export const SrushtiRahasyaView: React.FC = () => {
               </div>
             </div>
 
-            {/* Raja Yoga Ashtanga Sub-module if selected */}
-            {selectedMokshaPath.id === 'raja-yoga' && selectedMokshaPath.limbsTe && (
+            {/* Sub-module Limbs if available (Navavidha Bhakti 9 limbs OR Raja Yoga Ashtanga 8 limbs) */}
+            {selectedMokshaPath.limbsTe && (
               <div className="mt-8 pt-6 border-t border-amber-500/20">
                 <h4 className="text-lg font-bold font-serif text-amber-800 dark:text-amber-300 mb-4 text-center">
-                  పాతంజల అష్టాంగ యోగం (ఎనిమిది అంగాలు)
+                  {selectedMokshaPath.id === 'bhakti-marga'
+                    ? 'ప్రహ్లాదుడు ఉపదేశించిన నవవిధ భక్తి మార్గాలు & ఆదర్శ భక్తులు (భాగవతం 7.5.23 • PDF Slide 20)'
+                    : 'పాతంజల అష్టాంగ యోగం — ఎనిమిది అంగాలు (PDF Slide 22)'}
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {selectedMokshaPath.limbsTe.map((limb, idx) => (
                     <div
                       key={idx}
-                      className={`p-3 rounded-xl border text-xs ${
-                        isParchmentMode ? 'bg-white border-amber-200' : 'bg-slate-800 border-slate-700'
+                      className={`p-3.5 rounded-xl border text-xs md:text-sm ${
+                        isParchmentMode ? 'bg-white border-amber-200 shadow-sm' : 'bg-slate-800 border-slate-700'
                       }`}
                     >
-                      <span className="font-medium">{limb}</span>
+                      <span className="font-medium leading-relaxed">{limb}</span>
                     </div>
                   ))}
                 </div>
               </div>
             )}
+          </div>
+
+          {/* PDF Slide 23: నాలుగు మోక్ష మార్గాల తులనాత్మక పట్టిక (Comparative Matrix) */}
+          <div className={`p-6 md:p-8 rounded-3xl border overflow-x-auto ${
+            isParchmentMode ? 'bg-[#fffaf0]/90 border-[#d4af37]/50 shadow-lg' : 'bg-slate-900/80 border-slate-700 shadow-xl'
+          }`}>
+            <div className="mb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-600">
+                PDF Slide 23 • సమగ్ర తులనాత్మక పట్టిక (Comparative Matrix)
+              </span>
+              <h4 className="text-xl font-bold font-serif text-amber-950 dark:text-amber-200">
+                నాలుగు మోక్ష మార్గాల తులనాత్మక విశ్లేషణ (4 Paths to Liberation Compared)
+              </h4>
+            </div>
+            <table className="w-full text-left border-collapse text-xs md:text-sm">
+              <thead>
+                <tr className={`border-b-2 ${isParchmentMode ? 'border-amber-300 bg-amber-100/70 text-amber-950' : 'border-slate-700 bg-slate-800 text-amber-200'}`}>
+                  <th className="p-3 font-serif font-bold">విభాగం</th>
+                  <th className="p-3 font-serif font-bold">1. జ్ఞాన మార్గం (Jnana)</th>
+                  <th className="p-3 font-serif font-bold">2. భక్తి మార్గం (Bhakti)</th>
+                  <th className="p-3 font-serif font-bold">3. కర్మ మార్గం (Karma)</th>
+                  <th className="p-3 font-serif font-bold">4. రాజ యోగం (Dhyana)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-amber-500/20">
+                <tr>
+                  <td className="p-3 font-bold text-amber-800 dark:text-amber-300">ప్రధాన సాధనం</td>
+                  <td className="p-3">బుద్ధి & ఆత్మ విచారణ</td>
+                  <td className="p-3">హృదయం, ప్రేమ & శరణాగతి</td>
+                  <td className="p-3">నిష్కామ కర్తవ్య ఆచరణ</td>
+                  <td className="p-3">మనస్సు నియంత్రణ & ధ్యానం</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-bold text-amber-800 dark:text-amber-300">మూల సూత్రం</td>
+                  <td className="p-3">&ldquo;నేను ఎవరిని?&rdquo; (ఆత్మ-అనాత్మ వివేకం)</td>
+                  <td className="p-3">&ldquo;దాసోఽహమ్ / సర్వం శ్రీకృష్ణార్పణం&rdquo;</td>
+                  <td className="p-3">&ldquo;కర్మణ్యేవాధికారస్తే&rdquo; (ఫలాపేక్ష త్యాగం)</td>
+                  <td className="p-3">&ldquo;యోగశ్చిత్తవృత్తి నిరోధః&rdquo;</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-bold text-amber-800 dark:text-amber-300">ప్రధాన ప్రక్రియ</td>
+                  <td className="p-3">శ్రవణం, మననం, నిదిధ్యాసనం</td>
+                  <td className="p-3">నవవిధ భక్తి & నామస్మరణ</td>
+                  <td className="p-3">ఈశ్వరార్పణ బుద్ధితో లోకసేవ</td>
+                  <td className="p-3">అష్టాంగ యోగం (యమ నుండి సమాధి)</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-bold text-amber-800 dark:text-amber-300">శాస్త్ర ప్రమాణం</td>
+                  <td className="p-3">ఉపనిషత్తులు, భగవద్గీత 2 & 4 అధ్యాయాలు</td>
+                  <td className="p-3">శ్రీమద్భాగవతం, గీత 9, 12, 18.66</td>
+                  <td className="p-3">భగవద్గీత 3వ & 5వ అధ్యాయాలు</td>
+                  <td className="p-3">పతంజలి యోగ సూత్రాలు, గీత 6వ అధ్యాయం</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-bold text-amber-800 dark:text-amber-300">అంతిమ ఫలితం</td>
+                  <td className="p-3">అవిద్యా నాశనం & బ్రహ్మైక్య అనుభూతి</td>
+                  <td className="p-3">భగవత్ కృప చేత సంసార తరణం</td>
+                  <td className="p-3">చిత్తశుద్ధి ద్వారా జ్ఞాన/మోక్ష ప్రాప్తి</td>
+                  <td className="p-3">నిర్వికల్ప సమాధి & ఆత్మ దర్శనం</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -1332,9 +1838,29 @@ export const SrushtiRahasyaView: React.FC = () => {
           <SectionHeader
             badge="మాడ్యూల్ 8"
             title="ఆధునిక జీవితంలో ఆధ్యాత్మిక సాధన (నిత్య సాధనా వేదిక)"
-            subtitle="ఈశ్వరార్పణం, సమత్వ బుద్ధి, నామస్మరణ మరియు సాక్షి భావం ద్వారా నిత్య జీవితంలో ముక్తి అనుభూతి"
+            subtitle="ఈశ్వరార్పణం, సమత్వ బుద్ధి, నామస్మరణ మరియు సాక్షి భావం ద్వారా నిత్య జీవితంలో ముక్తి అనుభూతి (PDF Slides 24–26)"
             isParchmentMode={isParchmentMode}
           />
+
+          {/* PDF Slide 24: భక్తి + నిష్కామ కర్మ సమన్వయం */}
+          <div className="p-6 md:p-8 rounded-3xl border-2 border-amber-500/40 bg-gradient-to-r from-amber-600/15 via-amber-500/10 to-emerald-600/10 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">
+                  PDF Slide 24 • ఆధునిక మానవునికి అత్యుత్తమ సమన్వయ మార్గం
+                </span>
+                <h4 className="text-xl md:text-2xl font-bold font-serif text-amber-950 dark:text-amber-100">
+                  భక్తి + నిష్కామ కర్మ సమన్వయం: &ldquo;చేతులు పనిలో — మనస్సు దేవునిలో!&rdquo;
+                </h4>
+              </div>
+              <span className="text-xs font-serif font-bold px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-900 dark:text-amber-200">
+                &ldquo;మామనుస్మర యుధ్య చ&rdquo; (భగవద్గీత 8.7)
+              </span>
+            </div>
+            <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300 leading-relaxed">
+              మోక్షం కోసం సంసారాన్ని, కుటుంబాన్ని వదిలి అడవులకు వెళ్లవలసిన అవసరం లేదు. శ్రీకృష్ణ పరమాత్మ భగవద్గీతలో అర్జునుడికి ఉపదేశించినట్లు — లోకంలో మన కర్తవ్యాన్ని (ఉద్యోగం, వ్యాపారం, కుటుంబ బాధ్యతలు) అత్యంత నిষ্ঠతో చేస్తూనే, ఫలితాన్ని భగవంతునికి అర్పించి (<strong>నిష్కామ కర్మ</strong>), అంతరంగంలో నిరంతరం భగవన్నామ స్మరణ మరియు ప్రేమను (<strong>భక్తి</strong>) నిలుపుకోవడమే కలియుగంలో అత్యంత సులభమైన రాజమార్గం.
+            </p>
+          </div>
 
           {/* 4 Daily Pillars Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
