@@ -2,6 +2,12 @@
 // ASTRONOMICAL PLANETARY TRANSIT ENGINE (లాహిరి అయనాంశ సిద్ధాంత సహిత దక్షిణ భారత గోచార దర్శిని)
 // ============================================================================
 
+import { getPlanetInRasiEffect } from './transitEffectsData';
+import type { TransitEffectInfo } from './transitEffectsData';
+
+export type { TransitEffectInfo };
+export { getPlanetInRasiEffect };
+
 export type PlanetKey = 'sun' | 'moon' | 'mars' | 'mercury' | 'jupiter' | 'venus' | 'saturn' | 'rahu' | 'ketu';
 
 export interface PlanetMeta {
@@ -524,6 +530,7 @@ export interface CompletePlanetInfo {
   nextRasiNameTe: string;
   nextRasiNameEn: string;
   significanceTe: string;
+  effect: TransitEffectInfo;
 }
 
 export function calculateAllPlanets(targetDate: Date): {
@@ -608,7 +615,8 @@ export function calculateAllPlanets(targetDate: Date): {
       nextRasiIndex: bounds.nextRasi,
       nextRasiNameTe: nextRasi.nameTe,
       nextRasiNameEn: nextRasi.nameEn,
-      significanceTe: significance
+      significanceTe: significance,
+      effect: getPlanetInRasiEffect(k, rasiIndex)
     });
   }
 

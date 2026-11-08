@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { 
-  Calendar, Clock, RefreshCw, ArrowRight, Info, Layers
+  Calendar, Clock, RefreshCw, ArrowRight, Info, Layers,
+  CheckCircle2, AlertCircle, Sparkles, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { 
   calculateAllPlanets 
@@ -20,6 +21,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
   const [selectedDate, setSelectedDate] = useState<Date>(() => initialDate || new Date());
   const [selectedPlanetKey, setSelectedPlanetKey] = useState<PlanetKey | null>(null);
   const [selectedRasiIndex, setSelectedRasiIndex] = useState<number | null>(null);
+  const [expandedPlanetKey, setExpandedPlanetKey] = useState<PlanetKey | null>(null);
   const [filterType, setFilterType] = useState<'all' | 'slow' | 'fast'>('all');
 
   // Compute all astronomical planetary data and transitions for selected date
@@ -420,6 +422,58 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
               />
             </div>
           </div>
+
+          {/* Detailed Effect of Planet in Current Rasi */}
+          <div className="p-4 rounded-2xl bg-white border border-[#D4AF37]/60 space-y-3 shadow-xs">
+            <div className="flex items-center justify-between border-b border-[#E8DCC4] pb-2">
+              <h5 className="text-sm font-bold text-[#7B1113] font-telugu-serif flex items-center gap-2">
+                <span>✨</span>
+                <span>{activePlanet.rasiNameTe} రాశిలో {activePlanet.meta.nameTe} గోచార ప్రభావము &amp; ఫలితాలు:</span>
+              </h5>
+              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] font-bold">
+                {activePlanet.dignityLabelTe}
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm text-[#2C1810] leading-relaxed">
+              {activePlanet.effect.detailedTe}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1 text-xs">
+              {/* Positive */}
+              <div className="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 space-y-1">
+                <span className="font-bold text-emerald-800 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>శుభ ఫలితాలు (Positive Gains)</span>
+                </span>
+                <p className="text-emerald-950 text-[11px] leading-relaxed">
+                  {activePlanet.effect.positiveTe}
+                </p>
+              </div>
+
+              {/* Challenges / Precautions */}
+              <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200 space-y-1">
+                <span className="font-bold text-amber-800 flex items-center gap-1.5">
+                  <AlertCircle className="w-4 h-4 text-amber-600" />
+                  <span>జాగ్రత్తలు (Precautions)</span>
+                </span>
+                <p className="text-amber-950 text-[11px] leading-relaxed">
+                  {activePlanet.effect.challengesTe}
+                </p>
+              </div>
+
+              {/* Remedy */}
+              <div className="p-3 rounded-xl bg-purple-50/80 border border-purple-200 space-y-1">
+                <span className="font-bold text-purple-800 flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4 text-purple-600" />
+                  <span>ఆధ్యాత్మిక పరిహారము / వేదాంత సాధన</span>
+                </span>
+                <p className="text-purple-950 text-[11px] leading-relaxed">
+                  {activePlanet.effect.remedyTe}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
@@ -541,122 +595,218 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
                 </th>
                 <th className="p-3 font-bold border-r border-[#D4AF37]/30">మొత్తం వ్యవధి</th>
                 <th className="p-3 font-bold border-r border-[#D4AF37]/30">సంచార పురోగతి</th>
+                <th className="p-3 font-bold border-r border-[#D4AF37]/30 min-w-[240px]">
+                  ఈ రాశిలో సంచార ప్రభావము (Transit Effect)
+                </th>
                 <th className="p-3 font-bold">తదుపరి రాశి (Next Transition)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E8DCC4]">
               {displayedPlanets.map((p) => {
                 const isSelected = selectedPlanetKey === p.key;
+                const isExpanded = expandedPlanetKey === p.key;
                 return (
-                  <tr
-                    key={p.key}
-                    onClick={() => setSelectedPlanetKey(isSelected ? null : p.key)}
-                    className={`transition-colors cursor-pointer hover:bg-[#FFF8E1] ${
-                      isSelected ? 'bg-[#FFF3E0] ring-1 ring-[#D84315]' : ''
-                    }`}
-                  >
-                    {/* Planet info */}
-                    <td className="p-3 border-r border-[#E8DCC4]">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xl">{p.meta.symbol}</span>
-                        <div>
-                          <div className="font-bold text-[#7B1113] flex items-center gap-1">
-                            <span>{p.meta.nameTe}</span>
-                            {p.isRetrograde && (
-                              <span className="px-1.5 py-0.2 rounded-full bg-red-100 text-red-700 text-[9px] font-bold">
-                                వ
-                              </span>
-                            )}
+                  <React.Fragment key={p.key}>
+                    <tr
+                      onClick={() => setSelectedPlanetKey(isSelected ? null : p.key)}
+                      className={`transition-colors cursor-pointer hover:bg-[#FFF8E1] ${
+                        isSelected ? 'bg-[#FFF3E0] ring-1 ring-[#D84315]' : ''
+                      }`}
+                    >
+                      {/* Planet info */}
+                      <td className="p-3 border-r border-[#E8DCC4]">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl">{p.meta.symbol}</span>
+                          <div>
+                            <div className="font-bold text-[#7B1113] flex items-center gap-1">
+                              <span>{p.meta.nameTe}</span>
+                              {p.isRetrograde && (
+                                <span className="px-1.5 py-0.2 rounded-full bg-red-100 text-red-700 text-[9px] font-bold">
+                                  వ
+                                </span>
+                              )}
+                            </div>
+                            <span className="text-[10px] text-[#5D4037]">{p.meta.nameEn}</span>
                           </div>
-                          <span className="text-[10px] text-[#5D4037]">{p.meta.nameEn}</span>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    {/* Current Rasi & Degree */}
-                    <td className="p-3 border-r border-[#E8DCC4]">
-                      <div className="space-y-0.5">
-                        <span className="font-bold text-[#2C1810] block">{p.rasiNameTe} రాశి</span>
-                        <span className="text-[11px] text-[#D84315] font-semibold block">{p.degreeFormatted}</span>
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-[#FAF7F0] border border-[#D4AF37]/40 text-[#7B1113] inline-block">
-                          {p.dignityLabelTe}
-                        </span>
-                      </div>
-                    </td>
-
-                    {/* Nakshatra & Pada */}
-                    <td className="p-3 border-r border-[#E8DCC4]">
-                      <div className="space-y-0.5">
-                        <span className="font-semibold text-[#2C1810] block">{p.nakshatraNameTe}</span>
-                        <span className="text-[10px] text-[#5D4037] block">{p.nakshatraPada}వ పాదం</span>
-                      </div>
-                    </td>
-
-                    {/* Transition Start Date */}
-                    <td className="p-3 border-r border-[#E8DCC4] bg-emerald-50/40">
-                      <div className="space-y-0.5">
-                        <span className="font-bold text-emerald-800 block">
-                          {formatDateShort(p.entryDate)}
-                        </span>
-                        <span className="text-[10px] text-emerald-700 block">
-                          {Math.floor(p.daysElapsed)} రోజుల క్రితం
-                        </span>
-                      </div>
-                    </td>
-
-                    {/* Transition End Date */}
-                    <td className="p-3 border-r border-[#E8DCC4] bg-rose-50/40">
-                      <div className="space-y-0.5">
-                        <span className="font-bold text-rose-800 block">
-                          {formatDateShort(p.exitDate)}
-                        </span>
-                        <span className="text-[10px] text-rose-700 font-semibold block">
-                          ఇంకా {Math.ceil(p.daysRemaining)} రోజులు
-                        </span>
-                      </div>
-                    </td>
-
-                    {/* Total Duration */}
-                    <td className="p-3 border-r border-[#E8DCC4]">
-                      <div className="space-y-0.5">
-                        <span className="font-bold text-[#7B1113] block">
-                          {p.durationDays} రోజులు
-                        </span>
-                        <span className="text-[10px] text-[#5D4037] block">
-                          {formatDurationHuman(p.durationDays)}
-                        </span>
-                      </div>
-                    </td>
-
-                    {/* Progress Bar */}
-                    <td className="p-3 border-r border-[#E8DCC4] min-w-[120px]">
-                      <div className="space-y-1">
-                        <div className="flex justify-between text-[10px] font-semibold text-[#5D4037]">
-                          <span>{p.progressPercent}%</span>
-                          <span>{Math.ceil(p.daysRemaining)}d left</span>
+                      {/* Current Rasi & Degree */}
+                      <td className="p-3 border-r border-[#E8DCC4]">
+                        <div className="space-y-0.5">
+                          <span className="font-bold text-[#2C1810] block">{p.rasiNameTe} రాశి</span>
+                          <span className="text-[11px] text-[#D84315] font-semibold block">{p.degreeFormatted}</span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-[#FAF7F0] border border-[#D4AF37]/40 text-[#7B1113] inline-block">
+                            {p.dignityLabelTe}
+                          </span>
                         </div>
-                        <div className="w-full h-2 rounded-full bg-[#E8DCC4] overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-gradient-to-r from-[#D4AF37] to-[#D84315]"
-                            style={{ width: `${p.progressPercent}%` }}
-                          />
-                        </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    {/* Next Sign */}
-                    <td className="p-3">
-                      <div className="space-y-0.5">
-                        <span className="font-bold text-[#D84315] flex items-center gap-1">
-                          <span>{p.nextRasiNameTe} రాశి</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </span>
-                        <span className="text-[10px] text-[#5D4037] block">
-                          తేదీ: {formatDateShort(p.exitDate)}
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
+                      {/* Nakshatra & Pada */}
+                      <td className="p-3 border-r border-[#E8DCC4]">
+                        <div className="space-y-0.5">
+                          <span className="font-semibold text-[#2C1810] block">{p.nakshatraNameTe}</span>
+                          <span className="text-[10px] text-[#5D4037] block">{p.nakshatraPada}వ పాదం</span>
+                        </div>
+                      </td>
+
+                      {/* Transition Start Date */}
+                      <td className="p-3 border-r border-[#E8DCC4] bg-emerald-50/40">
+                        <div className="space-y-0.5">
+                          <span className="font-bold text-emerald-800 block">
+                            {formatDateShort(p.entryDate)}
+                          </span>
+                          <span className="text-[10px] text-emerald-700 block">
+                            {Math.floor(p.daysElapsed)} రోజుల క్రితం
+                          </span>
+                        </div>
+                      </td>
+
+                      {/* Transition End Date */}
+                      <td className="p-3 border-r border-[#E8DCC4] bg-rose-50/40">
+                        <div className="space-y-0.5">
+                          <span className="font-bold text-rose-800 block">
+                            {formatDateShort(p.exitDate)}
+                          </span>
+                          <span className="text-[10px] text-rose-700 font-semibold block">
+                            ఇంకా {Math.ceil(p.daysRemaining)} రోజులు
+                          </span>
+                        </div>
+                      </td>
+
+                      {/* Total Duration */}
+                      <td className="p-3 border-r border-[#E8DCC4]">
+                        <div className="space-y-0.5">
+                          <span className="font-bold text-[#7B1113] block">
+                            {p.durationDays} రోజులు
+                          </span>
+                          <span className="text-[10px] text-[#5D4037] block">
+                            {formatDurationHuman(p.durationDays)}
+                          </span>
+                        </div>
+                      </td>
+
+                      {/* Progress Bar */}
+                      <td className="p-3 border-r border-[#E8DCC4] min-w-[120px]">
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-[10px] font-semibold text-[#5D4037]">
+                            <span>{p.progressPercent}%</span>
+                            <span>{Math.ceil(p.daysRemaining)}d left</span>
+                          </div>
+                          <div className="w-full h-2 rounded-full bg-[#E8DCC4] overflow-hidden">
+                            <div
+                              className="h-full rounded-full bg-gradient-to-r from-[#D4AF37] to-[#D84315]"
+                              style={{ width: `${p.progressPercent}%` }}
+                            />
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Transit Effect in this Rasi Column */}
+                      <td className="p-3 border-r border-[#E8DCC4] min-w-[240px]">
+                        <div className="space-y-1.5">
+                          <p className="text-[11px] font-semibold text-[#2C1810] leading-snug line-clamp-2">
+                            {p.effect.summaryTe}
+                          </p>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedPlanetKey(isExpanded ? null : p.key);
+                            }}
+                            className="inline-flex items-center gap-1 text-[10px] font-bold text-[#D84315] hover:text-[#7B1113] bg-[#FFF8E1] hover:bg-[#FFE082]/40 px-2 py-0.5 rounded-md border border-[#D4AF37]/50 transition-colors cursor-pointer"
+                          >
+                            <span>{isExpanded ? 'వివరాలు దాచు' : 'సమగ్ర ఫలితాలు & పరిహారము'}</span>
+                            {isExpanded ? (
+                              <ChevronUp className="w-3 h-3" />
+                            ) : (
+                              <ChevronDown className="w-3 h-3" />
+                            )}
+                          </button>
+                        </div>
+                      </td>
+
+                      {/* Next Sign */}
+                      <td className="p-3">
+                        <div className="space-y-0.5">
+                          <span className="font-bold text-[#D84315] flex items-center gap-1">
+                            <span>{p.nextRasiNameTe} రాశి</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </span>
+                          <span className="text-[10px] text-[#5D4037] block">
+                            తేదీ: {formatDateShort(p.exitDate)}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    {/* Expandable Inline Transit Effect Drawer */}
+                    {isExpanded && (
+                      <tr className="bg-[#FFFDF7] border-b-2 border-[#D4AF37]">
+                        <td colSpan={9} className="p-4 sm:p-5">
+                          <div className="rounded-2xl border-2 border-[#D4AF37]/60 bg-gradient-to-r from-[#FFF8E1] via-[#FFFDF7] to-[#FFF3E0] p-4 sm:p-5 space-y-3 shadow-inner">
+                            <div className="flex flex-wrap items-center justify-between border-b border-[#E8DCC4] pb-2.5 gap-2">
+                              <h5 className="font-bold text-[#7B1113] text-xs sm:text-sm font-telugu-serif flex items-center gap-2">
+                                <span className="text-xl">{p.meta.symbol}</span>
+                                <span>{p.rasiNameTe} రాశిలో {p.meta.nameTe} సమగ్ర సంచార ఫలితాలు &amp; ప్రభావ విశ్లేషణ</span>
+                              </h5>
+                              <div className="flex items-center gap-2">
+                                <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] font-bold">
+                                  {p.dignityLabelTe}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => setExpandedPlanetKey(null)}
+                                  className="text-[11px] text-[#7B1113] font-semibold hover:underline cursor-pointer"
+                                >
+                                  ✕ తగ్గించు
+                                </button>
+                              </div>
+                            </div>
+
+                            <p className="text-xs sm:text-sm text-[#2C1810] leading-relaxed">
+                              {p.effect.detailedTe}
+                            </p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1 text-xs">
+                              {/* Positive Gains */}
+                              <div className="p-3 rounded-xl bg-emerald-50/90 border border-emerald-300 space-y-1">
+                                <span className="font-bold text-emerald-800 flex items-center gap-1.5">
+                                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                                  <span>శుభ ఫలితాలు (Positive Influences)</span>
+                                </span>
+                                <p className="text-emerald-950 text-[11px] leading-relaxed">
+                                  {p.effect.positiveTe}
+                                </p>
+                              </div>
+
+                              {/* Precautions */}
+                              <div className="p-3 rounded-xl bg-amber-50/90 border border-amber-300 space-y-1">
+                                <span className="font-bold text-amber-800 flex items-center gap-1.5">
+                                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                                  <span>అశుభాలు &amp; జాగ్రత్తలు (Precautions)</span>
+                                </span>
+                                <p className="text-amber-950 text-[11px] leading-relaxed">
+                                  {p.effect.challengesTe}
+                                </p>
+                              </div>
+
+                              {/* Spiritual Remedy */}
+                              <div className="p-3 rounded-xl bg-purple-50/90 border border-purple-300 space-y-1">
+                                <span className="font-bold text-purple-800 flex items-center gap-1.5">
+                                  <Sparkles className="w-4 h-4 text-purple-600 shrink-0" />
+                                  <span>ఆధ్యాత్మిక పరిహారము &amp; వేదాంత సాధన</span>
+                                </span>
+                                <p className="text-purple-950 text-[11px] leading-relaxed">
+                                  {p.effect.remedyTe}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 );
               })}
             </tbody>
