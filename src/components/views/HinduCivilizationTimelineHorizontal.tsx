@@ -6,7 +6,7 @@ import {
   ChevronRight, 
   X, 
   ShieldCheck, 
-  CheckCircle2 
+  CheckCircle2
 } from 'lucide-react';
 
 interface HinduCivilizationTimelineHorizontalProps {
@@ -19,7 +19,8 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
   const { language } = useMythology();
   const isEn = language === 'en';
 
-  const [selectedTopic, setSelectedTopic] = useState<'rigveda' | 'ramayana' | 'mahabharata' | 'sciences' | null>(null);
+  const [activeTab, setActiveTab] = useState<'svg' | 'details' | 'disciplines'>('svg');
+  const [selectedTopic, setSelectedTopic] = useState<'rigveda' | 'ramayana' | 'mahabharata' | 'yugas' | 'sciences' | null>(null);
 
   const imageSrc = './images/indian_history/timeline_of_hindu_civilization.jpg';
 
@@ -36,219 +37,523 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-[#FFFDF8] via-[#FFF9EE] to-[#FFF3DC]/50 rounded-2xl border-2 border-[#D4AF37] shadow-sm p-4 sm:p-5 space-y-4 relative overflow-hidden">
+    <div className="w-full bg-gradient-to-b from-[#FFFDF8] via-[#FFF9EE] to-[#FFF3DC]/60 rounded-3xl border-2 border-[#D4AF37] shadow-md p-4 sm:p-6 space-y-5 relative overflow-hidden">
       
       {/* ============================================================ */}
-      {/* 1. TOP HEADER & LIGHTBOX TRIGGER                             */}
+      {/* 1. TOP HEADER & MULTI-CONTROL TOOLBAR                        */}
       {/* ============================================================ */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#D4AF37]/40 pb-3">
-        <div className="flex items-center gap-2.5">
-          <span className="text-2xl p-1.5 rounded-xl bg-[#7B1113] text-[#FFE082] shadow-2xs">🕉️</span>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#D4AF37]/40 pb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#7B1113] to-[#B71C1C] text-[#FFE082] flex items-center justify-center text-2xl shadow-sm border border-[#D4AF37] shrink-0">
+            🕉️
+          </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-[#7B1113] text-[#FFE082] uppercase tracking-wider shadow-2xs">
-                {isEn ? 'Empirical Vedic Timeline' : 'సనాతన వైదిక కాలరేఖ'}
+              <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-[#7B1113] text-[#FFE082] uppercase tracking-wider shadow-2xs">
+                {isEn ? 'Archaeo-Astronomy & Empirical Timeline' : 'ఖగోళ విజ్ఞాన & నిరూపిత చారిత్రక కాలరేఖ'}
               </span>
-              <span className="text-xs font-mono font-bold text-[#D84315]">
+              <span className="text-xs font-mono font-bold text-[#D84315] bg-amber-100/90 px-2 py-0.5 rounded-md border border-amber-300">
                 22,000+ BCE ➔ TODAY
               </span>
             </div>
-            <h3 className="text-base sm:text-lg font-black font-telugu-serif text-[#7B1113] mt-0.5">
+            <h3 className="text-lg sm:text-xl font-black font-telugu-serif text-[#7B1113] mt-1">
               {isEn ? 'Timeline of Hindu Civilization (Rigveda, Ramayana, Mahabharata)' : 'హిందూ నాగరికత కాలరేఖ (ఋగ్వేదం, రామాయణం, మహాభారతం)'}
             </h3>
             <p className="text-xs text-[#5D4037] font-medium">
               {isEn 
-                ? 'Archaeo-astronomical & empirical dating based on 1000+ scientific evidences across 12+ disciplines of Hard Sciences'
-                : '12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాల నుండి 1000+ నిరూపిత ఆధారాలతో నిర్ధారించబడిన ఖగోళ-చారిత్రక కాలగణన'}
+                ? 'Empirical dating synthesized from 1000+ testable evidences across 12+ disciplines of Hard Sciences'
+                : '12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాల నుండి 1000+ ప్రత్యక్ష శాస్త్రీయ ఆధారాలతో కూడిన ఖగోళ-చారిత్రక కాలరేఖ'}
             </p>
           </div>
         </div>
 
-        {/* View Original Poster Button */}
-        <button
-          type="button"
-          onClick={handleOpenImage}
-          className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-[#FFE082] text-[#7B1113] border-2 border-[#D4AF37] text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition-all cursor-pointer shrink-0 self-start sm:self-auto"
-          title={isEn ? "View Original Infographic Poster" : "మూల చిత్ర పటాన్ని వీక్షించండి"}
-        >
-          <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
-          <span>{isEn ? 'View Original Chart' : 'మూల చిత్రం (Original Chart)'}</span>
-        </button>
-      </div>
-
-      {/* ============================================================ */}
-      {/* 2. RIGVEDA PERIOD BOX & YUGA DOGMA ANNOTATION                */}
-      {/* ============================================================ */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-center sm:text-left">
-        
-        {/* Rigveda Dotted Box (As in Source Image) */}
-        <div 
-          onClick={() => setSelectedTopic('rigveda')}
-          className="cursor-pointer group px-4 py-2 rounded-2xl border-2 border-dashed border-[#7B1113] bg-white hover:bg-amber-50 shadow-2xs transition-all flex flex-col sm:flex-row items-center gap-2"
-        >
-          <span className="text-xs font-black uppercase text-[#7B1113] tracking-wide">
-            {isEn ? 'RigVeda Epoch:' : 'ఋగ్వేద కాలపరిమితి:'}
-          </span>
-          <span className="text-xs sm:text-sm font-mono font-bold text-[#D84315] group-hover:scale-102 transition-transform">
-            22,000+ BCE through 6th millennium BCE
-          </span>
-          <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-100 text-[#7B1113] font-bold">
-            {isEn ? 'Click for Details' : 'వివరాలు'}
-          </span>
-        </div>
-
-        {/* Yuga Dogma Annotation (As in Source Image) */}
-        <div className="text-xs text-[#0288D1] font-medium space-y-0.5 text-center md:text-right">
-          <div className="font-mono font-bold text-xs sm:text-sm text-[#0277BD]">
-            1728K (Satya/Krita) – 1296K (Treta) – 864K (Dwapara) – 432K (Kali)
-          </div>
-          <div className="text-[10.5px] font-bold text-[#0288D1]/80">
-            {isEn ? 'Yuga Dogma (Yuga Cycle Timeframes)' : 'యుగ పరిమాణ కొలమానం (సత్య, త్రేతా, ద్వాపర, కలి)'}
-          </div>
-        </div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* 3. HORIZONTAL TIMELINE BAR (FAITHFUL RECONSTRUCTION)        */}
-      {/* ============================================================ */}
-      <div className="p-4 sm:p-6 bg-white rounded-2xl border border-amber-300/80 shadow-xs overflow-x-auto">
-        <div className="min-w-[760px] max-w-5xl mx-auto space-y-3 select-none">
-          
-          {/* Top Labels (Treta, Dwapara, Kali) */}
-          <div className="relative h-6 text-xs font-bold text-stone-800">
-            {/* Treta above -10K */}
-            <div className="absolute left-[45%] -translate-x-1/2 text-center">
-              <span className="font-serif text-[#7B1113] tracking-wider">Treta</span>
-            </div>
-
-            {/* Dwapara & Kali above -5K */}
-            <div className="absolute left-[69%] -translate-x-1/2 text-center flex items-center gap-2">
-              <span className="font-serif text-[#7B1113] tracking-wider">Dwapara</span>
-              <span className="font-serif text-[#C2185B] tracking-wider">Kali</span>
-            </div>
-          </div>
-
-          {/* Scale Downward Arrow Markers (-20K, -15K, -10K, -5K, 0, TODAY) */}
-          <div className="relative h-7 text-xs font-mono font-bold text-stone-900">
-            <div className="absolute left-[18%] -translate-x-1/2 text-center">
-              <span className="text-[11px] block">- 20K</span>
-              <span className="text-xs text-black block leading-none">▼</span>
-            </div>
-            <div className="absolute left-[32%] -translate-x-1/2 text-center">
-              <span className="text-[11px] block">- 15K</span>
-              <span className="text-xs text-black block leading-none">▼</span>
-            </div>
-            <div className="absolute left-[47%] -translate-x-1/2 text-center">
-              <span className="text-[11px] block">- 10K</span>
-              <span className="text-xs text-black block leading-none">▼</span>
-            </div>
-            <div className="absolute left-[68%] -translate-x-1/2 text-center">
-              <span className="text-[11px] block">- 5K</span>
-              <span className="text-xs text-black block leading-none">▼</span>
-            </div>
-            <div className="absolute left-[83%] -translate-x-1/2 text-center">
-              <span className="text-[11px] block">0</span>
-              <span className="text-xs text-black block leading-none">▼</span>
-            </div>
-            <div className="absolute left-[90%] -translate-x-1/2 text-center">
-              <span className="text-[10px] block font-black text-[#D84315]">TODAY</span>
-              <span className="text-xs text-[#D84315] block leading-none">▼</span>
-            </div>
-          </div>
-
-          {/* The Main Black Bar with Solid Segments & Arrows */}
-          <div className="relative flex items-center h-8">
-            {/* Left incoming grey arrow */}
-            <div className="w-[18%] h-4 bg-gradient-to-r from-stone-300 to-stone-400 rounded-l-md flex items-center justify-end pr-1 text-[9px] font-mono text-stone-600 font-bold shrink-0">
-              ← 22K+ BCE
-            </div>
-
-            {/* Black Segments */}
-            <div className="flex-1 h-5.5 bg-black flex items-center">
-              {/* Segment 1 (-20K to -15K) */}
-              <div className="w-[17%] h-full border-r-2 border-white/90 bg-stone-950 hover:bg-stone-800 transition-colors" />
-
-              {/* Segment 2 (-15K to -10K) */}
-              <div className="w-[18%] h-full border-r-2 border-white/90 bg-stone-950 hover:bg-stone-800 transition-colors relative">
-                {/* Ramayana Marker at ~12,209 BCE (approx middle of this block) */}
-                <div 
-                  onClick={() => setSelectedTopic('ramayana')}
-                  className="absolute left-[54%] top-0 bottom-0 w-2 bg-[#D84315] hover:w-3 cursor-pointer transition-all shadow-xs" 
-                  title="Ramayana 12209 BCE"
-                />
-              </div>
-
-              {/* Segment 3 (-10K to -5K) */}
-              <div className="w-[26%] h-full border-r-2 border-white/90 bg-stone-950 hover:bg-stone-800 transition-colors relative">
-                {/* Mahabharata Marker at ~5,561 BCE (near the right border) */}
-                <div 
-                  onClick={() => setSelectedTopic('mahabharata')}
-                  className="absolute right-[8%] top-0 bottom-0 w-2 bg-[#D4AF37] hover:w-3 cursor-pointer transition-all shadow-xs" 
-                  title="Mahabharata 5561 BCE"
-                />
-              </div>
-
-              {/* Segment 4 (-5K to 0) */}
-              <div className="w-[19%] h-full border-r-2 border-white/90 bg-stone-950 hover:bg-stone-800 transition-colors" />
-
-              {/* Segment 5 (0 to TODAY) */}
-              <div className="w-[9%] h-full bg-stone-950 border-r-2 border-white/90 hover:bg-stone-800 transition-colors" />
-            </div>
-
-            {/* Right outgoing dashed arrow */}
-            <div className="w-[11%] h-4 border-2 border-dashed border-stone-400 border-l-0 rounded-r-md flex items-center pl-1 text-[9px] font-mono text-stone-500 font-bold shrink-0">
-              Future →
-            </div>
-          </div>
-
-          {/* Bottom Markers: Ramayana (12209 BCE) and Mahabharata (5561 BCE) */}
-          <div className="relative h-14 text-xs font-bold">
-            {/* Ramayana (12209 BCE) */}
-            <div 
-              onClick={() => setSelectedTopic('ramayana')}
-              className="absolute left-[41%] -translate-x-1/2 text-center cursor-pointer group p-1 rounded-xl hover:bg-amber-50 transition-colors"
+        {/* Action Buttons: View Modes & Original Chart Lightbox */}
+        <div className="flex items-center gap-2 flex-wrap shrink-0">
+          <div className="flex items-center bg-white p-0.5 rounded-xl border border-[#D4AF37]/50 text-xs font-bold shadow-2xs">
+            <button
+              onClick={() => setActiveTab('svg')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                activeTab === 'svg'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
+                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+              }`}
             >
-              <span className="text-xs text-[#D84315] block leading-none group-hover:scale-125 transition-transform">▲</span>
-              <span className="font-mono font-black text-xs sm:text-sm text-[#D84315] block mt-0.5">12209 BCE</span>
-              <span className="font-serif font-black text-xs sm:text-sm text-[#7B1113] block">
-                {isEn ? 'Ramayana' : 'రామాయణం'}
-              </span>
-            </div>
-
-            {/* Mahabharata (5561 BCE) */}
-            <div 
-              onClick={() => setSelectedTopic('mahabharata')}
-              className="absolute left-[64%] -translate-x-1/2 text-center cursor-pointer group p-1 rounded-xl hover:bg-amber-50 transition-colors"
+              {isEn ? 'Timeline Graphic' : 'కాలరేఖ చిత్రం'}
+            </button>
+            <button
+              onClick={() => setActiveTab('details')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                activeTab === 'details'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
+                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+              }`}
             >
-              <span className="text-xs text-[#C99700] block leading-none group-hover:scale-125 transition-transform">▲</span>
-              <span className="font-mono font-black text-xs sm:text-sm text-[#8D6E63] block mt-0.5">5561 BCE</span>
-              <span className="font-serif font-black text-xs sm:text-sm text-[#7B1113] block">
-                {isEn ? 'Mahabharata' : 'మహాభారతం'}
-              </span>
-            </div>
+              {isEn ? 'Era Details' : 'యుగ విశేషాలు'}
+            </button>
+            <button
+              onClick={() => setActiveTab('disciplines')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                activeTab === 'disciplines'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
+                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+              }`}
+            >
+              {isEn ? '12 Sciences' : '12 శాస్త్రాలు'}
+            </button>
           </div>
 
+          <button
+            type="button"
+            onClick={handleOpenImage}
+            className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-[#FFE082] text-[#7B1113] border-2 border-[#D4AF37] text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition-all cursor-pointer"
+            title={isEn ? "View Original Infographic Poster" : "మూల చిత్ర పటాన్ని వీక్షించండి"}
+          >
+            <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+            <span>{isEn ? 'Original Chart' : 'మూల పటం (Zoom)'}</span>
+          </button>
         </div>
       </div>
 
       {/* ============================================================ */}
-      {/* 4. BOTTOM EVIDENCE BADGE (BLUE PILL AS IN SOURCE IMAGE)      */}
+      {/* 2. HIGH-CLARITY SVG VECTOR ILLUSTRATION OF THE TIMELINE       */}
       {/* ============================================================ */}
-      <div 
-        onClick={() => setSelectedTopic('sciences')}
-        className="cursor-pointer group max-w-2xl mx-auto p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#1976D2] via-[#1565C0] to-[#0D47A1] text-white shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center gap-2"
-      >
-        <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#FFE082] shrink-0" />
-        <span className="text-xs sm:text-sm font-bold tracking-wide">
-          {isEn
-            ? '1000+ empirical, objectively testable evidence from 12+ disciplines of Hard sciences'
-            : '12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాల నుండి 1000+ నిరూపిత, ప్రత్యక్ష శాస్త్రీయ ఆధారాలు'}
-        </span>
-        <ChevronRight className="w-4 h-4 text-[#FFE082] group-hover:translate-x-1 transition-transform shrink-0" />
-      </div>
+      {activeTab === 'svg' && (
+        <div className="p-3 sm:p-5 bg-white rounded-3xl border-2 border-amber-300 shadow-sm overflow-x-auto">
+          <div className="min-w-[860px] max-w-5xl mx-auto">
+            
+            <svg 
+              viewBox="0 0 1000 370" 
+              className="w-full h-auto drop-shadow-xs select-none"
+              style={{ minHeight: '340px' }}
+            >
+              <defs>
+                {/* Gradients */}
+                <linearGradient id="barGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#1C1917" />
+                  <stop offset="100%" stopColor="#0C0A09" />
+                </linearGradient>
+
+                <linearGradient id="ramayanaGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FF5722" />
+                  <stop offset="100%" stopColor="#D84315" />
+                </linearGradient>
+
+                <linearGradient id="mahabharataGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FFD54F" />
+                  <stop offset="100%" stopColor="#FFA000" />
+                </linearGradient>
+
+                <linearGradient id="arrowLead" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#D6D3D1" />
+                  <stop offset="100%" stopColor="#78716C" />
+                </linearGradient>
+
+                <linearGradient id="blueBannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#1565C0" />
+                  <stop offset="50%" stopColor="#1976D2" />
+                  <stop offset="100%" stopColor="#0D47A1" />
+                </linearGradient>
+
+                <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15" />
+                </filter>
+              </defs>
+
+              {/* -------------------------------------------------------- */}
+              {/* TOP SECTION: TITLE, RIGVEDA BOX & YUGA DOGMA            */}
+              {/* -------------------------------------------------------- */}
+              {/* Grand Main Title Banner in Diagram */}
+              <rect x="250" y="10" width="500" height="38" rx="8" fill="#FFFDF8" stroke="#7B1113" strokeWidth="1.5" />
+              <text x="500" y="27" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="900" fontFamily="serif">
+                Timeline of Hindu civilization
+              </text>
+              <text x="500" y="42" textAnchor="middle" fill="#5D4037" fontSize="11" fontWeight="700">
+                (Rigveda, Ramayana, Mahabharata)
+              </text>
+
+              {/* RigVeda Epoch Dotted Box */}
+              <g 
+                onClick={() => setSelectedTopic('rigveda')} 
+                className="cursor-pointer"
+              >
+                <title>Click for Rigveda Details</title>
+                <rect 
+                  x="230" 
+                  y="58" 
+                  width="360" 
+                  height="34" 
+                  rx="10" 
+                  fill="#FFF8E1" 
+                  stroke="#7B1113" 
+                  strokeWidth="2" 
+                  strokeDasharray="4 4" 
+                />
+                <text x="410" y="73" textAnchor="middle" fill="#7B1113" fontSize="13" fontWeight="900">
+                  RigVeda
+                </text>
+                <text x="410" y="87" textAnchor="middle" fill="#D84315" fontSize="11" fontWeight="800" fontFamily="monospace">
+                  22,000+ BCE through 6th millennium BCE
+                </text>
+              </g>
+
+              {/* Yuga Dogma Annotation */}
+              <g onClick={() => setSelectedTopic('yugas')} className="cursor-pointer">
+                <text x="960" y="90" textAnchor="end" fill="#0288D1" fontSize="14" fontWeight="900" fontFamily="serif">
+                  Yuga
+                </text>
+                <text x="960" y="106" textAnchor="end" fill="#0288D1" fontSize="14" fontWeight="900" fontFamily="serif">
+                  Dogma
+                </text>
+                <text x="580" y="112" textAnchor="middle" fill="#0277BD" fontSize="12" fontWeight="800" fontFamily="monospace">
+                  1728K (Satya/Krita) – 1296K (Treta) – 864K (Dwapara) – 432K (Kali)
+                </text>
+              </g>
+
+              {/* -------------------------------------------------------- */}
+              {/* YUGA ERA LABELS ABOVE THE AXIS                           */}
+              {/* -------------------------------------------------------- */}
+              {/* Treta Label */}
+              <text x="475" y="132" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
+                Treta (త్రేతాయుగం)
+              </text>
+
+              {/* Dwapara Label */}
+              <text x="640" y="132" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
+                Dwapara (ద్వాపరం)
+              </text>
+
+              {/* Kali Label */}
+              <text x="735" y="132" textAnchor="middle" fill="#C2185B" fontSize="14" fontWeight="900" fontFamily="serif">
+                Kali (కలి)
+              </text>
+
+              {/* -------------------------------------------------------- */}
+              {/* SCALE TICK MARKERS ABOVE THE BAR (-20K, -15K, -10K, -5K, 0, TODAY) */}
+              {/* -------------------------------------------------------- */}
+              {/* -20K Marker */}
+              <g transform="translate(190, 140)">
+                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 20K</text>
+                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
+              </g>
+
+              {/* -15K Marker */}
+              <g transform="translate(340, 140)">
+                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 15K</text>
+                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
+              </g>
+
+              {/* -10K Marker */}
+              <g transform="translate(490, 140)">
+                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 10K</text>
+                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
+              </g>
+
+              {/* -5K Marker */}
+              <g transform="translate(650, 140)">
+                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 5K</text>
+                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
+              </g>
+
+              {/* 0 (CE 1) Marker */}
+              <g transform="translate(810, 140)">
+                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">0</text>
+                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
+              </g>
+
+              {/* TODAY Marker */}
+              <g transform="translate(875, 140)">
+                <text x="0" y="0" textAnchor="middle" fill="#D84315" fontSize="11" fontWeight="900" fontFamily="monospace">TODAY</text>
+                <polygon points="0,5 -5,12 5,12" fill="#D84315" />
+              </g>
+
+              {/* -------------------------------------------------------- */}
+              {/* THE HORIZONTAL BAR (OBSIDIAN WITH WHITE DIVIDERS & GLOW)  */}
+              {/* -------------------------------------------------------- */}
+              {/* Left Incoming Arrow (from 22K+ BCE) */}
+              <polygon points="40,165 175,165 185,173 175,181 40,181 50,173" fill="url(#arrowLead)" />
+              <text x="110" y="176" textAnchor="middle" fill="#FFFFFF" fontSize="9" fontWeight="800" fontFamily="monospace">
+                ← 22K+ BCE
+              </text>
+
+              {/* Main Solid Black Bar Segments (Height 26px) */}
+              <rect x="185" y="160" width="690" height="26" rx="3" fill="url(#barGradient)" />
+
+              {/* White divider lines at 5K boundaries */}
+              <line x1="340" y1="160" x2="340" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
+              <line x1="490" y1="160" x2="490" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
+              <line x1="650" y1="160" x2="650" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
+              <line x1="810" y1="160" x2="810" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
+              <line x1="875" y1="160" x2="875" y2="186" stroke="#D84315" strokeWidth="2.5" />
+
+              {/* Ramayana Highlight Strip on the bar at X=425 */}
+              <g onClick={() => setSelectedTopic('ramayana')} className="cursor-pointer">
+                <rect x="423" y="157" width="8" height="32" rx="2" fill="url(#ramayanaGlow)" stroke="#FFFFFF" strokeWidth="1" />
+              </g>
+
+              {/* Mahabharata Highlight Strip on the bar at X=635 */}
+              <g onClick={() => setSelectedTopic('mahabharata')} className="cursor-pointer">
+                <rect x="633" y="157" width="8" height="32" rx="2" fill="url(#mahabharataGlow)" stroke="#FFFFFF" strokeWidth="1" />
+              </g>
+
+              {/* Right Outgoing Dashed Future Arrow */}
+              <g transform="translate(880, 160)">
+                <polygon 
+                  points="0,0 80,0 95,13 80,26 0,26" 
+                  fill="#FFFDF8" 
+                  stroke="#78716C" 
+                  strokeWidth="2" 
+                  strokeDasharray="4 3" 
+                />
+                <text x="40" y="17" textAnchor="middle" fill="#78716C" fontSize="10" fontWeight="700" fontFamily="monospace">
+                  Future →
+                </text>
+              </g>
+
+              {/* -------------------------------------------------------- */}
+              {/* BOTTOM SECTION: RAMAYANA (12209 BCE) & MAHABHARATA (5561 BCE) */}
+              {/* -------------------------------------------------------- */}
+              {/* RAMAYANA LANDMARK (X=427) */}
+              <g 
+                transform="translate(427, 192)" 
+                onClick={() => setSelectedTopic('ramayana')}
+                className="cursor-pointer group"
+              >
+                {/* Connecting arrow pointing up */}
+                <polygon points="0,-4 -6,5 6,5" fill="#D84315" />
+                <line x1="0" y1="5" x2="0" y2="14" stroke="#D84315" strokeWidth="2" />
+
+                {/* Card Container */}
+                <rect 
+                  x="-95" 
+                  y="14" 
+                  width="190" 
+                  height="72" 
+                  rx="12" 
+                  fill="#FFFDF8" 
+                  stroke="#D84315" 
+                  strokeWidth="2" 
+                  filter="url(#cardShadow)" 
+                />
+
+                {/* Date Badge */}
+                <rect x="-65" y="22" width="130" height="20" rx="6" fill="#D84315" />
+                <text x="0" y="36" textAnchor="middle" fill="#FFFFFF" fontSize="12" fontWeight="900" fontFamily="monospace">
+                  ▲ 12209 BCE
+                </text>
+
+                {/* Titles */}
+                <text x="0" y="58" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="900" fontFamily="serif">
+                  Ramayana (రామాయణం)
+                </text>
+                <text x="0" y="74" textAnchor="middle" fill="#5D4037" fontSize="9.5" fontWeight="700">
+                  బ్రహ్మరాశి / అభిజిత్ ధ్రువతార • నిరూపిత ఖగోళ కాలం
+                </text>
+              </g>
+
+              {/* MAHABHARATA LANDMARK (X=637) */}
+              <g 
+                transform="translate(637, 192)" 
+                onClick={() => setSelectedTopic('mahabharata')}
+                className="cursor-pointer group"
+              >
+                {/* Connecting arrow pointing up */}
+                <polygon points="0,-4 -6,5 6,5" fill="#C99700" />
+                <line x1="0" y1="5" x2="0" y2="14" stroke="#C99700" strokeWidth="2" />
+
+                {/* Card Container */}
+                <rect 
+                  x="-95" 
+                  y="14" 
+                  width="190" 
+                  height="72" 
+                  rx="12" 
+                  fill="#FFFDF8" 
+                  stroke="#C99700" 
+                  strokeWidth="2" 
+                  filter="url(#cardShadow)" 
+                />
+
+                {/* Date Badge */}
+                <rect x="-60" y="22" width="120" height="20" rx="6" fill="#7B1113" />
+                <text x="0" y="36" textAnchor="middle" fill="#FFE082" fontSize="12" fontWeight="900" fontFamily="monospace">
+                  ▲ 5561 BCE
+                </text>
+
+                {/* Titles */}
+                <text x="0" y="58" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="900" fontFamily="serif">
+                  Mahabharata (మహాభారతం)
+                </text>
+                <text x="0" y="74" textAnchor="middle" fill="#5D4037" fontSize="9.5" fontWeight="700">
+                  అరుంధతీ-వసిష్ఠ చలనం • 300+ ఖగోళ ఆధారాలు
+                </text>
+              </g>
+
+              {/* -------------------------------------------------------- */}
+              {/* BOTTOM SECTION: 12 HARD SCIENCES BLUE BANNER             */}
+              {/* -------------------------------------------------------- */}
+              <g 
+                transform="translate(120, 310)" 
+                onClick={() => setSelectedTopic('sciences')}
+                className="cursor-pointer"
+              >
+                <rect 
+                  x="0" 
+                  y="0" 
+                  width="760" 
+                  height="36" 
+                  rx="18" 
+                  fill="url(#blueBannerGrad)" 
+                  stroke="#FFD54F" 
+                  strokeWidth="1.5" 
+                  filter="url(#cardShadow)" 
+                />
+                <text x="380" y="23" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="800">
+                  ★ 1000+ empirical, objectively testable evidence from 12+ disciplines of Hard sciences ★
+                </text>
+              </g>
+
+            </svg>
+
+          </div>
+        </div>
+      )}
 
       {/* ============================================================ */}
-      {/* 5. INTERACTIVE DETAIL DRAWER / MODAL                         */}
+      {/* 3B. ERA DETAILS VIEW (INTERACTIVE CARDS)                     */}
+      {/* ============================================================ */}
+      {activeTab === 'details' && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Card 1: Rigveda Epoch */}
+          <div 
+            onClick={() => setSelectedTopic('rigveda')}
+            className="p-4 rounded-2xl bg-white border-2 border-amber-300 hover:border-[#7B1113] shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">📜</span>
+                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-amber-100 text-[#7B1113]">
+                  22,000+ BCE
+                </span>
+              </div>
+              <h4 className="text-base font-bold text-[#7B1113] font-telugu-serif">
+                {isEn ? 'Rigveda Epoch' : 'ఋగ్వేద కాలగణన'}
+              </h4>
+              <p className="text-xs text-[#5D4037] leading-relaxed">
+                {isEn 
+                  ? 'Astronomical equinoxes recorded in Mrigashira (Orion), Punarvasu, and Krittika. Perennial Saraswati river flow from mountain to ocean.'
+                  : 'మృగశిర, పునర్వసు, కృత్తికలలో విషువత్తుల వర్ణనలు. హిమాలయాల నుండి సముద్రం వరకు నిండుగా ప్రవహించిన సరస్వతీ నది ఖగోళ, భూగర్భ ఆధారాలు.'}
+              </p>
+            </div>
+            <div className="pt-3 border-t border-[#F4EEDF] flex items-center justify-between text-xs text-[#D84315] font-bold">
+              <span>{isEn ? 'Archaeo-astronomy' : 'వివరాలు చూడండి'}</span>
+              <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
+
+          {/* Card 2: Ramayana */}
+          <div 
+            onClick={() => setSelectedTopic('ramayana')}
+            className="p-4 rounded-2xl bg-white border-2 border-[#D84315] hover:border-[#7B1113] shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">🏹</span>
+                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-[#D84315] text-white">
+                  12209 BCE
+                </span>
+              </div>
+              <h4 className="text-base font-bold text-[#7B1113] font-telugu-serif">
+                {isEn ? 'Ramayana Dating' : 'రామాయణ కాల నిర్ధారణ'}
+              </h4>
+              <p className="text-xs text-[#5D4037] leading-relaxed">
+                {isEn 
+                  ? 'Abhijit (Vega) as Pole Star, solar eclipses at Dandakaranya, planetary alignments on Chaitra Shukla Navami validated by Nilesh Oak.'
+                  : 'అభిజిత్ నక్షత్రం ధ్రువతారగా ఉన్న కాలం, దండకారణ్యంలో సంభవించిన సూర్యగ్రహణాలు, శ్రీరామ జనన గ్రహస్థితుల ఖగోళ సాక్ష్యాలు.'}
+              </p>
+            </div>
+            <div className="pt-3 border-t border-[#F4EEDF] flex items-center justify-between text-xs text-[#D84315] font-bold">
+              <span>{isEn ? 'Treta Yuga Convergence' : 'వివరాలు చూడండి'}</span>
+              <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
+
+          {/* Card 3: Mahabharata */}
+          <div 
+            onClick={() => setSelectedTopic('mahabharata')}
+            className="p-4 rounded-2xl bg-white border-2 border-[#C99700] hover:border-[#7B1113] shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl">⚔️</span>
+                <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-[#7B1113] text-[#FFE082]">
+                  5561 BCE
+                </span>
+              </div>
+              <h4 className="text-base font-bold text-[#7B1113] font-telugu-serif">
+                {isEn ? 'Mahabharata Dating' : 'మహాభారత కాల నిర్ధారణ'}
+              </h4>
+              <p className="text-xs text-[#5D4037] leading-relaxed">
+                {isEn 
+                  ? 'Arundhati walking ahead of Vasistha (11091 BCE to 4508 BCE epoch), 300+ planetary records in Vyasa epic, Saturn at Rohini.'
+                  : 'అరుంధతీ-వసిష్ఠ విచిత్ర చలనం, వ్యాస మహాభారతంలోని 300+ ఖగోళ శ్లోకాలు, కార్తీక అమావాస్య, రోహిణిలో శని మొదలైన తిరుగులేని ఆధారాలు.'}
+              </p>
+            </div>
+            <div className="pt-3 border-t border-[#F4EEDF] flex items-center justify-between text-xs text-[#D84315] font-bold">
+              <span>{isEn ? 'Dwapara-Kali Epoch' : 'వివరాలు చూడండి'}</span>
+              <ChevronRight className="w-4 h-4" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* 3C. 12 DISCIPLINES VIEW (SCIENTIFIC PROOF)                    */}
+      {/* ============================================================ */}
+      {activeTab === 'disciplines' && (
+        <div className="p-4 sm:p-5 bg-white rounded-3xl border-2 border-blue-300 shadow-sm space-y-3">
+          <div className="flex items-center gap-2 border-b border-blue-100 pb-2.5">
+            <ShieldCheck className="w-5 h-5 text-[#1565C0]" />
+            <h4 className="text-sm sm:text-base font-bold text-[#1565C0] font-telugu-serif">
+              {isEn 
+                ? '12+ Disciplines of Hard Sciences Validating Hindu Civilization Antiquity' 
+                : 'హిందూ నాగరికత ప్రాచీనతను నిరూపిస్తున్న 12+ ప్రాకృతిక విజ్ఞాన శాస్త్ర విభాగాలు'}
+            </h4>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-1">
+            {[
+              { num: '01', en: 'Astronomy & Celestial Mechanics', te: 'ఖగోళ విజ్ఞానం & గ్రహగతులు', icon: '🔭' },
+              { num: '02', en: 'Oceanography & Marine Archaeology', te: 'సముద్ర గర్భ పరిశోధన (ద్వారక & కాంబే)', icon: '🌊' },
+              { num: '03', en: 'Geology & Hydrology (Saraswati River)', te: 'భూగర్భ జల శాస్త్రం (సరస్వతీ నది బేసిన్)', icon: '⛰️' },
+              { num: '04', en: 'Ancient Genetics (aDNA Continuity)', te: 'ప్రాచీన జన్యు విశ్లేషణ (రాఖీగర్హి aDNA)', icon: '🧬' },
+              { num: '05', en: 'Climatology & Paleoclimate Monsoons', te: 'వాతావరణ & ప్రాచీన రుతుపవన శాస్త్రం', icon: '🌦️' },
+              { num: '06', en: 'Field Archaeology (Sanauli, Lothal)', te: 'పురావస్తు త్రవ్వకాలు & రథాల పరిశోధన', icon: '🏺' },
+              { num: '07', en: 'Dendrochronology (Tree-ring Dating)', te: 'వృక్ష వలయ కాలగణన పద్ధతులు', icon: '🌲' },
+              { num: '08', en: 'Radiocarbon & OSL Luminescence', te: 'రేడియో కార్బన్ & OSL లూమినిసెన్స్', icon: '⚛️' },
+              { num: '09', en: 'Bathymetry & Sea-level Shift Analysis', te: 'సముద్ర మట్టాల మార్పులు & బాతీమెట్రీ', icon: '🧭' },
+              { num: '10', en: 'Archaeo-Metallurgy (Copper & Early Iron)', te: 'ప్రాచీన లోహ సంగ్రహణ & ఇనుప ఆయుధాలు', icon: '⚔️' },
+              { num: '11', en: 'Paleobotany (Ancient Crop Domestication)', te: 'ప్రాచీన వృక్ష & ధాన్య సాగు శాస్త్రం', icon: '🌾' },
+              { num: '12', en: 'Paleontology & Faunal Skeletal Analysis', te: 'ప్రాచీన జంతు అవశేష పరిశీలన (అశ్వం)', icon: '🐎' },
+            ].map((d) => (
+              <div 
+                key={d.num} 
+                className="p-2.5 rounded-xl bg-[#F0F7FF] border border-blue-200/80 flex items-center gap-2.5 hover:bg-blue-100 transition-colors"
+              >
+                <span className="text-lg shrink-0">{d.icon}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10px] font-mono font-bold text-[#1565C0]">{d.num}</div>
+                  <div className="text-xs font-bold text-[#0D47A1] leading-tight truncate">
+                    {isEn ? d.en : d.te}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* 4. TOPIC DETAIL MODAL                                        */}
       {/* ============================================================ */}
       {selectedTopic && (
         <div 
@@ -263,13 +568,14 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
             <div className="flex items-center justify-between border-b border-[#D4AF37]/50 pb-3">
               <div className="flex items-center gap-2.5">
                 <span className="text-2xl">
-                  {selectedTopic === 'rigveda' ? '📜' : selectedTopic === 'ramayana' ? '🏹' : selectedTopic === 'mahabharata' ? '⚔️' : '🔬'}
+                  {selectedTopic === 'rigveda' ? '📜' : selectedTopic === 'ramayana' ? '🏹' : selectedTopic === 'mahabharata' ? '⚔️' : selectedTopic === 'yugas' ? '⏳' : '🔬'}
                 </span>
                 <div>
                   <h4 className="text-base sm:text-lg font-black font-telugu-serif text-[#7B1113]">
                     {selectedTopic === 'rigveda' && (isEn ? 'RigVeda Epoch (22,000+ BCE - 6th Millennium BCE)' : 'ఋగ్వేద కాలగణన (క్రీ.పూ. 22,000+ నుండి 6వ సహస్రాబ్ది)')}
-                    {selectedTopic === 'ramayana' && (isEn ? 'Ramayana Dating (12209 BCE)' : 'శ్రీమద్రామాయణ ఖగోళ కాలం (క్రీ.పూ. 12209)')}
-                    {selectedTopic === 'mahabharata' && (isEn ? 'Mahabharata Dating (5561 BCE)' : 'మహాభారత కురుక్షేత్ర ఖగోళ కాలం (క్రీ.పూ. 5561)')}
+                    {selectedTopic === 'ramayana' && (isEn ? 'Ramayana Dating: 12209 BCE' : 'శ్రీమద్రామాయణ ఖగోళ కాలం: క్రీ.పూ. 12209')}
+                    {selectedTopic === 'mahabharata' && (isEn ? 'Mahabharata Dating: 5561 BCE' : 'మహాభారత కురుక్షేత్ర ఖగోళ కాలం: క్రీ.పూ. 5561')}
+                    {selectedTopic === 'yugas' && (isEn ? 'Yuga Dogma & Vedic Cosmogony' : 'యుగ కాలపరిమాణం & వేద కాలగణన')}
                     {selectedTopic === 'sciences' && (isEn ? '12+ Disciplines of Hard Sciences Evidence' : '12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాల నిరూపిత ఆధారాలు')}
                   </h4>
                   <span className="text-[11px] text-[#8D6E63] font-bold">
@@ -328,6 +634,21 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
                       {isEn 
                         ? 'Vyasa Mahabharata contains over 300+ planetary and astronomical observations, including the famous Arundhati-Vasistha observation where Arundhati (Alcor) walked ahead of Vasistha (Mizar), which occurred strictly between 11091 BCE and 4508 BCE. Combined with Saturn at Rohini and solar-lunar eclipses in 13 days, 5561 BCE emerges as the astronomically validated date for the Kurukshetra War.'
                         : 'మహాభారతంలో వేదవ్యాసుడు నమోదు చేసిన 300కు పైగా ఖగోళ ఆధారాలలో "అరుంధతీ-వసిష్ఠ" విచిత్ర నక్షత్ర చలనం అత్యంత ప్రామాణికమైనది. వసిష్ఠునికి ముందు అరుంధతి నడవడం క్రీ.పూ. 11091 నుండి క్రీ.పూ. 4508 మధ్య మాత్రమే సాధ్యమని నాసా నక్షత్ర కొలమానాలు చెబుతున్నాయి. కార్తీక అమావాస్య, రోహిణిలో శని మొదలైన ఆధారాలతో క్రీ.పూ. 5561 కురుక్షేత్ర యుద్ధ సంవత్సరంగా నిర్ధారించబడింది.'}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {selectedTopic === 'yugas' && (
+                <div className="space-y-2.5">
+                  <div className="p-3 bg-white rounded-xl border border-[#E8DCC4]">
+                    <h5 className="font-bold text-[#7B1113] mb-1">
+                      {isEn ? 'Vedic Yuga Cycles & Celestial Proportion:' : 'వేద యుగ కాలగణన & దివ్య ప్రమాణాలు:'}
+                    </h5>
+                    <p>
+                      {isEn
+                        ? 'The 4:3:2:1 mathematical ratio dictates the Yuga lengths: Satya (1,728,000 years), Treta (1,296,000 years), Dwapara (864,000 years), and Kali (432,000 years), summing to one Mahayuga of 4.32 million solar years. Scientific research bridges these cosmic cycles with observable Earth epoch shifts.'
+                        : '4:3:2:1 నిష్పత్తిలో యుగ కాలాలు: సత్యయుగం (17,28,000 ఏళ్ళు), త్రేతాయుగం (12,96,000 ఏళ్ళు), ద్వాపరయుగం (8,64,000 ఏళ్ళు), కలియుగం (4,32,000 ఏళ్ళు) కలిసి ఒక చతుర్యుగం (మహాయుగం = 43,20,000 సంవత్సరాలు) ఏర్పడును.'}
                     </p>
                   </div>
                 </div>
