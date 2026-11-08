@@ -443,8 +443,8 @@ export const JyotishyaView: React.FC = () => {
                     }`}
                     onClick={() => setSelectedChakraImage({
                       url: chakraImageSource === 'source'
-                        ? '/images/jyotishya/source_four_chakras_head_wide.png'
-                        : '/images/jyotishya/four_chakras_head_overview.jpg',
+                        ? './images/jyotishya/source_four_chakras_head_wide.png'
+                        : './images/jyotishya/four_chakras_head_overview.jpg',
                       title: chakraImageSource === 'source'
                         ? 'గ్రంథ మూల పటము 2: బ్రహ్మ, కాల, కర్మ, గుణచక్రములు (పుట 21)'
                         : 'మనిషి తలలోని (ఫాలభాగములోని) 4 చక్రముల సమగ్ర చిత్రపటము',
@@ -454,8 +454,8 @@ export const JyotishyaView: React.FC = () => {
                   >
                     <img
                       src={chakraImageSource === 'source'
-                        ? '/images/jyotishya/source_four_chakras_head_wide.png'
-                        : '/images/jyotishya/four_chakras_head_overview.jpg'
+                        ? './images/jyotishya/source_four_chakras_head_wide.png'
+                        : './images/jyotishya/four_chakras_head_overview.jpg'
                       }
                       alt="మనిషి తలలోని 4 చక్రముల సమగ్ర చిత్రపటము"
                       className={`w-full h-64 transition-transform duration-500 group-hover:scale-105 ${

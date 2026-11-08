@@ -157,8 +157,8 @@ export const FOUR_HEAD_CHAKRAS_DATA: HeadChakraRecord[] = [
     roleTe: 'నాలుగు చక్రములలో అన్నిటికంటే పైన ఉంటూ, క్రింది మూడు చక్రములకు చైతన్య ఆధారముగా ఉండును.',
     rashiVsLagnaNoteTe: 'ఇది కర్మలకు అతీతమైన దైవ చైతన్య స్థానము.',
     color: '#D4AF37',
-    imageUrl: '/images/jyotishya/brahma_chakra.jpg',
-    sourceImageUrl: '/images/jyotishya/source_four_chakras_head_wide.png',
+    imageUrl: './images/jyotishya/brahma_chakra.jpg',
+    sourceImageUrl: './images/jyotishya/source_four_chakras_head_wide.png',
     sourceFigNumberTe: 'గ్రంథ పటము 2 (శిఖర స్థానము)',
     sourcePageNumber: 21,
     tagTe: 'పరమాత్మ & అక్షరాత్మ స్థానము'
@@ -172,8 +172,8 @@ export const FOUR_HEAD_CHAKRAS_DATA: HeadChakraRecord[] = [
     roleTe: 'ఈ కాలచక్రములో 12 లగ్నములు మరియు వాటిలో తిరిగే 12 గ్రహములు (ఫోకస్ లైట్ల వలె) ఉంటాయి. కాలచక్రము తన చుట్టూ తాను ఒక్కసారి తిరగడానికి 43,20,000 సంవత్సరములు (ఒక మహాయుగము) పడుతుంది!',
     rashiVsLagnaNoteTe: 'ముఖ్య సవరణ: మేషాది 12 విభాగాలను "లగ్నములు" అనాలి గానీ "రాశులు" అనకూడదు! లగ్నము అనగా గ్రహములు అంటిపెట్టుకొని తిరిగే కాలచక్ర భాగము.',
     color: '#2563EB',
-    imageUrl: '/images/jyotishya/kala_chakra.jpg',
-    sourceImageUrl: '/images/jyotishya/source_kala_chakra.png',
+    imageUrl: './images/jyotishya/kala_chakra.jpg',
+    sourceImageUrl: './images/jyotishya/source_kala_chakra.png',
     sourceFigNumberTe: 'గ్రంథ పటము 3 (కాలచక్రము)',
     sourcePageNumber: 21,
     tagTe: '12 లగ్నములు • 12 గ్రహాలు'
@@ -187,8 +187,8 @@ export const FOUR_HEAD_CHAKRAS_DATA: HeadChakraRecord[] = [
     roleTe: 'మనిషి సంపాదించిన పాప-పుణ్య కర్మల కుప్పలు (రాశులు) నిల్వ ఉండే చక్రము. అడుగున సంచిత కర్మ, పైన ప్రారబ్ధ కర్మ (రంగు పేపరు వలె) ఉంటాయి. కాలచక్రంలోని గ్రహ కిరణాలు ఈ కర్మచక్రం గుండా ప్రసరించి క్రింది గుణచక్రంపై కర్మ ఛాయను వేస్తాయి.',
     rashiVsLagnaNoteTe: 'ముఖ్య సవరణ: రాశి అనగా "కుప్ప" (కర్మల కుప్ప). కావున కర్మచక్రములోని 1 నుండి 12 స్థానములను మాత్రమే "రాశులు" అనాలి!',
     color: '#DC2626',
-    imageUrl: '/images/jyotishya/karma_chakra.jpg',
-    sourceImageUrl: '/images/jyotishya/source_karma_chakra.png',
+    imageUrl: './images/jyotishya/karma_chakra.jpg',
+    sourceImageUrl: './images/jyotishya/source_karma_chakra.png',
     sourceFigNumberTe: 'గ్రంథ పటము 4 (కర్మచక్రము)',
     sourcePageNumber: 23,
     tagTe: '12 రాశులు • సంచిత-ప్రారబ్ధ కర్మ'
@@ -202,8 +202,8 @@ export const FOUR_HEAD_CHAKRAS_DATA: HeadChakraRecord[] = [
     roleTe: 'ప్రతి గుణ భాగములో 6 చెడు గుణములు (కామ, క్రోధ, లోభ, మోహ, మద, మత్సర) × 9 పరిమాణములు = 54 పాప గుణములు; 6 మంచి గుణములు (దాన, దయ, ఔదార్య, వైరాగ్య, వినయ, ప్రేమ) × 9 పరిమాణములు = 54 పుణ్య గుణములు = 108 గుణములు (మాయ). 3 గుణ భాగములలో 108 × 3 = 324 గుణముల నుండి 324 రకాల కర్మలు పుడతాయి!',
     rashiVsLagnaNoteTe: 'బుద్ధి, చిత్తము, అహము అనే 3 పొరలలో బంధింపబడిన జీవుడు ఈ గుణచక్రములో తిరుగుతూ కర్మలను అనుభవిస్తాడు. మధ్యలోని ఆత్మ భాగములో చేరితే కర్మ ఉండదు.',
     color: '#059669',
-    imageUrl: '/images/jyotishya/guna_chakra.jpg',
-    sourceImageUrl: '/images/jyotishya/source_guna_chakra.png',
+    imageUrl: './images/jyotishya/guna_chakra.jpg',
+    sourceImageUrl: './images/jyotishya/source_guna_chakra.png',
     sourceFigNumberTe: 'గ్రంథ పటము 8 (గుణచక్రము)',
     sourcePageNumber: 32,
     tagTe: '324 గుణములు • జీవాత్మ స్థానము'
