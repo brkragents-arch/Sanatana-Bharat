@@ -12,6 +12,7 @@ import { DakshaPrasutiSection } from './components/views/DakshaPrasutiSection';
 import { ScriptureLibraryView } from './components/views/ScriptureLibraryView';
 import { SrushtiRahasyaView } from './components/views/SrushtiRahasyaView';
 import { JyotishyaView } from './components/views/JyotishyaView';
+import { SitemapSection } from './components/SitemapSection';
 import { NodeDetailDrawer } from './components/NodeDetailDrawer';
 import { SearchModal } from './components/SearchModal';
 import { AdminCmsModal } from './components/views/AdminCmsModal';
@@ -39,6 +40,7 @@ const AppContent: React.FC = () => {
         {viewMode === 'flow' && <ChronologyFlowView />}
         {viewMode === 'daksha_vamsa' && <DakshaPrasutiSection />}
         {viewMode === 'scriptures' && <ScriptureLibraryView />}
+        {viewMode === 'sitemap' && <SitemapSection fullPage={true} />}
       </main>
 
       {/* Slide-out Node Detail Drawer (Clickable Node Explanation System with English & Telugu) */}

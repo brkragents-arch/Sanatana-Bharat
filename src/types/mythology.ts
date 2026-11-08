@@ -137,6 +137,7 @@ export type ViewMode =
   | 'mindmap'             // మైండ్ మ్యాప్ (Chaturmukha Brahma Radial Mind Map)
   | 'daksha_vamsa'        // దక్ష-ప్రసూతి వంశము (16 Daughters Lineage)
   | 'scriptures'          // భాగవత ఆధారాలు (Scripture Library)
+  | 'sitemap'             // సైట్‌మ్యాప్ & విషయ సూచిక (Project Directory & Sitemap)
   | 'admin';
 
 export type AppLanguage = 'te' | 'en';

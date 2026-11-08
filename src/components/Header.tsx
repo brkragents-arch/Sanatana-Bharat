@@ -14,7 +14,8 @@ import {
   ExternalLink,
   Languages,
   Landmark,
-  Sparkles
+  Sparkles,
+  Map
 } from 'lucide-react';
 
 export const Header: React.FC = () => {
@@ -378,6 +379,23 @@ export const Header: React.FC = () => {
           >
             <BookOpen className="w-4 h-4 text-[#C99700]" />
             <span>{isEn ? 'Scriptures' : 'భాగవత ఆధారాలు'}</span>
+          </button>
+
+          {/* 11. సైట్‌మ్యాప్ (Project Sitemap) */}
+          <button
+            onClick={() => {
+              setViewMode('sitemap');
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+              viewMode === 'sitemap'
+                ? 'bg-gradient-to-r from-[#7B1113] to-[#4A0012] text-[#FFE082] shadow-md ring-2 ring-[#D4AF37] font-bold'
+                : 'bg-[#FFFDF7] text-[#5D4037] hover:bg-[#FFF3E0] hover:text-[#7B1113] border border-[#E8DCC4]'
+            }`}
+            title={isEn ? 'Project Sitemap & Index' : 'సమగ్ర ప్రాజెక్ట్ సైట్‌మ్యాప్ & విషయ సూచిక'}
+          >
+            <Map className="w-4 h-4 text-[#D84315]" />
+            <span>{isEn ? 'Sitemap' : 'సైట్‌మ్యాప్'}</span>
           </button>
 
           <div className="h-5 w-px bg-[#D4AF37]/50 mx-1 hidden sm:block" />

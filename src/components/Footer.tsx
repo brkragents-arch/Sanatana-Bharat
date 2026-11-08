@@ -115,6 +115,14 @@ export const Footer: React.FC<{ onNavigateToSection: (mode: any) => void }> = ({
                   <span>📜</span> <span>పోతన భాగవత పద్య రత్నావళి</span>
                 </button>
               </li>
+              <li>
+                <button 
+                  onClick={() => onNavigateToSection('sitemap')}
+                  className="hover:text-[#D84315] hover:underline cursor-pointer flex items-center gap-1.5 font-bold text-[#D84315]"
+                >
+                  <span>🗺️</span> <span>సమగ్ర ప్రాజెక్ట్ సైట్‌మ్యాప్ (Sitemap)</span>
+                </button>
+              </li>
             </ul>
           </div>
 

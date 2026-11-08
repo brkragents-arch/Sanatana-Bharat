@@ -4,6 +4,7 @@ import { HeroSection } from '../HeroSection';
 import { DashboardCards } from '../DashboardCards';
 import { DivineFamilySection } from './DivineFamilySection';
 import { TrimurthiNakshatraSection } from './TrimurthiNakshatraSection';
+import { SitemapSection } from '../SitemapSection';
 import { Sparkles, BookOpen, Clock, GitFork } from 'lucide-react';
 
 export const IntroductionView: React.FC = () => {
@@ -32,6 +33,17 @@ export const IntroductionView: React.FC = () => {
 
         {/* Quick Nav Badges */}
         <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => {
+              const el = document.getElementById('sitemap-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#7B1113] to-[#4A0012] text-[#FFE082] border-2 border-[#D4AF37] text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs hover:scale-102"
+            title={isEn ? 'Scroll down to Comprehensive Project Sitemap' : 'సమగ్ర ప్రాజెక్ట్ సైట్‌మ్యాప్ & విషయ సూచికకు వెళ్ళండి'}
+          >
+            <span>🗺️</span>
+            <span>{isEn ? 'Project Sitemap' : 'విషయ సూచిక (సైట్‌మ్యాప్)'}</span>
+          </button>
           <button
             onClick={() => setIsAdityasOpen(true)}
             className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#FFF8E1] to-[#FFE082] hover:from-[#FFE082] hover:to-[#FFD54F] text-[#7B1113] border-2 border-[#D4AF37] text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-xs hover:scale-102"
@@ -77,7 +89,7 @@ export const IntroductionView: React.FC = () => {
         <HeroSection onExploreClick={() => setViewMode('sanatana_chronology')} />
       </div>
 
-      {/* 10 Visual Section Navigation Cards */}
+      {/* 11 Visual Section Navigation Cards */}
       <div className="space-y-3">
         <div className="flex items-center gap-2 px-2">
           <BookOpen className="w-4 h-4 text-[#D84315]" />
@@ -120,10 +132,15 @@ export const IntroductionView: React.FC = () => {
       </div>
 
       {/* The Divine Family Tree Section (దివ్య వంశవృక్షము) */}
-      <DivineFamilySection />
+      <div id="divine-family-section">
+        <DivineFamilySection />
+      </div>
 
       {/* Trimurthi & 27 Nakshatras Cosmic Mandala Section */}
       <TrimurthiNakshatraSection />
+
+      {/* Comprehensive Interactive Project Sitemap & Directory Section */}
+      <SitemapSection />
     </div>
   );
 };
