@@ -50,66 +50,66 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-[#FFFDF8] via-[#FFF9EE] to-[#FFF3DC]/60 rounded-3xl border-2 border-[#D4AF37] shadow-md p-4 sm:p-6 space-y-5 relative overflow-hidden">
+    <div className="w-full bg-white rounded-2xl border border-stone-200/90 shadow-xs p-4 sm:p-5 space-y-4 relative overflow-hidden">
       
       {/* ============================================================ */}
-      {/* 1. TOP HEADER & MULTI-CONTROL TOOLBAR                        */}
+      {/* 1. TOP HEADER & MINIMALIST TOOLBAR                           */}
       {/* ============================================================ */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#D4AF37]/40 pb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-stone-100 pb-3.5">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#7B1113] to-[#B71C1C] text-[#FFE082] flex items-center justify-center text-2xl shadow-sm border border-[#D4AF37] shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-stone-900 text-amber-300 flex items-center justify-center text-xl shrink-0 shadow-2xs">
             🕉️
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-black bg-[#7B1113] text-[#FFE082] uppercase tracking-wider shadow-2xs">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-stone-900 text-stone-100 uppercase tracking-wider">
                 {isEn ? 'Archaeo-Astronomy & Empirical Timeline' : 'ఖగోళ విజ్ఞాన & నిరూపిత చారిత్రక కాలరేఖ'}
               </span>
-              <span className="text-xs font-mono font-bold text-[#D84315] bg-amber-100/90 px-2 py-0.5 rounded-md border border-amber-300">
+              <span className="text-xs font-mono font-bold text-stone-600 bg-stone-100 px-2 py-0.5 rounded-md">
                 22,000+ BCE ➔ TODAY
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black font-telugu-serif text-[#7B1113] mt-1">
-              {isEn ? 'Timeline of Hindu Civilization (Rigveda, Ramayana, Mahabharata)' : 'హిందూ నాగరికత కాలరేఖ (ఋగ్వేదం, రామాయణం, మహాభారతం)'}
+            <h3 className="text-base sm:text-lg font-black font-telugu-serif text-stone-900 mt-0.5">
+              {isEn ? 'Timeline of Hindu Civilization' : 'హిందూ నాగరికత కాలరేఖ'}
             </h3>
-            <p className="text-xs text-[#5D4037] font-medium">
+            <p className="text-xs text-stone-500 font-medium">
               {isEn 
-                ? 'Empirical dating synthesized from 1000+ testable evidences across 12+ disciplines of Hard Sciences'
-                : '12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాల నుండి 1000+ ప్రత్యక్ష శాస్త్రీయ ఆధారాలతో కూడిన ఖగోళ-చారిత్రక కాలరేఖ'}
+                ? 'Rigveda, Ramayana (12209 BCE), Mahabharata (5561 BCE) & 12+ Hard Sciences'
+                : 'ఋగ్వేదం, రామాయణం (క్రీ.పూ. 12209), మహాభారతం (క్రీ.పూ. 5561) & 12+ విజ్ఞాన శాస్త్రాల ఆధారాలు'}
             </p>
           </div>
         </div>
 
-        {/* Action Buttons: View Modes & Original Chart Lightbox */}
+        {/* Action Buttons: Minimalist Segmented Tabs */}
         <div className="flex items-center gap-2 flex-wrap shrink-0">
-          <div className="flex items-center bg-white p-0.5 rounded-xl border border-[#D4AF37]/50 text-xs font-bold shadow-2xs">
+          <div className="flex items-center bg-stone-100 p-1 rounded-xl text-xs font-medium">
             <button
               onClick={() => setActiveTab('svg')}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 activeTab === 'svg'
-                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
-                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+                  ? 'bg-white text-stone-900 font-bold shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              {isEn ? 'Civilization Timeline' : 'నాగరికత కాలరేఖ'}
+              {isEn ? 'Timeline Graphic' : 'కాలరేఖ చిత్రం'}
             </button>
             <button
               onClick={() => setActiveTab('ramayana_mahabharata')}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
                 activeTab === 'ramayana_mahabharata'
-                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
-                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+                  ? 'bg-white text-stone-900 font-bold shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              <span>{isEn ? 'Ramayana ➔ Mahabharata (42x)' : 'రామాయణ-మహాభారత వ్యవధి (42x)'}</span>
-              <span className="px-1.5 py-0.2 rounded-md bg-[#D84315] text-[10px] text-white font-mono font-bold">504y</span>
+              <span>{isEn ? 'Ramayana ➔ Mahabharata' : 'రామాయణ-మహాభారత వ్యవధి'}</span>
+              <span className="px-1.5 py-0.2 rounded-md bg-stone-200 text-[10px] text-stone-800 font-mono font-bold">42x</span>
             </button>
             <button
               onClick={() => setActiveTab('details')}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 activeTab === 'details'
-                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
-                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+                  ? 'bg-white text-stone-900 font-bold shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
               }`}
             >
               {isEn ? 'Era Details' : 'యుగ విశేషాలు'}
@@ -118,8 +118,8 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
               onClick={() => setActiveTab('disciplines')}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 activeTab === 'disciplines'
-                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
-                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+                  ? 'bg-white text-stone-900 font-bold shadow-xs'
+                  : 'text-stone-600 hover:text-stone-900'
               }`}
             >
               {isEn ? '12 Sciences' : '12 శాస్త్రాలు'}
@@ -129,310 +129,251 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
           <button
             type="button"
             onClick={handleOpenImage}
-            className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-[#FFE082] text-[#7B1113] border-2 border-[#D4AF37] text-xs font-bold flex items-center gap-1.5 shadow-2xs hover:shadow-xs transition-all cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-white hover:bg-stone-50 text-stone-700 border border-stone-200 text-xs font-semibold flex items-center gap-1.5 shadow-2xs cursor-pointer transition-all"
             title={isEn ? "View Original Infographic Poster" : "మూల చిత్ర పటాన్ని వీక్షించండి"}
           >
-            <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+            <Maximize2 className="w-3.5 h-3.5 text-stone-600" />
             <span>{isEn ? 'Original Chart' : 'మూల పటం (Zoom)'}</span>
           </button>
         </div>
       </div>
 
       {/* ============================================================ */}
-      {/* 2. HIGH-CLARITY SVG VECTOR ILLUSTRATION OF THE TIMELINE       */}
+      {/* 2. HIGH-CLARITY MINIMALIST SVG VECTOR ILLUSTRATION           */}
       {/* ============================================================ */}
       {activeTab === 'svg' && (
-        <div className="p-3 sm:p-5 bg-white rounded-3xl border-2 border-amber-300 shadow-sm overflow-x-auto">
+        <div className="p-3 sm:p-5 bg-white rounded-2xl border border-stone-200 shadow-xs overflow-x-auto">
           <div className="min-w-[860px] max-w-5xl mx-auto">
             
             <svg 
-              viewBox="0 0 1000 370" 
-              className="w-full h-auto drop-shadow-xs select-none"
-              style={{ minHeight: '340px' }}
+              viewBox="0 0 1000 330" 
+              className="w-full h-auto select-none"
+              style={{ minHeight: '300px' }}
             >
               <defs>
-                {/* Gradients */}
-                <linearGradient id="barGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#1C1917" />
-                  <stop offset="100%" stopColor="#0C0A09" />
+                {/* Minimalist Gradients */}
+                <linearGradient id="minBarGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#18181B" />
+                  <stop offset="100%" stopColor="#09090B" />
                 </linearGradient>
 
-                <linearGradient id="ramayanaGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#FF5722" />
-                  <stop offset="100%" stopColor="#D84315" />
+                <linearGradient id="minArrowLead" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#E4E4E7" />
+                  <stop offset="100%" stopColor="#71717A" />
                 </linearGradient>
 
-                <linearGradient id="mahabharataGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#FFD54F" />
-                  <stop offset="100%" stopColor="#FFA000" />
+                <linearGradient id="minBluePill" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2563EB" />
+                  <stop offset="100%" stopColor="#1D4ED8" />
                 </linearGradient>
-
-                <linearGradient id="arrowLead" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#D6D3D1" />
-                  <stop offset="100%" stopColor="#78716C" />
-                </linearGradient>
-
-                <linearGradient id="blueBannerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#1565C0" />
-                  <stop offset="50%" stopColor="#1976D2" />
-                  <stop offset="100%" stopColor="#0D47A1" />
-                </linearGradient>
-
-                <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15" />
-                </filter>
               </defs>
 
               {/* -------------------------------------------------------- */}
-              {/* TOP SECTION: TITLE, RIGVEDA BOX & YUGA DOGMA            */}
+              {/* 1. TOP TITLE BANNER                                      */}
               {/* -------------------------------------------------------- */}
-              {/* Grand Main Title Banner in Diagram */}
-              <rect x="250" y="10" width="500" height="38" rx="8" fill="#FFFDF8" stroke="#7B1113" strokeWidth="1.5" />
-              <text x="500" y="27" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="900" fontFamily="serif">
+              <rect x="270" y="10" width="460" height="40" rx="8" fill="#FFFFFF" stroke="#7B1113" strokeWidth="1.2" />
+              <text x="500" y="27" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
                 Timeline of Hindu civilization
               </text>
-              <text x="500" y="42" textAnchor="middle" fill="#5D4037" fontSize="11" fontWeight="700">
+              <text x="500" y="42" textAnchor="middle" fill="#52525B" fontSize="11" fontWeight="600">
                 (Rigveda, Ramayana, Mahabharata)
               </text>
 
-              {/* RigVeda Epoch Dotted Box */}
-              <g 
-                onClick={() => setSelectedTopic('rigveda')} 
-                className="cursor-pointer"
-              >
+              {/* -------------------------------------------------------- */}
+              {/* 2. RIGVEDA DOTTED BOX & YUGA DOGMA                       */}
+              {/* -------------------------------------------------------- */}
+              {/* RigVeda Epoch Box */}
+              <g onClick={() => setSelectedTopic('rigveda')} className="cursor-pointer">
                 <title>Click for Rigveda Details</title>
                 <rect 
-                  x="230" 
+                  x="240" 
                   y="58" 
                   width="360" 
                   height="34" 
-                  rx="10" 
-                  fill="#FFF8E1" 
+                  rx="8" 
+                  fill="#FFFDF8" 
                   stroke="#7B1113" 
-                  strokeWidth="2" 
+                  strokeWidth="1.5" 
                   strokeDasharray="4 4" 
                 />
-                <text x="410" y="73" textAnchor="middle" fill="#7B1113" fontSize="13" fontWeight="900">
+                <text x="420" y="73" textAnchor="middle" fill="#7B1113" fontSize="13" fontWeight="900">
                   RigVeda
                 </text>
-                <text x="410" y="87" textAnchor="middle" fill="#D84315" fontSize="11" fontWeight="800" fontFamily="monospace">
+                <text x="420" y="86" textAnchor="middle" fill="#C2410C" fontSize="10.5" fontWeight="700" fontFamily="monospace">
                   22,000+ BCE through 6th millennium BCE
                 </text>
               </g>
 
-              {/* Yuga Dogma Annotation */}
+              {/* Yuga Dogma Annotation (Right) */}
               <g onClick={() => setSelectedTopic('yugas')} className="cursor-pointer">
-                <text x="960" y="90" textAnchor="end" fill="#0288D1" fontSize="14" fontWeight="900" fontFamily="serif">
+                <title>Click for Yuga Details</title>
+                <text x="910" y="72" textAnchor="middle" fill="#0288D1" fontSize="13" fontWeight="900" fontFamily="serif">
                   Yuga
                 </text>
-                <text x="960" y="106" textAnchor="end" fill="#0288D1" fontSize="14" fontWeight="900" fontFamily="serif">
+                <text x="910" y="87" textAnchor="middle" fill="#0288D1" fontSize="13" fontWeight="900" fontFamily="serif">
                   Dogma
                 </text>
-                <text x="580" y="112" textAnchor="middle" fill="#0277BD" fontSize="12" fontWeight="800" fontFamily="monospace">
-                  1728K (Satya/Krita) – 1296K (Treta) – 864K (Dwapara) – 432K (Kali)
-                </text>
               </g>
 
-              {/* -------------------------------------------------------- */}
-              {/* YUGA ERA LABELS ABOVE THE AXIS                           */}
-              {/* -------------------------------------------------------- */}
-              {/* Treta Label */}
-              <text x="475" y="132" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
-                Treta (త్రేతాయుగం)
-              </text>
-
-              {/* Dwapara Label */}
-              <text x="640" y="132" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
-                Dwapara (ద్వాపరం)
-              </text>
-
-              {/* Kali Label */}
-              <text x="735" y="132" textAnchor="middle" fill="#C2185B" fontSize="14" fontWeight="900" fontFamily="serif">
-                Kali (కలి)
+              {/* Yuga Mathematical Span (Formula) */}
+              <text x="540" y="108" textAnchor="middle" fill="#0288D1" fontSize="11" fontWeight="700" fontFamily="monospace">
+                1728K (Satya/Krita) – 1296K (Treta) – 864K (Dwapara) – 432K (Kali)
               </text>
 
               {/* -------------------------------------------------------- */}
-              {/* SCALE TICK MARKERS ABOVE THE BAR (-20K, -15K, -10K, -5K, 0, TODAY) */}
+              {/* 3. YUGA ERA LABELS (DEDICATED ROW AT Y=132)              */}
               {/* -------------------------------------------------------- */}
-              {/* -20K Marker */}
-              <g transform="translate(190, 140)">
-                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 20K</text>
-                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
-              </g>
-
-              {/* -15K Marker */}
-              <g transform="translate(340, 140)">
-                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 15K</text>
-                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
-              </g>
-
-              {/* -10K Marker */}
-              <g transform="translate(490, 140)">
-                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 10K</text>
-                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
-              </g>
-
-              {/* -5K Marker */}
-              <g transform="translate(650, 140)">
-                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">- 5K</text>
-                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
-              </g>
-
-              {/* 0 (CE 1) Marker */}
-              <g transform="translate(810, 140)">
-                <text x="0" y="0" textAnchor="middle" fill="#1C1917" fontSize="11" fontWeight="800" fontFamily="monospace">0</text>
-                <polygon points="0,5 -5,12 5,12" fill="#1C1917" />
-              </g>
-
-              {/* TODAY Marker */}
-              <g transform="translate(875, 140)">
-                <text x="0" y="0" textAnchor="middle" fill="#D84315" fontSize="11" fontWeight="900" fontFamily="monospace">TODAY</text>
-                <polygon points="0,5 -5,12 5,12" fill="#D84315" />
-              </g>
+              <text x="445" y="132" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
+                Treta
+              </text>
+              <text x="645" y="132" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="800" fontFamily="serif">
+                Dwapara
+              </text>
+              <text x="760" y="132" textAnchor="middle" fill="#9D174D" fontSize="14" fontWeight="900" fontFamily="serif">
+                Kali
+              </text>
 
               {/* -------------------------------------------------------- */}
-              {/* THE HORIZONTAL BAR (OBSIDIAN WITH WHITE DIVIDERS & GLOW)  */}
+              {/* 4. SCALE TICK MARKERS & INVERTED TRIANGLES (AT Y=152)    */}
+              {/* -------------------------------------------------------- */}
+              {/* - 20K */}
+              <g transform="translate(180, 150)">
+                <text x="0" y="0" textAnchor="middle" fill="#27272A" fontSize="10.5" fontWeight="700" fontFamily="monospace">- 20K</text>
+                <polygon points="0,9 -4,4 4,4" fill="#27272A" />
+              </g>
+
+              {/* - 15K */}
+              <g transform="translate(350, 150)">
+                <text x="0" y="0" textAnchor="middle" fill="#27272A" fontSize="10.5" fontWeight="700" fontFamily="monospace">- 15K</text>
+                <polygon points="0,9 -4,4 4,4" fill="#27272A" />
+              </g>
+
+              {/* - 10K */}
+              <g transform="translate(520, 150)">
+                <text x="0" y="0" textAnchor="middle" fill="#27272A" fontSize="10.5" fontWeight="700" fontFamily="monospace">- 10K</text>
+                <polygon points="0,9 -4,4 4,4" fill="#27272A" />
+              </g>
+
+              {/* - 5K */}
+              <g transform="translate(690, 150)">
+                <text x="0" y="0" textAnchor="middle" fill="#27272A" fontSize="10.5" fontWeight="700" fontFamily="monospace">- 5K</text>
+                <polygon points="0,9 -4,4 4,4" fill="#27272A" />
+              </g>
+
+              {/* 0 */}
+              <g transform="translate(810, 150)">
+                <text x="0" y="0" textAnchor="middle" fill="#27272A" fontSize="10.5" fontWeight="700" fontFamily="monospace">0</text>
+                <polygon points="0,9 -4,4 4,4" fill="#27272A" />
+              </g>
+
+              {/* TODAY */}
+              <g transform="translate(860, 150)">
+                <text x="0" y="0" textAnchor="middle" fill="#D84315" fontSize="10.5" fontWeight="800" fontFamily="monospace">TODAY</text>
+                <polygon points="0,9 -4,4 4,4" fill="#D84315" />
+              </g>
+
+              {/* -------------------------------------------------------- */}
+              {/* 5. HORIZONTAL TIMELINE BAR (AT Y=166, HEIGHT=22)         */}
               {/* -------------------------------------------------------- */}
               {/* Left Incoming Arrow (from 22K+ BCE) */}
-              <polygon points="40,165 175,165 185,173 175,181 40,181 50,173" fill="url(#arrowLead)" />
-              <text x="110" y="176" textAnchor="middle" fill="#FFFFFF" fontSize="9" fontWeight="800" fontFamily="monospace">
+              <polygon points="50,166 170,166 180,177 170,188 50,188 60,177" fill="url(#minArrowLead)" />
+              <text x="115" y="180" textAnchor="middle" fill="#FFFFFF" fontSize="8.5" fontWeight="800" fontFamily="monospace">
                 ← 22K+ BCE
               </text>
 
-              {/* Main Solid Black Bar Segments (Height 26px) */}
-              <rect x="185" y="160" width="690" height="26" rx="3" fill="url(#barGradient)" />
+              {/* Main Solid Black Bar from 180 to 860 */}
+              <rect x="180" y="166" width="680" height="22" rx="2" fill="url(#minBarGradient)" />
 
-              {/* White divider lines at 5K boundaries */}
-              <line x1="340" y1="160" x2="340" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
-              <line x1="490" y1="160" x2="490" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
-              <line x1="650" y1="160" x2="650" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
-              <line x1="810" y1="160" x2="810" y2="186" stroke="#FFFFFF" strokeWidth="2.5" />
-              <line x1="875" y1="160" x2="875" y2="186" stroke="#D84315" strokeWidth="2.5" />
+              {/* White divider lines at scale boundaries */}
+              <line x1="350" y1="166" x2="350" y2="188" stroke="#FFFFFF" strokeWidth="2" />
+              <line x1="520" y1="166" x2="520" y2="188" stroke="#FFFFFF" strokeWidth="2" />
+              <line x1="690" y1="166" x2="690" y2="188" stroke="#FFFFFF" strokeWidth="2" />
+              <line x1="810" y1="166" x2="810" y2="188" stroke="#FFFFFF" strokeWidth="2" />
 
-              {/* Ramayana Highlight Strip on the bar at X=425 */}
-              <g onClick={() => setSelectedTopic('ramayana')} className="cursor-pointer">
-                <rect x="423" y="157" width="8" height="32" rx="2" fill="url(#ramayanaGlow)" stroke="#FFFFFF" strokeWidth="1" />
-              </g>
+              {/* Orange marker strip on bar for Ramayana (X=445) */}
+              <rect x="442" y="164" width="6" height="26" rx="1.5" fill="#D84315" />
 
-              {/* Mahabharata Highlight Strip on the bar at X=635 */}
-              <g onClick={() => setSelectedTopic('mahabharata')} className="cursor-pointer">
-                <rect x="633" y="157" width="8" height="32" rx="2" fill="url(#mahabharataGlow)" stroke="#FFFFFF" strokeWidth="1" />
-              </g>
+              {/* Gold marker strip on bar for Mahabharata (X=671) */}
+              <rect x="668" y="164" width="6" height="26" rx="1.5" fill="#EAB308" />
 
               {/* Right Outgoing Dashed Future Arrow */}
-              <g transform="translate(880, 160)">
+              <g transform="translate(862, 166)">
                 <polygon 
-                  points="0,0 80,0 95,13 80,26 0,26" 
-                  fill="#FFFDF8" 
-                  stroke="#78716C" 
-                  strokeWidth="2" 
+                  points="0,0 72,0 85,11 72,22 0,22" 
+                  fill="#FFFFFF" 
+                  stroke="#9CA3AF" 
+                  strokeWidth="1.2" 
                   strokeDasharray="4 3" 
                 />
-                <text x="40" y="17" textAnchor="middle" fill="#78716C" fontSize="10" fontWeight="700" fontFamily="monospace">
+                <text x="36" y="14" textAnchor="middle" fill="#6B7280" fontSize="9" fontWeight="700" fontFamily="monospace">
                   Future →
                 </text>
               </g>
 
               {/* -------------------------------------------------------- */}
-              {/* BOTTOM SECTION: RAMAYANA (12209 BCE) & MAHABHARATA (5561 BCE) */}
+              {/* 6. LANDMARK CALLOUTS BELOW THE BAR (RAMAYANA & MAHABHARATA) */}
               {/* -------------------------------------------------------- */}
-              {/* RAMAYANA LANDMARK (X=427) */}
+              {/* RAMAYANA (X=445) */}
               <g 
-                transform="translate(427, 192)" 
+                transform="translate(445, 194)" 
                 onClick={() => setSelectedTopic('ramayana')}
                 className="cursor-pointer group"
               >
-                {/* Connecting arrow pointing up */}
-                <polygon points="0,-4 -6,5 6,5" fill="#D84315" />
-                <line x1="0" y1="5" x2="0" y2="14" stroke="#D84315" strokeWidth="2" />
+                <title>Click for Ramayana Details</title>
+                {/* Pointer Arrow */}
+                <polygon points="0,0 -4,6 4,6" fill="#D84315" />
 
-                {/* Card Container */}
-                <rect 
-                  x="-95" 
-                  y="14" 
-                  width="190" 
-                  height="72" 
-                  rx="12" 
-                  fill="#FFFDF8" 
-                  stroke="#D84315" 
-                  strokeWidth="2" 
-                  filter="url(#cardShadow)" 
-                />
-
-                {/* Date Badge */}
-                <rect x="-65" y="22" width="130" height="20" rx="6" fill="#D84315" />
-                <text x="0" y="36" textAnchor="middle" fill="#FFFFFF" fontSize="12" fontWeight="900" fontFamily="monospace">
-                  ▲ 12209 BCE
+                {/* Date */}
+                <text x="0" y="22" textAnchor="middle" fill="#D84315" fontSize="13.5" fontWeight="900" fontFamily="monospace">
+                  12209 BCE
                 </text>
 
-                {/* Titles */}
-                <text x="0" y="58" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="900" fontFamily="serif">
-                  Ramayana (రామాయణం)
-                </text>
-                <text x="0" y="74" textAnchor="middle" fill="#5D4037" fontSize="9.5" fontWeight="700">
-                  బ్రహ్మరాశి / అభిజిత్ ధ్రువతార • నిరూపిత ఖగోళ కాలం
+                {/* Title */}
+                <text x="0" y="40" textAnchor="middle" fill="#18181B" fontSize="14" fontWeight="800" fontFamily="serif">
+                  Ramayana
                 </text>
               </g>
 
-              {/* MAHABHARATA LANDMARK (X=637) */}
+              {/* MAHABHARATA (X=671) */}
               <g 
-                transform="translate(637, 192)" 
+                transform="translate(671, 194)" 
                 onClick={() => setSelectedTopic('mahabharata')}
                 className="cursor-pointer group"
               >
-                {/* Connecting arrow pointing up */}
-                <polygon points="0,-4 -6,5 6,5" fill="#C99700" />
-                <line x1="0" y1="5" x2="0" y2="14" stroke="#C99700" strokeWidth="2" />
+                <title>Click for Mahabharata Details</title>
+                {/* Pointer Arrow */}
+                <polygon points="0,0 -4,6 4,6" fill="#B45309" />
 
-                {/* Card Container */}
-                <rect 
-                  x="-95" 
-                  y="14" 
-                  width="190" 
-                  height="72" 
-                  rx="12" 
-                  fill="#FFFDF8" 
-                  stroke="#C99700" 
-                  strokeWidth="2" 
-                  filter="url(#cardShadow)" 
-                />
-
-                {/* Date Badge */}
-                <rect x="-60" y="22" width="120" height="20" rx="6" fill="#7B1113" />
-                <text x="0" y="36" textAnchor="middle" fill="#FFE082" fontSize="12" fontWeight="900" fontFamily="monospace">
-                  ▲ 5561 BCE
+                {/* Date */}
+                <text x="0" y="22" textAnchor="middle" fill="#B45309" fontSize="13.5" fontWeight="900" fontFamily="monospace">
+                  5561 BCE
                 </text>
 
-                {/* Titles */}
-                <text x="0" y="58" textAnchor="middle" fill="#7B1113" fontSize="14" fontWeight="900" fontFamily="serif">
-                  Mahabharata (మహాభారతం)
-                </text>
-                <text x="0" y="74" textAnchor="middle" fill="#5D4037" fontSize="9.5" fontWeight="700">
-                  అరుంధతీ-వసిష్ఠ చలనం • 300+ ఖగోళ ఆధారాలు
+                {/* Title */}
+                <text x="0" y="40" textAnchor="middle" fill="#18181B" fontSize="14" fontWeight="800" fontFamily="serif">
+                  Mahabharata
                 </text>
               </g>
 
               {/* -------------------------------------------------------- */}
-              {/* BOTTOM SECTION: 12 HARD SCIENCES BLUE BANNER             */}
+              {/* 7. HARD SCIENCES EVIDENCE PILL (AT Y=276)                */}
               {/* -------------------------------------------------------- */}
               <g 
-                transform="translate(120, 310)" 
+                transform="translate(160, 276)" 
                 onClick={() => setSelectedTopic('sciences')}
                 className="cursor-pointer"
               >
+                <title>Click for 12+ Hard Sciences Details</title>
                 <rect 
                   x="0" 
                   y="0" 
-                  width="760" 
-                  height="36" 
-                  rx="18" 
-                  fill="url(#blueBannerGrad)" 
-                  stroke="#FFD54F" 
-                  strokeWidth="1.5" 
-                  filter="url(#cardShadow)" 
+                  width="680" 
+                  height="34" 
+                  rx="17" 
+                  fill="url(#minBluePill)" 
                 />
-                <text x="380" y="23" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="800">
-                  ★ 1000+ empirical, objectively testable evidence from 12+ disciplines of Hard sciences ★
+                <text x="340" y="22" textAnchor="middle" fill="#FFFFFF" fontSize="11.5" fontWeight="700">
+                  1000+ empirical, objectively testable evidence from 12+ disciplines of Hard sciences
                 </text>
               </g>
 
@@ -440,36 +381,76 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
 
           </div>
 
-          {/* Quick Teaser Link to Ramayana-Mahabharata 42x Analysis */}
-          <div className="mt-4 p-4 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-100 rounded-2xl border-2 border-amber-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl p-2 rounded-xl bg-white shadow-2xs border border-amber-200 shrink-0">⏳</span>
-              <div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#D84315] text-white uppercase tracking-wider">
-                    {isEn ? 'Micro-Yuga Chronology' : 'సూక్ష్మ యుగ కాలగణన'}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-[#7B1113]">
-                    1331 B.C. ➔ 827 B.C. (42x = 504 Years)
-                  </span>
-                </div>
-                <h4 className="text-sm font-bold text-[#7B1113] mt-0.5">
-                  {isEn ? 'Time between Ramayana & Mahabharata (24th Treta to 28th Dwapara)' : 'రామాయణం & మహాభారతం మధ్య కాల వ్యవధి (24వ త్రేతాయుగం నుండి 28వ ద్వాపరయుగం)'}
-                </h4>
-                <p className="text-[11px] text-[#5D4037]">
+          {/* Minimalist Bilingual Context Bar Below SVG */}
+          <div className="mt-3 pt-3 border-t border-stone-100 grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+            <div 
+              onClick={() => setSelectedTopic('ramayana')}
+              className="p-2.5 rounded-xl bg-orange-50/60 hover:bg-orange-50 border border-orange-200/80 cursor-pointer transition-colors"
+            >
+              <div className="flex items-center gap-1.5 font-bold text-[#D84315]">
+                <span>🏹</span>
+                <span>{isEn ? '12209 BCE • Ramayana' : 'క్రీ.పూ. 12209 • రామాయణం'}</span>
+              </div>
+              <p className="text-[11px] text-stone-600 mt-0.5">
+                {isEn 
+                  ? 'Abhijit (Vega) pole star alignment & astronomical observations in Valmiki Ramayana.' 
+                  : 'వాల్మీకి రామాయణంలోని అభిజిత్ ధ్రువతార స్థానం & ఖగోళ గ్రహస్థితుల కాల నిర్ధారణ.'}
+              </p>
+            </div>
+
+            <div 
+              onClick={() => setSelectedTopic('mahabharata')}
+              className="p-2.5 rounded-xl bg-amber-50/60 hover:bg-amber-50 border border-amber-200/80 cursor-pointer transition-colors"
+            >
+              <div className="flex items-center gap-1.5 font-bold text-[#B45309]">
+                <span>⚔️</span>
+                <span>{isEn ? '5561 BCE • Mahabharata' : 'క్రీ.పూ. 5561 • మహాభారతం'}</span>
+              </div>
+              <p className="text-[11px] text-stone-600 mt-0.5">
+                {isEn 
+                  ? 'Arundhati walking ahead of Vasistha & 300+ planetary records in Vyasa epic.' 
+                  : 'అరుంధతీ-వసిష్ఠ విచిత్ర నక్షత్ర చలనం & వ్యాస భారతంలోని 300+ ఖగోళ శ్లోకాల ఆధారం.'}
+              </p>
+            </div>
+
+            <div 
+              onClick={() => setSelectedTopic('sciences')}
+              className="p-2.5 rounded-xl bg-blue-50/60 hover:bg-blue-50 border border-blue-200/80 cursor-pointer transition-colors"
+            >
+              <div className="flex items-center gap-1.5 font-bold text-[#1D4ED8]">
+                <span>🔬</span>
+                <span>{isEn ? '12+ Hard Sciences' : '12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాలు'}</span>
+              </div>
+              <p className="text-[11px] text-stone-600 mt-0.5">
+                {isEn 
+                  ? 'Astronomy, Oceanography (Dwarka), Hydrology (Saraswati), aDNA & Archaeology.' 
+                  : 'ఖగోళ, సముద్ర గర్భ (ద్వారక), భూగర్భ జల (సరస్వతి), పురావస్తు ఆధారాలు.'}
+              </p>
+            </div>
+          </div>
+
+          {/* Minimalist Teaser to 42x Ramayana-Mahabharata View */}
+          <div className="mt-2.5 p-3 rounded-xl bg-stone-50 hover:bg-stone-100/80 border border-stone-200/70 flex items-center justify-between gap-3 transition-colors">
+            <div className="flex items-center gap-2.5">
+              <span className="text-lg">⏳</span>
+              <div className="text-xs">
+                <span className="font-bold text-stone-800">
+                  {isEn ? 'Alternative Dynastic View:' : 'పురాణ వంశావళి సూక్ష్మ యుగ గణన:'}
+                </span>{' '}
+                <span className="text-stone-600">
                   {isEn 
-                    ? 'Explore 16 dynastic generations across 42x intervals (504 years) where 1 Mahayuga = 120 years.' 
-                    : '1 మహాయుగం = 120 సం|| (10x) సూత్రంతో 5 యుగ చక్రాలు, 16 ఇక్ష్వాకు తరాల గణిత సమన్వయ పరిశీలన.'}
-                </p>
+                    ? 'Time between Ramayana & Mahabharata (42x = 504 Years, 16 Generations).' 
+                    : 'రామాయణ-మహాభారత మధ్య వ్యవధి (42x = 504 సం||, 16 తరాలు).'}
+                </span>
               </div>
             </div>
             <button
               type="button"
               onClick={() => setActiveTab('ramayana_mahabharata')}
-              className="px-4 py-2 rounded-xl bg-[#7B1113] text-[#FFE082] text-xs font-bold hover:bg-[#5C0D0E] flex items-center gap-1.5 shrink-0 shadow-2xs cursor-pointer transition-all"
+              className="px-3 py-1 rounded-lg bg-stone-900 text-stone-100 text-xs font-semibold hover:bg-stone-800 flex items-center gap-1 shrink-0 cursor-pointer"
             >
-              <span>{isEn ? 'Explore 42x Model' : '42x విశ్లేషణను చూడండి'}</span>
-              <ChevronRight className="w-4 h-4" />
+              <span>{isEn ? 'View 42x Model' : '42x మోడల్'}</span>
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
