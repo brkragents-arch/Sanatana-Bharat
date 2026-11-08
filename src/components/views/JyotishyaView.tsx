@@ -57,6 +57,7 @@ export const JyotishyaView: React.FC = () => {
     subtitle: string;
   } | null>(null);
   const [chakraImageSource, setChakraImageSource] = useState<'source' | 'art'>('source');
+  const [isRasiPopupOpen, setIsRasiPopupOpen] = useState<boolean>(false);
 
   // Selected Lagna Graha for 2:1 Friend/Enemy Calculator
   const selectedLagnaGraha = useMemo(
@@ -288,7 +289,7 @@ export const JyotishyaView: React.FC = () => {
         {[
           { id: 'all', label: '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' },
           { id: 'foundations_chakras', label: '☸️ 1. 4 చక్రాలు & 324 కర్మలు' },
-          { id: 'south_chart_transits', label: '🧭 2. దక్షిణ భారత చక్రం & గోచార సంక్రమణం' },
+          { id: 'south_chart_transits', label: '🧭 2. దక్షిణ భారత చక్రం & గోచారం (🪟 పాప్-అప్)' },
           { id: 'grahas_lagnas', label: '🪐 3. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
           { id: 'karma_houses', label: '🏛️ 4. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
           { id: 'attributes_matrix', label: '📊 5. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
@@ -630,7 +631,30 @@ export const JyotishyaView: React.FC = () => {
       {/* =================================================================== */}
       {showSection('south_chart_transits') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
-          <SouthIndianRasiChart />
+          {/* Quick Popup Modal Launch Banner */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#7B1113] via-[#8B1E0F] to-[#5C0A0A] border-2 border-[#D4AF37] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+            <div className="space-y-1 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <span className="text-xl">🪐</span>
+                <h3 className="text-base sm:text-lg font-bold text-[#FFE082] font-telugu-serif">
+                  దక్షిణ భారత రాశి చక్రం &amp; ప్రత్యక్ష గోచార సంచార దర్శిని
+                </h3>
+              </div>
+              <p className="text-xs text-stone-200 max-w-2xl">
+                మొత్తం 4x4 రాశి చక్రాన్ని మరియు 9 గ్రహాల ప్రవేశ-నిష్క్రమణ తేదీల పట్టికను ఒకే పూర్తి-స్క్రీన్ పాప్-అప్ (Popup Modal) విండోలో ఏకాగ్రతతో వీక్షించండి.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsRasiPopupOpen(true)}
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#FFE082] to-[#D4AF37] text-[#4A0012] font-bold text-xs sm:text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-lg cursor-pointer whitespace-nowrap"
+            >
+              <Maximize2 className="w-4 h-4" />
+              <span>🪟 పాప్-అప్ తెరవండి (Open Popup)</span>
+            </button>
+          </div>
+
+          <SouthIndianRasiChart onOpenPopup={() => setIsRasiPopupOpen(true)} />
         </section>
       )}
 
@@ -1748,6 +1772,14 @@ export const JyotishyaView: React.FC = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* South Indian Rasi Chart & Live Transit Modal Popup */}
+      {isRasiPopupOpen && (
+        <SouthIndianRasiChart
+          isModal
+          onClose={() => setIsRasiPopupOpen(false)}
+        />
       )}
     </div>
   );
