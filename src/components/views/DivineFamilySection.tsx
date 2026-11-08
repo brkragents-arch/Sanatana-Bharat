@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useMythology } from '../../context/MythologyContext';
 import { DIVINE_FAMILY_TIERS } from '../../data/divineFamilyData';
 import type { DivineDeity, DivineTier } from '../../data/divineFamilyData';
+import { GuruParamparaSection } from './GuruParamparaSection';
 import { 
   Sparkles, 
   Search, 
@@ -24,7 +25,7 @@ export const DivineFamilySection: React.FC<DivineFamilySectionProps> = ({ onSele
 
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedDeity, setSelectedDeity] = useState<DivineDeity | null>(null);
-  const [activeTierFilter, setActiveTierFilter] = useState<number | 'all'>('all');
+  const [activeTierFilter, setActiveTierFilter] = useState<number | 'all' | 'guru_parampara'>('all');
   const [imageErrorMap, setImageErrorMap] = useState<Record<string, boolean>>({});
   const [activeTier1Id, setActiveTier1Id] = useState<string>('parabrahma');
   const [tier1ViewMode, setTier1ViewMode] = useState<'single' | 'grid'>('single');
@@ -36,6 +37,7 @@ export const DivineFamilySection: React.FC<DivineFamilySectionProps> = ({ onSele
 
   // Filtered tiers based on active tier & search query
   const filteredTiers = useMemo(() => {
+    if (activeTierFilter === 'guru_parampara') return [];
     return DIVINE_FAMILY_TIERS.map(tier => {
       if (activeTierFilter !== 'all' && tier.tierNumber !== activeTierFilter) {
         return null;
@@ -149,6 +151,18 @@ export const DivineFamilySection: React.FC<DivineFamilySectionProps> = ({ onSele
           >
             {isEn ? 'All Tiers (7)' : 'సమగ్ర దర్శనం (7)'}
           </button>
+          <button
+            onClick={() => setActiveTierFilter('guru_parampara')}
+            className={`px-3 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+              activeTierFilter === 'guru_parampara'
+                ? 'bg-gradient-to-r from-[#D84315] to-[#7B1113] text-[#FFE082] shadow-md ring-2 ring-[#FFD54F]'
+                : 'bg-[#FFF8E1] text-[#7B1113] hover:bg-[#FFE082] border border-[#D4AF37]'
+            }`}
+          >
+            <span>🕉️</span>
+            <span>{isEn ? 'Guru Parampara (31)' : 'గురు పరంపర (31)'}</span>
+          </button>
+
           {[
             { id: 1, labelTe: '1. పరబ్రహ్మ', labelEn: '1. Parabrahma' },
             { id: 2, labelTe: '2. త్రిమూర్తులు', labelEn: '2. Trimurti' },
@@ -496,6 +510,16 @@ export const DivineFamilySection: React.FC<DivineFamilySectionProps> = ({ onSele
           );
         })}
       </div>
+
+
+      {/* ============================================================ */}
+      {/* 3B. SANATANA GURU PARAMPARA (దివ్య గురుపరంపర - GRID FORM) */}
+      {/* ============================================================ */}
+      {(activeTierFilter === 'all' || activeTierFilter === 'guru_parampara') && (
+        <div id="guru-parampara-section" className="scroll-mt-6">
+          <GuruParamparaSection embedded={true} />
+        </div>
+      )}
 
       {/* ============================================================ */}
       {/* 4. INTERACTIVE DEITY DETAIL MODAL */}
