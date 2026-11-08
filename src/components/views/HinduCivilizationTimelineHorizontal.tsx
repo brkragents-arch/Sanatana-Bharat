@@ -19,10 +19,11 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
   const { language } = useMythology();
   const isEn = language === 'en';
 
-  const [activeTab, setActiveTab] = useState<'svg' | 'details' | 'disciplines'>('svg');
+  const [activeTab, setActiveTab] = useState<'svg' | 'ramayana_mahabharata' | 'details' | 'disciplines'>('svg');
   const [selectedTopic, setSelectedTopic] = useState<'rigveda' | 'ramayana' | 'mahabharata' | 'yugas' | 'sciences' | null>(null);
 
   const imageSrc = './images/indian_history/timeline_of_hindu_civilization.jpg';
+  const ramayanaMahabharataImageSrc = './images/indian_history/time_between_ramayana_and_mahabharata.png';
 
   const handleOpenImage = () => {
     if (onOpenLightbox) {
@@ -32,6 +33,18 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
         subtitle: isEn 
           ? 'Rigveda, Ramayana (12209 BCE), Mahabharata (5561 BCE) & 12+ Hard Sciences' 
           : 'ఋగ్వేదం, రామాయణం (క్రీ.పూ. 12209), మహాభారతం (క్రీ.పూ. 5561) & 12+ ప్రాకృతిక విజ్ఞాన శాస్త్రాల ఆధారాలు'
+      });
+    }
+  };
+
+  const handleOpenRamayanaMahabharataImage = () => {
+    if (onOpenLightbox) {
+      onOpenLightbox({
+        src: ramayanaMahabharataImageSrc,
+        title: isEn ? 'Time between Ramayana & Mahabharata' : 'రామాయణం & మహాభారతం మధ్య కాల వ్యవధి',
+        subtitle: isEn 
+          ? 'End of 24th Treta-Yuga (1331 BC) to End of 28th Dwapara-Yuga (827 BC) • 42x = 504 Years (TheScienceOfTime.com)' 
+          : '24వ త్రేతాయుగం (క్రీ.పూ. 1331) నుండి 28వ ద్వాపరయుగం (క్రీ.పూ. 827) • 42x = 504 సంవత్సరాలు, 16 తరాలు'
       });
     }
   };
@@ -78,7 +91,18 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
                   : 'text-[#5D4037] hover:bg-[#F4EEDF]'
               }`}
             >
-              {isEn ? 'Timeline Graphic' : 'కాలరేఖ చిత్రం'}
+              {isEn ? 'Civilization Timeline' : 'నాగరికత కాలరేఖ'}
+            </button>
+            <button
+              onClick={() => setActiveTab('ramayana_mahabharata')}
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeTab === 'ramayana_mahabharata'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-2xs'
+                  : 'text-[#5D4037] hover:bg-[#F4EEDF]'
+              }`}
+            >
+              <span>{isEn ? 'Ramayana ➔ Mahabharata (42x)' : 'రామాయణ-మహాభారత వ్యవధి (42x)'}</span>
+              <span className="px-1.5 py-0.2 rounded-md bg-[#D84315] text-[10px] text-white font-mono font-bold">504y</span>
             </button>
             <button
               onClick={() => setActiveTab('details')}
@@ -413,6 +437,384 @@ export const HinduCivilizationTimelineHorizontal: React.FC<HinduCivilizationTime
               </g>
 
             </svg>
+
+          </div>
+
+          {/* Quick Teaser Link to Ramayana-Mahabharata 42x Analysis */}
+          <div className="mt-4 p-4 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-100 rounded-2xl border-2 border-amber-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl p-2 rounded-xl bg-white shadow-2xs border border-amber-200 shrink-0">⏳</span>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#D84315] text-white uppercase tracking-wider">
+                    {isEn ? 'Micro-Yuga Chronology' : 'సూక్ష్మ యుగ కాలగణన'}
+                  </span>
+                  <span className="text-xs font-mono font-bold text-[#7B1113]">
+                    1331 B.C. ➔ 827 B.C. (42x = 504 Years)
+                  </span>
+                </div>
+                <h4 className="text-sm font-bold text-[#7B1113] mt-0.5">
+                  {isEn ? 'Time between Ramayana & Mahabharata (24th Treta to 28th Dwapara)' : 'రామాయణం & మహాభారతం మధ్య కాల వ్యవధి (24వ త్రేతాయుగం నుండి 28వ ద్వాపరయుగం)'}
+                </h4>
+                <p className="text-[11px] text-[#5D4037]">
+                  {isEn 
+                    ? 'Explore 16 dynastic generations across 42x intervals (504 years) where 1 Mahayuga = 120 years.' 
+                    : '1 మహాయుగం = 120 సం|| (10x) సూత్రంతో 5 యుగ చక్రాలు, 16 ఇక్ష్వాకు తరాల గణిత సమన్వయ పరిశీలన.'}
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setActiveTab('ramayana_mahabharata')}
+              className="px-4 py-2 rounded-xl bg-[#7B1113] text-[#FFE082] text-xs font-bold hover:bg-[#5C0D0E] flex items-center gap-1.5 shrink-0 shadow-2xs cursor-pointer transition-all"
+            >
+              <span>{isEn ? 'Explore 42x Model' : '42x విశ్లేషణను చూడండి'}</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* 3A. RAMAYANA TO MAHABHARATA (42x = 504 YEARS) VIEW           */}
+      {/* ============================================================ */}
+      {activeTab === 'ramayana_mahabharata' && (
+        <div className="space-y-4">
+          {/* Main Vector Box */}
+          <div className="p-3 sm:p-5 bg-white rounded-3xl border-2 border-amber-300 shadow-sm space-y-4 overflow-x-auto">
+            
+            {/* Top Toolbar for this view */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-amber-200 pb-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">⏳</span>
+                  <h4 className="text-base sm:text-lg font-black font-telugu-serif text-[#7B1113]">
+                    {isEn ? 'Time between Ramayana & Mahabharata' : 'రామాయణం & మహాభారతం మధ్య కాల వ్యవధి'}
+                  </h4>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#D84315] text-white">
+                    42x = 504 Years
+                  </span>
+                </div>
+                <p className="text-xs text-[#5D4037] mt-0.5">
+                  {isEn 
+                    ? 'Puranic genealogical chronology connecting End of 24th Treta-Yuga (1331 B.C.) to End of 28th Dwapara-Yuga (827 B.C.)'
+                    : '24వ త్రేతాయుగం (క్రీ.పూ. 1331) నుండి 28వ ద్వాపరయుగం (క్రీ.పూ. 827) వరకు 16 తరాలు & 42x కాలగణన సూత్రం'}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleOpenRamayanaMahabharataImage}
+                className="px-3.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-[#7B1113] border border-[#D4AF37] text-xs font-bold flex items-center gap-1.5 shadow-2xs cursor-pointer shrink-0"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#D84315]" />
+                <span>{isEn ? 'View Original Diagram (Zoom)' : 'మూల పటం వీక్షించండి (Zoom)'}</span>
+              </button>
+            </div>
+
+            {/* SVG Illustration of the 42x Striped Bar */}
+            <div className="min-w-[880px] max-w-5xl mx-auto py-2">
+              <svg 
+                viewBox="0 0 1000 270" 
+                className="w-full h-auto drop-shadow-xs select-none"
+                style={{ minHeight: '260px' }}
+              >
+                {/* Title */}
+                <text x="500" y="24" textAnchor="middle" fill="#0288D1" fontSize="18" fontWeight="900" fontFamily="serif">
+                  Time between Ramayana &amp; Mahabharata
+                </text>
+                <text x="500" y="42" textAnchor="middle" fill="#4B5563" fontSize="11" fontWeight="700">
+                  2016 © TheScienceOfTime.com
+                </text>
+
+                {/* -------------------------------------------------------- */}
+                {/* LEFT MARKER: BIRTH OF RAMA (1331 B.C.)                   */}
+                {/* -------------------------------------------------------- */}
+                <g transform="translate(196, 0)">
+                  <text x="0" y="65" textAnchor="middle" fill="#000000" fontSize="13.5" fontWeight="900">
+                    Birth of Rama
+                  </text>
+                  <text x="0" y="80" textAnchor="middle" fill="#7B1113" fontSize="12" fontWeight="700" fontStyle="italic">
+                    End of 24th Treta-Yuga
+                  </text>
+                  <text x="0" y="97" textAnchor="middle" fill="#0D47A1" fontSize="14" fontWeight="900" fontFamily="monospace">
+                    1331 B.C.
+                  </text>
+                  <line x1="0" y1="102" x2="0" y2="180" stroke="#00BCD4" strokeWidth="2.5" />
+                </g>
+
+                {/* -------------------------------------------------------- */}
+                {/* RIGHT MARKER: MAHABHARATA WAR (827 B.C.)                 */}
+                {/* -------------------------------------------------------- */}
+                <g transform="translate(868, 0)">
+                  <text x="0" y="65" textAnchor="middle" fill="#000000" fontSize="13.5" fontWeight="900">
+                    Mahabharata War
+                  </text>
+                  <text x="0" y="80" textAnchor="middle" fill="#7B1113" fontSize="12" fontWeight="700" fontStyle="italic">
+                    End of 28th Dwapara-Yuga
+                  </text>
+                  <text x="0" y="97" textAnchor="middle" fill="#0D47A1" fontSize="14" fontWeight="900" fontFamily="monospace">
+                    827 B.C.
+                  </text>
+                  <line x1="0" y1="102" x2="0" y2="180" stroke="#00BCD4" strokeWidth="2.5" />
+                </g>
+
+                {/* -------------------------------------------------------- */}
+                {/* CENTRAL SPAN & INTERVAL LABELS                            */}
+                {/* -------------------------------------------------------- */}
+                <text x="532" y="108" textAnchor="middle" fill="#374151" fontSize="13.5" fontWeight="900" fontFamily="monospace">
+                  42x, 504 years (1331-827)
+                </text>
+
+                {/* Unit breakdown above the bar */}
+                <g fill="#4B5563" fontSize="13" fontWeight="800" textAnchor="middle">
+                  <text x="220" y="128">3x</text>
+                  <text x="324" y="128">10x</text>
+                  <text x="484" y="128">10x</text>
+                  <text x="644" y="128">10x</text>
+                  <text x="796" y="128">9x</text>
+
+                  {/* Partition lines between sub-intervals */}
+                  <line x1="196" y1="116" x2="196" y2="135" stroke="#6B7280" strokeWidth="1.5" />
+                  <line x1="244" y1="116" x2="244" y2="135" stroke="#6B7280" strokeWidth="1.5" />
+                  <line x1="404" y1="116" x2="404" y2="135" stroke="#6B7280" strokeWidth="1.5" />
+                  <line x1="564" y1="116" x2="564" y2="135" stroke="#6B7280" strokeWidth="1.5" />
+                  <line x1="724" y1="116" x2="724" y2="135" stroke="#6B7280" strokeWidth="1.5" />
+                  <line x1="868" y1="116" x2="868" y2="135" stroke="#6B7280" strokeWidth="1.5" />
+                </g>
+
+                {/* -------------------------------------------------------- */}
+                {/* 5-CYCLE STRIPED TIMELINE BAR                             */}
+                {/* -------------------------------------------------------- */}
+                {/* Render the 50 units (each 16px wide, total 800px from X=84 to X=884) */}
+                <g>
+                  {[
+                    // Cycle 24 (X=84 to 244)
+                    { x: 84, w: 16, fill: '#FFFFFF' }, { x: 100, w: 16, fill: '#FFFFFF' }, { x: 116, w: 16, fill: '#FFFFFF' }, { x: 132, w: 16, fill: '#FFFFFF' },
+                    { x: 148, w: 16, fill: '#FACC15' }, { x: 164, w: 16, fill: '#FACC15' }, { x: 180, w: 16, fill: '#FACC15' },
+                    { x: 196, w: 16, fill: '#FB923C' }, { x: 212, w: 16, fill: '#FB923C' },
+                    { x: 228, w: 16, fill: '#64748B' },
+
+                    // Cycle 25 (X=244 to 404)
+                    { x: 244, w: 16, fill: '#FFFFFF' }, { x: 260, w: 16, fill: '#FFFFFF' }, { x: 276, w: 16, fill: '#FFFFFF' }, { x: 292, w: 16, fill: '#FFFFFF' },
+                    { x: 308, w: 16, fill: '#FACC15' }, { x: 324, w: 16, fill: '#FACC15' }, { x: 340, w: 16, fill: '#FACC15' },
+                    { x: 356, w: 16, fill: '#FB923C' }, { x: 372, w: 16, fill: '#FB923C' },
+                    { x: 388, w: 16, fill: '#64748B' },
+
+                    // Cycle 26 (X=404 to 564)
+                    { x: 404, w: 16, fill: '#FFFFFF' }, { x: 420, w: 16, fill: '#FFFFFF' }, { x: 436, w: 16, fill: '#FFFFFF' }, { x: 452, w: 16, fill: '#FFFFFF' },
+                    { x: 468, w: 16, fill: '#FACC15' }, { x: 484, w: 16, fill: '#FACC15' }, { x: 500, w: 16, fill: '#FACC15' },
+                    { x: 516, w: 16, fill: '#FB923C' }, { x: 532, w: 16, fill: '#FB923C' },
+                    { x: 548, w: 16, fill: '#64748B' },
+
+                    // Cycle 27 (X=564 to 724)
+                    { x: 564, w: 16, fill: '#FFFFFF' }, { x: 580, w: 16, fill: '#FFFFFF' }, { x: 596, w: 16, fill: '#FFFFFF' }, { x: 612, w: 16, fill: '#FFFFFF' },
+                    { x: 628, w: 16, fill: '#FACC15' }, { x: 644, w: 16, fill: '#FACC15' }, { x: 660, w: 16, fill: '#FACC15' },
+                    { x: 676, w: 16, fill: '#FB923C' }, { x: 692, w: 16, fill: '#FB923C' },
+                    { x: 708, w: 16, fill: '#64748B' },
+
+                    // Cycle 28 (X=724 to 884)
+                    { x: 724, w: 16, fill: '#FFFFFF' }, { x: 740, w: 16, fill: '#FFFFFF' }, { x: 756, w: 16, fill: '#FFFFFF' }, { x: 772, w: 16, fill: '#FFFFFF' },
+                    { x: 788, w: 16, fill: '#FACC15' }, { x: 804, w: 16, fill: '#FACC15' }, { x: 820, w: 16, fill: '#FACC15' },
+                    { x: 836, w: 16, fill: '#FB923C' }, { x: 852, w: 16, fill: '#FB923C' },
+                    { x: 868, w: 16, fill: '#64748B' }
+                  ].map((seg, idx) => (
+                    <rect 
+                      key={idx} 
+                      x={seg.x} 
+                      y={136} 
+                      width={seg.w} 
+                      height={36} 
+                      fill={seg.fill} 
+                      stroke="#475569" 
+                      strokeWidth="0.8" 
+                    />
+                  ))}
+
+                  {/* Outer border container */}
+                  <rect x="84" y="136" width="800" height="36" fill="none" stroke="#7B1113" strokeWidth="2.5" />
+                </g>
+
+                {/* -------------------------------------------------------- */}
+                {/* GREEN CYCLE MARKERS & TICKS (24, 25, 26, 27, 28)         */}
+                {/* -------------------------------------------------------- */}
+                <g stroke="#16A34A" strokeWidth="2.5">
+                  <line x1="84" y1="172" x2="84" y2="216" />
+                  <line x1="244" y1="172" x2="244" y2="216" />
+                  <line x1="404" y1="172" x2="404" y2="216" />
+                  <line x1="564" y1="172" x2="564" y2="216" />
+                  <line x1="724" y1="172" x2="724" y2="216" />
+                  <line x1="884" y1="172" x2="884" y2="216" />
+
+                  {/* Baseline */}
+                  <line x1="84" y1="216" x2="884" y2="216" />
+                </g>
+
+                {/* Big Green Cycle Numbers */}
+                <g fill="#15803D" fontSize="26" fontWeight="900" fontFamily="sans-serif">
+                  <text x="96" y="206">24</text>
+                  <text x="256" y="206">25</text>
+                  <text x="416" y="206">26</text>
+                  <text x="576" y="206">27</text>
+                  <text x="736" y="206">28</text>
+                </g>
+
+                {/* -------------------------------------------------------- */}
+                {/* YUGA COLOR LEGEND                                        */}
+                {/* -------------------------------------------------------- */}
+                <g transform="translate(160, 246)" fontSize="11" fontWeight="700">
+                  {/* Satya */}
+                  <rect x="0" y="0" width="14" height="14" fill="#FFFFFF" stroke="#475569" strokeWidth="1" />
+                  <text x="20" y="11" fill="#374151">Satya (4x)</text>
+
+                  {/* Treta */}
+                  <rect x="150" y="0" width="14" height="14" fill="#FACC15" stroke="#475569" strokeWidth="1" />
+                  <text x="170" y="11" fill="#374151">Treta (3x)</text>
+
+                  {/* Dwapara */}
+                  <rect x="310" y="0" width="14" height="14" fill="#FB923C" stroke="#475569" strokeWidth="1" />
+                  <text x="330" y="11" fill="#374151">Dwapara (2x)</text>
+
+                  {/* Kali */}
+                  <rect x="470" y="0" width="14" height="14" fill="#64748B" stroke="#475569" strokeWidth="1" />
+                  <text x="490" y="11" fill="#374151">Kali (1x)</text>
+
+                  {/* Total Mahayuga */}
+                  <text x="590" y="11" fill="#7B1113" fontWeight="900">1 Mahayuga = 10x = 120y</text>
+                </g>
+              </svg>
+            </div>
+
+          </div>
+
+          {/* 3 Detailed Explanatory Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            {/* Card 1: Mathematical Formula & Yuga Subdivisions */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-amber-300 shadow-xs space-y-3">
+              <div className="flex items-center justify-between border-b border-amber-100 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📐</span>
+                  <h5 className="font-black text-[#7B1113] text-sm sm:text-base font-telugu-serif">
+                    {isEn ? 'Mathematical Breakdown' : 'గణిత సూత్ర విశ్లేషణ'}
+                  </h5>
+                </div>
+                <span className="px-2 py-0.5 rounded-md bg-[#7B1113] text-[#FFE082] text-xs font-mono font-black">
+                  42x = 504 ➔ x = 12
+                </span>
+              </div>
+
+              <div className="space-y-2 text-xs">
+                <div className="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200 font-mono space-y-1">
+                  <div className="flex justify-between items-center text-[#7B1113] font-bold text-sm">
+                    <span>Maha-Yuga (10x):</span>
+                    <span className="text-base text-[#D84315]">120 Years</span>
+                  </div>
+                  <div className="flex justify-between items-center text-stone-700">
+                    <span>• Satya-Yuga (4x):</span>
+                    <span className="font-bold">48 Years</span>
+                  </div>
+                  <div className="flex justify-between items-center text-stone-700">
+                    <span>• Treta-Yuga (3x):</span>
+                    <span className="font-bold">36 Years</span>
+                  </div>
+                  <div className="flex justify-between items-center text-stone-700">
+                    <span>• Dwapara-Yuga (2x):</span>
+                    <span className="font-bold">24 Years</span>
+                  </div>
+                  <div className="flex justify-between items-center text-stone-700">
+                    <span>• Kali-Yuga (x):</span>
+                    <span className="font-bold">12 Years</span>
+                  </div>
+                </div>
+
+                <p className="text-[#5D4037] text-[11px] leading-relaxed">
+                  {isEn 
+                    ? 'Maintains the exact canonical 4:3:2:1 Vedic ratio. In human biological scale, 120 years corresponds to the Vedic Paramayus (human lifespan).' 
+                    : 'వేద శాస్త్రోక్తమైన 4:3:2:1 నిష్పత్తిని ఇది ఖచ్చితంగా నిలుపుతుంది. మానవ జీవితంలో 120 సంవత్సరాలు వేదంలో పేర్కొన్న పూర్ణ ఆయుర్దాయం (శతాయుర్వై పురుషః).'}
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2: Dynastic Generations & Modern Era */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-emerald-300 shadow-xs space-y-3">
+              <div className="flex items-center justify-between border-b border-emerald-100 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">👑</span>
+                  <h5 className="font-black text-[#1B5E20] text-sm sm:text-base font-telugu-serif">
+                    {isEn ? '16 Generations Validation' : '16 తరాల వంశావళి నిరూపణ'}
+                  </h5>
+                </div>
+                <span className="px-2 py-0.5 rounded-md bg-[#1B5E20] text-white text-xs font-mono font-bold">
+                  ~31.5 Yrs / Gen
+                </span>
+              </div>
+
+              <div className="space-y-2.5 text-xs text-stone-800 leading-relaxed">
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1.5 font-medium">
+                  <div className="flex items-center justify-between">
+                    <span>{isEn ? 'Generations between Rama & Mahabharata:' : 'శ్రీరాముడు - మహాభారత కాలాల మధ్య తరాలు:'}</span>
+                    <span className="font-bold text-emerald-800">16 Generations</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{isEn ? 'Total Dynastic Timespan:' : 'మొత్తం రాజవంశ కాలవ్యవధి:'}</span>
+                    <span className="font-bold text-emerald-800">~ 504 Years</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>{isEn ? 'Average Generation Span:' : 'సగటున ఒక్కో తరం కాలం:'}</span>
+                    <span className="font-bold text-emerald-800">~ 31.5 Years</span>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-[11px] text-blue-900 space-y-1">
+                  <div>
+                    <strong>{isEn ? 'Start of Present Era:' : 'ప్రస్తుత యుగ శకం ప్రారంభం:'}</strong> 4174 B.C. (7th Manvantara)
+                  </div>
+                  <div>
+                    <strong>{isEn ? '2016 C.E. Position:' : '2016 నాటి స్థితి:'}</strong> 33rd Year of 52nd Treta-Yuga
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Synthesis of Two Perspectives */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-purple-300 shadow-xs space-y-3">
+              <div className="flex items-center justify-between border-b border-purple-100 pb-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">⚖️</span>
+                  <h5 className="font-black text-[#4A148C] text-sm sm:text-base font-telugu-serif">
+                    {isEn ? 'Synthesis of Chronologies' : 'రెండు కాలగణనల సమన్వయం'}
+                  </h5>
+                </div>
+                <span className="px-2 py-0.5 rounded-md bg-purple-100 text-[#4A148C] text-[10px] font-bold">
+                  {isEn ? 'Comparative Study' : 'తులనాత్మక అధ్యయనం'}
+                </span>
+              </div>
+
+              <div className="space-y-2 text-xs leading-relaxed text-[#2C1810]">
+                <div className="p-2 rounded-xl bg-purple-50/70 border border-purple-200">
+                  <div className="font-bold text-[#4A148C]">
+                    {isEn ? '1. Deep Archaeo-Astronomy (Nilesh Oak):' : '1. ఖగోళ శాస్త్ర నిర్ధారణ (అభిజిత్, అరుంధతి):'}
+                  </div>
+                  <p className="text-[11px] text-stone-700 mt-0.5">
+                    {isEn 
+                      ? 'Ramayana: 12209 BCE & Mahabharata: 5561 BCE based directly on celestial observation logs in Valmiki and Vyasa epics.' 
+                      : 'రామాయణంలో అభిజిత్ ధ్రువతార స్థానం (క్రీ.పూ. 12209), మహాభారతంలో అరుంధతీ-వసిష్ఠ సంయోగం (క్రీ.పూ. 5561) ఖగోళ దృశ్యాలను నిరూపిస్తాయి.'}
+                  </p>
+                </div>
+
+                <div className="p-2 rounded-xl bg-amber-50/70 border border-amber-200">
+                  <div className="font-bold text-[#B45309]">
+                    {isEn ? '2. Puranic Micro-Yuga Chronology (1331-827 BC):' : '2. పురాణ సూక్ష్మ యుగ కాలగణన (క్రీ.పూ. 1331-827):'}
+                  </div>
+                  <p className="text-[11px] text-stone-700 mt-0.5">
+                    {isEn 
+                      ? 'Harmonizes the 16-generation king lists recorded in Matsya/Vayu Puranas using the 120-year Mahayuga human cycle across 24th to 28th Yugas.' 
+                      : 'పురాణాల్లో పేర్కొన్న శ్రీరాముడు ➔ బృహద్బలుని మధ్యగల 16 తరాల ఇక్ష్వాకు వంశావళిని 120 ఏళ్ళ సూక్ష్మ మహాయుగంతో సమన్వయపరుస్తుంది.'}
+                  </p>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
