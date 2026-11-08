@@ -11,6 +11,7 @@ import { IndianHistoryView } from './components/views/IndianHistoryView';
 import { DakshaPrasutiSection } from './components/views/DakshaPrasutiSection';
 import { ScriptureLibraryView } from './components/views/ScriptureLibraryView';
 import { SrushtiRahasyaView } from './components/views/SrushtiRahasyaView';
+import { JyotishyaView } from './components/views/JyotishyaView';
 import { NodeDetailDrawer } from './components/NodeDetailDrawer';
 import { SearchModal } from './components/SearchModal';
 import { AdminCmsModal } from './components/views/AdminCmsModal';
@@ -29,6 +30,7 @@ const AppContent: React.FC = () => {
       <main className={viewMode === 'srushti_rahasyam' ? 'flex-1 w-full' : 'flex-1 max-w-7xl mx-auto w-full px-3 sm:px-4 py-4 sm:py-6'}>
         {viewMode === 'intro' && <IntroductionView />}
         {viewMode === 'srushti_rahasyam' && <SrushtiRahasyaView />}
+        {viewMode === 'jyotishya_shastram' && <JyotishyaView />}
         {viewMode === 'brahma_family' && <BrahmaFamilyView />}
         {viewMode === 'tree' && <FamilyTreeView />}
         {viewMode === 'mindmap' && <MindMapView />}

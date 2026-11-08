@@ -216,7 +216,31 @@ export const SanatanaChronologyView: React.FC = () => {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2.5">
+          {/* Card -1: Jyotishya Shastram (Astrology & Karma Science) */}
+          <button
+            onClick={() => {
+              setViewMode('jyotishya_shastram');
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+            className="p-3 rounded-xl bg-gradient-to-br from-[#FFF8E1] to-[#FFE082] hover:from-[#FFE082] hover:to-[#FFD54F] border-2 border-[#7B1113] hover:border-[#D84315] transition-all text-left flex flex-col justify-between group shadow-xs hover:shadow-md cursor-pointer"
+          >
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-base group-hover:scale-110 transition-transform">🔮</span>
+                <span className="font-extrabold text-xs sm:text-sm text-[#7B1113] group-hover:text-[#D84315]">
+                  {isEn ? 'Astrology Science' : 'జ్యోతిష్య శాస్త్రం'}
+                </span>
+              </div>
+              <p className="text-[11px] text-[#5D4037]">
+                {isEn ? '4 Chakras, 12 Grahas, 324 Karmas & 48 Chapters' : '4 చక్రములు, 12 గ్రహాలు, 324 కర్మలు, 48 అధ్యాయాలు & 34 ప్రశ్నోత్తరాలు'}
+              </p>
+            </div>
+            <span className="mt-2 text-[10px] font-bold text-[#D84315] flex items-center gap-1">
+              {isEn ? 'Open View' : 'విభాగం తెరవండి'} <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </button>
+
           {/* Card 0: Family of Brahma */}
           <button
             onClick={() => {

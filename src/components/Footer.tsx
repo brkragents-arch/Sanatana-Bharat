@@ -85,6 +85,14 @@ export const Footer: React.FC<{ onNavigateToSection: (mode: any) => void }> = ({
               </li>
               <li>
                 <button 
+                  onClick={() => onNavigateToSection('jyotishya_shastram')}
+                  className="hover:text-[#D84315] hover:underline cursor-pointer flex items-center gap-1.5 font-bold text-[#7B1113]"
+                >
+                  <span>🔮</span> <span>జ్యోతిష్య శాస్త్రము (12 గ్రహాలు • 4 చక్రాలు • 324 కర్మలు)</span>
+                </button>
+              </li>
+              <li>
+                <button 
                   onClick={() => onNavigateToSection('flow')}
                   className="hover:text-[#D84315] hover:underline cursor-pointer flex items-center gap-1.5"
                 >

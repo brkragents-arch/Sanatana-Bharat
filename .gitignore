@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Temp extraction files
+*.pdf
+page*.jpg
+test*.jpg
+test_*.jpg
+source_page_*.jpg
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

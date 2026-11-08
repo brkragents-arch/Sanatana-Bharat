@@ -128,6 +128,7 @@ export interface ChronologicalSourceEntry {
 export type ViewMode = 
   | 'intro'               // పరిచయము (Introduction & Overview)
   | 'srushti_rahasyam'    // సృష్టి రహస్యం (The Secret of Creation - Paramatma to Moksha)
+  | 'jyotishya_shastram'  // జ్యోతిష్య శాస్త్రము (Comprehensive Astrology & Karma Science)
   | 'brahma_family'       // బ్రహ్మ వంశము (Family of Brahma)
   | 'sanatana_chronology' // సనాతన ధర్మ ఆవిర్భావము (Home: 13-step cosmic lineage)
   | 'indian_history'      // భారతీయ చరిత్ర (Indian History Chronological View)

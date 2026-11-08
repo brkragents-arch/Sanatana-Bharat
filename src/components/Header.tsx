@@ -346,7 +346,24 @@ export const Header: React.FC = () => {
             <span>{isEn ? 'Indian History' : 'భారతీయ చరిత్ర'}</span>
           </button>
 
-          {/* 7. భాగవత ఆధారాలు (Scripture Library Page) */}
+          {/* 9. జ్యోతిష్య శాస్త్రము (Astrology & Karma Science) */}
+          <button
+            onClick={() => {
+              setViewMode('jyotishya_shastram');
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+              viewMode === 'jyotishya_shastram'
+                ? 'bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#D84315] text-[#FFE082] font-bold shadow-lg ring-2 ring-[#FFD54F]'
+                : 'bg-gradient-to-r from-[#FFF8E1] to-[#FFE082] text-[#7B1113] hover:bg-[#FFE082] border-2 border-[#7B1113] font-bold shadow-xs'
+            }`}
+            title={isEn ? 'Jyotishya Shastram (Astrology, 4 Chakras, 12 Grahas & 324 Karmas)' : 'జ్యోతిష్య శాస్త్రము (4 చక్రములు, 12 గ్రహములు, 324 కర్మలు & 48 అధ్యాయములు)'}
+          >
+            <span className="text-sm">🔮</span>
+            <span>{isEn ? 'Astrology Science' : 'జ్యోతిష్య శాస్త్రము'}</span>
+          </button>
+
+          {/* 10. భాగవత ఆధారాలు (Scripture Library Page) */}
           <button
             onClick={() => {
               setViewMode('scriptures');

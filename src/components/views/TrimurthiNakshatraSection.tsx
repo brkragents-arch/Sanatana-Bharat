@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export const TrimurthiNakshatraSection: React.FC = () => {
-  const { language } = useMythology();
+  const { language, setViewMode } = useMythology();
   const isEn = language === 'en';
 
   // Active Cycle tab for immediate viewing (1, 2, 3 or 'all')
@@ -148,6 +148,51 @@ export const TrimurthiNakshatraSection: React.FC = () => {
 
             </div>
           ))}
+        </div>
+
+        {/* త్రివిధ కర్మలు (ఆగామి, సంచిత, ప్రారబ్ధ) & జ్యోతిష్య శాస్త్ర సమన్వయము */}
+        <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#FFF8E1] via-[#FFFDF7] to-[#FFF8E1] border-2 border-[#D4AF37] shadow-sm space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2.5 border-b border-[#E8DCC4]">
+            <div>
+              <span className="px-2.5 py-0.5 rounded-full bg-[#7B1113] text-[#FFE082] text-[10px] font-bold uppercase tracking-wider">
+                కర్మ సిద్ధాంతము &amp; జ్యోతిష్య శాస్త్ర రహస్యము
+              </span>
+              <h5 className="font-bold text-sm sm:text-base text-[#7B1113] font-telugu-serif mt-1">
+                “మర్మముగా ఉన్నది కర్మము” — త్రివిధ కర్మలు (ఆగామి • సంచిత • ప్రారబ్ధ) &amp; 324 కర్మల చక్రము
+              </h5>
+            </div>
+            <button
+              onClick={() => {
+                setViewMode('jyotishya_shastram');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+              }}
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B1113] via-[#D84315] to-[#4A0012] text-[#FFE082] border border-[#D4AF37] font-bold text-xs flex items-center gap-1.5 shadow-md cursor-pointer hover:scale-105 transition-transform shrink-0"
+            >
+              <span>🔮</span>
+              <span>సమగ్ర జ్యోతిష్య శాస్త్ర ఉప-పేజీకి వెళ్ళండి →</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+            <div className="p-3 rounded-xl bg-[#FFFFFF] border border-[#D4AF37]/60 space-y-1">
+              <div className="font-bold text-[#D84315]">1. ఆగామి కర్మ (Agami Karma - సంపాదించు కర్మ)</div>
+              <p className="text-[#5D4037] leading-relaxed">
+                ఒక జన్మలో మనిషి గుణచక్రములోని 324 గుణముల (162 పాప + 162 పుణ్య) ద్వారా కొత్తగా సంపాదించుకునే కర్మ. ఇది సరిగ్గా <strong>69 సంవత్సరముల 5 నెలల 10 దినములకు</strong> సంచిత కర్మగా మారుతుంది! ఆగామి కర్మ అంటకుండా ఉండే మార్గాన్ని <strong>బ్రహ్మవిద్యా శాస్త్రము</strong> (గీత 4.37 జ్ఞానాగ్ని) బోధిస్తుంది.
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-[#FFFFFF] border border-[#D4AF37]/60 space-y-1">
+              <div className="font-bold text-[#7B1113]">2. సంచిత కర్మ (Sanchita Karma - నిల్వ కర్మ)</div>
+              <p className="text-[#5D4037] leading-relaxed">
+                అనుభవించిన కర్మ తక్కువై, సంపాదించిన కర్మ ఎక్కువైనప్పుడు తలలోని ఫాలభాగమున (నుదుటిలో) గల కర్మచక్రము అడుగున శేషముగా (బ్యాలెన్సుగా) మిగిలే కర్మ నిల్వ. దశాచారములో <strong>ఆత్మజ్ఞానాగ్ని</strong> చేత మాత్రమే సంచిత కర్మ దగ్ధమవుతుంది.
+              </p>
+            </div>
+            <div className="p-3 rounded-xl bg-[#FFFFFF] border border-[#D4AF37]/60 space-y-1">
+              <div className="font-bold text-[#1D4ED8]">3. ప్రారబ్ధ కర్మ (Prarabdha - జాఫతకము)</div>
+              <p className="text-[#5D4037] leading-relaxed">
+                మరణ సమయాన సెకను కంటే తక్కువ కాలంలో సంచిత కర్మ నుండి తరువాతి జన్మ కొరకు కేటాయించబడే <strong>“జాఫతకము” (పుట్టుక పథకము / జాతకము)</strong>. గ్రహచారములో ఈ ప్రారబ్ధ కర్మ అనుభవాలను వివరంగా తెలిపేదే రెండవ శాస్త్రమైన <strong>జ్యోతిష్య శాస్త్రము</strong>!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 

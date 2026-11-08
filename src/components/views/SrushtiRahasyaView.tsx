@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useMythology } from '../../context/MythologyContext';
 import {
   SRUSHTI_BRANDING,
   CREATION_REASONS,
@@ -11,6 +12,7 @@ import {
   DAILY_SADHANA_PRACTICES,
   VEDANTIC_GLOSSARY,
   JAPA_MANTRAS,
+  DEEP_KARMA_DOCTRINE_DATA,
   type CreationReason,
   type CreationFlowStep,
   type GitaVerseItem,
@@ -38,6 +40,7 @@ import {
 } from 'lucide-react';
 
 export const SrushtiRahasyaView: React.FC = () => {
+  const { setViewMode } = useMythology();
   // Theme & Reading settings
   const [isParchmentMode, setIsParchmentMode] = useState<boolean>(true);
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'huge'>('normal');
@@ -1606,6 +1609,233 @@ export const SrushtiRahasyaView: React.FC = () => {
                 </div>
               );
             })()}
+          </div>
+
+          {/* ========================================================================= */}
+          {/* NEW DEEP KARMA SECTION: కర్మ మర్మము, 3 రకాల కర్మలు, 324 కర్మలు & 3 మత గ్రంథాల సాక్ష్యం */}
+          {/* ========================================================================= */}
+          <div className={`p-6 md:p-8 rounded-3xl border-2 space-y-8 ${
+            isParchmentMode
+              ? 'bg-[#fffdf7]/95 border-amber-500/60 shadow-xl'
+              : 'bg-slate-900/90 border-amber-500/40 shadow-2xl'
+          }`}>
+            {/* Top Banner & Link to Dedicated Astrology Sub-Page */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-amber-500/30">
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-600 text-white">
+                    బ్రహ్మవిద్యా & జ్యోతిష్య శాస్త్ర సమన్వయ రహస్యం
+                  </span>
+                  <span className="text-xs font-bold text-amber-700 dark:text-amber-300">
+                    ఆధారం: శ్రీశ్రీశ్రీ ఆచార్య ప్రబోధానంద యోగీశ్వరులు — &ldquo;జ్యోతిష్య శాస్త్రము (శాస్త్రమా - అశాస్త్రమా?)&rdquo;
+                  </span>
+                </div>
+                <h4 className="text-2xl md:text-3xl font-bold font-serif text-amber-950 dark:text-amber-100 mt-1">
+                  కర్మ అంటే ఏమిటి? — త్రివిధ కర్మలు, 4 చక్రములు, 324 కర్మలు &amp; 3 మత గ్రంథాల ప్రమాణం
+                </h4>
+                <p className="text-xs md:text-sm text-stone-700 dark:text-slate-300">
+                  {DEEP_KARMA_DOCTRINE_DATA.etymology.maximTe}
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  setViewMode('jyotishya_shastram');
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+                className="px-5 py-3 rounded-2xl bg-gradient-to-r from-[#7B1113] via-[#D84315] to-[#4A0012] text-[#FFE082] font-bold text-xs md:text-sm flex items-center gap-2 shadow-lg hover:scale-105 transition cursor-pointer shrink-0 border-2 border-[#D4AF37]"
+              >
+                <span className="text-lg">🔮</span>
+                <span>జ్యోతిష్య శాస్త్రము సమగ్ర ఉప-పేజీకి వెళ్ళండి →</span>
+              </button>
+            </div>
+
+            {/* 1. కనిపించే ఫలితము vs కనిపించని ఫలితము (కర్మ) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {DEEP_KARMA_DOCTRINE_DATA.etymology.twoResults.map((res, idx) => (
+                <div
+                  key={idx}
+                  className={`p-5 rounded-2xl border space-y-2 ${
+                    isParchmentMode
+                      ? 'bg-amber-50/70 border-amber-300/70 text-stone-800'
+                      : 'bg-slate-800/70 border-slate-700 text-slate-200'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-2xl">{res.icon}</span>
+                    <div>
+                      <h5 className="font-bold font-serif text-base md:text-lg text-amber-900 dark:text-amber-200">
+                        {res.titleTe}
+                      </h5>
+                      <span className="text-[11px] font-mono text-amber-700 dark:text-amber-400">
+                        {res.titleEn}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-xs md:text-sm leading-relaxed text-stone-700 dark:text-slate-300">
+                    {res.descTe}
+                  </p>
+                  <div className={`p-3 rounded-xl text-xs italic border ${
+                    isParchmentMode ? 'bg-white border-amber-200 text-amber-950' : 'bg-slate-900 border-slate-700 text-amber-200'
+                  }`}>
+                    <strong>ఉదాహరణ:</strong> {res.exampleTe}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 2. మూడు రకముల కర్మలు (ఆగామి, సంచిత, ప్రారబ్ధ కర్మలు) & 69 సం|| 5 నెలల 10 రోజుల రహస్యం */}
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h5 className="text-lg md:text-xl font-bold font-serif text-amber-950 dark:text-amber-200">
+                  ⚖️ మూడు రకముల కర్మలు: 1) ఆగామి కర్మ • 2) సంచిత కర్మ • 3) ప్రారబ్ధ కర్మ (జాఫతకము)
+                </h5>
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-600/15 text-red-800 dark:text-red-300 border border-red-500/30">
+                  ⏱️ కాల నియమం: 69 సం|| 5 నెలల 10 దినములకు ఆగామి కర్మ సంచిత కర్మగా మారును!
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                {DEEP_KARMA_DOCTRINE_DATA.threeKarmaTypes.map((kt) => (
+                  <div
+                    key={kt.id}
+                    className={`p-5 rounded-2xl border-2 flex flex-col justify-between space-y-4 ${
+                      isParchmentMode
+                        ? 'bg-white border-amber-300 shadow-sm'
+                        : 'bg-slate-800/80 border-slate-700'
+                    }`}
+                  >
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <span
+                          className="px-3 py-1 rounded-full text-xs font-bold text-white"
+                          style={{ backgroundColor: kt.color }}
+                        >
+                          {kt.nameTe}
+                        </span>
+                      </div>
+                      <div className="text-xs font-bold text-amber-800 dark:text-amber-300">
+                        {kt.subtitleTe}
+                      </div>
+                      <div className={`p-2.5 rounded-xl text-xs font-bold border ${
+                        isParchmentMode
+                          ? 'bg-amber-50 border-amber-300 text-amber-950'
+                          : 'bg-slate-900 border-amber-500/30 text-amber-200'
+                      }`}>
+                        🔑 {kt.conversionRuleTe}
+                      </div>
+                      <p className="text-xs md:text-sm leading-relaxed text-stone-700 dark:text-slate-300">
+                        {kt.descriptionTe}
+                      </p>
+                      <ul className="space-y-1.5 text-xs text-stone-700 dark:text-slate-300 pt-1">
+                        {kt.mechanicsTe.map((m, mIdx) => (
+                          <li key={mIdx} className="flex items-start gap-2">
+                            <span className="font-bold text-amber-600">•</span>
+                            <span>{m}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pt-3 border-t border-amber-500/20 text-[11px] font-bold text-emerald-800 dark:text-emerald-300">
+                      శాస్త్ర పరిధి: {kt.shastraTe}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3. తలలోని 4 చక్రములు & 324 రకముల కర్మల ఉత్పత్తి రహస్యం */}
+            <div className={`p-5 md:p-6 rounded-2xl border space-y-4 ${
+              isParchmentMode ? 'bg-amber-50/80 border-amber-300' : 'bg-slate-800/70 border-slate-700'
+            }`}>
+              <h5 className="text-lg md:text-xl font-bold font-serif text-amber-950 dark:text-amber-200">
+                ☸️ తలలోని 4 చక్రములు (బ్రహ్మ, కాల, కర్మ, గుణ చక్రములు) &amp; 324 రకముల కర్మల ఉత్పత్తి
+              </h5>
+              <p className="text-xs md:text-sm leading-relaxed text-stone-700 dark:text-slate-300">
+                {DEEP_KARMA_DOCTRINE_DATA.fourChakrasAnd324Karmas.summaryTe}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className={`p-4 rounded-xl border ${
+                  isParchmentMode ? 'bg-red-50/70 border-red-200' : 'bg-red-950/20 border-red-800/40'
+                }`}>
+                  <div className="font-bold text-xs md:text-sm text-red-900 dark:text-red-300 mb-2">
+                    😈 6 చెడు గుణములు (శత్రువులు — పాప కర్మను పుట్టించునవి: 6 × 9 = 54 × 3 = 162 పాప కర్మలు)
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {DEEP_KARMA_DOCTRINE_DATA.fourChakrasAnd324Karmas.gunaBreakdown.sixBadGunasTe.map((g, i) => (
+                      <span key={i} className="px-2.5 py-1 rounded-lg bg-red-600/15 text-red-900 dark:text-red-200 text-xs font-bold border border-red-400/30">
+                        {g}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className={`p-4 rounded-xl border ${
+                  isParchmentMode ? 'bg-emerald-50/70 border-emerald-200' : 'bg-emerald-950/20 border-emerald-800/40'
+                }`}>
+                  <div className="font-bold text-xs md:text-sm text-emerald-900 dark:text-emerald-300 mb-2">
+                    😇 6 మంచి గుణములు (మిత్రులు — పుణ్య కర్మను పుట్టించునవి: 6 × 9 = 54 × 3 = 162 పుణ్య కర్మలు)
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {DEEP_KARMA_DOCTRINE_DATA.fourChakrasAnd324Karmas.gunaBreakdown.sixGoodGunasTe.map((g, i) => (
+                      <span key={i} className="px-2.5 py-1 rounded-lg bg-emerald-600/15 text-emerald-900 dark:text-emerald-200 text-xs font-bold border border-emerald-400/30">
+                        {g}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className={`p-4 rounded-xl border text-xs md:text-sm space-y-2 ${
+                isParchmentMode ? 'bg-white border-amber-200' : 'bg-slate-900 border-slate-700'
+              }`}>
+                <p className="text-stone-800 dark:text-slate-200 leading-relaxed">
+                  <strong>324 కర్మల గణిత సూత్రం:</strong> {DEEP_KARMA_DOCTRINE_DATA.fourChakrasAnd324Karmas.gunaBreakdown.formulaTe}
+                </p>
+                <p className="text-amber-900 dark:text-amber-300 leading-relaxed pt-1 border-t border-amber-500/20">
+                  <strong>కర్మను అనుభవించు జీవుని 3 పొరలు:</strong> {DEEP_KARMA_DOCTRINE_DATA.fourChakrasAnd324Karmas.gunaBreakdown.jeevaThreeLayersTe}
+                </p>
+              </div>
+            </div>
+
+            {/* 4. మూడు ప్రధాన మత గ్రంథాలలో (3 Existing Literatures) కర్మపత్రం & చక్రాల సాక్ష్యం */}
+            <div className="space-y-4">
+              <h5 className="text-lg md:text-xl font-bold font-serif text-amber-950 dark:text-amber-200">
+                📚 మూడు ప్రధాన మత గ్రంథాలలో (భగవద్గీత • ఖుర్ఆన్ • బైబిలు) కర్మపత్రం &amp; చక్రముల ప్రమాణము
+              </h5>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                {DEEP_KARMA_DOCTRINE_DATA.threeExistingLiteratures.map((lit) => (
+                  <div
+                    key={lit.id}
+                    className={`p-5 rounded-2xl border space-y-3 flex flex-col justify-between ${
+                      isParchmentMode
+                        ? 'bg-white border-amber-300 shadow-sm'
+                        : 'bg-slate-800/80 border-slate-700'
+                    }`}
+                  >
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-2xl">{lit.icon}</span>
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-900 dark:text-amber-200 border border-amber-500/30">
+                          {lit.badgeTe}
+                        </span>
+                      </div>
+                      <h6 className="font-bold font-serif text-base text-amber-950 dark:text-amber-100">
+                        {lit.scriptureNameTe}
+                      </h6>
+                      <div className="text-xs font-bold text-amber-700 dark:text-amber-400">
+                        ప్రమాణం: {lit.keyReferenceTe}
+                      </div>
+                      <p className="text-xs md:text-sm leading-relaxed text-stone-700 dark:text-slate-300">
+                        {lit.karmaTeachingTe}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
