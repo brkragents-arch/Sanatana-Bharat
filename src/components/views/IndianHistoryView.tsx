@@ -27,6 +27,7 @@ import { IndianHistory5000YearsSection } from './IndianHistory5000YearsSection';
 import { SouthIndianDynastiesModal } from './SouthIndianDynastiesModal';
 import { LiteraryHeritageSection } from './LiteraryHeritageSection';
 import { VedicItihasaChronologySection } from './VedicItihasaChronologySection';
+import { HinduCivilizationTimelineHorizontal } from './HinduCivilizationTimelineHorizontal';
 import type { IndianHistoryPeriod } from '../../types/mythology';
 import { 
   Clock, 
@@ -277,6 +278,12 @@ export const IndianHistoryView: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* ============================================================ */}
+            {/* TIMELINE OF HINDU CIVILIZATION (RIGVEDA, RAMAYANA, MAHABHARATA) */}
+            {/* Added horizontally at the beginning of మానవ చరిత్ర యుగాల కాలానుక్రమణిక */}
+            {/* ============================================================ */}
+            <HinduCivilizationTimelineHorizontal onOpenLightbox={setLightboxImage} />
 
             {/* Scrollable Horizontal Interactive Timeline Bar */}
             <div className="overflow-x-auto pb-3 pt-1">
