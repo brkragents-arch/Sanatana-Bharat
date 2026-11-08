@@ -23,6 +23,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
   const [selectedRasiIndex, setSelectedRasiIndex] = useState<number | null>(null);
   const [expandedPlanetKey, setExpandedPlanetKey] = useState<PlanetKey | null>(null);
   const [filterType, setFilterType] = useState<'all' | 'slow' | 'fast'>('all');
+  const [chartSize, setChartSize] = useState<'fit' | 'medium' | 'large'>('fit');
 
   // Compute all astronomical planetary data and transitions for selected date
   const astroData = useMemo(() => {
@@ -242,22 +243,67 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
       </div>
 
       {/* South Indian 4x4 Rasi Grid Chart */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between flex-wrap gap-2">
+      <div className="space-y-3">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 bg-[#FFF8E1]/60 p-2.5 rounded-2xl border border-[#D4AF37]/40">
           <div className="flex items-center gap-2">
             <span className="text-lg">🧭</span>
-            <h4 className="text-base sm:text-lg font-bold text-[#7B1113] font-telugu-serif">
-              దక్షిణ భారత జాతక చక్రం (12 స్థిర రాశులు &amp; ప్రత్యక్ష గ్రహ సంచారం)
-            </h4>
+            <div>
+              <h4 className="text-sm sm:text-base font-bold text-[#7B1113] font-telugu-serif">
+                దక్షిణ భారత జాతక చక్రం (12 స్థిర రాశులు &amp; ప్రత్యక్ష గ్రహ సంచారం)
+              </h4>
+              <span className="text-[10px] text-[#5D4037] block leading-tight">
+                *ఏదైనా రాశి లేదా గ్రహంపై క్లిక్ చేసి సమగ్ర వివరాలు వీక్షించవచ్చు
+              </span>
+            </div>
           </div>
-          <span className="text-xs text-[#5D4037] italic">
-            *ఏదైనా రాశి లేదా గ్రహంపై క్లిక్ చేసి సమగ్ర వివరాలను పరిశీలించండి
-          </span>
+
+          {/* Size Preset Toggle */}
+          <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-[#D4AF37]/60 text-[10px] sm:text-xs font-bold self-end sm:self-auto">
+            <span className="text-[#5D4037] px-1 hidden md:inline">పరిమాణం:</span>
+            <button
+              type="button"
+              onClick={() => setChartSize('fit')}
+              className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
+                chartSize === 'fit'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-xs'
+                  : 'text-[#5D4037] hover:bg-[#FFE082]/30'
+              }`}
+              title="ఒకే స్క్రీన్‌పై మొత్తం చక్రం కనిపించేలా అమరిక (Fit to Screen)"
+            >
+              🖥️ స్క్రీన్‌కు సరిపడేలా (Fit)
+            </button>
+            <button
+              type="button"
+              onClick={() => setChartSize('medium')}
+              className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
+                chartSize === 'medium'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-xs'
+                  : 'text-[#5D4037] hover:bg-[#FFE082]/30'
+              }`}
+              title="మధ్యస్థ పరిమాణం (Medium)"
+            >
+              🔍 మధ్యస్థం
+            </button>
+            <button
+              type="button"
+              onClick={() => setChartSize('large')}
+              className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
+                chartSize === 'large'
+                  ? 'bg-[#7B1113] text-[#FFE082] shadow-xs'
+                  : 'text-[#5D4037] hover:bg-[#FFE082]/30'
+              }`}
+              title="పెద్ద పరిమాణం (Expanded Large)"
+            >
+              🔎 పెద్దది
+            </button>
+          </div>
         </div>
 
         {/* The 4x4 Grid Container */}
-        <div className="p-3 sm:p-5 rounded-3xl bg-[#2A0808] border-3 border-[#D4AF37] shadow-2xl">
-          <div className="grid grid-cols-4 grid-rows-4 gap-2 sm:gap-3 aspect-square max-w-4xl mx-auto">
+        <div className={`p-2 sm:p-3 rounded-2xl sm:rounded-3xl bg-[#2A0808] border-2 sm:border-3 border-[#D4AF37] shadow-xl mx-auto transition-all duration-300 ${
+          chartSize === 'fit' ? 'max-w-[500px] sm:max-w-[550px]' : chartSize === 'medium' ? 'max-w-[660px]' : 'max-w-4xl'
+        }`}>
+          <div className="grid grid-cols-4 grid-rows-4 gap-1 sm:gap-1.5 aspect-square w-full">
             {/* Row 1: [1,1] Meena, [1,2] Mesha, [1,3] Vrishabha, [1,4] Mithuna */}
             {/* Box 1 (1,1): 11. మీనం */}
             {renderRasiCell(getHouseByRowCol(1, 1)!)}
@@ -273,37 +319,39 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
             {renderRasiCell(getHouseByRowCol(2, 1)!)}
 
             {/* CENTER BOX: Spans 2 Rows and 2 Cols (Row 2-3, Col 2-3) */}
-            <div className="col-span-2 row-span-2 rounded-2xl bg-gradient-to-b from-[#1F0707] via-[#2A0808] to-[#140303] border-2 border-[#D4AF37] p-3 sm:p-6 flex flex-col justify-between items-center text-center shadow-inner relative overflow-hidden">
+            <div className={`col-span-2 row-span-2 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#1F0707] via-[#2A0808] to-[#140303] border-1.5 sm:border-2 border-[#D4AF37] flex flex-col justify-between items-center text-center shadow-inner relative overflow-hidden ${
+              chartSize === 'fit' ? 'p-2 sm:p-2.5' : 'p-3 sm:p-5'
+            }`}>
               {/* Background watermark */}
               <div className="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
-                <span className="text-9xl text-[#FFE082]">🕉️</span>
+                <span className="text-7xl sm:text-9xl text-[#FFE082]">🕉️</span>
               </div>
 
-              <div className="space-y-1 relative z-10 w-full">
-                <span className="px-3 py-1 rounded-full bg-[#D4AF37]/20 text-[#FFE082] border border-[#D4AF37]/50 text-[10px] sm:text-xs font-bold uppercase tracking-wider inline-block">
+              <div className="space-y-0.5 sm:space-y-1 relative z-10 w-full">
+                <span className="px-2 py-0.5 rounded-full bg-[#D4AF37]/20 text-[#FFE082] border border-[#D4AF37]/50 text-[8px] sm:text-[10px] font-bold uppercase tracking-wider inline-block">
                   దక్షిణ భారత రాశి చక్రం
                 </span>
-                <h5 className="text-base sm:text-xl font-bold text-[#FFE082] font-telugu-serif mt-1">
+                <h5 className="text-xs sm:text-base font-bold text-[#FFE082] font-telugu-serif">
                   గోచార గ్రహ స్థితి
                 </h5>
-                <p className="text-xs sm:text-sm text-[#FFD54F] font-semibold">
+                <p className="text-[10px] sm:text-xs text-[#FFD54F] font-semibold">
                   {formatDateTe(selectedDate)}
                 </p>
-                <p className="text-[10px] sm:text-xs text-stone-300">
-                  {formatDateShort(selectedDate)} • లాహిరి నిరయన పద్ధతి
+                <p className="text-[8px] sm:text-[10px] text-stone-300">
+                  {formatDateShort(selectedDate)} • లాహిరి నిరయన
                 </p>
               </div>
 
               {/* Center Quick Stats */}
-              <div className="grid grid-cols-2 gap-2 w-full my-2 relative z-10">
-                <div className="p-2 rounded-xl bg-white/5 border border-[#D4AF37]/30 text-left">
-                  <span className="block text-[9px] sm:text-[10px] text-stone-300">మొత్తం గ్రహాలు</span>
-                  <span className="text-xs sm:text-sm font-bold text-[#FFE082]">9 నవగ్రహాలు</span>
+              <div className="grid grid-cols-2 gap-1 w-full my-1 relative z-10">
+                <div className="p-1 rounded-lg bg-white/5 border border-[#D4AF37]/30 text-left">
+                  <span className="block text-[8px] text-stone-300">గ్రహాలు</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-[#FFE082]">9 నవగ్రహాలు</span>
                 </div>
-                <div className="p-2 rounded-xl bg-white/5 border border-[#D4AF37]/30 text-left">
-                  <span className="block text-[9px] sm:text-[10px] text-stone-300">వక్రించిన గ్రహాలు</span>
-                  <span className="text-xs sm:text-sm font-bold text-[#F87171]">
-                    {astroData.planets.filter(p => p.isRetrograde && p.key !== 'rahu' && p.key !== 'ketu').length} గ్రహాలు (వ)
+                <div className="p-1 rounded-lg bg-white/5 border border-[#D4AF37]/30 text-left">
+                  <span className="block text-[8px] text-stone-300">వక్రించినవి</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-[#F87171]">
+                    {astroData.planets.filter(p => p.isRetrograde && p.key !== 'rahu' && p.key !== 'ketu').length} (వ)
                   </span>
                 </div>
               </div>
@@ -311,10 +359,11 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
               {/* Reset Button in Center */}
               <button
                 onClick={handleResetToday}
-                className="relative z-10 px-3 py-1 rounded-xl bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 border border-[#D4AF37]/60 text-[#FFE082] text-[10px] sm:text-xs font-semibold cursor-pointer transition-colors flex items-center gap-1.5"
+                className="relative z-10 px-2 py-0.5 rounded-lg bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 border border-[#D4AF37]/60 text-[#FFE082] text-[9px] sm:text-[10px] font-semibold cursor-pointer transition-colors flex items-center gap-1"
+                title="నేటి తేదికి రండి"
               >
-                <Clock className="w-3 h-3 text-[#FFD54F]" />
-                <span>వర్తమాన తేదికి రండి (Today)</span>
+                <Clock className="w-2.5 h-2.5 text-[#FFD54F]" />
+                <span>నేడు (Today)</span>
               </button>
             </div>
 
@@ -846,7 +895,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
       <div
         key={rasi.index}
         onClick={() => setSelectedRasiIndex(isRasiSelected ? null : rasi.index)}
-        className={`rounded-xl sm:rounded-2xl p-2 sm:p-2.5 flex flex-col justify-between border-2 transition-all duration-300 cursor-pointer overflow-hidden relative group ${
+        className={`rounded-xl sm:rounded-2xl flex flex-col justify-between border-1.5 sm:border-2 transition-all duration-300 cursor-pointer overflow-hidden relative group ${
+          chartSize === 'fit' ? 'p-1 sm:p-1.5' : 'p-2 sm:p-2.5'
+        } ${
           isRasiSelected
             ? 'border-[#FFD54F] bg-[#3E0C0C] ring-2 ring-[#FFD54F]/70 shadow-lg'
             : planetsInHouse.length > 0
@@ -855,28 +906,42 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
         }`}
       >
         {/* Cell Header: Sign Name, Zodiac Symbol, Lord */}
-        <div className="flex items-start justify-between gap-1 border-b border-white/10 pb-1">
+        <div className="flex items-start justify-between gap-0.5 border-b border-white/10 pb-0.5 sm:pb-1">
           <div>
             <div className="flex items-center gap-1">
-              <span className="text-xs sm:text-sm font-bold text-[#FFE082] font-telugu-serif">
+              <span className={`font-bold text-[#FFE082] font-telugu-serif ${
+                chartSize === 'fit' ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'
+              }`}>
                 {rasi.nameTe}
               </span>
-              <span className="text-xs sm:text-sm text-[#FFD54F]">{rasi.symbol}</span>
+              <span className={`text-[#FFD54F] ${
+                chartSize === 'fit' ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'
+              }`}>
+                {rasi.symbol}
+              </span>
             </div>
-            <span className="text-[9px] text-stone-400 block leading-tight">
+            <span className={`text-stone-400 block leading-tight ${
+              chartSize === 'fit' ? 'text-[7.5px] sm:text-[8.5px]' : 'text-[9px]'
+            }`}>
               {rasi.nameEn} • {rasi.lordTe}
             </span>
           </div>
 
-          <span className={`text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5 rounded-md border font-semibold ${elementBadgeColor}`}>
+          <span className={`rounded-md border font-semibold ${elementBadgeColor} ${
+            chartSize === 'fit' ? 'text-[7px] sm:text-[8px] px-1 py-0' : 'text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5'
+          }`}>
             {rasi.elementTe}
           </span>
         </div>
 
         {/* Planets Inside This House */}
-        <div className="my-1.5 space-y-1 overflow-y-auto max-h-[85px] sm:max-h-[110px] pr-0.5 custom-scrollbar">
+        <div className={`my-0.5 sm:my-1 space-y-0.5 sm:space-y-1 overflow-y-auto pr-0.5 custom-scrollbar ${
+          chartSize === 'fit' ? 'max-h-[50px] sm:max-h-[64px]' : 'max-h-[85px] sm:max-h-[110px]'
+        }`}>
           {planetsInHouse.length === 0 ? (
-            <div className="h-full flex items-center justify-center py-2 opacity-30 text-[10px] text-stone-400 italic">
+            <div className={`h-full flex items-center justify-center py-1 opacity-30 text-stone-400 italic ${
+              chartSize === 'fit' ? 'text-[8px] sm:text-[9px]' : 'text-[10px]'
+            }`}>
               గ్రహాలు లేవు
             </div>
           ) : (
@@ -889,7 +954,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
                     e.stopPropagation();
                     setSelectedPlanetKey(isPlanetSelected ? null : p.key);
                   }}
-                  className={`p-1 sm:p-1.5 rounded-lg border text-left transition-all ${
+                  className={`rounded-md sm:rounded-lg border text-left transition-all ${
+                    chartSize === 'fit' ? 'p-0.5 sm:p-1' : 'p-1 sm:p-1.5'
+                  } ${
                     isPlanetSelected
                       ? 'bg-[#FFE082] text-[#4A0012] border-white font-bold ring-1 ring-white'
                       : 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
@@ -897,22 +964,28 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
                   title={`${p.meta.nameTe} (${p.degreeFormatted}) - ${p.nakshatraNameTe} ${p.nakshatraPada}వ పాదం`}
                 >
                   <div className="flex items-center justify-between gap-1">
-                    <span className="flex items-center gap-1 font-bold text-[10px] sm:text-xs">
+                    <span className={`flex items-center gap-0.5 sm:gap-1 font-bold ${
+                      chartSize === 'fit' ? 'text-[8.5px] sm:text-[10px]' : 'text-[10px] sm:text-xs'
+                    }`}>
                       <span>{p.meta.symbol}</span>
                       <span className={isPlanetSelected ? 'text-[#4A0012]' : 'text-[#FFE082]'}>
                         {p.meta.nameTe.split(' ')[0]}
                       </span>
                       {p.isRetrograde && (
-                        <span className="text-[8px] text-red-400 font-extrabold">(వ)</span>
+                        <span className="text-[7px] sm:text-[8px] text-red-400 font-extrabold">(వ)</span>
                       )}
                     </span>
-                    <span className="text-[9px] sm:text-[10px] text-stone-300 font-mono">
+                    <span className={`text-stone-300 font-mono ${
+                      chartSize === 'fit' ? 'text-[7.5px] sm:text-[8.5px]' : 'text-[9px] sm:text-[10px]'
+                    }`}>
                       {p.degreeFormatted}
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-[8px] sm:text-[9px] text-stone-300 opacity-90 mt-0.5">
-                    <span className="truncate max-w-[70px]">{p.nakshatraNameTe} {p.nakshatraPada}</span>
+                  <div className={`flex items-center justify-between text-stone-300 opacity-90 ${
+                    chartSize === 'fit' ? 'text-[7px] sm:text-[8px] mt-0' : 'text-[8px] sm:text-[9px] mt-0.5'
+                  }`}>
+                    <span className="truncate max-w-[60px] sm:max-w-[75px]">{p.nakshatraNameTe} {p.nakshatraPada}</span>
                     {p.dignity === 'exalted' && <span className="text-emerald-400 font-bold">ఉచ్ఛ</span>}
                     {p.dignity === 'own' && <span className="text-amber-300 font-bold">స్వ</span>}
                     {p.dignity === 'debilitated' && <span className="text-rose-400 font-bold">నీచ</span>}
@@ -924,7 +997,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ init
         </div>
 
         {/* Footer of cell: Planet count indicator */}
-        <div className="pt-0.5 border-t border-white/5 flex items-center justify-between text-[8px] text-stone-400">
+        <div className={`pt-0.5 border-t border-white/5 flex items-center justify-between text-stone-400 ${
+          chartSize === 'fit' ? 'text-[7px] sm:text-[8px]' : 'text-[8px]'
+        }`}>
           <span>స్థానం: {rasi.index + 1}</span>
           {planetsInHouse.length > 0 && (
             <span className="text-[#FFD54F] font-bold">
