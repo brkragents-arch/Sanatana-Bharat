@@ -537,7 +537,7 @@ export function calculateAllPlanets(targetDate: Date): {
   planets: CompletePlanetInfo[];
   houses: { rasi: RasiDef; planets: CompletePlanetInfo[] }[];
   ayanamsha: number;
-  nextMajorTransition: { planetNameTe: string; nextRasiNameTe: string; date: Date; daysRemaining: number } | null;
+  nextMajorTransition: { planetNameTe: string; planetNameEn: string; nextRasiNameTe: string; nextRasiNameEn: string; date: Date; daysRemaining: number } | null;
 } {
   const JD = getJulianDay(targetDate);
   const T = (JD - 2451545.0) / 36525;
@@ -633,7 +633,9 @@ export function calculateAllPlanets(targetDate: Date): {
 
   const nextMajor = majorTransitions.length > 0 ? {
     planetNameTe: majorTransitions[0].meta.nameTe,
+    planetNameEn: majorTransitions[0].meta.nameEn,
     nextRasiNameTe: majorTransitions[0].nextRasiNameTe,
+    nextRasiNameEn: majorTransitions[0].nextRasiNameEn,
     date: majorTransitions[0].exitDate,
     daysRemaining: majorTransitions[0].daysRemaining
   } : null;

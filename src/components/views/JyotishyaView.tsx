@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useMythology } from '../../context/MythologyContext';
 import {
   JYOTISHYA_BOOK_METADATA,
   FOUR_HEAD_CHAKRAS_DATA,
@@ -38,6 +39,8 @@ type ActiveSectionTab =
   | 'chapters_qa';
 
 export const JyotishyaView: React.FC = () => {
+  const { language } = useMythology();
+  const isEn = language === 'en';
   const [activeTab, setActiveTab] = useState<ActiveSectionTab>('all');
   const [selectedLagnaNumber, setSelectedLagnaNumber] = useState<number>(1);
   const [selectedGraha, setSelectedGraha] = useState<GrahaMasterRecord>(TWELVE_GRAHAS_MASTER_DATA[0]);
@@ -246,23 +249,25 @@ export const JyotishyaView: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-3 py-1 rounded-full bg-[#FFE082] text-[#4A0012] text-xs font-extrabold uppercase tracking-wider">
-                🔮 షట్శాస్త్రములలో 2వ శాస్త్రము • సంపూర్ణ జ్యోతిష్య దర్శిని
+                {isEn ? '🔮 2nd of 6 Shastras • Complete Jyotishya Compendium' : '🔮 షట్శాస్త్రములలో 2వ శాస్త్రము • సంపూర్ణ జ్యోతిష్య దర్శిని'}
               </span>
               <span className="px-3 py-1 rounded-full bg-[#D84315] text-white text-xs font-bold border border-[#FFAB91]">
-                48 అధ్యాయములు • 34 ప్రశ్నలు-జవాబులు • 12 గ్రహములు • 324 కర్మలు
+                {isEn ? '48 Chapters • 34 Q&A • 12 Grahas • 324 Karmas' : '48 అధ్యాయములు • 34 ప్రశ్నలు-జవాబులు • 12 గ్రహములు • 324 కర్మలు'}
               </span>
             </div>
             <span className="text-xs font-semibold text-[#FFE082]/90 bg-black/30 px-3 py-1 rounded-full border border-[#D4AF37]/40">
-              {JYOTISHYA_BOOK_METADATA.publisherTe}
+              {isEn ? 'Indu Jnana Vedika (Estd 1978)' : JYOTISHYA_BOOK_METADATA.publisherTe}
             </span>
           </div>
 
           <div className="space-y-2">
             <h1 className="text-2xl sm:text-4xl font-extrabold font-telugu-serif text-white tracking-tight">
-              {JYOTISHYA_BOOK_METADATA.titleTe}
+              {isEn ? JYOTISHYA_BOOK_METADATA.titleEn : JYOTISHYA_BOOK_METADATA.titleTe}
             </h1>
             <p className="text-sm sm:text-base text-[#FFD54F] font-bold">
-              గ్రంథకర్త: {JYOTISHYA_BOOK_METADATA.authorTitlesTe} — {JYOTISHYA_BOOK_METADATA.authorTe}
+              {isEn 
+                ? `Author: ${JYOTISHYA_BOOK_METADATA.authorTe}` 
+                : `గ్రంథకర్త: ${JYOTISHYA_BOOK_METADATA.authorTitlesTe} — ${JYOTISHYA_BOOK_METADATA.authorTe}`}
             </p>
           </div>
 
@@ -286,15 +291,15 @@ export const JyotishyaView: React.FC = () => {
       {/* =================================================================== */}
       <div className="sticky top-16 z-30 bg-[#FAF7F0]/95 backdrop-blur-md p-3 rounded-2xl border-2 border-[#D4AF37] shadow-md flex items-center gap-2 overflow-x-auto">
         {[
-          { id: 'all', label: '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' },
-          { id: 'foundations_chakras', label: '☸️ 1. 4 చక్రాలు & 324 కర్మలు' },
-          { id: 'south_chart_transits', label: '🧭 2. దక్షిణ భారత చక్రం & గోచార సంక్రమణం' },
-          { id: 'grahas_lagnas', label: '🪐 3. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
-          { id: 'karma_houses', label: '🏛️ 4. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
-          { id: 'attributes_matrix', label: '📊 5. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
-          { id: 'nakshatra_dashas', label: '⏳ 6. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
-          { id: 'case_studies', label: '📜 7. ప్రముఖుల జాతక విశ్లేషణలు' },
-          { id: 'chapters_qa', label: '❓ 8. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
+          { id: 'all', label: isEn ? '🌟 Comprehensive View (All Sections)' : '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' },
+          { id: 'foundations_chakras', label: isEn ? '☸️ 1. 4 Chakras & 324 Karmas' : '☸️ 1. 4 చక్రాలు & 324 కర్మలు' },
+          { id: 'south_chart_transits', label: isEn ? '🧭 2. South Indian Chart & Live Transits' : '🧭 2. దక్షిణ భారత చక్రం & గోచార సంక్రమణం' },
+          { id: 'grahas_lagnas', label: isEn ? '🪐 3. 12 Grahas & 2:1 Friend-Enemy Calculator' : '🪐 3. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
+          { id: 'karma_houses', label: isEn ? '🏛️ 4. 12 Karma Houses (Rasis)' : '🏛️ 4. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
+          { id: 'attributes_matrix', label: isEn ? '📊 5. 12 Grahas 9 Attributes Matrix' : '📊 5. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
+          { id: 'nakshatra_dashas', label: isEn ? '⏳ 6. 27 Nakshatras & 120-Year Dasha System' : '⏳ 6. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
+          { id: 'case_studies', label: isEn ? '📜 7. Famous Natal Horoscope Case Studies' : '📜 7. ప్రముఖుల జాతక విశ్లేషణలు' },
+          { id: 'chapters_qa', label: isEn ? '❓ 8. 48 Chapters & 34 Q&A' : '❓ 8. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
         ].map(tab => (
           <button
             key={tab.id}

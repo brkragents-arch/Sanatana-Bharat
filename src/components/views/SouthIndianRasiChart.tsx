@@ -15,6 +15,57 @@ import {
   calculateAllRasiPhalalu,
   type RasiPrediction
 } from '../../utils/rasiPhalaluEngine';
+import { useMythology } from '../../context/MythologyContext';
+
+const RASI_DETAILS_EN: Record<number, { lord: string; element: string }> = {
+  0: { lord: 'Mars', element: 'Fire' },
+  1: { lord: 'Venus', element: 'Earth' },
+  2: { lord: 'Mercury', element: 'Air' },
+  3: { lord: 'Moon', element: 'Water' },
+  4: { lord: 'Sun', element: 'Fire' },
+  5: { lord: 'Mercury', element: 'Earth' },
+  6: { lord: 'Venus', element: 'Air' },
+  7: { lord: 'Mars/Ketu', element: 'Water' },
+  8: { lord: 'Jupiter', element: 'Fire' },
+  9: { lord: 'Saturn', element: 'Earth' },
+  10: { lord: 'Saturn/Rahu', element: 'Air' },
+  11: { lord: 'Jupiter', element: 'Water' }
+};
+
+const PLANET_NATURE_EN: Record<PlanetKey, string> = {
+  sun: 'Significator of Soul & Father',
+  moon: 'Significator of Mind & Mother',
+  mars: 'Significator of Energy, Courage & Siblings',
+  mercury: 'Significator of Intellect, Speech & Trade',
+  jupiter: 'Significator of Wisdom, Knowledge & Children',
+  venus: 'Significator of Art, Comfort & Relationships',
+  saturn: 'Significator of Discipline, Karma & Longevity',
+  rahu: 'Significator of Material Ambition & Exploration',
+  ketu: 'Significator of Spiritual Liberation & Detachment'
+};
+
+function formatDurationHumanEn(days: number): string {
+  if (days >= 365) {
+    const years = (days / 365.25).toFixed(1);
+    return `Approx ${years} yrs`;
+  }
+  if (days >= 60) {
+    const months = (days / 30.4).toFixed(1);
+    return `Approx ${months} mos`;
+  }
+  return `${days} days`;
+}
+
+function getDignityLabel(dignity: string, isEn: boolean, defaultTe: string): string {
+  if (!isEn) return defaultTe;
+  if (dignity === 'exalted') return 'Exalted';
+  if (dignity === 'own') return 'Own House';
+  if (dignity === 'debilitated') return 'Debilitated';
+  if (dignity === 'moolatrikona') return 'Moolatrikona';
+  if (dignity === 'friend') return 'Friendly';
+  if (dignity === 'enemy') return 'Enemy';
+  return 'Neutral';
+}
 
 export interface SouthIndianRasiChartProps {
   initialDate?: Date;
@@ -23,6 +74,9 @@ export interface SouthIndianRasiChartProps {
 export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({ 
   initialDate
 }) => {
+  const { language } = useMythology();
+  const isEn = language === 'en';
+
   // Current selected date state
   const [selectedDate, setSelectedDate] = useState<Date>(() => initialDate || new Date());
   const [selectedPlanetKey, setSelectedPlanetKey] = useState<PlanetKey | null>(null);
@@ -50,14 +104,18 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
     end.setDate(start.getDate() + 6);
     end.setHours(23, 59, 59, 999);
 
-    const sStr = start.toLocaleDateString('te-IN', { day: 'numeric', month: 'short' });
-    const eStr = end.toLocaleDateString('te-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    const sStr = isEn
+      ? start.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+      : start.toLocaleDateString('te-IN', { day: 'numeric', month: 'short' });
+    const eStr = isEn
+      ? end.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+      : end.toLocaleDateString('te-IN', { day: 'numeric', month: 'short', year: 'numeric' });
     return {
       start,
       end,
       labelTe: `${sStr} – ${eStr}`
     };
-  }, [selectedDate]);
+  }, [selectedDate, isEn]);
 
   // Combined planetary Rasi Phalalu for all 12 signs based on real-time planetary positions
   const rasiPredictions = useMemo(() => {
@@ -70,11 +128,17 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
 
   // Format date helper
   const formatDateTe = (date: Date): string => {
-    return date.toLocaleDateString('te-IN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    return isEn
+      ? date.toLocaleDateString('en-GB', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })
+      : date.toLocaleDateString('te-IN', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
   };
 
   const formatDateShort = (date: Date): string => {
@@ -176,14 +240,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <div>
               <div className="flex items-center gap-1">
                 <span className="font-bold text-xs text-[#7B1113] font-telugu-serif">
-                  {pred.rasi.nameTe}
+                  {isEn ? pred.rasi.nameEn : pred.rasi.nameTe}
                 </span>
                 <span className="text-[10px] text-stone-500 font-sans">
-                  ({pred.rasi.nameEn})
+                  ({isEn ? pred.rasi.nameTe : pred.rasi.nameEn})
                 </span>
               </div>
               <span className="text-[9px] text-stone-500 block leading-tight">
-                అధిపతి: {pred.rasi.lordTe} • {pred.rasi.elementTe}
+                {isEn 
+                  ? `Lord: ${RASI_DETAILS_EN[pred.rasi.index]?.lord || pred.rasi.lordTe} • ${RASI_DETAILS_EN[pred.rasi.index]?.element || pred.rasi.elementTe}`
+                  : `అధిపతి: ${pred.rasi.lordTe} • ${pred.rasi.elementTe}`}
               </span>
             </div>
           </div>
@@ -202,24 +268,28 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   : 'bg-rose-50 text-rose-800 border-rose-300'
               }`}
             >
-              {pred.statusBadgeTe} ({pred.favorabilityScore}%)
+              {isEn ? pred.statusBadgeEn : pred.statusBadgeTe} ({pred.favorabilityScore}%)
             </span>
           </div>
         </div>
 
         {/* Key Transit Highlight pill */}
         <div className="text-[9.5px] px-1.5 py-0.5 rounded-md bg-[#FFF8E1]/80 border border-[#D4AF37]/40 text-[#7B1113] font-semibold truncate">
-          {pred.keyHighlights}
+          {isEn ? pred.keyHighlightsEn : pred.keyHighlights}
         </div>
 
         {/* 1. Positive (శుభ ఫలితాలు) */}
         <div className="p-1.5 rounded-lg bg-emerald-50/90 border border-emerald-200/80 text-[10px] leading-tight space-y-0.5">
           <div className="font-bold text-emerald-800 flex items-center gap-1">
             <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-            <span>{isDaily ? 'నేటి శుభం (Daily Positive)' : 'ఈ వార శుభం (Weekly Positive)'}</span>
+            <span>
+              {isEn
+                ? (isDaily ? 'Daily Positive Gains' : 'Weekly Positive Influences')
+                : (isDaily ? 'నేటి శుభం (Daily Positive)' : 'ఈ వార శుభం (Weekly Positive)')}
+            </span>
           </div>
           <p className="text-emerald-950 font-medium pl-4 leading-snug">
-            {pred.positiveTe}
+            {isEn ? pred.positiveEn : pred.positiveTe}
           </p>
         </div>
 
@@ -235,12 +305,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <AlertCircle className={`w-3 h-3 shrink-0 ${
               pred.isChandrashtama && isDaily ? 'text-rose-600' : 'text-amber-600'
             }`} />
-            <span>{isDaily ? 'నేటి జాగ్రత్త (Daily Precaution)' : 'ఈ వార జాగ్రత్త (Weekly Precaution)'}</span>
+            <span>
+              {isEn
+                ? (isDaily ? 'Daily Precautions' : 'Weekly Precautions')
+                : (isDaily ? 'నేటి జాగ్రత్త (Daily Precaution)' : 'ఈ వార జాగ్రత్త (Weekly Precaution)')}
+            </span>
           </div>
           <p className={`font-medium pl-4 leading-snug ${
             pred.isChandrashtama && isDaily ? 'text-rose-950' : 'text-amber-950'
           }`}>
-            {pred.precautionTe}
+            {isEn ? pred.precautionEn : pred.precautionTe}
           </p>
         </div>
 
@@ -248,10 +322,14 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
         <div className="p-1.5 rounded-lg bg-purple-50/90 border border-purple-200/80 text-[10px] leading-tight space-y-0.5">
           <div className="font-bold text-purple-800 flex items-center gap-1">
             <Sparkles className="w-3 h-3 text-purple-600 shrink-0" />
-            <span>{isDaily ? 'నేటి పరిహారము (Daily Remedy)' : 'వారపు పరిహారము (Weekly Remedy)'}</span>
+            <span>
+              {isEn
+                ? (isDaily ? "Today's Spiritual Remedy" : 'Weekly Spiritual Remedy')
+                : (isDaily ? 'నేటి పరిహారము (Daily Remedy)' : 'వారపు పరిహారము (Weekly Remedy)')}
+            </span>
           </div>
           <p className="text-purple-950 font-medium pl-4 leading-snug">
-            {pred.remedyTe}
+            {isEn ? pred.remedyEn : pred.remedyTe}
           </p>
         </div>
       </div>
@@ -269,7 +347,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <Calendar className="w-5 h-5 text-[#D84315] shrink-0 ml-1" />
             <div className="flex-1 min-w-0">
               <label className="block text-[10px] font-bold text-[#7B1113] uppercase tracking-wider">
-                గోచార తేది &amp; వారం ఎంపిక (Date &amp; Week):
+                {isEn ? 'Transit Date & Week Selection:' : 'గోచార తేది & వారం ఎంపిక (Date & Week):'}
               </label>
               <input
                 type="date"
@@ -284,12 +362,14 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               />
               <span className="text-[10.5px] text-[#D84315] font-bold block mt-0.5 truncate">
                 {predictionMode === 'weekly'
-                  ? `📅 వారం: ${selectedWeekInfo.labelTe} (వార ఫలాలు)`
-                  : `☀️ రోజు: ${formatDateTe(selectedDate)} (దిన ఫలాలు)`}
+                  ? (isEn ? `📅 Week: ${selectedWeekInfo.labelTe} (Weekly Horoscope)` : `📅 వారం: ${selectedWeekInfo.labelTe} (వార ఫలాలు)`)
+                  : (isEn ? `☀️ Day: ${formatDateTe(selectedDate)} (Daily Horoscope)` : `☀️ రోజు: ${formatDateTe(selectedDate)} (దిన ఫలాలు)`)}
               </span>
             </div>
             <div className="text-right shrink-0 border-l border-[#E8DCC4] pl-2.5">
-              <span className="block text-[10px] text-[#5D4037]">లాహిరి అయనాంశ</span>
+              <span className="block text-[10px] text-[#5D4037]">
+                {isEn ? 'Lahiri Ayanamsha' : 'లాహిరి అయనాంశ'}
+              </span>
               <span className="text-xs font-bold text-[#D84315]">
                 {astroData.ayanamsha.toFixed(2)}°
               </span>
@@ -308,9 +388,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                     ? 'bg-[#7B1113] text-[#FFE082]'
                     : 'text-[#5D4037] hover:bg-[#FFE082]/30'
                 }`}
-                title="ఎంపిక చేసిన వారం యొక్క సంయుక్త గ్రహ గోచార ఫలాలు"
+                title={isEn ? 'Combined planetary predictions for the selected week' : 'ఎంపిక చేసిన వారం యొక్క సంయుక్త గ్రహ గోచార ఫలాలు'}
               >
-                📅 వార ఫలాలు
+                {isEn ? '📅 Weekly' : '📅 వార ఫలాలు'}
               </button>
               <button
                 type="button"
@@ -320,9 +400,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                     ? 'bg-[#7B1113] text-[#FFE082]'
                     : 'text-[#5D4037] hover:bg-[#FFE082]/30'
                 }`}
-                title="ఎంపిక చేసిన రోజు యొక్క దిన ఫలాలు"
+                title={isEn ? 'Daily predictions for the selected day' : 'ఎంపిక చేసిన రోజు యొక్క దిన ఫలాలు'}
               >
-                ☀️ దిన ఫలాలు
+                {isEn ? '☀️ Daily' : '☀️ దిన ఫలాలు'}
               </button>
             </div>
 
@@ -332,16 +412,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <button
               onClick={() => handleStepWeeks(-1)}
               className="px-2 py-1.5 rounded-lg bg-[#FFF8E1] hover:bg-[#FFE082]/50 border border-[#D4AF37] text-[#7B1113] font-bold cursor-pointer transition-colors shadow-2xs text-[11px]"
-              title="1 వారం వెనక్కి"
+              title={isEn ? 'Previous Week' : '1 వారం వెనక్కి'}
             >
-              -1 వారం
+              {isEn ? '-1 Wk' : '-1 వారం'}
             </button>
             <button
               onClick={() => handleStepWeeks(1)}
               className="px-2 py-1.5 rounded-lg bg-[#FFF8E1] hover:bg-[#FFE082]/50 border border-[#D4AF37] text-[#7B1113] font-bold cursor-pointer transition-colors shadow-2xs text-[11px]"
-              title="1 వారం ముందుకు"
+              title={isEn ? 'Next Week' : '1 వారం ముందుకు'}
             >
-              +1 వారం
+              {isEn ? '+1 Wk' : '+1 వారం'}
             </button>
 
             <div className="h-4 w-px bg-[#D4AF37]/40 mx-0.5" />
@@ -350,16 +430,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <button
               onClick={() => handleStepDays(-1)}
               className="px-2 py-1.5 rounded-lg bg-white hover:bg-[#FFE082]/30 border border-[#D4AF37]/40 text-[#4A0012] font-semibold cursor-pointer transition-colors text-[11px]"
-              title="1 రోజు వెనక్కి"
+              title={isEn ? 'Previous Day' : '1 రోజు వెనక్కి'}
             >
-              -1 రోజు
+              {isEn ? '-1 Day' : '-1 రోజు'}
             </button>
             <button
               onClick={() => handleStepDays(1)}
               className="px-2 py-1.5 rounded-lg bg-white hover:bg-[#FFE082]/30 border border-[#D4AF37]/40 text-[#4A0012] font-semibold cursor-pointer transition-colors text-[11px]"
-              title="1 రోజు ముందుకు"
+              title={isEn ? 'Next Day' : '1 రోజు ముందుకు'}
             >
-              +1 రోజు
+              {isEn ? '+1 Day' : '+1 రోజు'}
             </button>
             
             <div className="h-4 w-px bg-[#D4AF37]/40 mx-0.5" />
@@ -367,16 +447,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <button
               onClick={() => handleStepMonths(-1)}
               className="px-2 py-1.5 rounded-lg bg-white hover:bg-[#FFE082]/30 border border-[#D4AF37]/40 text-[#4A0012] font-semibold cursor-pointer transition-colors text-[11px]"
-              title="1 నెల వెనక్కి"
+              title={isEn ? 'Previous Month' : '1 నెల వెనక్కి'}
             >
-              -1 నెల
+              {isEn ? '-1 Mo' : '-1 నెల'}
             </button>
             <button
               onClick={() => handleStepMonths(1)}
               className="px-2 py-1.5 rounded-lg bg-white hover:bg-[#FFE082]/30 border border-[#D4AF37]/40 text-[#4A0012] font-semibold cursor-pointer transition-colors text-[11px]"
-              title="1 నెల ముందుకు"
+              title={isEn ? 'Next Month' : '1 నెల ముందుకు'}
             >
-              +1 నెల
+              {isEn ? '+1 Mo' : '+1 నెల'}
             </button>
 
             <div className="h-4 w-px bg-[#D4AF37]/40 mx-0.5" />
@@ -384,25 +464,25 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <button
               onClick={() => handleStepYears(-1)}
               className="px-2 py-1.5 rounded-lg bg-white hover:bg-[#FFE082]/30 border border-[#D4AF37]/40 text-[#4A0012] font-semibold cursor-pointer transition-colors text-[11px]"
-              title="1 సంవత్సరం వెనక్కి"
+              title={isEn ? 'Previous Year' : '1 సంవత్సరం వెనక్కి'}
             >
-              -1 సం||
+              {isEn ? '-1 Yr' : '-1 సం||'}
             </button>
             <button
               onClick={() => handleStepYears(1)}
               className="px-2 py-1.5 rounded-lg bg-white hover:bg-[#FFE082]/30 border border-[#D4AF37]/40 text-[#4A0012] font-semibold cursor-pointer transition-colors text-[11px]"
-              title="1 సంవత్సరం ముందుకు"
+              title={isEn ? 'Next Year' : '1 సంవత్సరం ముందుకు'}
             >
-              +1 సం||
+              {isEn ? '+1 Yr' : '+1 సం||'}
             </button>
 
             <button
               onClick={handleResetToday}
               className="px-2.5 py-1.5 rounded-lg bg-[#7B1113] hover:bg-[#8B1E0F] text-[#FFE082] font-semibold cursor-pointer transition-colors flex items-center gap-1 shadow-xs ml-0.5 text-[11px]"
-              title="నేటి తేదికి రండి"
+              title={isEn ? 'Reset to Today' : 'నేటి తేదికి రండి'}
             >
               <RefreshCw className="w-3 h-3" />
-              <span>నేడు</span>
+              <span>{isEn ? 'Today' : 'నేడు'}</span>
             </button>
           </div>
         </div>
@@ -413,17 +493,21 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <div className="flex items-center gap-2 text-[#7B1113] font-semibold">
               <span className="text-base animate-pulse">🔔</span>
               <span>
-                <strong>తదుపరి రాశి సంక్రమణం:</strong> {astroData.nextMajorTransition.planetNameTe} త్వరలో 
-                <strong className="text-[#D84315]"> {astroData.nextMajorTransition.nextRasiNameTe} </strong> 
-                రాశిలోకి ప్రవేశించును.
+                <strong>{isEn ? 'Upcoming Ingress:' : 'తదుపరి రాశి సంక్రమణం:'}</strong>{' '}
+                {isEn ? (astroData.nextMajorTransition.planetNameEn || astroData.nextMajorTransition.planetNameTe) : astroData.nextMajorTransition.planetNameTe}{' '}
+                {isEn ? 'will enter' : 'త్వరలో'}{' '}
+                <strong className="text-[#D84315]">
+                  {isEn ? (astroData.nextMajorTransition.nextRasiNameEn || astroData.nextMajorTransition.nextRasiNameTe) : astroData.nextMajorTransition.nextRasiNameTe}
+                </strong>{' '}
+                {isEn ? 'sign soon.' : 'రాశిలోకి ప్రవేశించును.'}
               </span>
             </div>
             <div className="flex items-center gap-3">
               <span className="px-2.5 py-1 rounded-full bg-white text-[#7B1113] border border-[#D4AF37]/50 font-bold text-[11px]">
-                తేదీ: {formatDateShort(astroData.nextMajorTransition.date)}
+                {isEn ? 'Date:' : 'తేదీ:'} {formatDateShort(astroData.nextMajorTransition.date)}
               </span>
               <span className="text-[#C62828] font-bold">
-                (ఇంకా {Math.ceil(astroData.nextMajorTransition.daysRemaining)} రోజులు)
+                {isEn ? `(${Math.ceil(astroData.nextMajorTransition.daysRemaining)} days left)` : `(ఇంకా ${Math.ceil(astroData.nextMajorTransition.daysRemaining)} రోజులు)`}
               </span>
             </div>
           </div>
@@ -437,17 +521,21 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <span className="text-lg">🧭</span>
             <div>
               <h4 className="text-sm sm:text-base font-bold text-[#7B1113] font-telugu-serif">
-                దక్షిణ భారత జాతక చక్రం (12 స్థిర రాశులు &amp; ప్రత్యక్ష గ్రహ సంచారం)
+                {isEn 
+                  ? 'South Indian Horoscope Chart (12 Fixed Signs & Live Transits)'
+                  : 'దక్షిణ భారత జాతక చక్రం (12 స్థిర రాశులు & ప్రత్యక్ష గ్రహ సంచారం)'}
               </h4>
               <span className="text-[10px] text-[#5D4037] block leading-tight">
-                *ఏదైనా రాశి లేదా గ్రహంపై క్లిక్ చేసి సమగ్ర వివరాలు వీక్షించవచ్చు
+                {isEn 
+                  ? '*Click on any sign or planet to view comprehensive details'
+                  : '*ఏదైనా రాశి లేదా గ్రహంపై క్లిక్ చేసి సమగ్ర వివరాలు వీక్షించవచ్చు'}
               </span>
             </div>
           </div>
 
           {/* Size Preset Toggle */}
           <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-[#D4AF37]/60 text-[10px] sm:text-xs font-bold self-end sm:self-auto">
-            <span className="text-[#5D4037] px-1 hidden md:inline">పరిమాణం:</span>
+            <span className="text-[#5D4037] px-1 hidden md:inline">{isEn ? 'Size:' : 'పరిమాణం:'}</span>
             <button
               type="button"
               onClick={() => setChartSize('fit')}
@@ -456,9 +544,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   ? 'bg-[#7B1113] text-[#FFE082] shadow-xs'
                   : 'text-[#5D4037] hover:bg-[#FFE082]/30'
               }`}
-              title="ఒకే స్క్రీన్‌పై మొత్తం చక్రం కనిపించేలా అమరిక (Fit to Screen)"
+              title={isEn ? 'Fit to Screen' : 'ఒకే స్క్రీన్‌పై మొత్తం చక్రం కనిపించేలా అమరిక (Fit to Screen)'}
             >
-              🖥️ స్క్రీన్‌కు సరిపడేలా (Fit)
+              {isEn ? '🖥️ Fit' : '🖥️ స్క్రీన్‌కు సరిపడేలా (Fit)'}
             </button>
             <button
               type="button"
@@ -468,9 +556,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   ? 'bg-[#7B1113] text-[#FFE082] shadow-xs'
                   : 'text-[#5D4037] hover:bg-[#FFE082]/30'
               }`}
-              title="మధ్యస్థ పరిమాణం (Medium)"
+              title={isEn ? 'Medium Size' : 'మధ్యస్థ పరిమాణం (Medium)'}
             >
-              🔍 మధ్యస్థం
+              {isEn ? '🔍 Medium' : '🔍 మధ్యస్థం'}
             </button>
             <button
               type="button"
@@ -480,9 +568,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   ? 'bg-[#7B1113] text-[#FFE082] shadow-xs'
                   : 'text-[#5D4037] hover:bg-[#FFE082]/30'
               }`}
-              title="పెద్ద పరిమాణం (Expanded Large)"
+              title={isEn ? 'Expanded Large' : 'పెద్ద పరిమాణం (Expanded Large)'}
             >
-              🔎 పెద్దది
+              {isEn ? '🔎 Large' : '🔎 పెద్దది'}
             </button>
           </div>
         </div>
@@ -495,10 +583,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           <div className="w-full xl:w-[285px] 2xl:w-[325px] shrink-0 flex flex-col space-y-2 max-h-[550px] overflow-y-auto pr-1.5 custom-scrollbar order-2 xl:order-1">
             <div className="sticky top-0 z-10 bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#4A0012] text-[#FFE082] px-2.5 py-1.5 rounded-xl border border-[#D4AF37]/60 shadow-xs flex items-center justify-between">
               <span className="text-[11px] font-bold font-telugu-serif flex items-center gap-1">
-                <span>♈ 1. మేషం – ♍ 6. కన్య</span>
+                <span>{isEn ? '♈ 1. Aries – ♍ 6. Virgo' : '♈ 1. మేషం – ♍ 6. కన్య'}</span>
               </span>
               <span className="text-[9px] px-1.5 py-0.5 bg-[#FFE082]/20 rounded-md text-amber-200 font-mono font-bold">
-                {predictionMode === 'weekly' ? 'వార ఫలాలు' : 'దిన ఫలాలు'}
+                {predictionMode === 'weekly' ? (isEn ? 'Weekly Predictions' : 'వార ఫలాలు') : (isEn ? 'Daily Predictions' : 'దిన ఫలాలు')}
               </span>
             </div>
 
@@ -536,29 +624,29 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
 
                   <div className="space-y-0.5 sm:space-y-1 relative z-10 w-full">
                     <span className="px-2 py-0.5 rounded-full bg-[#D4AF37]/20 text-[#FFE082] border border-[#D4AF37]/50 text-[8px] sm:text-[10px] font-bold uppercase tracking-wider inline-block">
-                      దక్షిణ భారత రాశి చక్రం
+                      {isEn ? 'South Indian Chart' : 'దక్షిణ భారత రాశి చక్రం'}
                     </span>
                     <h5 className="text-xs sm:text-base font-bold text-[#FFE082] font-telugu-serif">
-                      గోచార గ్రహ స్థితి
+                      {isEn ? 'Live Planetary Transit' : 'గోచార గ్రహ స్థితి'}
                     </h5>
                     <p className="text-[10px] sm:text-xs text-[#FFD54F] font-semibold">
                       {formatDateTe(selectedDate)}
                     </p>
                     <p className="text-[8px] sm:text-[10px] text-stone-300">
-                      {formatDateShort(selectedDate)} • లాహిరి నిరయన
+                      {formatDateShort(selectedDate)} • {isEn ? 'Lahiri Nirayana' : 'లాహిరి నిరయన'}
                     </p>
                   </div>
 
                   {/* Center Quick Stats */}
                   <div className="grid grid-cols-2 gap-1 w-full my-1 relative z-10">
                     <div className="p-1 rounded-lg bg-white/5 border border-[#D4AF37]/30 text-left">
-                      <span className="block text-[8px] text-stone-300">గ్రహాలు</span>
-                      <span className="text-[10px] sm:text-xs font-bold text-[#FFE082]">9 నవగ్రహాలు</span>
+                      <span className="block text-[8px] text-stone-300">{isEn ? 'Planets' : 'గ్రహాలు'}</span>
+                      <span className="text-[10px] sm:text-xs font-bold text-[#FFE082]">{isEn ? '9 Navagrahas' : '9 నవగ్రహాలు'}</span>
                     </div>
                     <div className="p-1 rounded-lg bg-white/5 border border-[#D4AF37]/30 text-left">
-                      <span className="block text-[8px] text-stone-300">వక్రించినవి</span>
+                      <span className="block text-[8px] text-stone-300">{isEn ? 'Retrograde' : 'వక్రించినవి'}</span>
                       <span className="text-[10px] sm:text-xs font-bold text-[#F87171]">
-                        {astroData.planets.filter(p => p.isRetrograde && p.key !== 'rahu' && p.key !== 'ketu').length} (వ)
+                        {astroData.planets.filter(p => p.isRetrograde && p.key !== 'rahu' && p.key !== 'ketu').length} {isEn ? '(R)' : '(వ)'}
                       </span>
                     </div>
                   </div>
@@ -567,10 +655,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   <button
                     onClick={handleResetToday}
                     className="relative z-10 px-2 py-0.5 rounded-lg bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 border border-[#D4AF37]/60 text-[#FFE082] text-[9px] sm:text-[10px] font-semibold cursor-pointer transition-colors flex items-center gap-1"
-                    title="నేటి తేదికి రండి"
+                    title={isEn ? 'Reset to Today' : 'నేటి తేదికి రండి'}
                   >
                     <Clock className="w-2.5 h-2.5 text-[#FFD54F]" />
-                    <span>నేడు (Today)</span>
+                    <span>{isEn ? 'Today' : 'నేడు'}</span>
                   </button>
                 </div>
 
@@ -600,10 +688,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           <div className="w-full xl:w-[285px] 2xl:w-[325px] shrink-0 flex flex-col space-y-2 max-h-[550px] overflow-y-auto pl-1.5 custom-scrollbar order-3">
             <div className="sticky top-0 z-10 bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#4A0012] text-[#FFE082] px-2.5 py-1.5 rounded-xl border border-[#D4AF37]/60 shadow-xs flex items-center justify-between">
               <span className="text-[11px] font-bold font-telugu-serif flex items-center gap-1">
-                <span>♎ 7. తుల – ♓ 12. మీనం</span>
+                <span>{isEn ? '♎ 7. Libra – ♓ 12. Pisces' : '♎ 7. తుల – ♓ 12. మీనం'}</span>
               </span>
               <span className="text-[9px] px-1.5 py-0.5 bg-[#FFE082]/20 rounded-md text-amber-200 font-mono font-bold">
-                {predictionMode === 'weekly' ? 'వార ఫలాలు' : 'దిన ఫలాలు'}
+                {predictionMode === 'weekly' ? (isEn ? 'Weekly Predictions' : 'వార ఫలాలు') : (isEn ? 'Daily Predictions' : 'దిన ఫలాలు')}
               </span>
             </div>
 
@@ -621,19 +709,21 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               <div>
                 <div className="flex items-center gap-2">
                   <h4 className="text-lg font-bold text-[#7B1113] font-telugu-serif">
-                    {activePlanet.meta.nameTe}
+                    {isEn ? activePlanet.meta.nameEn : activePlanet.meta.nameTe}
                   </h4>
-                  <span className="text-xs text-[#5D4037]">({activePlanet.meta.nameEn})</span>
+                  <span className="text-xs text-[#5D4037]">({isEn ? activePlanet.meta.nameTe : activePlanet.meta.nameEn})</span>
                   {activePlanet.isRetrograde && (
                     <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-300 text-[10px] font-bold">
-                      వక్రం (Retrograde)
+                      {isEn ? 'Retrograde (R)' : 'వక్రం (Retrograde)'}
                     </span>
                   )}
                   <span className="px-2 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] text-[10px] font-bold">
-                    {activePlanet.dignityLabelTe}
+                    {getDignityLabel(activePlanet.dignity, isEn, activePlanet.dignityLabelTe)}
                   </span>
                 </div>
-                <p className="text-xs text-[#5D4037]">{activePlanet.meta.natureTe}</p>
+                <p className="text-xs text-[#5D4037]">
+                  {isEn ? (PLANET_NATURE_EN[activePlanet.key] || activePlanet.meta.natureTe) : activePlanet.meta.natureTe}
+                </p>
               </div>
             </div>
 
@@ -641,42 +731,48 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               onClick={() => setSelectedPlanetKey(null)}
               className="text-xs text-[#7B1113] hover:underline font-semibold cursor-pointer"
             >
-              ✕ మూసివేయి
+              {isEn ? '✕ Close' : '✕ మూసివేయి'}
             </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
             <div className="p-3 rounded-xl bg-white border border-[#E8DCC4] space-y-1">
-              <span className="text-[#5D4037] block">ప్రస్తుత రాశి &amp; డిగ్రీ:</span>
+              <span className="text-[#5D4037] block">{isEn ? 'Current Sign & Degree:' : 'ప్రస్తుత రాశి & డిగ్రీ:'}</span>
               <strong className="text-sm text-[#7B1113]">
-                {activePlanet.rasiNameTe} ({activePlanet.degreeFormatted})
+                {isEn ? activePlanet.rasiNameEn : activePlanet.rasiNameTe} ({activePlanet.degreeFormatted})
               </strong>
-              <p className="text-[11px] text-[#5D4037]">నక్షత్రం: {activePlanet.nakshatraNameTe} {activePlanet.nakshatraPada}వ పాదం</p>
+              <p className="text-[11px] text-[#5D4037]">
+                {isEn ? `Nakshatra: ${activePlanet.nakshatraNameEn} Pada ${activePlanet.nakshatraPada}` : `నక్షత్రం: ${activePlanet.nakshatraNameTe} ${activePlanet.nakshatraPada}వ పాదం`}
+              </p>
             </div>
 
             <div className="p-3 rounded-xl bg-white border border-[#E8DCC4] space-y-1">
-              <span className="text-[#5D4037] block">ఈ రాశి ప్రవేశ తేదీ (Start Date):</span>
+              <span className="text-[#5D4037] block">{isEn ? 'Sign Entry Date (Start Date):' : 'ఈ రాశి ప్రవేశ తేదీ (Start Date):'}</span>
               <strong className="text-sm text-[#059669]">
                 {formatDateShort(activePlanet.entryDate)}
               </strong>
-              <p className="text-[11px] text-[#5D4037]">గడచిన కాలం: {Math.floor(activePlanet.daysElapsed)} రోజులు</p>
+              <p className="text-[11px] text-[#5D4037]">
+                {isEn ? `Elapsed: ${Math.floor(activePlanet.daysElapsed)} days` : `గడచిన కాలం: ${Math.floor(activePlanet.daysElapsed)} రోజులు`}
+              </p>
             </div>
 
             <div className="p-3 rounded-xl bg-white border border-[#E8DCC4] space-y-1">
-              <span className="text-[#5D4037] block">ఈ రాశి నిష్క్రమణ (End Date):</span>
+              <span className="text-[#5D4037] block">{isEn ? 'Sign Exit Date (End Date):' : 'ఈ రాశి నిష్క్రమణ (End Date):'}</span>
               <strong className="text-sm text-[#DC2626]">
                 {formatDateShort(activePlanet.exitDate)}
               </strong>
-              <p className="text-[11px] text-[#5D4037]">మిగిలిన రోజులు: {Math.ceil(activePlanet.daysRemaining)} రోజులు</p>
+              <p className="text-[11px] text-[#5D4037]">
+                {isEn ? `Remaining: ${Math.ceil(activePlanet.daysRemaining)} days` : `మిగిలిన రోజులు: ${Math.ceil(activePlanet.daysRemaining)} రోజులు`}
+              </p>
             </div>
 
             <div className="p-3 rounded-xl bg-white border border-[#E8DCC4] space-y-1">
-              <span className="text-[#5D4037] block">మొత్తం వ్యవధి &amp; తదుపరి రాశి:</span>
+              <span className="text-[#5D4037] block">{isEn ? 'Total Duration & Next Sign:' : 'మొత్తం వ్యవధి & తదుపరి రాశి:'}</span>
               <strong className="text-sm text-[#7B1113]">
-                {activePlanet.durationDays} రోజులు
+                {isEn ? `${activePlanet.durationDays} days` : `${activePlanet.durationDays} రోజులు`}
               </strong>
               <p className="text-[11px] text-[#D84315] font-semibold">
-                తదుపరి: {activePlanet.nextRasiNameTe} రాశి
+                {isEn ? `Next: ${activePlanet.nextRasiNameEn} sign` : `తదుపరి: ${activePlanet.nextRasiNameTe} రాశి`}
               </p>
             </div>
           </div>
@@ -684,8 +780,8 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           {/* Progress Bar of Current Transit */}
           <div className="space-y-1">
             <div className="flex justify-between text-[11px] text-[#5D4037]">
-              <span>సంచార పురోగతి (Transit Progress): {activePlanet.progressPercent}%</span>
-              <span>{Math.floor(activePlanet.daysElapsed)} / {activePlanet.durationDays} రోజులు</span>
+              <span>{isEn ? `Transit Progress: ${activePlanet.progressPercent}%` : `సంచార పురోగతి (Transit Progress): ${activePlanet.progressPercent}%`}</span>
+              <span>{Math.floor(activePlanet.daysElapsed)} / {activePlanet.durationDays} {isEn ? 'days' : 'రోజులు'}</span>
             </div>
             <div className="w-full h-2.5 rounded-full bg-[#E8DCC4] overflow-hidden">
               <div 
@@ -700,10 +796,14 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <div className="flex items-center justify-between border-b border-[#E8DCC4] pb-2">
               <h5 className="text-sm font-bold text-[#7B1113] font-telugu-serif flex items-center gap-2">
                 <span>✨</span>
-                <span>{activePlanet.rasiNameTe} రాశిలో {activePlanet.meta.nameTe} గోచార ప్రభావము &amp; ఫలితాలు:</span>
+                <span>
+                  {isEn 
+                    ? `Transit Influence & Effects of ${activePlanet.meta.nameEn} in ${activePlanet.rasiNameEn}:`
+                    : `${activePlanet.rasiNameTe} రాశిలో ${activePlanet.meta.nameTe} గోచార ప్రభావము & ఫలితాలు:`}
+                </span>
               </h5>
               <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] font-bold">
-                {activePlanet.dignityLabelTe}
+                {getDignityLabel(activePlanet.dignity, isEn, activePlanet.dignityLabelTe)}
               </span>
             </div>
 
@@ -716,7 +816,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               <div className="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200 space-y-1">
                 <span className="font-bold text-emerald-800 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>శుభ ఫలితాలు (Positive Gains)</span>
+                  <span>{isEn ? 'Positive Gains & Influences' : 'శుభ ఫలితాలు (Positive Gains)'}</span>
                 </span>
                 <p className="text-emerald-950 text-[11px] leading-relaxed">
                   {activePlanet.effect.positiveTe}
@@ -727,7 +827,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200 space-y-1">
                 <span className="font-bold text-amber-800 flex items-center gap-1.5">
                   <AlertCircle className="w-4 h-4 text-amber-600" />
-                  <span>జాగ్రత్తలు (Precautions)</span>
+                  <span>{isEn ? 'Precautions & Caution' : 'జాగ్రత్తలు (Precautions)'}</span>
                 </span>
                 <p className="text-amber-950 text-[11px] leading-relaxed">
                   {activePlanet.effect.challengesTe}
@@ -738,7 +838,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               <div className="p-3 rounded-xl bg-purple-50/80 border border-purple-200 space-y-1">
                 <span className="font-bold text-purple-800 flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-purple-600" />
-                  <span>ఆధ్యాత్మిక పరిహారము / వేదాంత సాధన</span>
+                  <span>{isEn ? 'Spiritual Remedy & Sadhana' : 'ఆధ్యాత్మిక పరిహారము / వేదాంత సాధన'}</span>
                 </span>
                 <p className="text-purple-950 text-[11px] leading-relaxed">
                   {activePlanet.effect.remedyTe}
@@ -757,13 +857,15 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               <span className="text-3xl">{activeRasi.rasi.symbol}</span>
               <div>
                 <h4 className="text-lg font-bold text-[#7B1113] font-telugu-serif flex items-center gap-2">
-                  <span>{activeRasi.rasi.nameTe} రాశి ({activeRasi.rasi.nameEn})</span>
+                  <span>{isEn ? `${activeRasi.rasi.nameEn} (${activeRasi.rasi.nameTe})` : `${activeRasi.rasi.nameTe} రాశి (${activeRasi.rasi.nameEn})`}</span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] font-bold">
-                    అధిపతి: {activeRasi.rasi.lordTe}
+                    {isEn ? `Lord: ${RASI_DETAILS_EN[activeRasi.rasi.index]?.lord || activeRasi.rasi.lordTe}` : `అధిపతి: ${activeRasi.rasi.lordTe}`}
                   </span>
                 </h4>
                 <p className="text-xs text-[#5D4037]">
-                  తత్వం: {activeRasi.rasi.elementTe} • స్వభావం: {activeRasi.rasi.qualityTe} • స్థానం: {activeRasi.rasi.index + 1}
+                  {isEn 
+                    ? `Element: ${RASI_DETAILS_EN[activeRasi.rasi.index]?.element || activeRasi.rasi.elementTe} • House: ${activeRasi.rasi.index + 1}`
+                    : `తత్వం: ${activeRasi.rasi.elementTe} • స్వభావం: ${activeRasi.rasi.qualityTe} • స్థానం: ${activeRasi.rasi.index + 1}`}
                 </p>
               </div>
             </div>
@@ -772,14 +874,20 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               onClick={() => setSelectedRasiIndex(null)}
               className="text-xs text-[#7B1113] hover:underline font-semibold cursor-pointer"
             >
-              ✕ మూసివేయి
+              {isEn ? '✕ Close' : '✕ మూసివేయి'}
             </button>
           </div>
 
           <div className="text-xs space-y-2">
-            <span className="font-bold text-[#7B1113]">ప్రస్తుతం ఈ రాశిలో సంచరిస్తున్న గ్రహాలు ({activeRasi.planets.length}):</span>
+            <span className="font-bold text-[#7B1113]">
+              {isEn 
+                ? `Planets currently transiting in this sign (${activeRasi.planets.length}):` 
+                : `ప్రస్తుతం ఈ రాశిలో సంచరిస్తున్న గ్రహాలు (${activeRasi.planets.length}):`}
+            </span>
             {activeRasi.planets.length === 0 ? (
-              <p className="text-stone-500 italic">ప్రస్తుతం ఈ రాశిలో ఏ గ్రహాలూ సంచరించడం లేదు (ఖాళీ రాశి).</p>
+              <p className="text-stone-500 italic">
+                {isEn ? 'No planets are currently transiting in this sign (Empty Sign).' : 'ప్రస్తుతం ఈ రాశిలో ఏ గ్రహాలూ సంచరించడం లేదు (ఖాళీ రాశి).'}
+              </p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 {activeRasi.planets.map(p => (
@@ -787,13 +895,19 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                     <div className="flex items-center gap-2">
                       <span className="text-lg">{p.meta.symbol}</span>
                       <div>
-                        <strong className="text-[#7B1113] block">{p.meta.nameTe}</strong>
-                        <span className="text-[10px] text-stone-500">{p.nakshatraNameTe} {p.nakshatraPada}వ పాదం</span>
+                        <strong className="text-[#7B1113] block">
+                          {isEn ? p.meta.nameEn : p.meta.nameTe}
+                        </strong>
+                        <span className="text-[10px] text-stone-500">
+                          {isEn ? `${p.nakshatraNameEn} Pada ${p.nakshatraPada}` : `${p.nakshatraNameTe} ${p.nakshatraPada}వ పాదం`}
+                        </span>
                       </div>
                     </div>
                     <div className="text-right">
                       <span className="text-xs font-bold text-[#D84315] block">{p.degreeFormatted}</span>
-                      <span className="text-[10px] text-emerald-700 font-semibold">{p.dignityLabelTe}</span>
+                      <span className="text-[10px] text-emerald-700 font-semibold">
+                        {getDignityLabel(p.dignity, isEn, p.dignityLabelTe)}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -809,10 +923,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           <div className="space-y-0.5">
             <h4 className="text-lg sm:text-xl font-bold text-[#7B1113] font-telugu-serif flex items-center gap-2">
               <Layers className="w-5 h-5 text-[#D84315]" />
-              <span>సమగ్ర గ్రహ గోచార సంచార కాలములు &amp; సంక్రమణ వివరాల పట్టిక</span>
+              <span>
+                {isEn 
+                  ? 'Planetary Transit Schedule & Ingress Timings Table' 
+                  : 'సమగ్ర గ్రహ గోచార సంచార కాలములు & సంక్రమణ వివరాల పట్టిక'}
+              </span>
             </h4>
             <p className="text-xs text-[#5D4037]">
-              ప్రతి గ్రహం ప్రస్తుత రాశిలోకి ప్రవేశించిన తేదీ (Start Date), నిష్క్రమించే తేదీ (End Date), మొత్తం వ్యవధి మరియు తదుపరి రాశి.
+              {isEn
+                ? 'Entry date (Start Date), exit date (End Date), total transit duration, and next sign transition for each of the 9 planets.'
+                : 'ప్రతి గ్రహం ప్రస్తుత రాశిలోకి ప్రవేశించిన తేదీ (Start Date), నిష్క్రమించే తేదీ (End Date), మొత్తం వ్యవధి మరియు తదుపరి రాశి.'}
             </p>
           </div>
 
@@ -826,7 +946,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   : 'text-[#5D4037] hover:bg-[#FFE082]/40'
               }`}
             >
-              అన్నీ (9 గ్రహాలు)
+              {isEn ? 'All (9 Planets)' : 'అన్నీ (9 గ్రహాలు)'}
             </button>
             <button
               onClick={() => setFilterType('slow')}
@@ -836,7 +956,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   : 'text-[#5D4037] hover:bg-[#FFE082]/40'
               }`}
             >
-              నెమ్మదిగా తిరిగేవి (శని, గురు, రాహు, కేతు)
+              {isEn ? 'Slow Moving (Saturn, Jupiter, Rahu, Ketu)' : 'నెమ్మదిగా తిరిగేవి (శని, గురు, రాహు, కేతు)'}
             </button>
             <button
               onClick={() => setFilterType('fast')}
@@ -846,7 +966,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   : 'text-[#5D4037] hover:bg-[#FFE082]/40'
               }`}
             >
-              శీఘ్ర గ్రహాలు
+              {isEn ? 'Fast Moving Planets' : 'శీఘ్ర గ్రహాలు'}
             </button>
           </div>
         </div>
@@ -856,21 +976,21 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#4A0012] text-[#FFE082]">
-                <th className="p-3 font-bold border-r border-[#D4AF37]/30">గ్రహం (Planet)</th>
-                <th className="p-3 font-bold border-r border-[#D4AF37]/30">ప్రస్తుత రాశి &amp; డిగ్రీ</th>
-                <th className="p-3 font-bold border-r border-[#D4AF37]/30">నక్షత్రము &amp; పాదం</th>
+                <th className="p-3 font-bold border-r border-[#D4AF37]/30">{isEn ? 'Planet' : 'గ్రహం (Planet)'}</th>
+                <th className="p-3 font-bold border-r border-[#D4AF37]/30">{isEn ? 'Current Sign & Degree' : 'ప్రస్తుత రాశి & డిగ్రీ'}</th>
+                <th className="p-3 font-bold border-r border-[#D4AF37]/30">{isEn ? 'Nakshatra & Pada' : 'నక్షత్రము & పాదం'}</th>
                 <th className="p-3 font-bold border-r border-[#D4AF37]/30 text-emerald-300">
-                  రాశి ప్రవేశం (Start Date)
+                  {isEn ? 'Transit Entry (Start Date)' : 'రాశి ప్రవేశం (Start Date)'}
                 </th>
                 <th className="p-3 font-bold border-r border-[#D4AF37]/30 text-rose-300">
-                  రాశి నిష్క్రమణ (End Date)
+                  {isEn ? 'Transit Exit (End Date)' : 'రాశి నిష్క్రమణ (End Date)'}
                 </th>
-                <th className="p-3 font-bold border-r border-[#D4AF37]/30">మొత్తం వ్యవధి</th>
-                <th className="p-3 font-bold border-r border-[#D4AF37]/30">సంచార పురోగతి</th>
+                <th className="p-3 font-bold border-r border-[#D4AF37]/30">{isEn ? 'Total Duration' : 'మొత్తం వ్యవధి'}</th>
+                <th className="p-3 font-bold border-r border-[#D4AF37]/30">{isEn ? 'Transit Progress' : 'సంచార పురోగతి'}</th>
                 <th className="p-3 font-bold border-r border-[#D4AF37]/30 min-w-[240px]">
-                  ఈ రాశిలో సంచార ప్రభావము (Transit Effect)
+                  {isEn ? 'Transit Effect & Overview' : 'ఈ రాశిలో సంచార ప్రభావము (Transit Effect)'}
                 </th>
-                <th className="p-3 font-bold">తదుపరి రాశి (Next Transition)</th>
+                <th className="p-3 font-bold">{isEn ? 'Next Transition' : 'తదుపరి రాశి (Next Transition)'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#E8DCC4]">
@@ -891,14 +1011,14 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                           <span className="text-xl">{p.meta.symbol}</span>
                           <div>
                             <div className="font-bold text-[#7B1113] flex items-center gap-1">
-                              <span>{p.meta.nameTe}</span>
+                              <span>{isEn ? p.meta.nameEn : p.meta.nameTe}</span>
                               {p.isRetrograde && (
                                 <span className="px-1.5 py-0.2 rounded-full bg-red-100 text-red-700 text-[9px] font-bold">
-                                  వ
+                                  {isEn ? 'R' : 'వ'}
                                 </span>
                               )}
                             </div>
-                            <span className="text-[10px] text-[#5D4037]">{p.meta.nameEn}</span>
+                            <span className="text-[10px] text-[#5D4037]">{isEn ? p.meta.nameTe : p.meta.nameEn}</span>
                           </div>
                         </div>
                       </td>
@@ -906,10 +1026,12 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                       {/* Current Rasi & Degree */}
                       <td className="p-3 border-r border-[#E8DCC4]">
                         <div className="space-y-0.5">
-                          <span className="font-bold text-[#2C1810] block">{p.rasiNameTe} రాశి</span>
+                          <span className="font-bold text-[#2C1810] block">
+                            {isEn ? p.rasiNameEn : `${p.rasiNameTe} రాశి`}
+                          </span>
                           <span className="text-[11px] text-[#D84315] font-semibold block">{p.degreeFormatted}</span>
                           <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-[#FAF7F0] border border-[#D4AF37]/40 text-[#7B1113] inline-block">
-                            {p.dignityLabelTe}
+                            {getDignityLabel(p.dignity, isEn, p.dignityLabelTe)}
                           </span>
                         </div>
                       </td>
@@ -917,8 +1039,12 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                       {/* Nakshatra & Pada */}
                       <td className="p-3 border-r border-[#E8DCC4]">
                         <div className="space-y-0.5">
-                          <span className="font-semibold text-[#2C1810] block">{p.nakshatraNameTe}</span>
-                          <span className="text-[10px] text-[#5D4037] block">{p.nakshatraPada}వ పాదం</span>
+                          <span className="font-semibold text-[#2C1810] block">
+                            {isEn ? p.nakshatraNameEn : p.nakshatraNameTe}
+                          </span>
+                          <span className="text-[10px] text-[#5D4037] block">
+                            {isEn ? `Pada ${p.nakshatraPada}` : `${p.nakshatraPada}వ పాదం`}
+                          </span>
                         </div>
                       </td>
 
@@ -929,7 +1055,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                             {formatDateShort(p.entryDate)}
                           </span>
                           <span className="text-[10px] text-emerald-700 block">
-                            {Math.floor(p.daysElapsed)} రోజుల క్రితం
+                            {isEn ? `${Math.floor(p.daysElapsed)} days ago` : `${Math.floor(p.daysElapsed)} రోజుల క్రితం`}
                           </span>
                         </div>
                       </td>
@@ -941,7 +1067,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                             {formatDateShort(p.exitDate)}
                           </span>
                           <span className="text-[10px] text-rose-700 font-semibold block">
-                            ఇంకా {Math.ceil(p.daysRemaining)} రోజులు
+                            {isEn ? `${Math.ceil(p.daysRemaining)} days left` : `ఇంకా ${Math.ceil(p.daysRemaining)} రోజులు`}
                           </span>
                         </div>
                       </td>
@@ -950,10 +1076,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                       <td className="p-3 border-r border-[#E8DCC4]">
                         <div className="space-y-0.5">
                           <span className="font-bold text-[#7B1113] block">
-                            {p.durationDays} రోజులు
+                            {isEn ? `${p.durationDays} days` : `${p.durationDays} రోజులు`}
                           </span>
                           <span className="text-[10px] text-[#5D4037] block">
-                            {formatDurationHuman(p.durationDays)}
+                            {isEn ? formatDurationHumanEn(p.durationDays) : formatDurationHuman(p.durationDays)}
                           </span>
                         </div>
                       </td>
@@ -988,7 +1114,11 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                             }}
                             className="inline-flex items-center gap-1 text-[10px] font-bold text-[#D84315] hover:text-[#7B1113] bg-[#FFF8E1] hover:bg-[#FFE082]/40 px-2 py-0.5 rounded-md border border-[#D4AF37]/50 transition-colors cursor-pointer"
                           >
-                            <span>{isExpanded ? 'వివరాలు దాచు' : 'సమగ్ర ఫలితాలు & పరిహారము'}</span>
+                            <span>
+                              {isExpanded 
+                                ? (isEn ? 'Hide Details' : 'వివరాలు దాచు') 
+                                : (isEn ? 'Full Effects & Remedies' : 'సమగ్ర ఫలితాలు & పరిహారము')}
+                            </span>
                             {isExpanded ? (
                               <ChevronUp className="w-3 h-3" />
                             ) : (
@@ -1002,11 +1132,11 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                       <td className="p-3">
                         <div className="space-y-0.5">
                           <span className="font-bold text-[#D84315] flex items-center gap-1">
-                            <span>{p.nextRasiNameTe} రాశి</span>
+                            <span>{isEn ? `${p.nextRasiNameEn} Sign` : `${p.nextRasiNameTe} రాశి`}</span>
                             <ArrowRight className="w-3 h-3" />
                           </span>
                           <span className="text-[10px] text-[#5D4037] block">
-                            తేదీ: {formatDateShort(p.exitDate)}
+                            {isEn ? `Date: ${formatDateShort(p.exitDate)}` : `తేదీ: ${formatDateShort(p.exitDate)}`}
                           </span>
                         </div>
                       </td>
@@ -1020,18 +1150,22 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                             <div className="flex flex-wrap items-center justify-between border-b border-[#E8DCC4] pb-2.5 gap-2">
                               <h5 className="font-bold text-[#7B1113] text-xs sm:text-sm font-telugu-serif flex items-center gap-2">
                                 <span className="text-xl">{p.meta.symbol}</span>
-                                <span>{p.rasiNameTe} రాశిలో {p.meta.nameTe} సమగ్ర సంచార ఫలితాలు &amp; ప్రభావ విశ్లేషణ</span>
+                                <span>
+                                  {isEn 
+                                    ? `Detailed Transit Results & Influence Analysis of ${p.meta.nameEn} in ${p.rasiNameEn}` 
+                                    : `${p.rasiNameTe} రాశిలో ${p.meta.nameTe} సమగ్ర సంచార ఫలితాలు & ప్రభావ విశ్లేషణ`}
+                                </span>
                               </h5>
                               <div className="flex items-center gap-2">
                                 <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] font-bold">
-                                  {p.dignityLabelTe}
+                                  {getDignityLabel(p.dignity, isEn, p.dignityLabelTe)}
                                 </span>
                                 <button
                                   type="button"
                                   onClick={() => setExpandedPlanetKey(null)}
                                   className="text-[11px] text-[#7B1113] font-semibold hover:underline cursor-pointer"
                                 >
-                                  ✕ తగ్గించు
+                                  {isEn ? '✕ Collapse' : '✕ తగ్గించు'}
                                 </button>
                               </div>
                             </div>
@@ -1045,7 +1179,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                               <div className="p-3 rounded-xl bg-emerald-50/90 border border-emerald-300 space-y-1">
                                 <span className="font-bold text-emerald-800 flex items-center gap-1.5">
                                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                                  <span>శుభ ఫలితాలు (Positive Influences)</span>
+                                  <span>{isEn ? 'Positive Influences' : 'శుభ ఫలితాలు (Positive Influences)'}</span>
                                 </span>
                                 <p className="text-emerald-950 text-[11px] leading-relaxed">
                                   {p.effect.positiveTe}
@@ -1056,7 +1190,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                               <div className="p-3 rounded-xl bg-amber-50/90 border border-amber-300 space-y-1">
                                 <span className="font-bold text-amber-800 flex items-center gap-1.5">
                                   <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                                  <span>అశుభాలు &amp; జాగ్రత్తలు (Precautions)</span>
+                                  <span>{isEn ? 'Precautions & Challenges' : 'అశుభాలు & జాగ్రత్తలు (Precautions)'}</span>
                                 </span>
                                 <p className="text-amber-950 text-[11px] leading-relaxed">
                                   {p.effect.challengesTe}
@@ -1067,7 +1201,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                               <div className="p-3 rounded-xl bg-purple-50/90 border border-purple-300 space-y-1">
                                 <span className="font-bold text-purple-800 flex items-center gap-1.5">
                                   <Sparkles className="w-4 h-4 text-purple-600 shrink-0" />
-                                  <span>ఆధ్యాత్మిక పరిహారము &amp; వేదాంత సాధన</span>
+                                  <span>{isEn ? 'Spiritual Remedy & Vedanta Practice' : 'ఆధ్యాత్మిక పరిహారము & వేదాంత సాధన'}</span>
                                 </span>
                                 <p className="text-purple-950 text-[11px] leading-relaxed">
                                   {p.effect.remedyTe}
@@ -1090,11 +1224,23 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
       <div className="rounded-2xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#FFFDF7] to-[#FAF7F0] p-5 space-y-3 shadow-xs">
         <div className="flex items-center gap-2 text-[#7B1113] font-bold font-telugu-serif text-sm">
           <Info className="w-4 h-4 text-[#D84315]" />
-          <span>శ్రీశ్రీశ్రీ ఆచార్య ప్రబోధానంద యోగీశ్వరుల “జ్యోతిష్య శాస్త్రము” ఆధారిత గోచార జ్ఞానం:</span>
+          <span>
+            {isEn 
+              ? 'Transit Wisdom based on Sri Sri Sri Acharya Prabodhananda Yogeeshwarulu\'s "Jyotishya Shastram":' 
+              : 'శ్రీశ్రీశ్రీ ఆచార్య ప్రబోధానంద యోగీశ్వరుల “జ్యోతిష్య శాస్త్రము” ఆధారిత గోచార జ్ఞానం:'}
+          </span>
         </div>
         <p className="text-xs text-[#5D4037] leading-relaxed">
-          సాధారణ జ్యోతిష్యులు రాశి చక్రంలో గ్రహాల మార్పులను బాహ్య భవిష్యత్తుగా చూస్తారు. కానీ నిజమైన ఆధ్యాత్మిక జ్యోతిష్య రహస్యం ప్రకారం: 
-          మనిషి తలలోని <strong>కాలచక్రము (2వ చక్రము)</strong> లో 12 లగ్నాలు మరియు వాటిలో తిరిగే 12 గ్రహాలు ఉంటాయి. అవి ఫోకస్ లైట్ల వలె కిరణాలను క్రింది <strong>కర్మచక్రము (3వ చక్రము - 12 రాశులు)</strong> గుండా ప్రసరింపజేసి, సంచిత-ప్రారబ్ధ కర్మలను గుణచక్రంపై తెరపై వలె చూపిస్తాయి. గ్రహ సంచారాల వలన కలిగే శుభాశుభాలను ఆత్మజ్ఞానముతో తెలుసుకొని, కర్మల చక్రం నుండి మోక్షమును పొందడమే జ్యోతిష్య శాస్త్ర పరమావధి.
+          {isEn ? (
+            <>
+              Conventional astrologers view planetary shifts in the zodiac merely as external fortunes or misfortunes. However, according to the authentic spiritual science of Jyotishya: The human head contains the <strong>Kala Chakra (2nd Chakra)</strong> with 12 Lagnas and 12 internal Grahas. Like focus lamps, they project light through the <strong>Karma Chakra (3rd Chakra - 12 Rasis)</strong>, casting stored Sanchita-Prarabdha karmas onto the screen of the Guna Chakra. Recognizing these transit patterns through Self-knowledge and transcending the karmic wheel is the ultimate purpose of Jyotishya.
+            </>
+          ) : (
+            <>
+              సాధారణ జ్యోతిష్యులు రాశి చక్రంలో గ్రహాల మార్పులను బాహ్య భవిష్యత్తుగా చూస్తారు. కానీ నిజమైన ఆధ్యాత్మిక జ్యోతిష్య రహస్యం ప్రకారం: 
+              మనిషి తలలోని <strong>కాలచక్రము (2వ చక్రము)</strong> లో 12 లగ్నాలు మరియు వాటిలో తిరిగే 12 గ్రహాలు ఉంటాయి. అవి ఫోకస్ లైట్ల వలె కిరణాలను క్రింది <strong>కర్మచక్రము (3వ చక్రము - 12 రాశులు)</strong> గుండా ప్రసరింపజేసి, సంచిత-ప్రారబ్ధ కర్మలను గుణచక్రంపై తెరపై వలె చూపిస్తాయి. గ్రహ సంచారాల వలన కలిగే శుభాశుభాలను ఆత్మజ్ఞానముతో తెలుసుకొని, కర్మల చక్రం నుండి మోక్షమును పొందడమే జ్యోతిష్య శాస్త్ర పరమావధి.
+            </>
+          )}
         </p>
       </div>
     </div>
@@ -1109,11 +1255,13 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <div className="flex items-center gap-2">
               <span className="text-2xl">🪐</span>
               <h3 className="text-xl sm:text-2xl font-bold text-[#7B1113] font-telugu-serif tracking-tight">
-                దక్షిణ భారత రాశి చక్రం &amp; సజీవ గ్రహ గోచార సంచార దర్శిని
+                {isEn ? 'South Indian Rasi Chart & Live Planetary Transit Observatory' : 'దక్షిణ భారత రాశి చక్రం & సజీవ గ్రహ గోచార సంచార దర్శిని'}
               </h3>
             </div>
             <p className="text-xs sm:text-sm text-[#5D4037] max-w-3xl leading-relaxed">
-              జ్యోతిష్య శాస్త్రంలో కాలచక్రంలోని 12 గ్రహాలు (ఫోకస్ లైట్లు) ప్రస్తుతం ఏ రాశుల్లో సంచరిస్తున్నాయో, వాటి ప్రవేశ-నిష్క్రమణ తేదీలు (Start &amp; End Dates) మరియు సంక్రమణ వ్యవధిని క్రింది దక్షిణ భారత చక్రంలో ప్రత్యక్షంగా వీక్షించవచ్చు.
+              {isEn
+                ? 'Observe real-time positions of the 12 internal Grahas (focus lights) transiting through the 12 signs of the Karma Chakra, along with ingress & egress dates and transit durations in the traditional South Indian format.'
+                : 'జ్యోతిష్య శాస్త్రంలో కాలచక్రంలోని 12 గ్రహాలు (ఫోకస్ లైట్లు) ప్రస్తుతం ఏ రాశుల్లో సంచరిస్తున్నాయో, వాటి ప్రవేశ-నిష్క్రమణ తేదీలు (Start & End Dates) మరియు సంక్రమణ వ్యవధిని క్రింది దక్షిణ భారత చక్రంలో ప్రత్యక్షంగా వీక్షించవచ్చు.'}
             </p>
           </div>
 
@@ -1121,10 +1269,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <button
               onClick={handleResetToday}
               className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#7B1113] to-[#D84315] text-[#FFE082] text-xs font-bold hover:brightness-110 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer whitespace-nowrap"
-              title="నేటి గోచారానికి పునరుద్ధరించు"
+              title={isEn ? "Reset to Today's Transit" : "నేటి గోచారానికి పునరుద్ధరించు"}
             >
               <RefreshCw className="w-3.5 h-3.5" />
-              <span>నేటి గోచారం (Live Today)</span>
+              <span>{isEn ? 'Live Today' : 'నేటి గోచారం (Live Today)'}</span>
             </button>
           </div>
         </div>
@@ -1141,7 +1289,14 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
     const planetsInHouse = house.planets;
     const isRasiSelected = selectedRasiIndex === rasi.index;
 
-    // Element styling
+    // Element styling & label
+    const elementLabel = isEn 
+      ? (RASI_DETAILS_EN[rasi.index]?.element || rasi.elementTe)
+      : rasi.elementTe;
+    const rasiLord = isEn
+      ? (RASI_DETAILS_EN[rasi.index]?.lord || rasi.lordTe)
+      : rasi.lordTe;
+
     let elementBadgeColor = 'bg-stone-200 text-stone-800';
     if (rasi.elementTe === 'అగ్ని') elementBadgeColor = 'bg-red-500/20 text-red-300 border-red-500/40';
     else if (rasi.elementTe === 'పృథ్వి') elementBadgeColor = 'bg-amber-500/20 text-amber-300 border-amber-500/40';
@@ -1178,7 +1333,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
               <span className={`font-bold text-[#FFE082] font-telugu-serif ${
                 chartSize === 'fit' ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'
               }`}>
-                {rasi.nameTe}
+                {isEn ? rasi.nameEn : rasi.nameTe}
               </span>
               <span className={`text-[#FFD54F] ${
                 chartSize === 'fit' ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'
@@ -1189,14 +1344,14 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <span className={`text-stone-400 block leading-tight ${
               chartSize === 'fit' ? 'text-[7.5px] sm:text-[8.5px]' : 'text-[9px]'
             }`}>
-              {rasi.nameEn} • {rasi.lordTe}
+              {isEn ? `${rasi.nameTe} • ${rasiLord}` : `${rasi.nameEn} • ${rasiLord}`}
             </span>
           </div>
 
           <span className={`rounded-md border font-semibold ${elementBadgeColor} ${
             chartSize === 'fit' ? 'text-[7px] sm:text-[8px] px-1 py-0' : 'text-[8px] sm:text-[9px] px-1 sm:px-1.5 py-0.5'
           }`}>
-            {rasi.elementTe}
+            {elementLabel}
           </span>
         </div>
 
@@ -1208,11 +1363,15 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
             <div className={`h-full flex items-center justify-center py-1 opacity-30 text-stone-400 italic ${
               chartSize === 'fit' ? 'text-[8px] sm:text-[9px]' : 'text-[10px]'
             }`}>
-              గ్రహాలు లేవు
+              {isEn ? 'No planets' : 'గ్రహాలు లేవు'}
             </div>
           ) : (
             planetsInHouse.map(p => {
               const isPlanetSelected = selectedPlanetKey === p.key;
+              const planetName = isEn ? p.meta.nameEn.split(' ')[0] : p.meta.nameTe.split(' ')[0];
+              const nakshatraLabel = isEn 
+                ? `${p.nakshatraNameEn} P${p.nakshatraPada}` 
+                : `${p.nakshatraNameTe} ${p.nakshatraPada}వ`;
               return (
                 <div
                   key={p.key}
@@ -1227,7 +1386,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                       ? 'bg-[#FFE082] text-[#4A0012] border-white font-bold ring-1 ring-white'
                       : 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
                   }`}
-                  title={`${p.meta.nameTe} (${p.degreeFormatted}) - ${p.nakshatraNameTe} ${p.nakshatraPada}వ పాదం`}
+                  title={isEn 
+                    ? `${p.meta.nameEn} (${p.degreeFormatted}) - ${p.nakshatraNameEn} Pada ${p.nakshatraPada}` 
+                    : `${p.meta.nameTe} (${p.degreeFormatted}) - ${p.nakshatraNameTe} ${p.nakshatraPada}వ పాదం`}
                 >
                   <div className="flex items-center justify-between gap-1">
                     <span className={`flex items-center gap-0.5 sm:gap-1 font-bold ${
@@ -1235,10 +1396,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                     }`}>
                       <span>{p.meta.symbol}</span>
                       <span className={isPlanetSelected ? 'text-[#4A0012]' : 'text-[#FFE082]'}>
-                        {p.meta.nameTe.split(' ')[0]}
+                        {planetName}
                       </span>
                       {p.isRetrograde && (
-                        <span className="text-[7px] sm:text-[8px] text-red-400 font-extrabold">(వ)</span>
+                        <span className="text-[7px] sm:text-[8px] text-red-400 font-extrabold">{isEn ? '(R)' : '(వ)'}</span>
                       )}
                     </span>
                     <span className={`text-stone-300 font-mono ${
@@ -1251,10 +1412,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                   <div className={`flex items-center justify-between text-stone-300 opacity-90 ${
                     chartSize === 'fit' ? 'text-[7px] sm:text-[8px] mt-0' : 'text-[8px] sm:text-[9px] mt-0.5'
                   }`}>
-                    <span className="truncate max-w-[60px] sm:max-w-[75px]">{p.nakshatraNameTe} {p.nakshatraPada}</span>
-                    {p.dignity === 'exalted' && <span className="text-emerald-400 font-bold">ఉచ్ఛ</span>}
-                    {p.dignity === 'own' && <span className="text-amber-300 font-bold">స్వ</span>}
-                    {p.dignity === 'debilitated' && <span className="text-rose-400 font-bold">నీచ</span>}
+                    <span className="truncate max-w-[60px] sm:max-w-[75px]">{nakshatraLabel}</span>
+                    {p.dignity === 'exalted' && <span className="text-emerald-400 font-bold">{isEn ? 'Exalt' : 'ఉచ్ఛ'}</span>}
+                    {p.dignity === 'own' && <span className="text-amber-300 font-bold">{isEn ? 'Own' : 'స్వ'}</span>}
+                    {p.dignity === 'debilitated' && <span className="text-rose-400 font-bold">{isEn ? 'Debil' : 'నీచ'}</span>}
                   </div>
                 </div>
               );
@@ -1266,10 +1427,10 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
         <div className={`pt-0.5 border-t border-white/5 flex items-center justify-between text-stone-400 ${
           chartSize === 'fit' ? 'text-[7px] sm:text-[8px]' : 'text-[8px]'
         }`}>
-          <span>స్థానం: {rasi.index + 1}</span>
+          <span>{isEn ? `House: ${rasi.index + 1}` : `స్థానం: ${rasi.index + 1}`}</span>
           {planetsInHouse.length > 0 && (
             <span className="text-[#FFD54F] font-bold">
-              {planetsInHouse.length} {planetsInHouse.length === 1 ? 'గ్రహం' : 'గ్రహాలు'}
+              {planetsInHouse.length} {isEn ? (planetsInHouse.length === 1 ? 'Planet' : 'Planets') : (planetsInHouse.length === 1 ? 'గ్రహం' : 'గ్రహాలు')}
             </span>
           )}
         </div>
