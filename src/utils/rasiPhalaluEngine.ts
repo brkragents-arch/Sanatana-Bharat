@@ -1,11 +1,13 @@
 // ============================================================================
 // COMBINED PLANETARY RASI PHALALU ENGINE (సంయుక్త గోచార వార/దిన ఫలాలు)
 // Calculates Positive, Precaution, and Remedy predictions for all 12 Rasis
-// based on combined real-time sidereal planetary positions.
+// based on combined real-time sidereal planetary positions, distinct for Weekly & Daily.
 // ============================================================================
 
 import type { CompletePlanetInfo, RasiDef } from './planetaryEngine';
 import { RASIS_DATA } from './planetaryEngine';
+
+export type PredictionMode = 'weekly' | 'daily';
 
 export interface RasiPrediction {
   rasi: RasiDef;
@@ -18,6 +20,7 @@ export interface RasiPrediction {
   favorabilityScore: number; // 0 to 100%
   statusBadgeTe: string; // 'అత్యంత అనుకూలం' | 'అనుకూలం' | 'మధ్యస్థం' | 'జాగ్రత్త'
   keyHighlights: string; // సంక్షిప్త గోచార ప్రభావం
+  isChandrashtama?: boolean;
 }
 
 // Auspicious transit houses for each planet in Vedic Astrology (గోచార శుభ స్థానాలు)
@@ -33,27 +36,93 @@ const BENEFIC_HOUSES: Record<string, number[]> = {
   ketu: [3, 6, 9, 11]
 };
 
-// House names in Vedic Astrology
-export const HOUSE_NAMES_TE: Record<number, string> = {
-  1: 'జన్మ రాశి (తను భావం)',
-  2: 'ధన-కుటుంబ స్థానం',
-  3: 'భ్రాతృ-పరాక్రమ స్థానం',
-  4: 'మాతృ-సుఖ స్థానం',
-  5: 'సంతాన-విద్యా స్థానం',
-  6: 'శత్రు-రోగ నివారణ స్థానం',
-  7: 'కళత్ర-భాగస్వామ్య స్థానం',
-  8: 'ఆయుష్షు-పరివర్తన స్థానం',
-  9: 'భాగ్య-ధర్మ స్థానం',
-  10: 'రాజ్య-కర్మ స్థానం',
-  11: 'లాభ-సౌభాగ్య స్థానం',
-  12: 'వ్యయ-మోక్ష స్థానం'
+// Day Lord metadata for Day Predictions
+const DAY_LORDS: { nameTe: string; lordTe: string; remedyTe: string }[] = [
+  { nameTe: 'ఆదివారం', lordTe: 'రవి (సూర్యుడు)', remedyTe: 'సూర్యోదయ సమయంలో గాయత్రి మంత్ర జపం లేదా ఆదిత్య హృదయ స్తోత్ర పారాయణ.' },
+  { nameTe: 'సోమవారం', lordTe: 'చంద్రుడు', remedyTe: 'శివార్చన లేదా ఓం నమఃశివాయ జపం, పేదలకు అన్నదానం.' },
+  { nameTe: 'మంగళవారం', lordTe: 'కుజుడు (అంగారకుడు)', remedyTe: 'హనుమాన్ చాలీసా లేదా సుబ్రహ్మణ్యాష్టకం పఠనం, నెయ్యితో దీపారాధన.' },
+  { nameTe: 'బుధవారం', lordTe: 'బుధుడు', remedyTe: 'శ్రీ విష్ణు సహస్రనామ స్తోత్ర పారాయణ, గోవులకు పచ్చిగడ్డి తినిపించడం.' },
+  { nameTe: 'గురువారం', lordTe: 'గురువు (బృహస్పతి)', remedyTe: 'దక్షిణామూర్తి స్తోత్రం లేదా గురు చరిత్ర పారాయణ, పెద్దల ఆశీస్సులు.' },
+  { nameTe: 'శుక్రవారం', lordTe: 'శుక్రుడు', remedyTe: 'శ్రీ లక్ష్మీ అష్టోత్తరం లేదా కనకధారా స్తోత్ర పఠనం, శ్వేత పుష్పాలతో పూజ.' },
+  { nameTe: 'శనివారం', lordTe: 'శనైశ్చరుడు', remedyTe: 'హనుమాన్ ఆరాధన, నువ్వుల నూనెతో దీపారాధన, నవగ్రహ ఆలయ ప్రదక్షిణలు.' }
+];
+
+// Moon house daily significance in Vedic Astrology
+const MOON_HOUSE_DAILY: Record<number, { pos: string; prec: string; scoreBoost: number }> = {
+  1: {
+    pos: 'నేడు జన్మ చంద్రుని వల్ల నూతన ఆలోచనలు, ఉల్లాసం, ఆత్మగౌరవం పెరుగుతాయి.',
+    prec: 'మానసిక చంచలత్వం, అహంకారం దరిచేరకుండా నిగ్రహం పాటించాలి.',
+    scoreBoost: 5
+  },
+  2: {
+    pos: 'నేడు ధన స్థానంలో చంద్ర సంచారము చేత ఆకస్మిక ధనలాభం, విందువినోదాలు, కుటుంబ సౌఖ్యం.',
+    prec: 'ఆవేశపూరిత ఖర్చులు, కుటుంబీకులతో మాట్లాడేటప్పుడు సంయమనం అవసరం.',
+    scoreBoost: 8
+  },
+  3: {
+    pos: 'నేడు తృతీయ చంద్రుని వల్ల ధైర్యం, కార్యసాధన, తోబుట్టువుల సహకారం లభిస్తుంది.',
+    prec: 'అనవసర ప్రయాణాలలో బడలిక రాకుండా తగిన విశ్రాంతి తీసుకోవాలి.',
+    scoreBoost: 10
+  },
+  4: {
+    pos: 'నేడు చతుర్థ స్థానంలో చంద్రుడు ఉన్నందున గృహ సౌఖ్యం, మాతృ ఆశీస్సులు లభిస్తాయి.',
+    prec: 'అర్ధాష్టమ చంద్ర ప్రభావంతో మనశ్శాంతి లోపించవచ్చు; గృహ చికాకులకు దూరంగా ఉండండి.',
+    scoreBoost: -3
+  },
+  5: {
+    pos: 'నేడు పంచమ చంద్రుని వల్ల మేధోబలం, సృజనాత్మక ఆలోచనలు, విద్యార్థులకు ఏకాగ్రత పెరుగుతాయి.',
+    prec: 'ఊహాజనిత పెట్టుబడులు, తొందరపాటు నిర్ణయాలు చేయకపోవడం మంచిది.',
+    scoreBoost: 7
+  },
+  6: {
+    pos: 'నేడు షష్ఠమ చంద్రుని వల్ల శత్రువులపై పైచేయి, రుణ సమస్యల నివారణ, పోటీ పరీక్షల్లో విజయం.',
+    prec: 'ఆరోగ్యం పట్ల కొద్దిపాటి శ్రద్ధ వహించండి, అజీర్ణ ఆహారాలు మానివేయండి.',
+    scoreBoost: 12
+  },
+  7: {
+    pos: 'నేడు సప్తమ చంద్రుని వల్ల వ్యాపార చర్చలు ఫలిస్తాయి, దాంపత్య అనుబంధం బలపడుతుంది.',
+    prec: 'భాగస్వాములతో అనవసర వాగ్వివాదాలు రాకుండా మృదువుగా వ్యవహరించండి.',
+    scoreBoost: 9
+  },
+  8: {
+    pos: 'నేడు అంతర్ముఖ ఆలోచనలు, వేదాంత సాధన, ఆధ్యాత్మిక ధ్యానానికి అనుకూల సమయం.',
+    prec: '⚠️ నేడు చంద్రాష్టమం! ముఖ్యమైన ఒప్పందాలు, నూతన పనులు, ప్రయాణాలు వాయిదా వేయాలి. వివాదాలకు దూరంగా ఉండండి.',
+    scoreBoost: -18
+  },
+  9: {
+    pos: 'నేడు భాగ్య చంద్రుని వల్ల దైవదర్శనం, పెద్దల ఆశీర్వాదం, పనులలో అదృష్టం తోడవుతుంది.',
+    prec: 'ధర్మకార్యాలకు ఖర్చులు పెరుగుతాయి; సమయాన్ని సద్వినియోగం చేసుకోండి.',
+    scoreBoost: 10
+  },
+  10: {
+    pos: 'నేడు దశమ చంద్రుని వల్ల ఉద్యోగంలో అధికారుల మన్ననలు, పనులలో ప్రశంసలు దక్కుతాయి.',
+    prec: 'పని ఒత్తిడి పెరిగే సూచన ఉన్నందున ప్రణాళికాబద్ధంగా పనులు ముగించండి.',
+    scoreBoost: 11
+  },
+  11: {
+    pos: 'నేడు ఏకాదశ చంద్రుని వల్ల సర్వకార్య సిద్ధి, వ్యాపార లాభాలు, మిత్రుల సహకారం లభిస్తుంది.',
+    prec: 'అతి ఆశకు పోకుండా వచ్చిన అవకాశాలను సద్వినియోగం చేసుకోండి.',
+    scoreBoost: 14
+  },
+  12: {
+    pos: 'నేడు ఆత్మీయులతో ఆధ్యాత్మిక చర్చలు, దానధర్మాలు చేయడానికి అనుకూలం.',
+    prec: 'వ్యయ చంద్రుని వల్ల ఊహించని ఖర్చులు, నిద్రలేమి లేదా అలసట రావచ్చు; సంయమనం ముఖ్యం.',
+    scoreBoost: -8
+  }
 };
 
 /**
- * Computes combined weekly/daily predictions for all 12 Rasis
- * given the calculated planetary transit state.
+ * Computes combined predictions for all 12 Rasis, distinctly tailored
+ * for Weekly mode vs Daily mode based on planetary positions and target date.
  */
-export function calculateAllRasiPhalalu(planets: CompletePlanetInfo[]): RasiPrediction[] {
+export function calculateAllRasiPhalalu(
+  planets: CompletePlanetInfo[],
+  mode: PredictionMode = 'weekly',
+  targetDate: Date = new Date()
+): RasiPrediction[] {
+  const dayOfWeek = targetDate.getDay(); // 0: Sunday, 1: Monday, ...
+  const dayLordInfo = DAY_LORDS[dayOfWeek] || DAY_LORDS[0];
+
   return RASIS_DATA.map((rasi) => {
     const houseMap: { [key: string]: number } = {};
     const beneficPlanets: string[] = [];
@@ -61,18 +130,32 @@ export function calculateAllRasiPhalalu(planets: CompletePlanetInfo[]): RasiPred
     let positiveWeight = 0;
     let totalWeight = 0;
 
-    // Weightage per planet: Jupiter and Saturn have highest weight, followed by Sun, Mars, etc.
-    const planetWeights: Record<string, number> = {
-      jupiter: 25,
-      saturn: 25,
-      sun: 15,
-      mars: 12,
-      venus: 12,
-      mercury: 10,
-      rahu: 10,
-      ketu: 8,
-      moon: 8
-    };
+    // Weightage per planet:
+    // In Daily mode, Moon and Day Lord have much higher impact.
+    // In Weekly mode, Jupiter, Saturn, Sun, Mars have prime weight.
+    const planetWeights: Record<string, number> = mode === 'daily'
+      ? {
+          moon: 25,
+          jupiter: 18,
+          saturn: 16,
+          sun: 12,
+          mars: 10,
+          mercury: 8,
+          venus: 8,
+          rahu: 6,
+          ketu: 5
+        }
+      : {
+          jupiter: 25,
+          saturn: 25,
+          sun: 15,
+          mars: 12,
+          venus: 12,
+          mercury: 10,
+          rahu: 10,
+          ketu: 8,
+          moon: 6
+        };
 
     planets.forEach((p) => {
       // Calculate house of planet relative to this rasi (1 to 12)
@@ -101,30 +184,56 @@ export function calculateAllRasiPhalalu(planets: CompletePlanetInfo[]): RasiPred
     const rahuHouse = houseMap['rahu'] || 1;
     const ketuHouse = houseMap['ketu'] || 1;
     const moonHouse = houseMap['moon'] || 1;
+    const isChandrashtama = moonHouse === 8;
 
-    // Calculate favorability percentage (normalized 50% - 95%)
     let rawScore = Math.round((positiveWeight / (totalWeight || 1)) * 100);
-    rawScore = Math.max(48, Math.min(96, rawScore));
+
+    if (mode === 'daily') {
+      const moonBoost = (MOON_HOUSE_DAILY[moonHouse]?.scoreBoost) || 0;
+      rawScore += moonBoost;
+      if (isChandrashtama) {
+        rawScore = Math.min(rawScore, 50); // Cap Chandrashtama score
+      }
+    }
+
+    rawScore = Math.max(45, Math.min(96, rawScore));
 
     let statusBadgeTe = 'అనుకూలం';
-    if (rawScore >= 80) statusBadgeTe = 'అత్యంత అనుకూలం';
-    else if (rawScore >= 65) statusBadgeTe = 'శుభప్రదం';
-    else if (rawScore >= 52) statusBadgeTe = 'మధ్యస్థం';
-    else statusBadgeTe = 'జాగ్రత్త అవసరం';
+    if (isChandrashtama && mode === 'daily') {
+      statusBadgeTe = '⚠️ చంద్రాష్టమం';
+    } else if (rawScore >= 80) {
+      statusBadgeTe = mode === 'daily' ? 'నేడు అత్యంత శుభం' : 'ఈ వారం అత్యంత అనుకూలం';
+    } else if (rawScore >= 65) {
+      statusBadgeTe = mode === 'daily' ? 'నేడు అనుకూలం' : 'ఈ వారం శుభప్రదం';
+    } else if (rawScore >= 52) {
+      statusBadgeTe = mode === 'daily' ? 'నేడు మధ్యస్థం' : 'ఈ వారం మధ్యస్థం';
+    } else {
+      statusBadgeTe = mode === 'daily' ? 'నేడు జాగ్రత్త అవసరం' : 'ఈ వారం జాగ్రత్త';
+    }
 
-    // Tailored synthesized predictions based on combined planetary positions
-    const { positiveTe, precautionTe, remedyTe, keyHighlights } = generateTailoredPredictions(
-      rasi.nameTe,
-      jupHouse,
-      satHouse,
-      sunHouse,
-      marsHouse,
-      venHouse,
-      merHouse,
-      rahuHouse,
-      ketuHouse,
-      moonHouse
-    );
+    // Generate distinctly tailored text based on mode (Weekly vs Daily)
+    const { positiveTe, precautionTe, remedyTe, keyHighlights } = mode === 'weekly'
+      ? generateWeeklyPredictions(
+          rasi.nameTe,
+          jupHouse,
+          satHouse,
+          sunHouse,
+          marsHouse,
+          venHouse,
+          merHouse,
+          rahuHouse,
+          ketuHouse,
+          moonHouse
+        )
+      : generateDailyPredictions(
+          rasi.nameTe,
+          dayLordInfo,
+          moonHouse,
+          jupHouse,
+          satHouse,
+          marsHouse,
+          sunHouse
+        );
 
     return {
       rasi,
@@ -136,16 +245,18 @@ export function calculateAllRasiPhalalu(planets: CompletePlanetInfo[]): RasiPred
       remedyTe,
       favorabilityScore: rawScore,
       statusBadgeTe,
-      keyHighlights
+      keyHighlights,
+      isChandrashtama
     };
   });
 }
 
 /**
- * Authentic Vedic synthesis of positive gains, precautions, and remedies
- * considering key houses of Jupiter, Saturn, Sun, Mars, Venus, Mercury, Moon, and Nodes.
+ * 1. WEEKLY PREDICTIONS (వార ఫలాలు)
+ * Synthesizes comprehensive 7-day forecast from major transits across financial,
+ * career, relationship, health, and weekly spiritual remedy.
  */
-function generateTailoredPredictions(
+function generateWeeklyPredictions(
   rasiName: string,
   jupHouse: number,
   satHouse: number,
@@ -157,100 +268,147 @@ function generateTailoredPredictions(
   ketuHouse: number,
   moonHouse: number
 ): { positiveTe: string; precautionTe: string; remedyTe: string; keyHighlights: string } {
-  // 1. Positive synthesis
   const positiveParts: string[] = [];
 
+  // Weekly Positive Highlights
   if ([2, 5, 7, 9, 11].includes(jupHouse)) {
-    if (jupHouse === 2) positiveParts.push('గురుబలంతో విశేష ధనలాభం, కుటుంబంలో శుభకార్య చర్చలు.');
-    else if (jupHouse === 5) positiveParts.push('పంచమ గురువు వల్ల బుద్ధిబలం, సంతాన సౌఖ్యం, విద్యా వికాసం.');
-    else if (jupHouse === 7) positiveParts.push('సప్తమ గురు దృష్టితో వ్యాపార భాగస్వామ్యాలు, దాంపత్య సుఖం.');
-    else if (jupHouse === 9) positiveParts.push('భాగ్య గురువు వల్ల పితృ అనుగ్రహం, ధర్మకార్యాలు, భాగ్యోదయం.');
-    else if (jupHouse === 11) positiveParts.push('లాభ స్థానంలో గురువు సర్వకార్య సిద్ధిని, బృహత్తర ఆదాయాన్ని ఇచ్చును.');
+    if (jupHouse === 2) positiveParts.push('ఈ వారం గురుబలంతో విశేష ధనలాభం, కుటుంబంలో శుభకార్య చర్చలు సఫలమవుతాయి.');
+    else if (jupHouse === 5) positiveParts.push('ఈ వారం సంతాన సౌఖ్యం, విద్యా వికాసం, మేధోపరమైన నిర్ణయాలలో సంపూర్ణ విజయం.');
+    else if (jupHouse === 7) positiveParts.push('ఈ వారం వ్యాపార విస్తరణ, భాగస్వామ్య లాభాలు, దాంపత్యంలో అనుకూల వాతావరణం ఉంటుంది.');
+    else if (jupHouse === 9) positiveParts.push('ఈ వారం భాగ్య గురువు వల్ల పిత్రార్జితాలు, ధర్మకార్యాలు, అదృష్ట యోగాలు కలసివస్తాయి.');
+    else if (jupHouse === 11) positiveParts.push('ఈ వారం 11వ ఇంట గురు సంచారం సర్వకార్య సిద్ధిని, బృహత్తర ఆదాయ వృద్ధిని చేకూరుస్తుంది.');
   }
 
   if ([3, 6, 11].includes(satHouse)) {
-    if (satHouse === 11) positiveParts.push('11వ ఇంట శని సంచారం స్థిరాస్తుల వృద్ధికి, దీర్ఘకాలిక లాభాలకు అత్యంత అనుకూలం.');
-    else if (satHouse === 6) positiveParts.push('శత్రుజయ శని వల్ల కోర్టు కేసులు, రుణాల నుండి విముక్తి, వృత్తి విజయం.');
-    else if (satHouse === 3) positiveParts.push('3వ ఇంట శని వల్ల ఆత్మవిశ్వాసం, సోదరుల సహాయం, నూతన ఉద్యోగ యోగం.');
+    if (satHouse === 11) positiveParts.push('శని 11వ ఇంట ఉన్నందున స్థిరాస్తుల క్రయవిక్రయాలు, దీర్ఘకాలిక పెట్టుబడులు లాభిస్తాయి.');
+    else if (satHouse === 6) positiveParts.push('శత్రుజయ శని అనుకూలతతో కోర్టు పనులు, రుణ విముక్తి ప్రయత్నాలు ఫలిస్తాయి.');
+    else if (satHouse === 3) positiveParts.push('తృతీయ శని వల్ల నూతన ఉద్యోగ ప్రయత్నాలు, సోదరుల సహాయం లభిస్తాయి.');
   }
 
   if ([3, 6, 10, 11].includes(sunHouse)) {
-    positiveParts.push('రవి అనుకూలతతో అధికారుల మన్ననలు, సమాజంలో విశేష కీర్తి ప్రతిష్టలు.');
+    positiveParts.push('రవి గోచార బలంతో ప్రభుత్వ వ్యవహారాలు, ఉన్నతాధికారుల మన్ననలు లభిస్తాయి.');
   } else if ([1, 2, 4, 5, 9, 11].includes(venHouse)) {
-    positiveParts.push('శుక్రుని అనుకూలతతో నూతన వస్త్ర, వాహన, ఆభరణ ప్రాప్తి, సంతోషకర వాతావరణం.');
+    positiveParts.push('శుక్రుని అనుకూలత వల్ల నూతన వస్త్ర, వాహన, ఆభరణ ప్రాప్తి, ఆహ్లాదకర వాతావరణం నెలకొంటుంది.');
   }
 
   if ([3, 6, 11].includes(marsHouse)) {
-    positiveParts.push('కుజుని బలంతో స్థిరాస్తి, భూసంబంధ క్రయవిక్రయాలలో లాభాలు.');
+    positiveParts.push('కుజ బలంతో భూసంబంధిత లావాదేవీలు మరియు కాంట్రాక్టులలో ఆశించిన ఫలితాలు ఉంటాయి.');
   }
 
   if ([2, 4, 6, 8, 10, 11].includes(merHouse)) {
-    positiveParts.push('బుధ అనుకూలతతో వ్యాపార చర్చలు, మేధో నిర్ణయాలు అనుకూలిస్తాయి.');
+    positiveParts.push('వ్యాపార సంబంధిత చర్చలు, సమాచార మార్పిడిలో వేగం పుంజుకుంటుంది.');
   }
 
   if ([1, 3, 6, 7, 10, 11].includes(moonHouse)) {
-    positiveParts.push('చంద్రబలం వల్ల మనఃశాంతి, కార్యసిద్ధి కలుగుతాయి.');
+    positiveParts.push('వారం ఆరంభంలో అనుకూల చంద్రబలం కలిగి ఉంటుంది.');
   }
 
   if (positiveParts.length === 0) {
-    positiveParts.push(`${rasiName} రాశి వారికి స్వయంకృషితో పనులు పూర్తవుతాయి; స్నేహితులు, ఆత్మీయుల మద్దతు లభిస్తుంది.`);
+    positiveParts.push(`ఈ వారం ${rasiName} రాశి వారికి స్వయంకృషితో పనులు పూర్తవుతాయి; స్నేహితులు, ఆత్మీయుల మద్దతు లభిస్తుంది.`);
   }
 
-  // 2. Precaution synthesis
+  // Weekly Precaution Highlights
   const precautionParts: string[] = [];
 
-  // Sade Sati / Ashtama / Ardhashtama Saturn checks
   if ([12, 1, 2].includes(satHouse)) {
-    precautionParts.push('ఏలినాటి శని ప్రభావం వల్ల శారీరక శ్రమ, అనవసర ఖర్చులు, ఆలోచనల్లో అలసట రావచ్చు.');
+    precautionParts.push('ఈ వారం ఏలినాటి శని ప్రభావం వల్ల పని ఒత్తిడి, ఆలోచనల్లో అలసట రావచ్చు; ఓర్పు అవసరం.');
   } else if (satHouse === 8) {
-    precautionParts.push('అష్టమ శని ప్రభావంతో ఆరోగ్య విషయాలలోను, వాహనాలు నడిపేటప్పుడు అత్యంత జాగ్రత్త వహించాలి.');
+    precautionParts.push('ఈ వారం అష్టమ శని రీత్యా ఆరోగ్య విషయాలలోను, వాహనాలు నడిపేటప్పుడు అత్యంత జాగ్రత్త వహించాలి.');
   } else if (satHouse === 4) {
-    precautionParts.push('అర్ధాష్టమ శని కారణంగా గృహంలో చికాకులు, తల్లిగారి ఆరోగ్యంపై శ్రద్ధ అవసరం.');
+    precautionParts.push('అర్ధాష్టమ శని వలన గృహ సంబంధిత చికాకులు, తల్లిగారి ఆరోగ్యంపై శ్రద్ధ అవసరం.');
   }
 
-  // Jupiter in 8 or 12
   if (jupHouse === 8) {
-    precautionParts.push('అష్టమ గురువు వల్ల పెద్దలతో మాట్లాడేటప్పుడు సంయమనం, ధన విషయాలలో జాగ్రత్త ముఖ్యం.');
+    precautionParts.push('అష్టమ గురువు వల్ల పెద్దలతో మాట్లాడేటప్పుడు సంయమనం, అనవసర ఖర్చులను నియంత్రించుకోవడం ముఖ్యం.');
   } else if (jupHouse === 12) {
-    precautionParts.push('12వ ఇంట గురువు వల్ల శుభ ఖర్చులు అధికమవుతాయి; బడ్జెట్ ప్రణాళిక పాటించండి.');
+    precautionParts.push('12వ ఇంట గురువు వల్ల శుభకార్యాల నిమిత్తం ఖర్చులు అధికమవుతాయి; బడ్జెట్ ప్రణాళిక పాటించండి.');
   }
 
-  // Mars / Rahu tension
   if ([8, 12, 4].includes(marsHouse)) {
-    precautionParts.push('కుజ సంచార దోషం వల్ల కోపం, తొందరపాటు నిర్ణయాలు, కుటుంబ కలహాలకు దూరంగా ఉండాలి.');
+    precautionParts.push('కుజ సంచార దోషం చేత ఆవేశపూరిత నిర్ణయాలు, కుటుంబంలో వాదనలకు దూరంగా ఉండాలి.');
   }
 
-  if ([1, 2, 8, 12].includes(rahuHouse)) {
-    precautionParts.push('రాహు గోచార రీత్యా అనుకోని ప్రయాణాలు, అపరిచితులను అతిగా నమ్మకపోవడం శ్రేయస్కరం.');
-  }
-
-  if ([1, 7, 8, 12].includes(ketuHouse)) {
-    precautionParts.push('కేతు ప్రభావం వల్ల శారీరక అస్వస్థత రాకుండా ఆహారంలో పరిశుభ్రత పాటించాలి.');
+  if ([1, 2, 8, 12].includes(rahuHouse) || [1, 7, 8, 12].includes(ketuHouse)) {
+    precautionParts.push('అపరిచితులను అతిగా నమ్మకపోవడం, ప్రయాణాలలో వస్తువులను జాగ్రత్తగా చూసుకోవడం శ్రేయస్కరం.');
   }
 
   if (precautionParts.length === 0) {
-    precautionParts.push('అనవసర వాగ్వివాదాలకు దూరంగా ఉండండి, ఆహార నియమాలు పాటిస్తూ ప్రశాంతంగా గడపండి.');
+    precautionParts.push('వారమంతా సమయపాలన పాటిస్తూ, అనవసర వివాదాలకు దూరంగా ప్రశాంతంగా గడపండి.');
   }
 
-  // 3. Remedy synthesis (spiritual & practical)
+  // Weekly Remedy
   let remedyTe = '';
   if ([12, 1, 2, 4, 8].includes(satHouse)) {
-    remedyTe = 'శని గాయత్రి జపం లేదా హనుమాన్ చాలీసా పఠనం, నవగ్రహ ఆలయ ప్రదక్షిణలు, పేదలకు అన్నదానం.';
+    remedyTe = 'ఈ వారం ప్రతిరోజూ హనుమాన్ చాలీసా పారాయణ, శనివారం నవగ్రహ ఆలయ ప్రదక్షిణ లేదా పేదలకు అన్నదానం చేయండి.';
   } else if ([8, 12].includes(jupHouse)) {
-    remedyTe = 'దక్షిణామూర్తి స్తోత్రం లేదా గురు చరిత పారాయణం, బ్రాహ్మణ/గురుసేవ చేయడం శ్రేయస్కరం.';
+    remedyTe = 'ఈ వారం గురువారం దక్షిణామూర్తి స్తోత్రం లేదా గురు చరిత్ర పారాయణ, గురువులను సేవించడం శ్రేయస్కరం.';
   } else if ([8, 12].includes(marsHouse)) {
-    remedyTe = 'సుబ్రహ్మణ్యాష్టకం లేదా రుద్రాభిషేకం, మంగళవారం దీపారాధన చేయడం ఉత్తమ ఫలితాలను ఇస్తుంది.';
-  } else if ([1, 7, 8].includes(rahuHouse) || [1, 7, 8].includes(ketuHouse)) {
-    remedyTe = 'దుర్గా సప్తశతి లేదా మహామృత్యుంజయ మంత్ర జపము, పక్షులకు లేదా ఆవులకు ఆహారం ఇవ్వడం మంచిది.';
+    remedyTe = 'ఈ వారం మంగళవారం సుబ్రహ్మణ్యాష్టకం లేదా రుద్రాభిషేకం, దీపారాధన చేయడం ఉత్తమ ఫలితాలను ఇస్తుంది.';
   } else {
-    remedyTe = 'ఇష్టదైవ ప్రార్థన, సూర్య నమస్కారాలు, ఆచార్యుల వేదాంత ప్రబోధాల ధ్యానం ఆత్మబలాన్ని ఇస్తాయి.';
+    remedyTe = 'ఈ వారం శ్రీ లక్ష్మీ నారాయణ ధ్యానము, నిత్య సూర్య నమస్కారాలు, ఆచార్యుల వేదాంత బోధల స్మరణ ఆత్మబలాన్ని ఇస్తాయి.';
   }
 
-  const keyHighlights = `గురు: ${jupHouse}వ ఇల్లు • శని: ${satHouse}వ ఇల్లు • రవి: ${sunHouse}వ ఇల్లు`;
+  const keyHighlights = `వారపు గోచారం: గురు: ${jupHouse}వ ఇల్లు • శని: ${satHouse}వ ఇల్లు • రవి: ${sunHouse}వ ఇల్లు`;
 
   return {
     positiveTe: positiveParts.slice(0, 2).join(' '),
     precautionTe: precautionParts.slice(0, 2).join(' '),
+    remedyTe,
+    keyHighlights
+  };
+}
+
+/**
+ * 2. DAILY PREDICTIONS (దిన ఫలాలు)
+ * Strongly governed by Today's Moon Transit, Chandrashtama, and Today's Day Lord.
+ */
+function generateDailyPredictions(
+  rasiName: string,
+  dayLordInfo: { nameTe: string; lordTe: string; remedyTe: string },
+  moonHouse: number,
+  jupHouse: number,
+  satHouse: number,
+  marsHouse: number,
+  sunHouse: number
+): { positiveTe: string; precautionTe: string; remedyTe: string; keyHighlights: string } {
+  const moonData = MOON_HOUSE_DAILY[moonHouse] || MOON_HOUSE_DAILY[1];
+  const isChandrashtama = moonHouse === 8;
+
+  // Daily Positive
+  const posParts: string[] = [];
+  posParts.push(`${rasiName} రాశి వారికి ${moonData.pos}`);
+
+  if ([2, 5, 7, 9, 11].includes(jupHouse)) {
+    posParts.push(`నేడు గురుబలం తోడై ముఖ్యమైన పనులలో అనుకూలత లభిస్తుంది.`);
+  } else if ([3, 6, 10, 11].includes(sunHouse)) {
+    posParts.push(`నేడు అధికారుల నుండి అనుకూల స్పందన వస్తుంది.`);
+  } else if ([3, 6, 11].includes(satHouse)) {
+    posParts.push(`నేడు శని అనుకూలతతో శ్రమకు తగిన ప్రతిఫలం దక్కుతుంది.`);
+  }
+
+  // Daily Precaution
+  const precParts: string[] = [];
+  precParts.push(moonData.prec);
+
+  if (isChandrashtama) {
+    precParts.push('ముఖ్యమైన పత్రాలపై సంతకాలు చేయడం గాని, ఎవరితోనూ వాదనలు పెట్టుకోవడం గాని చేయకండి.');
+  } else if ([8, 12, 4].includes(marsHouse)) {
+    precParts.push('నేడు వాహనాలు నడిపేటప్పుడు, పదునైన వస్తువులతో పనిచేసేటప్పుడు జాగ్రత్త అవసరం.');
+  }
+
+  // Daily Remedy
+  let remedyTe = '';
+  if (isChandrashtama) {
+    remedyTe = 'నేడు చంద్రాష్టమ శాంతికై శివార్చన చేయడం లేదా “ఓం నమఃశివాయ” జపం, పక్షులకు దాణా వేయడం శ్రేయస్కరం.';
+  } else {
+    remedyTe = `నేడు ${dayLordInfo.nameTe} (${dayLordInfo.lordTe}): ${dayLordInfo.remedyTe}`;
+  }
+
+  const keyHighlights = `నేడు (${dayLordInfo.nameTe}): చంద్రుడు ${moonHouse}వ ఇల్లు ${isChandrashtama ? '• ⚠️ చంద్రాష్టమం' : ''} • వారాధిపతి: ${dayLordInfo.lordTe}`;
+
+  return {
+    positiveTe: posParts.slice(0, 2).join(' '),
+    precautionTe: precParts.slice(0, 2).join(' '),
     remedyTe,
     keyHighlights
   };

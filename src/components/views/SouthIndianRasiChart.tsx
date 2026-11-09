@@ -61,8 +61,8 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
 
   // Combined planetary Rasi Phalalu for all 12 signs based on real-time planetary positions
   const rasiPredictions = useMemo(() => {
-    return calculateAllRasiPhalalu(astroData.planets);
-  }, [astroData.planets]);
+    return calculateAllRasiPhalalu(astroData.planets, predictionMode, selectedDate);
+  }, [astroData.planets, predictionMode, selectedDate]);
 
   // 6 Rasis on the Left (మేషం - కన్య) and 6 on the Right (తుల - మీనం)
   const leftRasiPredictions = useMemo(() => rasiPredictions.slice(0, 6), [rasiPredictions]);
@@ -152,6 +152,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
   // Renderer for each Rasi prediction box on the side panels
   const renderRasiPhalaluCard = (pred: RasiPrediction) => {
     const isSelected = selectedRasiIndex === pred.rasi.index;
+    const isDaily = predictionMode === 'daily';
 
     return (
       <div
@@ -161,7 +162,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           setSelectedRasiIndex(isSelected ? null : pred.rasi.index);
         }}
         className={`rounded-xl border transition-all duration-200 cursor-pointer p-2 space-y-1.5 text-left select-none ${
-          isSelected
+          pred.isChandrashtama && isDaily
+            ? 'bg-rose-50/70 border-rose-300 ring-1 ring-rose-400'
+            : isSelected
             ? 'bg-[#FFF9C4] border-[#D84315] ring-2 ring-[#FFB300] shadow-md'
             : 'bg-white hover:bg-[#FFFDF7] border-[#E8DCC4] hover:border-[#D4AF37] shadow-2xs'
         }`}
@@ -188,7 +191,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           <div className="text-right">
             <span
               className={`px-1.5 py-0.5 rounded-full text-[9px] font-bold border inline-block whitespace-nowrap ${
-                pred.favorabilityScore >= 80
+                pred.isChandrashtama && isDaily
+                  ? 'bg-rose-100 text-rose-800 border-rose-400 animate-pulse'
+                  : pred.favorabilityScore >= 80
                   ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
                   : pred.favorabilityScore >= 65
                   ? 'bg-blue-50 text-blue-800 border-blue-300'
@@ -202,11 +207,16 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
           </div>
         </div>
 
+        {/* Key Transit Highlight pill */}
+        <div className="text-[9.5px] px-1.5 py-0.5 rounded-md bg-[#FFF8E1]/80 border border-[#D4AF37]/40 text-[#7B1113] font-semibold truncate">
+          {pred.keyHighlights}
+        </div>
+
         {/* 1. Positive (శుభ ఫలితాలు) */}
         <div className="p-1.5 rounded-lg bg-emerald-50/90 border border-emerald-200/80 text-[10px] leading-tight space-y-0.5">
           <div className="font-bold text-emerald-800 flex items-center gap-1">
             <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
-            <span>శుభ ఫలితాలు (Positive)</span>
+            <span>{isDaily ? 'నేటి శుభం (Daily Positive)' : 'ఈ వార శుభం (Weekly Positive)'}</span>
           </div>
           <p className="text-emerald-950 font-medium pl-4 leading-snug">
             {pred.positiveTe}
@@ -214,12 +224,22 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
         </div>
 
         {/* 2. Precaution (జాగ్రత్తలు) */}
-        <div className="p-1.5 rounded-lg bg-amber-50/90 border border-amber-200/80 text-[10px] leading-tight space-y-0.5">
-          <div className="font-bold text-amber-800 flex items-center gap-1">
-            <AlertCircle className="w-3 h-3 text-amber-600 shrink-0" />
-            <span>జాగ్రత్తలు (Precaution)</span>
+        <div className={`p-1.5 rounded-lg text-[10px] leading-tight space-y-0.5 ${
+          pred.isChandrashtama && isDaily
+            ? 'bg-rose-50/90 border border-rose-300'
+            : 'bg-amber-50/90 border border-amber-200/80'
+        }`}>
+          <div className={`font-bold flex items-center gap-1 ${
+            pred.isChandrashtama && isDaily ? 'text-rose-800' : 'text-amber-800'
+          }`}>
+            <AlertCircle className={`w-3 h-3 shrink-0 ${
+              pred.isChandrashtama && isDaily ? 'text-rose-600' : 'text-amber-600'
+            }`} />
+            <span>{isDaily ? 'నేటి జాగ్రత్త (Daily Precaution)' : 'ఈ వార జాగ్రత్త (Weekly Precaution)'}</span>
           </div>
-          <p className="text-amber-950 font-medium pl-4 leading-snug">
+          <p className={`font-medium pl-4 leading-snug ${
+            pred.isChandrashtama && isDaily ? 'text-rose-950' : 'text-amber-950'
+          }`}>
             {pred.precautionTe}
           </p>
         </div>
@@ -228,7 +248,7 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
         <div className="p-1.5 rounded-lg bg-purple-50/90 border border-purple-200/80 text-[10px] leading-tight space-y-0.5">
           <div className="font-bold text-purple-800 flex items-center gap-1">
             <Sparkles className="w-3 h-3 text-purple-600 shrink-0" />
-            <span>పరిహారము (Remedies)</span>
+            <span>{isDaily ? 'నేటి పరిహారము (Daily Remedy)' : 'వారపు పరిహారము (Weekly Remedy)'}</span>
           </div>
           <p className="text-purple-950 font-medium pl-4 leading-snug">
             {pred.remedyTe}
@@ -263,7 +283,9 @@ export const SouthIndianRasiChart: React.FC<SouthIndianRasiChartProps> = ({
                 className="w-full text-xs sm:text-sm font-bold text-[#2C1810] outline-hidden cursor-pointer bg-transparent"
               />
               <span className="text-[10.5px] text-[#D84315] font-bold block mt-0.5 truncate">
-                📅 వారం: {selectedWeekInfo.labelTe}
+                {predictionMode === 'weekly'
+                  ? `📅 వారం: ${selectedWeekInfo.labelTe} (వార ఫలాలు)`
+                  : `☀️ రోజు: ${formatDateTe(selectedDate)} (దిన ఫలాలు)`}
               </span>
             </div>
             <div className="text-right shrink-0 border-l border-[#E8DCC4] pl-2.5">
