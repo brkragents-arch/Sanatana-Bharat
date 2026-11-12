@@ -44,7 +44,7 @@ type ActiveSectionTab =
 export const JyotishyaView: React.FC = () => {
   const { language } = useMythology();
   const isEn = language === 'en';
-  const [activeTab, setActiveTab] = useState<ActiveSectionTab>('all');
+  const [activeTab, setActiveTab] = useState<ActiveSectionTab>('south_chart_transits');
   const [selectedLagnaNumber, setSelectedLagnaNumber] = useState<number>(1);
   const [selectedGraha, setSelectedGraha] = useState<GrahaMasterRecord>(TWELVE_GRAHAS_MASTER_DATA[0]);
   const [selectedHouse, setSelectedHouse] = useState<KarmaHouseRecord>(TWELVE_KARMA_HOUSES_DATA[0]);
@@ -295,16 +295,16 @@ export const JyotishyaView: React.FC = () => {
       {/* =================================================================== */}
       <div className="sticky top-16 z-30 bg-[#FAF7F0]/95 backdrop-blur-md p-3 rounded-2xl border-2 border-[#D4AF37] shadow-md flex items-center gap-2 overflow-x-auto">
         {[
-          { id: 'all', label: isEn ? '🌟 Comprehensive View (All Sections)' : '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' },
-          { id: 'foundations_chakras', label: isEn ? '☸️ 1. 4 Head Chakras & 324 Karmas' : '☸️ 1. 4 ఫాల చక్రాలు & 324 కర్మలు' },
-          { id: 'south_chart_transits', label: isEn ? '🧭 2. South Indian Chart & Live Transits' : '🧭 2. దక్షిణ భారత చక్రం & గోచార సంక్రమణం' },
+          { id: 'south_chart_transits', label: isEn ? '🧭 1. South Indian Rasi Chart & Live Planetary Transits' : '🧭 1. దక్షిణ భారత రాశి చక్రం & సజీవ గ్రహ గోచార సంచార దర్శిని' },
+          { id: 'foundations_chakras', label: isEn ? '☸️ 2. 4 Head Chakras & 324 Karmas' : '☸️ 2. 4 ఫాల చక్రాలు & 324 కర్మలు' },
           { id: 'shat_chakras_ripus', label: isEn ? '🧘 3. 7 Chakras & 6 Ripus Sub-Page' : '🧘 3. 7 చక్రాలు & షడ్రిపు-సద్గుణ పరివర్తన' },
           { id: 'grahas_lagnas', label: isEn ? '🪐 4. 12 Grahas & 2:1 Friend-Enemy Calculator' : '🪐 4. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
           { id: 'karma_houses', label: isEn ? '🏛️ 5. 12 Karma Houses (Rasis)' : '🏛️ 5. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
           { id: 'attributes_matrix', label: isEn ? '📊 6. 12 Grahas 9 Attributes Matrix' : '📊 6. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
           { id: 'nakshatra_dashas', label: isEn ? '⏳ 7. 27 Nakshatras & 120-Year Dasha System' : '⏳ 7. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
           { id: 'case_studies', label: isEn ? '📜 8. Famous Natal Horoscope Case Studies' : '📜 8. ప్రముఖుల జాతక విశ్లేషణలు' },
-          { id: 'chapters_qa', label: isEn ? '❓ 9. 48 Chapters & 34 Q&A' : '❓ 9. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
+          { id: 'chapters_qa', label: isEn ? '❓ 9. 48 Chapters & 34 Q&A' : '❓ 9. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' },
+          { id: 'all', label: isEn ? '🌟 Comprehensive View (All Sections)' : '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' }
         ].map(tab => (
           <button
             key={tab.id}
@@ -321,13 +321,22 @@ export const JyotishyaView: React.FC = () => {
       </div>
 
       {/* =================================================================== */}
-      {/* SECTION 1: FOUNDATIONS, 6 SHASTRAS, 3 EYES & 4 INTERNAL CHAKRAS */}
+      {/* SECTION 1: SOUTH INDIAN RASI CHART & LIVE PLANETARY TRANSITIONS */}
+      {/* =================================================================== */}
+      {showSection('south_chart_transits') && (
+        <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
+          <SouthIndianRasiChart />
+        </section>
+      )}
+
+      {/* =================================================================== */}
+      {/* SECTION 2: FOUNDATIONS, 6 SHASTRAS, 3 EYES & 4 INTERNAL CHAKRAS */}
       {/* =================================================================== */}
       {showSection('foundations_chakras') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <div className="border-b-2 border-[#E8DCC4] pb-4">
             <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-              విభాగం 1 • అధ్యాయములు 1 నుండి 9 &amp; 21 నుండి 24
+              విభాగం 2 • అధ్యాయములు 1 నుండి 9 &amp; 21 నుండి 24
             </span>
             <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
               జ్యోతిష్య మూల సిద్ధాంతము, షట్శాస్త్రములు &amp; తలలోని 4 చక్రములు (324 కర్మలు)
@@ -691,31 +700,22 @@ export const JyotishyaView: React.FC = () => {
       )}
 
       {/* =================================================================== */}
-      {/* SECTION: SOUTH INDIAN RASI CHART & LIVE PLANETARY TRANSITIONS */}
-      {/* =================================================================== */}
-      {showSection('south_chart_transits') && (
-        <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
-          <SouthIndianRasiChart />
-        </section>
-      )}
-
-      {/* =================================================================== */}
       {/* SECTION 3: 7 CHAKRAS & 6 SHADRIPUS TO 6 SADGUNAS TRANSMUTATION SUB-PAGE */}
       {/* =================================================================== */}
       {showSection('shat_chakras_ripus') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
-          <ShatChakrasRipuView onBackToSections={() => setActiveTab('all')} />
+          <ShatChakrasRipuView onBackToSections={() => setActiveTab('south_chart_transits')} />
         </section>
       )}
 
       {/* =================================================================== */}
-      {/* SECTION 2: THE 12 GRAHAS, 12 LAGNAS & 2:1 FRIEND/ENEMY CALCULATOR */}
+      {/* SECTION 4: THE 12 GRAHAS, 12 LAGNAS & 2:1 FRIEND/ENEMY CALCULATOR */}
       {/* =================================================================== */}
       {showSection('grahas_lagnas') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <div className="border-b-2 border-[#E8DCC4] pb-4">
             <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-              విభాగం 2 • అధ్యాయములు 10 నుండి 20, 29, 30, 32 &amp; 45
+              విభాగం 4 • అధ్యాయములు 10 నుండి 20, 29, 30, 32 &amp; 45
             </span>
             <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
               12 గ్రహములు (భూమి, మిత్ర, చిత్రలతో కలిపి), 12 లగ్నములు &amp; 2:1 మిత్ర-శత్రు గణని
@@ -932,13 +932,13 @@ export const JyotishyaView: React.FC = () => {
       )}
 
       {/* =================================================================== */}
-      {/* SECTION 3: THE 12 KARMA CHAKRA HOUSES (అంగీ-అర్ధాంగీ, 2 కేంద్రాలు, కోణాలు) */}
+      {/* SECTION 5: THE 12 KARMA CHAKRA HOUSES (అంగీ-అర్ధాంగీ, 2 కేంద్రాలు, కోణాలు) */}
       {/* =================================================================== */}
       {showSection('karma_houses') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <div className="border-b-2 border-[#E8DCC4] pb-4">
             <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-              విభాగం 3 • అధ్యాయములు 25, 26, 27, 28 &amp; 43
+              విభాగం 5 • అధ్యాయములు 25, 26, 27, 28 &amp; 43
             </span>
             <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
               కర్మచక్రములోని 12 స్థానములు (రాశులు): అంగీ (1–6) • అర్ధాంగీ (7–12) • 2 కేంద్రములు • పుణ్య/పాప కోణములు
@@ -1054,13 +1054,13 @@ export const JyotishyaView: React.FC = () => {
       )}
 
       {/* =================================================================== */}
-      {/* SECTION 4: 9 ATTRIBUTES MATRIX OF ALL 12 GRAHAS */}
+      {/* SECTION 6: 9 ATTRIBUTES MATRIX OF ALL 12 GRAHAS */}
       {/* =================================================================== */}
       {showSection('attributes_matrix') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <div className="border-b-2 border-[#E8DCC4] pb-4">
             <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-              విభాగం 4 • అధ్యాయములు 41 &amp; 42
+              విభాగం 6 • అధ్యాయములు 41 &amp; 42
             </span>
             <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
               12 గ్రహముల 9 గుణ-లక్షణ పట్టికలు (కులము/మతము • రంగు • రుచి • లింగము • కారకత్వము • రత్నము • దిశ • ధాన్యము • రోగములు)
@@ -1110,13 +1110,13 @@ export const JyotishyaView: React.FC = () => {
       )}
 
       {/* =================================================================== */}
-      {/* SECTION 5: 27 NAKSHATRAS (3 ATMAS) & 120-YEAR DASHA / ANTARDASHA CALCULATOR */}
+      {/* SECTION 7: 27 NAKSHATRAS (3 ATMAS) & 120-YEAR DASHA / ANTARDASHA CALCULATOR */}
       {/* =================================================================== */}
       {showSection('nakshatra_dashas') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <div className="border-b-2 border-[#E8DCC4] pb-4">
             <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-              విభాగం 5 • అధ్యాయములు 36 నుండి 40 &amp; 46
+              విభాగం 7 • అధ్యాయములు 36 నుండి 40 &amp; 46
             </span>
             <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
               27 నక్షత్రములు (3 ఆత్మల విభజన) &amp; 120 సంవత్సరముల 12 దశలు — అంతర్దశ గణని
@@ -1574,13 +1574,13 @@ export const JyotishyaView: React.FC = () => {
       )}
 
       {/* =================================================================== */}
-      {/* SECTION 6: HISTORICAL KUNDALI CASE STUDIES (Chapters 43, 46, 47) */}
+      {/* SECTION 8: HISTORICAL KUNDALI CASE STUDIES (Chapters 43, 46, 47) */}
       {/* =================================================================== */}
       {showSection('case_studies') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <div className="border-b-2 border-[#E8DCC4] pb-4">
             <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-              విభాగం 6 • అధ్యాయములు 43, 46 &amp; 47
+              విభాగం 8 • అధ్యాయములు 43, 46 &amp; 47
             </span>
             <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
               ప్రముఖుల జాతక విశ్లేషణలు &amp; ఆయుష్షు / కర్మ దహన రహస్యములు
@@ -1631,7 +1631,7 @@ export const JyotishyaView: React.FC = () => {
       )}
 
       {/* =================================================================== */}
-      {/* SECTION 7: ALL 48 CHAPTERS & 34 Q&As DIRECTORY */}
+      {/* SECTION 9: ALL 48 CHAPTERS & 34 Q&As DIRECTORY */}
       {/* =================================================================== */}
       {showSection('chapters_qa') && (
         <section className="space-y-8 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
@@ -1640,7 +1640,7 @@ export const JyotishyaView: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-[#E8DCC4] pb-4">
               <div>
                 <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-                  విభాగం 7A • సంపూర్ణ 48 అధ్యాయముల దర్శిని
+                  విభాగం 9A • సంపూర్ణ 48 అధ్యాయముల దర్శిని
                 </span>
                 <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2">
                   “జ్యోతిష్య శాస్త్రము” గ్రంథములోని మొత్తం 48 అధ్యాయముల సారాంశము
@@ -1720,7 +1720,7 @@ export const JyotishyaView: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <span className="px-3 py-1 rounded-full bg-[#FFF8E1] text-[#7B1113] border border-[#D4AF37] text-xs font-bold">
-                  విభాగం 7B • 48వ అధ్యాయము: 34 ప్రశ్నలు - జవాబులు
+                  విభాగం 9B • 48వ అధ్యాయము: 34 ప్రశ్నలు - జవాబులు
                 </span>
                 <h2 className="text-xl sm:text-3xl font-bold text-[#7B1113] font-telugu-serif mt-2 flex items-center gap-2">
                   <HelpCircle className="w-6 h-6 text-[#D84315]" />
