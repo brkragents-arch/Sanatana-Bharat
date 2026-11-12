@@ -27,11 +27,13 @@ import {
 } from 'lucide-react';
 import { SouthIndianRasiChart } from './SouthIndianRasiChart';
 import { NineParimanamsModal } from './NineParimanamsModal';
+import { ShatChakrasRipuView } from './ShatChakrasRipuView';
 
 type ActiveSectionTab =
   | 'all'
   | 'foundations_chakras'
   | 'south_chart_transits'
+  | 'shat_chakras_ripus'
   | 'grahas_lagnas'
   | 'karma_houses'
   | 'attributes_matrix'
@@ -294,14 +296,15 @@ export const JyotishyaView: React.FC = () => {
       <div className="sticky top-16 z-30 bg-[#FAF7F0]/95 backdrop-blur-md p-3 rounded-2xl border-2 border-[#D4AF37] shadow-md flex items-center gap-2 overflow-x-auto">
         {[
           { id: 'all', label: isEn ? '🌟 Comprehensive View (All Sections)' : '🌟 సమగ్ర దర్శనం (అన్ని విభాగాలు)' },
-          { id: 'foundations_chakras', label: isEn ? '☸️ 1. 4 Chakras & 324 Karmas' : '☸️ 1. 4 చక్రాలు & 324 కర్మలు' },
+          { id: 'foundations_chakras', label: isEn ? '☸️ 1. 4 Head Chakras & 324 Karmas' : '☸️ 1. 4 ఫాల చక్రాలు & 324 కర్మలు' },
           { id: 'south_chart_transits', label: isEn ? '🧭 2. South Indian Chart & Live Transits' : '🧭 2. దక్షిణ భారత చక్రం & గోచార సంక్రమణం' },
-          { id: 'grahas_lagnas', label: isEn ? '🪐 3. 12 Grahas & 2:1 Friend-Enemy Calculator' : '🪐 3. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
-          { id: 'karma_houses', label: isEn ? '🏛️ 4. 12 Karma Houses (Rasis)' : '🏛️ 4. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
-          { id: 'attributes_matrix', label: isEn ? '📊 5. 12 Grahas 9 Attributes Matrix' : '📊 5. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
-          { id: 'nakshatra_dashas', label: isEn ? '⏳ 6. 27 Nakshatras & 120-Year Dasha System' : '⏳ 6. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
-          { id: 'case_studies', label: isEn ? '📜 7. Famous Natal Horoscope Case Studies' : '📜 7. ప్రముఖుల జాతక విశ్లేషణలు' },
-          { id: 'chapters_qa', label: isEn ? '❓ 8. 48 Chapters & 34 Q&A' : '❓ 8. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
+          { id: 'shat_chakras_ripus', label: isEn ? '🧘 3. 7 Chakras & 6 Ripus Sub-Page' : '🧘 3. 7 చక్రాలు & షడ్రిపు-సద్గుణ పరివర్తన' },
+          { id: 'grahas_lagnas', label: isEn ? '🪐 4. 12 Grahas & 2:1 Friend-Enemy Calculator' : '🪐 4. 12 గ్రహాలు & 2:1 మిత్ర-శత్రు గణని' },
+          { id: 'karma_houses', label: isEn ? '🏛️ 5. 12 Karma Houses (Rasis)' : '🏛️ 5. కర్మచక్ర 12 స్థానాలు (రాశులు)' },
+          { id: 'attributes_matrix', label: isEn ? '📊 6. 12 Grahas 9 Attributes Matrix' : '📊 6. 12 గ్రహాల 9 లక్షణ పట్టికలు' },
+          { id: 'nakshatra_dashas', label: isEn ? '⏳ 7. 27 Nakshatras & 120-Year Dasha System' : '⏳ 7. 27 నక్షత్రాలు & 120 ఏళ్ల దశ-అంతర్దశ గణని' },
+          { id: 'case_studies', label: isEn ? '📜 8. Famous Natal Horoscope Case Studies' : '📜 8. ప్రముఖుల జాతక విశ్లేషణలు' },
+          { id: 'chapters_qa', label: isEn ? '❓ 9. 48 Chapters & 34 Q&A' : '❓ 9. 48 అధ్యాయాలు & 34 ప్రశ్నలు-జవాబులు' }
         ].map(tab => (
           <button
             key={tab.id}
@@ -654,6 +657,35 @@ export const JyotishyaView: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* Quick Link Banner to 7 Chakras & 6 Ripus Sub-Page */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#FFF8E1] via-[#FFF3E0] to-[#FFE082]/40 border-2 border-[#D4AF37] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#7B1113] text-[#FFE082] text-xs font-bold">
+                    ప్రత్యేక ఉప-పుట (Dedicated Sub-Page)
+                  </span>
+                  <span className="text-xs font-bold text-[#D84315]">క్రింది నుండి పైకి (Bottom to Top) కుండలినీ ప్రవాహం</span>
+                </div>
+                <h4 className="text-base sm:text-lg font-bold text-[#7B1113] font-telugu-serif">
+                  🧘 7 చక్రాలు, 6 చెడు గుణాలు (షడ్రిపులు) ➔ 6 మంచి గుణాలు (షట్ సద్గుణాలు) పరివర్తన & ఫలితములు
+                </h4>
+                <p className="text-xs text-[#5D4037]">
+                  మూలాధారము నుండి సహస్రారము వరకు శక్తి ఊర్ధ్వముఖ ప్రవాహం చెందుతున్నప్పుడు 6 షడ్రిపులు ఎలా 6 సద్గుణాలుగా రూపాంతరం చెందుతాయో సచిత్ర పటము &amp; సజీవ చక్ర దర్శినితో తెలుసుకోండి.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('shat_chakras_ripus');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="shrink-0 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#7B1113] to-[#4A0012] text-[#FFE082] text-xs sm:text-sm font-bold hover:brightness-110 shadow-md cursor-pointer flex items-center gap-2 border border-[#D4AF37]"
+              >
+                <span>సమగ్ర ఉప-పుటను తెరవండి (Open Sub-Page)</span>
+                <span>➔</span>
+              </button>
+            </div>
           </div>
         </section>
       )}
@@ -664,6 +696,15 @@ export const JyotishyaView: React.FC = () => {
       {showSection('south_chart_transits') && (
         <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
           <SouthIndianRasiChart />
+        </section>
+      )}
+
+      {/* =================================================================== */}
+      {/* SECTION 3: 7 CHAKRAS & 6 SHADRIPUS TO 6 SADGUNAS TRANSMUTATION SUB-PAGE */}
+      {/* =================================================================== */}
+      {showSection('shat_chakras_ripus') && (
+        <section className="space-y-6 bg-[#FFFFFF] p-5 sm:p-8 rounded-3xl border-2 border-[#D4AF37] shadow-lg">
+          <ShatChakrasRipuView onBackToSections={() => setActiveTab('all')} />
         </section>
       )}
 

@@ -1664,3 +1664,211 @@ export const JYOTISHYA_34_QA_DATA: JyotishyaQAItem[] = [
     answerTe: 'కష్టసుఖాలు మన పూర్వజన్మ కర్మఫలాలేనని గుర్తించి, ఇతరులను నిందించడం మాని, కొత్త పాపకర్మలు (ఆగామి కర్మ) చేయకుండా మొదటి శాస్త్రమైన "బ్రహ్మవిద్యా శాస్త్రము" వైపు మళ్లి మోక్షం పొందడమే జ్యోతిష్య శాస్త్రపు పరమ ప్రయోజనం!'
   }
 ];
+
+// ==========================================
+// 6 CHAKRAS (7 WITH SAHASRARA) & 6 RIPUS - 6 SADGUNAS TRANSMUTATION DATA
+// ==========================================
+export interface ShatChakraRipuRecord {
+  order: number; // 1 to 7
+  id: string;
+  nameTe: string;
+  nameEn: string;
+  sanskritName: string;
+  locationTe: string;
+  locationEn: string;
+  elementTe: string;
+  elementEn: string;
+  colorTe: string;
+  colorHex: string;
+  petalsCount: number;
+  seedMantra: string;
+  badGunaTe: string;
+  badGunaEn: string;
+  badGunaDescTe: string;
+  goodGunaTe: string;
+  goodGunaEn: string;
+  goodGunaDescTe: string;
+  transformationTe: string;
+  spiritualResultTe: string;
+  deityTe: string;
+  markerTopPercent: number; // For overlay marker on silhouette (100% scale)
+}
+
+export const SHAT_CHAKRAS_RIPU_GUNA_DATA: ShatChakraRipuRecord[] = [
+  {
+    order: 1,
+    id: 'muladhara',
+    nameTe: '1. మూలాధార చక్రము',
+    nameEn: '1. Muladhara (Root Chakra)',
+    sanskritName: 'मूलाधार',
+    locationTe: 'వెన్నెముక మూలము • గుద స్థానము (గుద-మేడ్ర మధ్యము)',
+    locationEn: 'Base of Spine / Perineum',
+    elementTe: 'పృథ్వి (భూమి తత్త్వము)',
+    elementEn: 'Earth (Prithvi)',
+    colorTe: 'ఎరుపు (రక్త వర్ణము)',
+    colorHex: '#DC2626',
+    petalsCount: 4,
+    seedMantra: 'లం (LAM)',
+    badGunaTe: 'లోభము (పిసినారితనం / సంపదను పట్టి ఉంచే దాహం)',
+    badGunaEn: 'Lobha (Greed / Possessiveness)',
+    badGunaDescTe: 'పృథ్వి తత్త్వంలో ప్రాణశక్తి స్తంభించినప్పుడు భౌతిక సంపదలు, భూమి, బంగారము, డబ్బులను పట్టుకుని విడువని పిసినారితనం, తీవ్రమైన అభద్రతా భావం కలుగుతాయి.',
+    goodGunaTe: 'దానము (త్యాగబుద్ధి / దాతృత్వము)',
+    goodGunaEn: 'Dana (Charity / Generosity)',
+    goodGunaDescTe: 'శక్తి జాగృతమై పైకి లేచినప్పుడు భౌతిక సంపద దైవమిచ్చిన సాధనమే గానీ శాశ్వతం కాదనే వివేకం కలిగి, ఇతరులకు ఉదారంగా పంచే త్యాగబుద్ధి వికసిస్తుంది.',
+    transformationTe: 'భౌతిక వస్తువులపై గుడ్డి మమకారం పోయి, సృష్టిలోని సమస్తమూ ఈశ్వరార్పణమనే త్యాగబుద్ధి, దానగుణం ఉద్భవిస్తుంది.',
+    spiritualResultTe: 'దారిద్ర్య భయాలు నశించుట, దేహధారణపై దృఢమైన స్థైర్యము, దైవానుగ్రహంపై అచంచల విశ్వాసము.',
+    deityTe: 'గణపతి • డాకినీ శక్తి',
+    markerTopPercent: 84
+  },
+  {
+    order: 2,
+    id: 'svadhisthana',
+    nameTe: '2. స్వాధిష్ఠాన చక్రము',
+    nameEn: '2. Svadhisthana (Sacral Chakra)',
+    sanskritName: 'स्वाधिष्ठान',
+    locationTe: 'పొత్తికడుపు • జల స్థానము (లింగమూలము)',
+    locationEn: 'Sacrum / Pelvic Region',
+    elementTe: 'జలము (నీటి తత్త్వము)',
+    elementEn: 'Water (Jala)',
+    colorTe: 'నారింజ (సింధూర వర్ణము)',
+    colorHex: '#EA580C',
+    petalsCount: 6,
+    seedMantra: 'వం (VAM)',
+    badGunaTe: 'కామము (విషయ లాలస / ఇంద్రియ భోగవాంఛ)',
+    badGunaEn: 'Kama (Lust / Sensual Craving)',
+    badGunaDescTe: 'జలము క్రిందికి ప్రవహించినట్లు ప్రాణశక్తి ఇక్కడ బంధింపబడినప్పుడు కేవలం లైంగిక వాంఛ, ఇంద్రియ సుఖాల భోగలాలస, దేహ వాసనలలో చిక్కుకుపోవుట.',
+    goodGunaTe: 'ప్రేమ (దివ్య ప్రేమ / నిర్మల భక్తి / పవిత్ర స్నేహము)',
+    goodGunaEn: 'Prema (Divine Pure Love / Devotion)',
+    goodGunaDescTe: 'ఈ చక్రం శుద్ధి చెందినప్పుడు దేహ వాసనల స్థానంలో ఆత్మ సంబంధమైన నిర్మలమైన భావన ఉదయించి, సంకుచిత కామం కాస్తా నిస్వార్థమైన దివ్య ప్రేమగా మారుతుంది.',
+    transformationTe: 'స్వార్థపూరిత కామవాంఛ నిర్మలమైన భగవత్ ప్రేమగా, సకల జీవులను ఆదరించే పవిత్ర భక్తిగా పరివర్తన చెందుతుంది.',
+    spiritualResultTe: 'ఇంద్రియ దాస్యం నుండి విముక్తి, బ్రహ్మచర్య తేజస్సు, మనశ్శుద్ధి, చిత్త ఏకాగ్రత.',
+    deityTe: 'బ్రహ్మ • రాకినీ శక్తి',
+    markerTopPercent: 71
+  },
+  {
+    order: 3,
+    id: 'manipura',
+    nameTe: '3. మణిపూరక చక్రము',
+    nameEn: '3. Manipura (Solar Plexus Chakra)',
+    sanskritName: 'मणिपूर',
+    locationTe: 'నాభి స్థానము (బొడ్డు కేంద్రము)',
+    locationEn: 'Navel / Solar Plexus',
+    elementTe: 'తేజస్సు / అగ్ని తత్త్వము',
+    elementEn: 'Fire (Tejas / Agni)',
+    colorTe: 'పసుపు / సువర్ణ వర్ణము',
+    colorHex: '#D97706',
+    petalsCount: 10,
+    seedMantra: 'రం (RAM)',
+    badGunaTe: 'క్రోధము (కోపము / ఆవేశము / ప్రతీకార ద్వేషము)',
+    badGunaEn: 'Krodha (Anger / Wrath)',
+    badGunaDescTe: 'అగ్ని అదుపు తప్పితే దహించి వేసినట్లు, నాభి శక్తి అపరిశుద్ధంగా ఉన్నప్పుడు చిన్న విషయాలకే రగిలిపోయే ఆవేశం, ప్రతీకార ద్వేషాలుగా భగభగ మండుతుంది.',
+    goodGunaTe: 'దయ (కరుణ / క్షమాగుణము / శాంతి)',
+    goodGunaEn: 'Daya (Compassion / Forgiveness)',
+    goodGunaDescTe: 'నాభి చక్రం శుద్ధి చెందినప్పుడు ఆ అగ్ని అంతఃచేతనను వెలిగించే జ్ఞానాగ్నిగా మారి, ఎదుటివారి తప్పులను మన్నించే దయ, క్షమాగుణంగా వికసిస్తుంది.',
+    transformationTe: 'దహించే కోపాగ్ని కాస్తా అంతఃచేతనను ప్రకాశింపజేసే జ్ఞానాగ్నిగా మారి, ఎదుటివారి తప్పులను మన్నించే క్షమగా వికసించుట.',
+    spiritualResultTe: 'కోపాగ్ని శాంతించుట, అమితమైన జీర్ణశక్తి, సంకల్పబలం, ఆత్మస్థైర్యం, ప్రశాంతత.',
+    deityTe: 'రుద్రుడు • లాకినీ శక్తి',
+    markerTopPercent: 58
+  },
+  {
+    order: 4,
+    id: 'anahata',
+    nameTe: '4. అనాహత చక్రము',
+    nameEn: '4. Anahata (Heart Chakra)',
+    sanskritName: 'अनाहत',
+    locationTe: 'హృదయ స్థానము (రొమ్ము మధ్య భాగము)',
+    locationEn: 'Heart Center / Chest',
+    elementTe: 'వాయువు (గాలి తత్త్వము)',
+    elementEn: 'Air (Vayu)',
+    colorTe: 'ఆకుపచ్చ (హరిత వర్ణము)',
+    colorHex: '#059669',
+    petalsCount: 12,
+    seedMantra: 'యం (YAM)',
+    badGunaTe: 'మోహము (గుడ్డి మమకారము / అంధకారపు బంధము)',
+    badGunaEn: 'Moha (Delusion / Blind Attachment)',
+    badGunaDescTe: 'ప్రాణశక్తి ఇక్కడ అపరిశుద్ధంగా ఉన్నప్పుడు "నా భార్య, నా పిల్లలు, నా వారు" అనే సంకుచిత మాయా బంధాలలో పడి జీవుడు శోకమోహాలలో కొట్టుమిట్టాడుతాడు.',
+    goodGunaTe: 'ఔదార్యము (విశాల హృదయము / సమస్త ప్రాణి సమభావన)',
+    goodGunaEn: 'Audaryamu (Magnanimity / Open-heartedness)',
+    goodGunaDescTe: 'హృదయ చక్రం వికసించినప్పుడు సంకుచిత స్వార్థ బంధాలు తెగిపోయి, "వసుధైవ కుటుంబకం" అనే సమస్త ప్రాణులను తనవారిగా చూసే పరమ ఔదార్యం కలుగుతుంది.',
+    transformationTe: 'సంకుచితమైన నా-నాది అనే స్వార్థ బంధాలు తెగిపోయి, సకల జీవులను ప్రేమించే విశాల ఔదార్యం కలుగుతుంది.',
+    spiritualResultTe: 'హృదయ గ్రంథి విడిపోవుట, భయ-శోకాలు నశించుట, అనాహత నాద శ్రవణము, నిరంతర ఆనందానుభూతి.',
+    deityTe: 'ఈశానుడు • కాకినీ శక్తి',
+    markerTopPercent: 46
+  },
+  {
+    order: 5,
+    id: 'vishuddha',
+    nameTe: '5. విశుద్ధ చక్రము',
+    nameEn: '5. Vishuddha (Throat Chakra)',
+    sanskritName: 'विशुद्ध',
+    locationTe: 'కంఠ స్థానము (గొంతు కేంద్రము)',
+    locationEn: 'Throat Center',
+    elementTe: 'ఆకాశము (శూన్య తత్త్వము / Ether)',
+    elementEn: 'Ether / Space (Akasha)',
+    colorTe: 'లేత నీలము (ఆకాశ నీల వర్ణము)',
+    colorHex: '#0284C7',
+    petalsCount: 16,
+    seedMantra: 'హం (HAM)',
+    badGunaTe: 'మదము (అహంకార గర్వము / డాంబికము / తానే గొప్పనే భావన)',
+    badGunaEn: 'Mada (Pride / Arrogance)',
+    badGunaDescTe: 'మాటలకు నిలయమైన కంఠంలో అహంకారం తలకెక్కినప్పుడు "నేనే గొప్ప, నా జ్ఞానమే గొప్ప" అనే మదముతో ఇతరులను చిన్నచూపు చూస్తూ నోటితో అవమానించడం జరుగుతుంది.',
+    goodGunaTe: 'వినయము (నమ్రత / నిగర్వము / సత్యసంధత)',
+    goodGunaEn: 'Vinayamu (Humility / Modesty)',
+    goodGunaDescTe: 'విశుద్ధ చక్రం జాగృతమైతే అనంత విశ్వశక్తి ముందు తాను ఎంత అల్పుడో బోధపడి, మదము పూర్తిగా కరిగిపోయి పరమోన్నత వినయము, నమ్రత అలవడుతాయి.',
+    transformationTe: 'అహంకార గర్వాలు నశించి విద్యావినయం, పరమ నమ్రత, దైవ సమర్పణ భావం కలుగుతాయి.',
+    spiritualResultTe: 'అమృతతుల్యమైన వాక్శుద్ధి, వాక్ సిద్ధి, సత్యసంధత, సంగీత-సాహిత్య ప్రతిభ, ఆకాశమంత విస్తృతమైన సమభావన.',
+    deityTe: 'సదాశివుడు • శాకినీ శక్తి',
+    markerTopPercent: 33
+  },
+  {
+    order: 6,
+    id: 'ajna',
+    nameTe: '6. ఆజ్ఞా చక్రము',
+    nameEn: '6. Ajna (Third Eye Chakra)',
+    sanskritName: 'आज्ञा',
+    locationTe: 'భ్రూమధ్యము • నుదుటి కేంద్రము (త్రినేత్ర స్థానము)',
+    locationEn: 'Between Eyebrows / Forehead (Third Eye)',
+    elementTe: 'మనస్ / జ్ఞాన తత్త్వము (Mind / Intellect)',
+    elementEn: 'Mind / Intuition (Manas / Mahat)',
+    colorTe: 'గాఢ నీలము / ఇండీగో (Indigo)',
+    colorHex: '#4F46E5',
+    petalsCount: 2,
+    seedMantra: 'ఓం (AUM)',
+    badGunaTe: 'మాత్సర్యము (ఈర్ష్య / అసూయ / ఎదుటివారి ఎదుగుదలను ఓర్వలేకపోవుట)',
+    badGunaEn: 'Matsarya (Jealousy / Envy)',
+    badGunaDescTe: 'ద్వైత బుద్ధి ఉన్నంతకాలం "నేను వేరు, ఇతరులు వేరు" అని భావించి, ఇతరుల సుఖాన్ని, కీర్తిని చూసి ఓర్వలేని మాత్సర్యముతో అంతర్గతంగా దహించుకుపోవుట.',
+    goodGunaTe: 'వైరాగ్యము (సమదృష్టి / నిష్కామత / నిర్ద్వంద్వ స్థితి)',
+    goodGunaEn: 'Vairagya (Dispassion / Detachment)',
+    goodGunaDescTe: 'ఆజ్ఞా చక్రం పూర్తిగా జాగృతమై త్రినేత్రం తెరుచుకున్నప్పుడు సర్వత్రా వెలిగేది ఒకే ఆత్మ చైతన్యమని గ్రహించి, నిష్కామ వైరాగ్యము, సమత్వ దృష్టిని పొందుతాడు.',
+    transformationTe: 'ద్వైత భేదభావాలు సమసిపోయి, సమస్త జీవులలో ఆత్మను దర్శించే జ్ఞాన నేత్రము, నిష్కామ వైరాగ్యము లభిస్తాయి.',
+    spiritualResultTe: 'త్రినేత్ర జ్ఞానోదయము, అంతర్దృష్టి, దివ్య దృష్టి, సమాధి స్థితి, సర్వ సంకల్ప సిద్ధి.',
+    deityTe: 'అర్థనారీశ్వరుడు • హాకినీ శక్తి',
+    markerTopPercent: 21
+  },
+  {
+    order: 7,
+    id: 'sahasrara',
+    nameTe: '7. సహస్రార చక్రము',
+    nameEn: '7. Sahasrara (Crown Chakra)',
+    sanskritName: 'सहस्रार',
+    locationTe: 'శిరస్సు పైభాగము • బ్రహ్మరంధ్రము (Crown of Head)',
+    locationEn: 'Crown of Head / Fontanelle',
+    elementTe: 'శుద్ధ పరబ్రహ్మ చైతన్యము (Beyond Elements)',
+    elementEn: 'Pure Consciousness / Supreme Divine',
+    colorTe: 'ఊదా / ధవళ శ్వేత కాంతి (Violet / Pure White)',
+    colorHex: '#9333EA',
+    petalsCount: 1000,
+    seedMantra: 'నిశ్శబ్ద ఓంకార మహా నాదము (Silence / Anahata)',
+    badGunaTe: 'సంపూర్ణ కర్మ రహిత స్థితి (షడ్రిపుల పరిపూర్ణ సంహారము)',
+    badGunaEn: 'Transcendence of All 6 Ripus',
+    badGunaDescTe: 'ఈ స్థానమునకు చేరినప్పుడు 6 చెడు గుణాలు సమూలంగా భస్మమైపోతాయి; జీవుడిని బంధించే ఏ కర్మలూ ఇక్కడ ఉండవు.',
+    goodGunaTe: 'జీవన్ముక్తి • కర్మ రహిత మోక్ష స్థితి • పరమపదం',
+    goodGunaEn: 'Moksha (Liberation / Self-Realization)',
+    goodGunaDescTe: '6 సద్గుణాలు ఆత్మ స్వరూపంలో లీనమైపోతాయి; భగవద్గీతలో తెలిపిన పురుషోత్తమ ప్రాప్తి యోగం (అద్వైత బ్రహ్మ భావన) సిద్ధిస్తుంది.',
+    transformationTe: 'షట్చక్ర భేదనము సంపూర్ణమై కుండలినీ శక్తి పరమాత్మతో ఏకమగుట; తలలోని గుణచక్రం (324 కర్మలు) దాటి ఆత్మ స్థానంలో స్థిరపడుట.',
+    spiritualResultTe: 'జీవన్ముక్తి, పరమానందము, పునర్జన్మ రాహిత్యము, పరబ్రహ్మతో అఖండ ఐక్యత.',
+    deityTe: 'పరమశివుడు / పరబ్రహ్మ పరమాత్మ',
+    markerTopPercent: 8
+  }
+];
+
