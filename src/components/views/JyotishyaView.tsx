@@ -26,6 +26,7 @@ import {
   X
 } from 'lucide-react';
 import { SouthIndianRasiChart } from './SouthIndianRasiChart';
+import { NineParimanamsModal } from './NineParimanamsModal';
 
 type ActiveSectionTab =
   | 'all'
@@ -60,6 +61,7 @@ export const JyotishyaView: React.FC = () => {
     subtitle: string;
   } | null>(null);
   const [chakraImageSource, setChakraImageSource] = useState<'source' | 'art'>('source');
+  const [isParimanamsModalOpen, setIsParimanamsModalOpen] = useState<boolean>(false);
 
   // Selected Lagna Graha for 2:1 Friend/Enemy Calculator
   const selectedLagnaGraha = useMemo(
@@ -595,6 +597,17 @@ export const JyotishyaView: React.FC = () => {
                       <p className="text-xs text-[#5D4037] leading-relaxed">
                         {ch.roleTe}
                       </p>
+
+                      {ch.id === 'guna-chakra' && (
+                        <button
+                          type="button"
+                          onClick={() => setIsParimanamsModalOpen(true)}
+                          className="mt-2 w-full px-3 py-2 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#FFE082] to-[#D4AF37] text-[#4A0012] text-xs font-bold hover:brightness-105 transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-[#7B1113]" />
+                          <span>✨ 9 పరిమాణములు ఎలా వచ్చాయి? (పూర్తి వివరణ పాప్-అప్)</span>
+                        </button>
+                      )}
                     </div>
 
                     <div className="p-2.5 rounded-xl bg-[#FFF8E1] border border-[#D4AF37] text-[11px] font-semibold text-[#7B1113]">
@@ -608,13 +621,28 @@ export const JyotishyaView: React.FC = () => {
 
           {/* 3 Karma Types (Agami, Sanchita, Prarabdha) & 324 Karmas Summary */}
           <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#FFF8E1] via-[#FFFDF7] to-[#FFF8E1] border-2 border-[#D4AF37] space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <h3 className="text-base sm:text-xl font-bold text-[#7B1113] font-telugu-serif">
-                ⚖️ త్రివిధ కర్మలు (ఆగామి • సంచిత • ప్రారబ్ధ) &amp; 324 రకముల కర్మల ఉత్పత్తి
-              </h3>
-              <span className="px-3 py-1 rounded-full bg-[#7B1113] text-[#FFE082] text-xs font-bold">
-                ⏱️ 69 సం|| 5 నెలల 10 రోజులకు ఆగామి కర్మ సంచిత కర్మగా మారును!
-              </span>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">⚖️</span>
+                <h3 className="text-base sm:text-xl font-bold text-[#7B1113] font-telugu-serif">
+                  త్రివిధ కర్మలు (ఆగామి • సంచిత • ప్రారబ్ధ) &amp; 324 రకముల కర్మల ఉత్పత్తి
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setIsParimanamsModalOpen(true)}
+                  className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#FFE082] text-[#4A0012] text-xs font-bold hover:brightness-105 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+                  title="9 పరిమాణములు మరియు 324 కర్మల గణిత రహస్య పాప్-అప్ తెరవండి"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#7B1113]" />
+                  <span>9 పరిమాణముల వివరణ (పాప్-అప్)</span>
+                </button>
+                <span className="px-3 py-1.5 rounded-full bg-[#7B1113] text-[#FFE082] text-xs font-bold">
+                  ⏱️ 69 సం|| 5 నెలల 10 రోజులకు ఆగామి కర్మ సంచిత కర్మగా మారును!
+                </span>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1754,6 +1782,12 @@ export const JyotishyaView: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* 9 Parimanams & 324 Karmas Explanation Modal Popup */}
+      <NineParimanamsModal
+        isOpen={isParimanamsModalOpen}
+        onClose={() => setIsParimanamsModalOpen(false)}
+      />
     </div>
   );
 };
