@@ -10,6 +10,7 @@ import {
   ALL_48_CHAPTERS_DATA,
   JYOTISHYA_34_QA_DATA,
   GRAHA_DISCIPLINE_CARDS,
+  GRAHAS_BY_PICTURE_ORDER,
   type GrahaMasterRecord,
   type KarmaHouseRecord
 } from '../../data/jyotishyaData';
@@ -65,6 +66,13 @@ export const JyotishyaView: React.FC = () => {
   } | null>(null);
   const [chakraImageSource, setChakraImageSource] = useState<'source' | 'art'>('source');
   const [isParimanamsModalOpen, setIsParimanamsModalOpen] = useState<boolean>(false);
+  const [attributesTableOrder, setAttributesTableOrder] = useState<'pictures' | 'lagna'>('pictures');
+
+  // Grahas ordered for Section 5 Attributes Matrix (default: exact picture order)
+  const displayedAttributesGrahas = useMemo(
+    () => (attributesTableOrder === 'pictures' ? GRAHAS_BY_PICTURE_ORDER : TWELVE_GRAHAS_MASTER_DATA),
+    [attributesTableOrder]
+  );
 
   // Selected Lagna Graha for 2:1 Friend/Enemy Calculator
   const selectedLagnaGraha = useMemo(
@@ -1062,6 +1070,47 @@ export const JyotishyaView: React.FC = () => {
             </p>
           </div>
 
+          {/* Table Planet Ordering Selector */}
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-[#FAF7F0] p-3 rounded-2xl border border-[#E8DCC4]">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-bold text-[#7B1113] flex items-center gap-1.5">
+                <span>📋</span>
+                <span>{isEn ? 'Table Planet Order:' : 'పట్టికలో గ్రహాల అమరిక క్రమం:'}</span>
+              </span>
+              <div className="inline-flex rounded-xl p-1 bg-white border border-[#D4AF37] shadow-sm">
+                <button
+                  type="button"
+                  onClick={() => setAttributesTableOrder('pictures')}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    attributesTableOrder === 'pictures'
+                      ? 'bg-[#7B1113] text-[#FFE082] shadow-sm'
+                      : 'text-[#5D4037] hover:bg-[#FFF8E1]'
+                  }`}
+                >
+                  <span>🖼️</span>
+                  <span>{isEn ? 'Pictures Order (Sun ➔ Moon ➔ Mars...)' : 'చిత్రాల క్రమం (సూర్యుడు ➔ చంద్రుడు ➔ కుజుడు...)'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAttributesTableOrder('lagna')}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    attributesTableOrder === 'lagna'
+                      ? 'bg-[#7B1113] text-[#FFE082] shadow-sm'
+                      : 'text-[#5D4037] hover:bg-[#FFF8E1]'
+                  }`}
+                >
+                  <span>🏛️</span>
+                  <span>{isEn ? 'Lagna Order (1. Mesha ➔ 12. Meena)' : 'లగ్న క్రమం (1. మేషం ➔ 12. మీనం)'}</span>
+                </button>
+              </div>
+            </div>
+            <span className="text-[11px] text-[#8C6D37] italic font-medium">
+              {attributesTableOrder === 'pictures'
+                ? (isEn ? '✨ Arranged in exact match with the discipline pictures below (Sun to Chitra)' : '✨ క్రింది చిత్రమాలిక క్రమానికి (సూర్యుడు నుండి చిత్ర గ్రహం వరకు) అనుగుణంగా అమర్చబడింది')
+                : (isEn ? 'Showing natural 1-12 zodiac sign order' : 'సహజ 1 నుండి 12 రాశుల లగ్న క్రమంలో ప్రదర్శించబడుతోంది')}
+            </span>
+          </div>
+
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
@@ -1082,10 +1131,13 @@ export const JyotishyaView: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {TWELVE_GRAHAS_MASTER_DATA.map(g => (
+                {displayedAttributesGrahas.map((g, idx) => (
                   <tr key={g.id} className="odd:bg-white even:bg-[#FAF7F0] hover:bg-[#FFF8E1]">
-                    <td className="p-2.5 border border-[#E8DCC4] font-bold text-[#7B1113]">
-                      {g.icon} {g.nameTe.split(' ')[0]} ({g.ownLagnaTe.split(' ')[1]})
+                    <td className="p-2.5 border border-[#E8DCC4] font-bold text-[#7B1113] whitespace-nowrap">
+                      <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#7B1113] text-[#FFE082] text-[10px] mr-1.5 font-bold shrink-0">
+                        {idx + 1}
+                      </span>
+                      {g.icon} {isEn ? g.nameEn : (g.id === 'surya' ? 'సూర్యుడు' : g.nameTe.split(' ')[0])} ({isEn ? g.ownLagnaEn : g.ownLagnaTe.split(' ')[1]})
                     </td>
                     <td className="p-2.5 border border-[#E8DCC4] font-semibold">{g.casteReligionTe}</td>
                     <td className="p-2.5 border border-[#E8DCC4]">{g.colorTe}</td>
@@ -1109,13 +1161,13 @@ export const JyotishyaView: React.FC = () => {
           </div>
 
           {/* =================================================================== */}
-          {/* PICTURE GALLERY: గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి (10 CARDS) */}
+          {/* PICTURE GALLERY: గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి (12 GRAHAS + MANDALA) */}
           {/* =================================================================== */}
           <div className="mt-8 pt-6 border-t-2 border-[#D4AF37] space-y-5">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-gradient-to-r from-[#FFF8E1] via-[#FFFDF7] to-[#FFF8E1] p-5 rounded-2xl border-2 border-[#D4AF37]">
               <div>
                 <span className="px-3 py-1 rounded-full bg-[#7B1113] text-[#FFE082] text-xs font-bold">
-                  {isEn ? 'Practical Remedies Gallery (10 Cards in File Order)' : 'ఆచరణాత్మక జీవన శైలి చిత్రమాలిక (ఫైల్ పేర్ల క్రమంలో 10 పటములు)'}
+                  {isEn ? 'Practical Remedies Gallery (12 Planets & Mandala in Discipline Order)' : 'ఆచరణాత్మక జీవన శైలి చిత్రమాలిక (క్రమశిక్షణా సూక్తుల క్రమంలో 12 గ్రహములు & మండల పటములు)'}
                 </span>
                 <h3 className="text-lg sm:text-2xl font-bold text-[#7B1113] font-telugu-serif mt-1 flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-[#D84315]" />

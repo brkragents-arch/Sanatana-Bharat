@@ -2076,4 +2076,30 @@ export const GRAHA_DISCIPLINE_CARDS: GrahaDisciplineCard[] = [
   }
 ];
 
+// 12 Planets in the Exact Order of the Pictures:
+// 1. Surya (Sun), 2. Chandra (Moon), 3. Kuja (Mars), 4. Budha (Mercury), 5. Guru (Jupiter),
+// 6. Shukra (Venus), 7. Shani (Saturn), 8. Rahu (Rahu), 9. Ketu (Ketu),
+// 10. Bhoomi (Earth), 11. Mitra (Mitra), 12. Chitra (Chitra)
+export const GRAHA_PICTURE_ORDER_IDS: string[] = [
+  'surya',
+  'chandra',
+  'kuja',
+  'budha',
+  'guru',
+  'shukra',
+  'shani',
+  'rahu',
+  'ketu',
+  'bhoomi',
+  'mitra',
+  'chitra'
+];
+
+export const GRAHAS_BY_PICTURE_ORDER: GrahaMasterRecord[] = GRAHA_PICTURE_ORDER_IDS.map(id => {
+  const g = TWELVE_GRAHAS_MASTER_DATA.find(item => item.id === id);
+  if (!g) throw new Error(`Graha with id ${id} not found in TWELVE_GRAHAS_MASTER_DATA`);
+  return g;
+});
+
+
 
