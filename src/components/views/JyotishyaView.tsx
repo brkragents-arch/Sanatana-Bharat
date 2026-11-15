@@ -1124,8 +1124,10 @@ export const JyotishyaView: React.FC = () => {
                   <th className="p-2.5 border border-[#D4AF37]/40">6. రత్నము (రాయి)</th>
                   <th className="p-2.5 border border-[#D4AF37]/40">7. దిశ (10 దిశలు)</th>
                   <th className="p-2.5 border border-[#D4AF37]/40">8. ధాన్యము &amp; వారము</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">9. ప్రధాన రోగములు</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40 min-w-[280px] bg-[#3B000A] text-[#FFE082]">
+                  <th className="p-2.5 border border-[#D4AF37]/40 w-[290px] min-w-[290px] max-w-[290px]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
+                    9. ప్రధాన రోగములు
+                  </th>
+                  <th className="p-2.5 border border-[#D4AF37]/40 w-[290px] min-w-[290px] max-w-[290px] bg-[#3B000A] text-[#FFE082]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
                     {isEn ? '10. Practical Discipline (Discipline, Not Worship)' : '10. ఆచరణాత్మక క్రమశిక్షణ (గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి)'}
                   </th>
                 </tr>
@@ -1147,8 +1149,10 @@ export const JyotishyaView: React.FC = () => {
                     <td className="p-2.5 border border-[#E8DCC4] font-bold">{g.gemstoneTe}</td>
                     <td className="p-2.5 border border-[#E8DCC4]">{g.directionTe}</td>
                     <td className="p-2.5 border border-[#E8DCC4]">{g.grainTe} • {g.weekdayTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4] text-[#5D4037]">{g.diseasesTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4] text-xs leading-relaxed bg-[#FFFDF7]">
+                    <td className="p-2.5 border border-[#E8DCC4] text-[#5D4037] w-[290px] min-w-[290px] max-w-[290px]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
+                      {g.diseasesTe}
+                    </td>
+                    <td className="p-2.5 border border-[#E8DCC4] text-xs leading-relaxed bg-[#FFFDF7] w-[290px] min-w-[290px] max-w-[290px]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
                       <div className="font-semibold text-[#7B1113] flex items-start gap-1.5">
                         <span className="text-amber-600 shrink-0 font-bold">💡</span>
                         <span>{isEn ? (g.disciplineTipEn || g.disciplineTipTe) : g.disciplineTipTe}</span>
