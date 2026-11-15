@@ -1111,51 +1111,69 @@ export const JyotishyaView: React.FC = () => {
             </span>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-xs">
+          <div className="w-full overflow-hidden rounded-2xl border border-[#D4AF37]/50 shadow-sm">
+            <table className="w-full table-fixed text-left border-collapse text-[11px] sm:text-xs">
+              <colgroup>
+                <col className="w-[10%]" />
+                <col className="w-[7%]" />
+                <col className="w-[6%]" />
+                <col className="w-[5%]" />
+                <col className="w-[5%]" />
+                <col className="w-[9%]" />
+                <col className="w-[6%]" />
+                <col className="w-[6%]" />
+                <col className="w-[8%]" />
+                <col className="w-[19%]" />
+                <col className="w-[19%]" />
+              </colgroup>
               <thead>
                 <tr className="bg-[#4A0012] text-[#FFE082]">
-                  <th className="p-2.5 border border-[#D4AF37]/40">గ్రహము (స్వంత ఇల్లు)</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">1. కులము / మతము</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">2. రంగు</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">3. రుచి</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">4. లింగము</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">5. కారకత్వము</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">6. రత్నము (రాయి)</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">7. దిశ (10 దిశలు)</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40">8. ధాన్యము &amp; వారము</th>
-                  <th className="p-2.5 border border-[#D4AF37]/40 w-[290px] min-w-[290px] max-w-[290px]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
-                    9. ప్రధాన రోగములు
-                  </th>
-                  <th className="p-2.5 border border-[#D4AF37]/40 w-[290px] min-w-[290px] max-w-[290px] bg-[#3B000A] text-[#FFE082]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
-                    {isEn ? '10. Practical Discipline (Discipline, Not Worship)' : '10. ఆచరణాత్మక క్రమశిక్షణ (గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి)'}
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">గ్రహము (స్వంత ఇల్లు)</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">1. కులము / మతము</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">2. రంగు</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">3. రుచి</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">4. లింగము</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">5. కారకత్వము</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">6. రత్నము</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">7. దిశ</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">8. ధాన్యము &amp; వారము</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 leading-tight">9. ప్రధాన రోగములు</th>
+                  <th className="p-2 sm:p-2.5 border border-[#D4AF37]/40 bg-[#3B000A] text-[#FFE082] leading-tight">
+                    {isEn ? '10. Practical Discipline (Discipline, Not Worship)' : '10. ఆచరణాత్మక క్రమశిక్షణ (గ్రహాలకు క్రమశిక్షణ కావాలి)'}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {displayedAttributesGrahas.map((g, idx) => (
                   <tr key={g.id} className="odd:bg-white even:bg-[#FAF7F0] hover:bg-[#FFF8E1]">
-                    <td className="p-2.5 border border-[#E8DCC4] font-bold text-[#7B1113] whitespace-nowrap">
-                      <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#7B1113] text-[#FFE082] text-[10px] mr-1.5 font-bold shrink-0">
-                        {idx + 1}
-                      </span>
-                      {g.icon} {isEn ? g.nameEn : (g.id === 'surya' ? 'సూర్యుడు' : g.nameTe.split(' ')[0])} ({isEn ? g.ownLagnaEn : g.ownLagnaTe.split(' ')[1]})
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] font-bold text-[#7B1113] break-words">
+                      <div className="flex flex-col xl:flex-row items-start xl:items-center gap-1">
+                        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#7B1113] text-[#FFE082] text-[10px] font-bold shrink-0">
+                          {idx + 1}
+                        </span>
+                        <span className="leading-tight">
+                          {g.icon} {isEn ? g.nameEn : (g.id === 'surya' ? 'సూర్యుడు' : g.nameTe.split(' ')[0])}
+                          <span className="block xl:inline text-[10px] text-[#8C6D37] font-normal xl:ml-1">
+                            ({isEn ? g.ownLagnaEn : g.ownLagnaTe.split(' ')[1]})
+                          </span>
+                        </span>
+                      </div>
                     </td>
-                    <td className="p-2.5 border border-[#E8DCC4] font-semibold">{g.casteReligionTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4]">{g.colorTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4]">{g.tasteTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4] font-bold">{g.genderTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4] font-semibold text-[#D84315]">{g.karakatvamTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4] font-bold">{g.gemstoneTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4]">{g.directionTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4]">{g.grainTe} • {g.weekdayTe}</td>
-                    <td className="p-2.5 border border-[#E8DCC4] text-[#5D4037] w-[290px] min-w-[290px] max-w-[290px]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] font-semibold break-words">{g.casteReligionTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] break-words">{g.colorTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] break-words">{g.tasteTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] font-bold break-words">{g.genderTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] font-semibold text-[#D84315] break-words">{g.karakatvamTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] font-bold break-words">{g.gemstoneTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] break-words">{g.directionTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] break-words">{g.grainTe} • {g.weekdayTe}</td>
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] text-[#5D4037] leading-relaxed break-words">
                       {g.diseasesTe}
                     </td>
-                    <td className="p-2.5 border border-[#E8DCC4] text-xs leading-relaxed bg-[#FFFDF7] w-[290px] min-w-[290px] max-w-[290px]" style={{ width: '290px', minWidth: '290px', maxWidth: '290px' }}>
-                      <div className="font-semibold text-[#7B1113] flex items-start gap-1.5">
+                    <td className="p-2 sm:p-2.5 border border-[#E8DCC4] text-[11px] sm:text-xs leading-relaxed bg-[#FFFDF7] break-words">
+                      <div className="font-semibold text-[#7B1113] flex items-start gap-1">
                         <span className="text-amber-600 shrink-0 font-bold">💡</span>
-                        <span>{isEn ? (g.disciplineTipEn || g.disciplineTipTe) : g.disciplineTipTe}</span>
+                        <span className="break-words">{isEn ? (g.disciplineTipEn || g.disciplineTipTe) : g.disciplineTipTe}</span>
                       </div>
                     </td>
                   </tr>
