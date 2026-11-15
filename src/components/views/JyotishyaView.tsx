@@ -9,6 +9,7 @@ import {
   KUNDALI_CASE_STUDIES,
   ALL_48_CHAPTERS_DATA,
   JYOTISHYA_34_QA_DATA,
+  GRAHA_DISCIPLINE_CARDS,
   type GrahaMasterRecord,
   type KarmaHouseRecord
 } from '../../data/jyotishyaData';
@@ -1075,6 +1076,9 @@ export const JyotishyaView: React.FC = () => {
                   <th className="p-2.5 border border-[#D4AF37]/40">7. దిశ (10 దిశలు)</th>
                   <th className="p-2.5 border border-[#D4AF37]/40">8. ధాన్యము &amp; వారము</th>
                   <th className="p-2.5 border border-[#D4AF37]/40">9. ప్రధాన రోగములు</th>
+                  <th className="p-2.5 border border-[#D4AF37]/40 min-w-[280px] bg-[#3B000A] text-[#FFE082]">
+                    {isEn ? '10. Practical Discipline (Discipline, Not Worship)' : '10. ఆచరణాత్మక క్రమశిక్షణ (గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి)'}
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -1092,10 +1096,96 @@ export const JyotishyaView: React.FC = () => {
                     <td className="p-2.5 border border-[#E8DCC4]">{g.directionTe}</td>
                     <td className="p-2.5 border border-[#E8DCC4]">{g.grainTe} • {g.weekdayTe}</td>
                     <td className="p-2.5 border border-[#E8DCC4] text-[#5D4037]">{g.diseasesTe}</td>
+                    <td className="p-2.5 border border-[#E8DCC4] text-xs leading-relaxed bg-[#FFFDF7]">
+                      <div className="font-semibold text-[#7B1113] flex items-start gap-1.5">
+                        <span className="text-amber-600 shrink-0 font-bold">💡</span>
+                        <span>{isEn ? (g.disciplineTipEn || g.disciplineTipTe) : g.disciplineTipTe}</span>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* =================================================================== */}
+          {/* PICTURE GALLERY: గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి (10 CARDS) */}
+          {/* =================================================================== */}
+          <div className="mt-8 pt-6 border-t-2 border-[#D4AF37] space-y-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-gradient-to-r from-[#FFF8E1] via-[#FFFDF7] to-[#FFF8E1] p-5 rounded-2xl border-2 border-[#D4AF37]">
+              <div>
+                <span className="px-3 py-1 rounded-full bg-[#7B1113] text-[#FFE082] text-xs font-bold">
+                  {isEn ? 'Practical Remedies Gallery (10 Cards in File Order)' : 'ఆచరణాత్మక జీవన శైలి చిత్రమాలిక (ఫైల్ పేర్ల క్రమంలో 10 పటములు)'}
+                </span>
+                <h3 className="text-lg sm:text-2xl font-bold text-[#7B1113] font-telugu-serif mt-1 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-[#D84315]" />
+                  <span>{isEn ? 'Planets Need Discipline, Not Worship/Rituals:' : 'గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి:'}</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#5D4037] mt-0.5">
+                  {isEn 
+                    ? 'True planetary harmony comes through practical behavioral discipline, healthy habits, and moral integrity in the exact original file sequence.'
+                    : 'మూఢనమ్మకాలు, పూజల కంటే నిజజీవితంలో క్రమశిక్షణ, సత్ప్రవర్తన, నైతిక విలువల ద్వారానే గ్రహాల అనుకూల శక్తిని పొందవచ్చు.'}
+                </p>
+              </div>
+              <div className="text-xs font-bold text-[#D84315] bg-white px-3 py-1.5 rounded-xl border border-[#D4AF37] shrink-0">
+                {isEn ? '🔍 Click card to zoom full image' : '🔍 పెద్దగా చూడటానికి కార్డుపై క్లిక్ చేయండి'}
+              </div>
+            </div>
+
+            {/* Grid of 10 images in exact filename order */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {GRAHA_DISCIPLINE_CARDS.map((card, idx) => (
+                <div
+                  key={card.id}
+                  onClick={() => setSelectedChakraImage({
+                    url: card.imageSrc,
+                    title: isEn ? card.titleEn : card.titleTe,
+                    subtitle: isEn ? card.disciplineEn : card.disciplineTe
+                  })}
+                  className="group relative bg-[#FAF7F0] rounded-2xl border-2 border-[#E8DCC4] hover:border-[#D4AF37] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer hover:-translate-y-1"
+                >
+                  {/* Card Top Label */}
+                  <div className="p-2.5 bg-gradient-to-r from-[#4A0012] to-[#7B1113] text-[#FFE082] flex items-center justify-between text-xs font-bold">
+                    <span className="flex items-center gap-1.5 truncate">
+                      <span className="w-5 h-5 rounded-full bg-[#FFE082] text-[#4A0012] inline-flex items-center justify-center text-[11px] font-extrabold shrink-0">
+                        {idx + 1}
+                      </span>
+                      <span className="truncate">{isEn ? card.grahaNameEn : card.grahaNameTe}</span>
+                    </span>
+                    <Eye className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 shrink-0" />
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-amber-50">
+                    <img
+                      src={card.imageSrc}
+                      alt={isEn ? card.titleEn : card.titleTe}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5">
+                      <span className="text-[11px] text-[#FFE082] font-bold flex items-center gap-1">
+                        <Maximize2 className="w-3.5 h-3.5" />
+                        <span>{isEn ? 'View Full Image' : 'పూర్తి చిత్రం చూడండి'}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description Box */}
+                  <div className="p-3 bg-white space-y-1.5 border-t border-[#E8DCC4] flex-1 flex flex-col justify-between">
+                    <div className="text-xs font-bold text-[#7B1113] font-telugu-serif">
+                      {isEn ? card.titleEn : card.titleTe}
+                    </div>
+                    <p className="text-[11px] text-[#2C1810] leading-snug font-medium line-clamp-3">
+                      {isEn ? card.disciplineEn : card.disciplineTe}
+                    </p>
+                    <div className="text-[10px] text-stone-400 font-mono pt-1 border-t border-stone-100 truncate">
+                      {card.fileName}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

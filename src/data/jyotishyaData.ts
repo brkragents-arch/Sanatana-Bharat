@@ -38,6 +38,8 @@ export interface GrahaMasterRecord {
   specialDiscoveryNoteTe?: string;
   icon: string;
   accentColor: string;
+  disciplineTipTe?: string;
+  disciplineTipEn?: string;
 }
 
 export interface KarmaHouseRecord {
@@ -248,7 +250,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'మంగళవారము',
     portfolioTe: 'భూములు, స్థిరాస్తులు, పోలీసు/మిలిటరీ రక్షణ, శస్త్రచికిత్స, సోదర బలము, ధైర్యసాహసములు, రోడ్డు/భూమి వివాదములు.',
     icon: '🔴',
-    accentColor: '#DC2626'
+    accentColor: '#DC2626',
+    disciplineTipTe: 'వ్యాయామం చేయండి. మీ చెమటే కుజుడికిచ్చే అత్యుత్తమ కానుక.',
+    disciplineTipEn: 'Exercise and work out. Your sweat is the greatest gift to Mars.'
   },
   {
     id: 'mitra',
@@ -285,7 +289,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     portfolioTe: 'మైత్రి, స్నేహ సంబంధములు, దానధర్మములు, రహస్య సహాయము, ఆధ్యాత్మిక నిబంధన.',
     specialDiscoveryNoteTe: 'బ్రహ్మనాడి అంతరంగ పరిశోధన ద్వారా బయల్పడిన 11వ గ్రహము. ఇది కాంతిని పూర్తిగా తనలోనికి పీల్చుకొనే చీకటి గ్రహము కావున బాహ్య టెలిస్కోపులకు కనిపించదు. వృషభ లగ్నము శుక్రునిది కాదు; మిత్ర గ్రహము యొక్క స్వంత ఇల్లు!',
     icon: '🌑',
-    accentColor: '#78350F'
+    accentColor: '#78350F',
+    disciplineTipTe: 'నిస్వార్థ స్నేహ భావాన్ని పాటించండి; మోసం చేయకుండా సత్యనిష్ఠతో ఉండండి.',
+    disciplineTipEn: 'Practice selfless, truthful friendship and unwavering loyalty.'
   },
   {
     id: 'chitra',
@@ -322,7 +328,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     portfolioTe: 'విచిత్ర కళలు, ఊహాশক্তি, ఆకస్మిక మార్పులు, రహస్య శత్రుత్వము, బహుముఖ ప్రజ్ఞ.',
     specialDiscoveryNoteTe: 'బ్రహ్మనాడి అంతరంగ పరిశోధన ద్వారా బయల్పడిన 12వ గ్రహము. ఇది అనేక రంగులతో మెరుస్తూ 24 గంటలలో కొన్ని నిమిషములు మాత్రమే కనిపించి మాయమయ్యే అదృశ్య గ్రహము. మిథున లగ్నము బుధునిది కాదు; చిత్ర గ్రహము యొక్క స్వంత ఇల్లు!',
     icon: '🌈',
-    accentColor: '#D97706'
+    accentColor: '#D97706',
+    disciplineTipTe: 'సృజనాత్మక కళానైపుణ్యాలను, బుద్ధి ప్రతిభను లోకహిత ధర్మకార్యాలకు వినియోగించండి.',
+    disciplineTipEn: 'Channel creative artistic skills and intelligence for righteous causes.'
   },
   {
     id: 'chandra',
@@ -358,7 +366,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'సోమవారము',
     portfolioTe: 'తల్లి ప్రేమ, మనస్సు, జల వనరులు (బోర్లు/బావులలో నీరు పడుట), వ్యవసాయం, ప్రయాణములు, శాంతి.',
     icon: '🌕',
-    accentColor: '#0284C7'
+    accentColor: '#0284C7',
+    disciplineTipTe: 'వెండి గ్లాసు లేదా బాటిల్లో నీళ్లు తాగండి. మీ భావోద్వేగాల ఊగిసలాటను ఆపండి.',
+    disciplineTipEn: 'Drink water from a silver glass or bottle. Calm your emotional fluctuations.'
   },
   {
     id: 'surya',
@@ -394,7 +404,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'ఆదివారము',
     portfolioTe: 'రాజకీయ అధికారము, ప్రభుత్వ ఉద్యోగము, తండ్రి ఆస్తి, ఆత్మవిశ్వాసము, తేజస్సు, సూర్య కుటుంబ నియంత్రణ.',
     icon: '☀️',
-    accentColor: '#EA580C'
+    accentColor: '#EA580C',
+    disciplineTipTe: 'సూర్యోదయానికి ముందే లేవండి. ప్రతిరోజూ.',
+    disciplineTipEn: 'Wake up before sunrise. Every single day.'
   },
   {
     id: 'budha',
@@ -430,7 +442,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'బుధవారము',
     portfolioTe: 'వ్యాపారము, గణితము, లౌకిక చదువు, రచనా శక్తి, వాక్చాతుర్యము, కమీషన్ వ్యాపారము, వైద్య వృత్తి.',
     icon: '🟢',
-    accentColor: '#16A34A'
+    accentColor: '#16A34A',
+    disciplineTipTe: 'మాట్లాడటం తగ్గించండి. మీ మేధస్సును పదునుపెట్టుకోవడానికి తక్కువ మాట్లాడండి.',
+    disciplineTipEn: 'Speak less. Speak minimally to sharpen and preserve your intellect.'
   },
   {
     id: 'shukra',
@@ -466,7 +480,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'శుక్రవారము',
     portfolioTe: 'వివాహము, దాంపత్య సుఖము, వాహన సౌఖ్యము, బంగారు ఆభరణములు, సంగీత-సాహిత్య కళలు, అలంకారము.',
     icon: '💎',
-    accentColor: '#EC4899'
+    accentColor: '#EC4899',
+    disciplineTipTe: 'మీరు ఇంటి నుండి పని చేస్తున్నప్పుడు కూడా శుభ్రంగా, ఇస్త్రీ చేసిన బట్టలు ధరించండి.',
+    disciplineTipEn: 'Even while working from home, wear clean, neatly ironed clothes.'
   },
   {
     id: 'bhoomi',
@@ -503,7 +519,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     portfolioTe: 'భూమి ఆస్తులు, వ్యవసాయ క్షేత్రములు, గనులు, స్థిర నివాసము, న్యాయవాద/తీర్పు శక్తి, ప్రాపంచిక పట్టుదల.',
     specialDiscoveryNoteTe: 'మనము భూమిపై నివసిస్తూ ఆకాశంలో గ్రహాలను వెతకడం వల్ల భూమిని గ్రహాల జాబితాలో మరచిపోయారు! కానీ తలలోని కాలచక్రములో భూమి 8వ లగ్నమైన వృశ్చిక లగ్నమునకు స్వంత అధిపతి (వృశ్చికం కుజునిది కాదు, భూమిది!). సూర్యుడు ఏ లగ్నంలో ఉంటే దానికి సరిగ్గా 7వ లగ్నంలో భూమి ఉంటుంది.',
     icon: '🌍',
-    accentColor: '#0D9488'
+    accentColor: '#0D9488',
+    disciplineTipTe: 'భూమాత వలె ఓర్పు, నిష్కల్మష సహనం పాటించండి; పర్యావరణాన్ని, ప్రకృతిని కాపాడండి.',
+    disciplineTipEn: 'Practice patience like Mother Earth; protect and nurture nature.'
   },
   {
     id: 'ketu',
@@ -540,7 +558,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     portfolioTe: 'నిరాకార భక్తి (నమాజ్/ధ్యానము), వైరాగ్యము, తత్త్వచింతన, ఆధ్యాత్మిక పరిశోధన, మోక్ష మార్గ ఆసక్తి.',
     specialDiscoveryNoteTe: 'ధనుస్సు లగ్నము గురువుది కాదు; కేతువు యొక్క స్వంత ఇల్లు! రాహు-కేతువులు ఛాయాగ్రహాలు కారు; తలలోని కాలచక్రములో నిజమైన శక్తి గ్రహాలు.',
     icon: '☄️',
-    accentColor: '#9333EA'
+    accentColor: '#9333EA',
+    disciplineTipTe: 'దాన్ని ఇన్‌స్టాగ్రామ్‌లో పోస్ట్ చేయకుండా, ఒక వీధి కుక్కకు ఆహారం పెట్టండి.',
+    disciplineTipEn: 'Feed a stray street dog without posting it on Instagram.'
   },
   {
     id: 'rahu',
@@ -577,7 +597,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     portfolioTe: 'రాజకీయ తంత్రములు, విదేశీ యానము, ఆకస్మిక ధనలాభము, రహస్య వ్యాపారములు, సాహస కృత్యములు.',
     specialDiscoveryNoteTe: 'మకర లగ్నము శనిది కాదు; రాహువు యొక్క స్వంత ఇల్లు! రాహువు శని వర్గములోని గ్రహమైనప్పటికీ గురు వర్గపు కర్కాటక లగ్న నక్షత్ర పాదాలలో దశను పర్యవేక్షించు ఇన్‌స్పెక్టర్‌గా పనిచేస్తాడు.',
     icon: '🐉',
-    accentColor: '#475569'
+    accentColor: '#475569',
+    disciplineTipTe: 'మీ టాయిలెట్‌ను శుభ్రంగా ఉంచుకోండి. భవిష్యత్తు గురించిన అతిగా ఆలోచించడం మానేయండి.',
+    disciplineTipEn: 'Keep your toilets clean. Stop overthinking about the future.'
   },
   {
     id: 'shani',
@@ -613,7 +635,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'శనివారము',
     portfolioTe: 'ఆయుష్షు నిర్ధారణ, కఠిన శ్రమ, ఇనుము/యంత్ర పరిశ్రమలు, న్యాయ నిష్ఠ, ప్రజాసేవ, కర్మ ఫల శిక్షకుడు.',
     icon: '🪐',
-    accentColor: '#1E293B'
+    accentColor: '#1E293B',
+    disciplineTipTe: 'మీరు ఏ పని అయితే చేయకుండా తప్పించుకుంటున్నారో ఆ పని చేయండి. శనికి "బోరింగ్" పనులంటే చాలా ఇష్టం.',
+    disciplineTipEn: 'Do the task you are avoiding or putting off. Saturn loves boring, diligent work.'
   },
   {
     id: 'guru',
@@ -649,7 +673,9 @@ export const TWELVE_GRAHAS_MASTER_DATA: GrahaMasterRecord[] = [
     weekdayTe: 'గురువారము',
     portfolioTe: 'బ్రహ్మజ్ఞానము, ఆధ్యాత్మిక గురుత్వము, పుత్ర సంతానము, ధర్మకార్యములు, కీర్తి ప్రతిష్ఠలు, కర్మచక్ర కేంద్ర నియంత్రణ.',
     icon: '🟡',
-    accentColor: '#CA8A04'
+    accentColor: '#CA8A04',
+    disciplineTipTe: 'మీకు నచ్చనివారైనా సరే, మీ గురువులను గౌరవించండి.',
+    disciplineTipEn: 'Respect your mentors and teachers, even if you dislike them.'
   }
 ];
 
@@ -1871,4 +1897,147 @@ export const SHAT_CHAKRAS_RIPU_GUNA_DATA: ShatChakraRipuRecord[] = [
     markerTopPercent: 8
   }
 ];
+
+// ==========================================
+// GRAHA PRACTICAL DISCIPLINE CARDS (గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి)
+// 10 Cards in the Exact Order of Original File Names
+// ==========================================
+export interface GrahaDisciplineCard {
+  id: string;
+  order: number;
+  fileName: string;
+  imageSrc: string;
+  grahaNameTe: string;
+  grahaNameEn: string;
+  titleTe: string;
+  titleEn: string;
+  disciplineTe: string;
+  disciplineEn: string;
+  isTitleCard?: boolean;
+}
+
+export const GRAHA_DISCIPLINE_CARDS: GrahaDisciplineCard[] = [
+  {
+    id: 'disc-ketu',
+    order: 1,
+    fileName: 'media_1794763689756_86d6cab5.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689756_86d6cab5.jpg',
+    grahaNameTe: 'కేతువు (Ketu)',
+    grahaNameEn: 'Ketu',
+    titleTe: 'కేతువు (Ketu) క్రమశిక్షణ',
+    titleEn: 'Ketu Discipline',
+    disciplineTe: 'దాన్ని ఇన్‌స్టాగ్రామ్‌లో పోస్ట్ చేయకుండా, ఒక వీధి కుక్కకు ఆహారం పెట్టండి.',
+    disciplineEn: 'Feed a stray street dog without posting it on Instagram.'
+  },
+  {
+    id: 'disc-venus',
+    order: 2,
+    fileName: 'media_1794763689763_ff859e10.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689763_ff859e10.jpg',
+    grahaNameTe: 'శుక్రుడు (Venus)',
+    grahaNameEn: 'Venus (Sukra)',
+    titleTe: 'శుక్రుడు (Venus) క్రమశిక్షణ',
+    titleEn: 'Venus Discipline',
+    disciplineTe: 'మీరు ఇంటి నుండి పని చేస్తున్నప్పుడు కూడా శుభ్రంగా, ఇస్త్రీ చేసిన బట్టలు ధరించండి.',
+    disciplineEn: 'Even while working from home, wear clean, neatly ironed clothes.'
+  },
+  {
+    id: 'disc-jupiter',
+    order: 3,
+    fileName: 'media_1794763689775_9e306a1b.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689775_9e306a1b.jpg',
+    grahaNameTe: 'గురువు (Jupiter)',
+    grahaNameEn: 'Jupiter (Guru)',
+    titleTe: 'గురువు (Jupiter) క్రమశిక్షణ',
+    titleEn: 'Jupiter Discipline',
+    disciplineTe: 'మీకు నచ్చనివారైనా సరే, మీ గురువులను గౌరవించండి.',
+    disciplineEn: 'Respect your teachers and mentors, even if you dislike them.'
+  },
+  {
+    id: 'disc-mars',
+    order: 4,
+    fileName: 'media_1794763689785_d8eb4531.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689785_d8eb4531.jpg',
+    grahaNameTe: 'కుజుడు (Mars)',
+    grahaNameEn: 'Mars (Kuja)',
+    titleTe: 'కుజుడు (Mars) క్రమశిక్షణ',
+    titleEn: 'Mars Discipline',
+    disciplineTe: 'వ్యాయామం చేయండి. మీ చెమటే కుజుడికిచ్చే అత్యుత్తమ కానుక.',
+    disciplineEn: 'Exercise and work out. Your sweat is the greatest gift to Mars.'
+  },
+  {
+    id: 'disc-saturn',
+    order: 5,
+    fileName: 'media_1794763689792_7615fe53.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689792_7615fe53.jpg',
+    grahaNameTe: 'శని (Saturn)',
+    grahaNameEn: 'Saturn (Shani)',
+    titleTe: 'శని (Saturn) క్రమశిక్షణ',
+    titleEn: 'Saturn Discipline',
+    disciplineTe: 'మీరు ఏ పని అయితే చేయకుండా తప్పించుకుంటున్నారో ఆ పని చేయండి. శనికి "బోరింగ్" పనులంటే చాలా ఇష్టం.',
+    disciplineEn: 'Do the task you are avoiding or procrastinating. Saturn loves boring, diligent work.'
+  },
+  {
+    id: 'disc-moon',
+    order: 6,
+    fileName: 'media_1794763689802_78436c96.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689802_78436c96.jpg',
+    grahaNameTe: 'చంద్రుడు (Moon)',
+    grahaNameEn: 'Moon (Chandra)',
+    titleTe: 'చంద్రుడు (Moon) క్రమశిక్షణ',
+    titleEn: 'Moon Discipline',
+    disciplineTe: 'వెండి గ్లాసు లేదా బాటిల్లో నీళ్లు తాగండి. మీ భావోద్వేగాల ఊగిసలాటను ఆపండి.',
+    disciplineEn: 'Drink water from a silver glass or bottle. Stop emotional mood swings.'
+  },
+  {
+    id: 'disc-sun',
+    order: 7,
+    fileName: 'media_1794763689811_a518c98a.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689811_a518c98a.jpg',
+    grahaNameTe: 'సూర్యుడు (Sun)',
+    grahaNameEn: 'Sun (Surya)',
+    titleTe: 'సూర్యుడు (Sun) క్రమశిక్షణ',
+    titleEn: 'Sun Discipline',
+    disciplineTe: 'సూర్యోదయానికి ముందే లేవండి. ప్రతిరోజూ.',
+    disciplineEn: 'Wake up before sunrise. Every single day.'
+  },
+  {
+    id: 'disc-mandala-title',
+    order: 8,
+    fileName: 'media_1794763689825_5ad57c94.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689825_5ad57c94.jpg',
+    grahaNameTe: 'నవగ్రహ మండలం & జ్ఞాని',
+    grahaNameEn: 'Navagraha Mandala & Sage',
+    titleTe: 'గ్రహాలకు పూజలు కాదు, క్రమశిక్షణ కావాలి:',
+    titleEn: 'Planets Need Discipline, Not Rituals & Worship:',
+    disciplineTe: 'గ్రహాలకు పూజలు కాదు, నిజజీవితంలో క్రమశిక్షణ, సత్ప్రవర్తన, వివేకం కావాలి.',
+    disciplineEn: 'Planets require practical life discipline, righteous character, and wisdom rather than external rituals.',
+    isTitleCard: true
+  },
+  {
+    id: 'disc-mercury',
+    order: 9,
+    fileName: 'media_1794763689932_635289d5.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689932_635289d5.jpg',
+    grahaNameTe: 'బుధుడు (Mercury)',
+    grahaNameEn: 'Mercury (Budha)',
+    titleTe: 'బుధుడు (Mercury) క్రమశిక్షణ',
+    titleEn: 'Mercury Discipline',
+    disciplineTe: 'మాట్లాడటం తగ్గించండి. మీ మేధస్సును పదునుపెట్టుకోవడానికి తక్కువ మాట్లాడండి.',
+    disciplineEn: 'Speak less. Speak minimally to sharpen and preserve your intellect.'
+  },
+  {
+    id: 'disc-rahu',
+    order: 10,
+    fileName: 'media_1794763689941_03030ee8.jpg',
+    imageSrc: './images/jyotishya/discipline/media_1794763689941_03030ee8.jpg',
+    grahaNameTe: 'రాహువు (Rahu)',
+    grahaNameEn: 'Rahu',
+    titleTe: 'రాహువు (Rahu) క్రమశిక్షణ',
+    titleEn: 'Rahu Discipline',
+    disciplineTe: 'మీ టాయిలెట్‌ను శుభ్రంగా ఉంచుకోండి. భవిష్యత్తు గురించిన అతిగా ఆలోచించడం మానేయండి.',
+    disciplineEn: 'Keep your toilets clean. Stop overthinking about the future.'
+  }
+];
+
 
