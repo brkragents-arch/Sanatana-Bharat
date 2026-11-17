@@ -329,6 +329,48 @@ export const BHARAT_CHRONO_EPOCHS: BharatChronoEpoch[] = [
 
 export type ScaleMode = 'exact_time' | 'aligned_24' | 'empire_zoom';
 
+export const getYugaTeluguDisplayName = (category: string): string => {
+  switch (category) {
+    case 'kataklysmos':
+      return 'కటాక్లిస్మోస్';
+    case 'ekpyrosis':
+      return 'ఎక్పైరోసిస్';
+    case 'satya':
+      return 'సత్యయుగం';
+    case 'treta':
+      return 'త్రేతాయుగం';
+    case 'dwapara':
+      return 'ద్వాపరయుగం';
+    case 'kali':
+      return 'కలియుగం';
+    case 'transition':
+      return 'సంధి';
+    default:
+      return 'యుగచక్రం';
+  }
+};
+
+export const getYugaEnglishDisplayName = (category: string): string => {
+  switch (category) {
+    case 'kataklysmos':
+      return 'Kataklysmos';
+    case 'ekpyrosis':
+      return 'Ekpyrosis';
+    case 'satya':
+      return 'Satya Yuga';
+    case 'treta':
+      return 'Treta Yuga';
+    case 'dwapara':
+      return 'Dwapara Yuga';
+    case 'kali':
+      return 'Kali Yuga';
+    case 'transition':
+      return 'Sandhi';
+    default:
+      return 'Yuga';
+  }
+};
+
 export type SelectedItemType = 
   | { kind: 'yuga'; data: YugaCycleSegment }
   | { kind: 'epoch'; data: BharatChronoEpoch }
@@ -858,7 +900,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                       className="transition-colors duration-200"
                     />
 
-                    {/* ENLARGED FONT LABELS FOR YUGA SEGMENTS */}
+                    {/* ENLARGED FONT LABELS FOR YUGA SEGMENTS (WITH PROMINENT TELUGU YUGA NAMES) */}
                     {(() => {
                       const rad = (seg.midAngleDeg * Math.PI) / 180;
                       const rText = (R_YUGA_OUTER + R_YUGA_INNER) / 2;
@@ -872,59 +914,95 @@ export const IndianHistoryChakraView: React.FC = () => {
 
                       if (seg.category === 'transition') {
                         return (
-                          <text
-                            x={xT}
-                            y={yT}
-                            textAnchor="middle"
-                            dominantBaseline="central"
-                            fontSize={10}
-                            fontWeight="bold"
-                            fill={isSelected ? '#FFE082' : '#5D4037'}
-                            transform={`rotate(${textRot}, ${xT}, ${yT})`}
-                            className="pointer-events-none select-none font-mono"
-                          >
-                            300y
-                          </text>
+                          <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
+                            <text
+                              x={xT}
+                              y={yT - 7}
+                              textAnchor="middle"
+                              dominantBaseline="central"
+                              fontSize={11}
+                              fontWeight="900"
+                              fill={isSelected ? '#FFE082' : '#3E2723'}
+                              className="font-telugu-serif"
+                            >
+                              సంధి
+                            </text>
+                            <text
+                              x={xT}
+                              y={yT + 7}
+                              textAnchor="middle"
+                              dominantBaseline="central"
+                              fontSize={9}
+                              fontWeight="bold"
+                              fill={isSelected ? '#FFFFFF' : '#6D4C41'}
+                              className="font-mono"
+                            >
+                              300y
+                            </text>
+                          </g>
                         );
                       }
 
                       const isKataklysmos = seg.category === 'kataklysmos';
                       const isEkpyrosis = seg.category === 'ekpyrosis';
+                      const teluguYuga = getYugaTeluguDisplayName(seg.category);
+                      const englishYuga = getYugaEnglishDisplayName(seg.category);
 
                       return (
                         <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
+                          {/* 1. TELUGU YUGA NAME (Bold & Prominent) */}
                           <text
                             x={xT}
-                            y={yT - 10}
+                            y={yT - 18}
                             textAnchor="middle"
                             dominantBaseline="central"
-                            fontSize={isKataklysmos || isEkpyrosis ? 15 : 16}
+                            fontSize={isKataklysmos || isEkpyrosis ? 13 : 15}
                             fontWeight="900"
-                            fontStyle={isKataklysmos || isEkpyrosis ? 'italic' : 'normal'}
                             fill={
                               isSelected 
                                 ? '#FFE082' 
-                                : (isKataklysmos ? '#1565C0' : isEkpyrosis ? '#C62828' : '#212121')
+                                : (isKataklysmos ? '#0D47A1' : isEkpyrosis ? '#B71C1C' : '#1A0500')
                             }
-                            className="font-serif tracking-wide"
+                            className="font-telugu-serif tracking-tight drop-shadow-2xs"
                           >
-                            {seg.nameEn.split(' ')[0]}
+                            {teluguYuga}
                           </text>
+
+                          {/* 2. ENGLISH YUGA SUBTITLE */}
                           <text
                             x={xT}
-                            y={yT + 9}
+                            y={yT + 1}
                             textAnchor="middle"
                             dominantBaseline="central"
-                            fontSize={12}
+                            fontSize={11}
                             fontWeight="bold"
+                            fontStyle={isKataklysmos || isEkpyrosis ? 'italic' : 'normal'}
                             fill={
                               isSelected 
                                 ? '#FFFFFF' 
+                                : (isKataklysmos ? '#1565C0' : isEkpyrosis ? '#C62828' : '#3E2723')
+                            }
+                            className="font-serif tracking-wide"
+                          >
+                            {englishYuga}
+                          </text>
+
+                          {/* 3. DURATION / YEARS */}
+                          <text
+                            x={xT}
+                            y={yT + 19}
+                            textAnchor="middle"
+                            dominantBaseline="central"
+                            fontSize={10}
+                            fontWeight="bold"
+                            fill={
+                              isSelected 
+                                ? '#FFD54F' 
                                 : (isKataklysmos ? '#1976D2' : isEkpyrosis ? '#D32F2F' : '#616161')
                             }
                             className="font-mono"
                           >
-                            {seg.durationLabelEn}
+                            {isEn ? seg.durationLabelEn : `${seg.durationYears} ఏళ్ళు`}
                           </text>
                         </g>
                       );
@@ -947,7 +1025,9 @@ export const IndianHistoryChakraView: React.FC = () => {
                 let dateRot = seg.startAngleDeg + 90;
                 if (seg.startAngleDeg > 0 && seg.startAngleDeg < 180) dateRot += 180;
 
-                const dateText = seg.datesEn.split('–')[0].trim();
+                const dateText = isEn 
+                  ? seg.datesEn.split('–')[0].trim() 
+                  : seg.datesEn.split('–')[0].replace('BCE', 'క్రీ.పూ.').replace('CE', 'క్రీ.శ.').trim();
 
                 return (
                   <g key={`yuga-border-tick-${seg.id}`} className="pointer-events-none" opacity={focusRing === 'empire' ? 0.35 : 1}>
@@ -1197,21 +1277,21 @@ export const IndianHistoryChakraView: React.FC = () => {
                 fontSize={15}
                 fontWeight="900"
                 fill="#2C1810"
-                className="font-serif select-none pointer-events-none"
+                className="font-telugu-serif select-none pointer-events-none"
               >
-                Ascending
+                ఆరోహణ చక్రం
               </text>
               <text
                 x={CX - 100}
                 y={CY - 90}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={13}
+                fontSize={12}
                 fontWeight="bold"
                 fill="#5D4037"
                 className="font-serif select-none pointer-events-none"
               >
-                (ఆరోహణ చక్రం)
+                (Ascending Cycle)
               </text>
 
               {/* Descending Cycle (Right Arc) */}
@@ -1230,21 +1310,21 @@ export const IndianHistoryChakraView: React.FC = () => {
                 fontSize={15}
                 fontWeight="900"
                 fill="#2C1810"
-                className="font-serif select-none pointer-events-none"
+                className="font-telugu-serif select-none pointer-events-none"
               >
-                Descending
+                అవరోహణ చక్రం
               </text>
               <text
                 x={CX + 100}
                 y={CY + 115}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={13}
+                fontSize={12}
                 fontWeight="bold"
                 fill="#5D4037"
                 className="font-serif select-none pointer-events-none"
               >
-                (అవరోహణ చక్రం)
+                (Descending Cycle)
               </text>
 
               {/* ------------------------------------------------------------ */}
@@ -1320,12 +1400,12 @@ export const IndianHistoryChakraView: React.FC = () => {
               >
                 {isEn 
                   ? (selectedItem.kind === 'yuga' 
-                      ? selectedItem.data.nameEn.split(' ')[0] 
+                      ? getYugaEnglishDisplayName(selectedItem.data.category) 
                       : selectedItem.kind === 'epoch'
                         ? selectedItem.data.nameEn.split(' ')[0]
                         : selectedItem.data.titleEn.split(' ')[0])
                   : (selectedItem.kind === 'yuga' 
-                      ? selectedItem.data.nameTe.split(' ')[0] 
+                      ? getYugaTeluguDisplayName(selectedItem.data.category) 
                       : selectedItem.kind === 'epoch'
                         ? selectedItem.data.nameTe.split(' ')[0]
                         : selectedItem.data.titleTe.split(' ')[0])}
