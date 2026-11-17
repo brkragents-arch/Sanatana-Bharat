@@ -8,6 +8,7 @@ import { MindMapView } from './components/views/MindMapView';
 import { ChronologyFlowView } from './components/views/ChronologyFlowView';
 import { SanatanaChronologyView } from './components/views/SanatanaChronologyView';
 import { IndianHistoryView } from './components/views/IndianHistoryView';
+import { IndianHistoryChakraView } from './components/views/IndianHistoryChakraView';
 import { DakshaPrasutiSection } from './components/views/DakshaPrasutiSection';
 import { ScriptureLibraryView } from './components/views/ScriptureLibraryView';
 import { SrushtiRahasyaView } from './components/views/SrushtiRahasyaView';
@@ -36,6 +37,7 @@ const AppContent: React.FC = () => {
         {viewMode === 'tree' && <FamilyTreeView />}
         {viewMode === 'mindmap' && <MindMapView />}
         {viewMode === 'sanatana_chronology' && <SanatanaChronologyView />}
+        {viewMode === 'history_chakra' && <IndianHistoryChakraView />}
         {viewMode === 'indian_history' && <IndianHistoryView />}
         {viewMode === 'flow' && <ChronologyFlowView />}
         {viewMode === 'daksha_vamsa' && <DakshaPrasutiSection />}

@@ -133,6 +133,24 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Featured Top Bar Pill: చరిత్ర కాలచక్రం (History Chakra) */}
+          <button
+            onClick={() => {
+              setViewMode('history_chakra');
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+            className={`px-3 py-0.5 rounded-full text-xs font-black flex items-center gap-1.5 transition-all cursor-pointer shadow-md border ${
+              viewMode === 'history_chakra'
+                ? 'bg-gradient-to-r from-[#D84315] to-[#B71C1C] text-[#FFE082] border-white ring-2 ring-[#FFD54F]'
+                : 'bg-gradient-to-r from-[#7B1113] via-[#D84315] to-[#B71C1C] text-[#FFE082] hover:scale-105 border-[#FFD54F]'
+            }`}
+            title="భారతీయ చరిత్ర: కాలానుక్రమణిక మరియు మహా సామ్రాజ్యాలు కాలచక్రం (Circular Time Chakra)"
+          >
+            <span className="text-sm">🎡</span>
+            <span>చరిత్ర కాలచక్రం (History Chakra)</span>
+            <span className="px-1.5 py-0.2 rounded-full bg-amber-400 text-stone-950 text-[9px] font-black uppercase shadow-xs">NEW</span>
+          </button>
+
           {/* Sitemap Pill Button */}
           <button
             onClick={() => {
@@ -354,7 +372,25 @@ export const Header: React.FC = () => {
             <span>{isEn ? 'Mind Maps' : 'మైండ్ మ్యాప్స్'}</span>
           </button>
 
-          {/* 8. భారతీయ చరిత్ర (Indian History Page) */}
+          {/* 8. భారతీయ చరిత్ర కాలచక్రం (Indian History Circular Timeline Chakra) */}
+          <button
+            onClick={() => {
+              setViewMode('history_chakra');
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+              viewMode === 'history_chakra'
+                ? 'bg-gradient-to-r from-[#D84315] via-[#B71C1C] to-[#E65100] text-[#FFE082] shadow-md ring-2 ring-[#FFD54F] font-black'
+                : 'bg-gradient-to-r from-[#FFF8E1] to-[#FFE082] text-[#7B1113] hover:bg-[#FFE082] border-2 border-[#D4AF37] font-extrabold shadow-xs'
+            }`}
+            title="భారతీయ చరిత్ర: కాలానుక్రమణిక మరియు మహా సామ్రాజ్యాలు - కాలచక్రం (Circular Time Chakra)"
+          >
+            <span className="text-base">🎡</span>
+            <span>{isEn ? 'History Chakra (కాలచక్రం)' : 'చరిత్ర కాలచక్రం (History Chakra)'}</span>
+            <span className="px-1.5 py-0.2 rounded-full bg-[#7B1113] text-[#FFE082] text-[9px] font-black uppercase shadow-xs">NEW</span>
+          </button>
+
+          {/* 9. భారతీయ చరిత్ర (Indian History Page) */}
           <button
             onClick={() => {
               setViewMode('indian_history');

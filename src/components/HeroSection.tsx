@@ -49,6 +49,19 @@ export const HeroSection: React.FC<{ onExploreClick: () => void }> = ({ onExplor
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
               <button
                 onClick={() => {
+                  setViewMode('history_chakra');
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                  onExploreClick();
+                }}
+                className="px-5 py-3 rounded-xl bg-gradient-to-r from-[#7B1113] via-[#D84315] to-[#E65100] text-[#FFE082] font-black text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer border-2 border-[#FFD54F]"
+              >
+                <span className="text-lg">🎡</span>
+                <span>{isEn ? 'History Chakra (Timeline)' : 'చరిత్ర కాలచక్రం (History Chakra)'}</span>
+                <span className="px-1.5 py-0.5 rounded-full bg-amber-400 text-stone-950 text-[10px] font-black uppercase">NEW</span>
+              </button>
+
+              <button
+                onClick={() => {
                   setViewMode('brahma_family');
                   window.scrollTo({ top: 0, behavior: 'instant' });
                   onExploreClick();

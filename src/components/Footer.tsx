@@ -77,6 +77,14 @@ export const Footer: React.FC<{ onNavigateToSection: (mode: any) => void }> = ({
               </li>
               <li>
                 <button 
+                  onClick={() => onNavigateToSection('history_chakra')}
+                  className="hover:text-[#D84315] hover:underline cursor-pointer flex items-center gap-1.5 font-bold text-[#D84315]"
+                >
+                  <span>🎡</span> <span>భారతీయ చరిత్ర కాలచక్రం (Circular Timeline Chakra)</span>
+                </button>
+              </li>
+              <li>
+                <button 
                   onClick={() => onNavigateToSection('indian_history')}
                   className="hover:text-[#D84315] hover:underline cursor-pointer flex items-center gap-1.5 font-bold text-[#7B1113]"
                 >

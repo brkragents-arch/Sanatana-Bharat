@@ -28,6 +28,7 @@ import { SouthIndianDynastiesModal } from './SouthIndianDynastiesModal';
 import { LiteraryHeritageSection } from './LiteraryHeritageSection';
 import { VedicItihasaChronologySection } from './VedicItihasaChronologySection';
 import { HinduCivilizationTimelineHorizontal } from './HinduCivilizationTimelineHorizontal';
+import { IndianHistoryChakraView } from './IndianHistoryChakraView';
 import type { IndianHistoryPeriod } from '../../types/mythology';
 import { 
   Clock, 
@@ -107,11 +108,11 @@ const ManuscriptCrop: React.FC<ManuscriptCropProps> = ({
 };
 
 export const IndianHistoryView: React.FC = () => {
-  const { language } = useMythology();
+  const { language, setViewMode } = useMythology();
   const isEn = language === 'en';
 
   // Sub-tabs
-  type ActiveTab = 'simplified' | 'flowchart' | 'sciences_universities' | 'ancient_civilizations' | 'vedic_deepdive' | 'literary_heritage' | 'gallery';
+  type ActiveTab = 'chakra' | 'simplified' | 'flowchart' | 'sciences_universities' | 'ancient_civilizations' | 'vedic_deepdive' | 'literary_heritage' | 'gallery';
   const [activeTab, setActiveTab] = useState<ActiveTab>('simplified');
 
   // Search & Filters
@@ -249,6 +250,41 @@ export const IndianHistoryView: React.FC = () => {
         </div>
 
         {/* ============================================================ */}
+        {/* Feature Banner: Link to Interactive Circular Timeline Chakra */}
+        <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-[#2A0800] via-[#5C1D06] to-[#7B1113] border-2 border-[#D4AF37] text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl p-2 rounded-2xl bg-[#D4AF37] text-[#2A0800] shrink-0 shadow-inner">🎡</span>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="px-2 py-0.5 rounded-full bg-[#D4AF37] text-[#2A0800] text-[10px] font-black uppercase tracking-wider">
+                  {isEn ? 'Interactive Circular View' : 'ప్రత్యేక కాలచక్ర దర్శిని'}
+                </span>
+                <span className="text-xs font-bold text-[#FFE082]">
+                  {isEn ? '24 Cosmic Spokes • Includes 2026 CE Present Marker' : '24 ఆకుల చక్రం • 2026 వర్తమాన సమయ సూచికతో'}
+                </span>
+              </div>
+              <h4 className="text-sm sm:text-base font-extrabold text-[#FFE082] font-telugu-serif mt-0.5">
+                {isEn ? 'Indian History: Circular Timeline Chakra & Great Empires' : 'భారతీయ చరిత్ర: కాలానుక్రమణిక మరియు మహా సామ్రాజ్యాలు — కాలచక్రం'}
+              </h4>
+              <p className="text-xs text-[#FFECE4] line-clamp-1">
+                {isEn 
+                  ? 'Experience the entire timeline as a clickable circular Chakra with live current time needle pointer.'
+                  : 'చరిత్రను క్లిక్ చేయగల వృత్తాకార కాలచక్రంపై పరిశీలించండి; ప్రస్తుతం ఉన్న సమయాన్ని కూడా ప్రత్యేకంగా వీక్షించండి.'}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              setViewMode('history_chakra');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#FFD54F] hover:from-[#C59B27] hover:to-[#FFCA28] text-[#2A0800] text-xs sm:text-sm font-black whitespace-nowrap shadow-md cursor-pointer flex items-center gap-1.5 transition-all self-stretch sm:self-center justify-center shrink-0"
+          >
+            <span>{isEn ? 'Open Circular Chakra' : 'కాలచక్ర పేజీకి వెళ్ళు'}</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
         {/* GLOBAL HISTORIC PERIODS TIMELINE (PREHISTORY & HISTORY)       */}
         {/* ============================================================ */}
         <div className="mt-4 pt-4 border-t border-[#E8DCC4] space-y-3">
@@ -617,6 +653,19 @@ export const IndianHistoryView: React.FC = () => {
 
         {/* View Mode Sub-tabs */}
         <div className="flex items-center gap-2 mt-4 pt-4 border-t border-[#E8DCC4] overflow-x-auto pb-1">
+          {/* FEATURED CHAKRA SUB-TAB */}
+          <button
+            onClick={() => setActiveTab('chakra')}
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-black flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap ${
+              activeTab === 'chakra'
+                ? 'bg-gradient-to-r from-[#D84315] via-[#B71C1C] to-[#E65100] text-[#FFE082] shadow-md ring-2 ring-[#FFD54F]'
+                : 'bg-gradient-to-r from-[#FFF8E1] to-[#FFE082] text-[#7B1113] hover:bg-[#FFE082] border-2 border-[#D4AF37] shadow-xs'
+            }`}
+          >
+            <span className="text-base">🎡</span>
+            <span>{isEn ? '🎡 History Chakra (Circular Timeline)' : '🎡 చరిత్ర కాలచక్రం (History Chakra)'}</span>
+            <span className="px-1.5 py-0.2 rounded-full bg-[#7B1113] text-[#FFE082] text-[9px] font-black uppercase">NEW</span>
+          </button>
           <button
             onClick={() => setActiveTab('simplified')}
             className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap ${
@@ -706,6 +755,15 @@ export const IndianHistoryView: React.FC = () => {
       {/* ============================================================ */}
       {/* 2. SUB-TAB 1: SIMPLIFIED CHRONOLOGICAL VIEW */}
       {/* ============================================================ */}
+      {/* ============================================================ */}
+      {/* 2. SUB-TAB: CIRCULAR TIMELINE CHAKRA */}
+      {/* ============================================================ */}
+      {activeTab === 'chakra' && (
+        <div className="p-2 sm:p-4">
+          <IndianHistoryChakraView />
+        </div>
+      )}
+
       {activeTab === 'simplified' && (
         <div className="p-4 sm:p-6 space-y-6">
           

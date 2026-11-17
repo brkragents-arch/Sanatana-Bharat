@@ -306,6 +306,23 @@ export const SitemapSection: React.FC<{ fullPage?: boolean }> = ({ fullPage = fa
       bgGradient: 'from-[#FFFDF7] to-[#FFF9E6]',
       items: [
         {
+          id: 'indian_history_chakra',
+          titleTe: 'భారతీయ చరిత్ర కాలచక్రం (Circular Timeline Chakra)',
+          titleEn: 'Indian History Circular Timeline Chakra (24 Epochs to 2026 CE)',
+          descTe: '24 ఆకుల అశోక కాలచక్రంపై సమస్త భారతీయ చరిత్ర, మహా సామ్రాజ్యాలు మరియు నేటి వర్తమాన కాల సూచిక (2026 CE).',
+          descEn: 'Interactive 24-spoked Dharma Chakra with clickable time events, dynasties, and real-time live clock marker.',
+          viewMode: 'history_chakra',
+          badgeTe: '🎡 ఇంటరాక్టివ్ కాలచక్రం',
+          badgeEn: 'Time Chakra',
+          badgeColor: 'bg-[#D84315] text-[#FFE082]',
+          subItems: [
+            { titleTe: '1. 24 ఆకుల పవిత్ర ధర్మచక్ర కాలానుక్రమణిక (24 Cosmic Spokes)', titleEn: '1. 24 Cosmic Epoch Spokes of Bharat' },
+            { titleTe: '2. ప్రతి చారిత్రక ఘట్టంపై క్లిక్ చేసి సమగ్ర వివరాల దర్శనం', titleEn: '2. Clickable time event dossier with rulers, capitals & achievements' },
+            { titleTe: '3. ప్రత్యక్ష వర్తమాన కాల సూచిక (Marked Current Time: 2026 CE • కలియుగం 5127)', titleEn: '3. Marked live current time beacon (2026 CE & Kaliyuga 5127)' },
+            { titleTe: '4. ఆటో కాలభ్రమణ యాత్ర (360° Auto Tour & Bell Chimes)', titleEn: '4. 360° Auto Tour Mode & Audio Bell Synthesizer' }
+          ]
+        },
+        {
           id: 'indian_history_main',
           titleTe: 'భారతీయ చరిత్ర కాలానుక్రమణిక (Indian History View)',
           titleEn: 'Complete Indian History Chronology Hub',

@@ -131,6 +131,7 @@ export type ViewMode =
   | 'jyotishya_shastram'  // జ్యోతిష్య శాస్త్రము (Comprehensive Astrology & Karma Science)
   | 'brahma_family'       // బ్రహ్మ వంశము (Family of Brahma)
   | 'sanatana_chronology' // సనాతన ధర్మ ఆవిర్భావము (Home: 13-step cosmic lineage)
+  | 'history_chakra'      // భారతీయ చరిత్ర కాలచక్రం (Indian History Circular Timeline Chakra)
   | 'indian_history'      // భారతీయ చరిత్ర (Indian History Chronological View)
   | 'flow'                // సృష్టి క్రమము (10-stage creation flow)
   | 'tree'                // సంపూర్ణ వంశవృక్షము (Hierarchical Family Tree)
