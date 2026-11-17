@@ -832,7 +832,7 @@ export const IndianHistoryChakraView: React.FC = () => {
             {/* THE MASTER 3-TIER CONCENTRIC SVG CHAKRA                      */}
             {/* ============================================================ */}
             <svg
-              viewBox="0 0 1000 1000"
+              viewBox="-60 -60 1120 1120"
               className="w-full h-full drop-shadow-2xl transition-transform duration-700 ease-out"
               style={{
                 transform: `rotate(${rotationAngle}deg)`,
@@ -1015,46 +1015,56 @@ export const IndianHistoryChakraView: React.FC = () => {
                 );
               })}
 
-              {/* Boundary Ticks & External Dates */}
-              {yugaAngleSegments.map(seg => {
+              {/* Boundary Ticks & External Dates (Staggered to prevent overlap & clearly display BCE / CE) */}
+              {yugaAngleSegments.map((seg, idx, arr) => {
                 const rad = (seg.startAngleDeg * Math.PI) / 180;
+                const isSandhiStart = seg.category === 'transition';
+                const prevSeg = idx > 0 ? arr[idx - 1] : arr[arr.length - 1];
+                const isSandhiEnd = prevSeg && prevSeg.category === 'transition';
+
+                // Stagger distance: Sandhi start = 14px, Sandhi end = 32px, standard = 18px
+                const rOffset = isSandhiEnd ? 32 : (isSandhiStart ? 14 : 18);
+                const tickLen = isSandhiEnd ? 24 : (isSandhiStart ? 8 : 10);
+
                 const xInner = CX + R_RING1_INNER * Math.cos(rad);
                 const yInner = CY + R_RING1_INNER * Math.sin(rad);
-                const xOuter = CX + R_RING1_OUTER * Math.cos(rad);
-                const yOuter = CY + R_RING1_OUTER * Math.sin(rad);
+                const xTickEnd = CX + (R_RING1_OUTER + tickLen) * Math.cos(rad);
+                const yTickEnd = CY + (R_RING1_OUTER + tickLen) * Math.sin(rad);
 
-                const xDate = CX + (R_RING1_OUTER + 18) * Math.cos(rad);
-                const yDate = CY + (R_RING1_OUTER + 18) * Math.sin(rad);
+                const xDate = CX + (R_RING1_OUTER + rOffset) * Math.cos(rad);
+                const yDate = CY + (R_RING1_OUTER + rOffset) * Math.sin(rad);
 
                 let dateRot = seg.startAngleDeg + 90;
                 if (seg.startAngleDeg > 0 && seg.startAngleDeg < 180) dateRot += 180;
 
-                const dateText = isEn 
-                  ? seg.datesEn.split('–')[0].trim() 
-                  : seg.datesEn.split('–')[0].replace('BCE', 'క్రీ.పూ.').replace('CE', 'క్రీ.శ.').trim();
+                const rawDate = seg.datesEn.split('–')[0].trim();
+                const isBce = rawDate.includes('BCE');
+                const yearNum = rawDate.replace(/[^0-9,]/g, '');
 
                 return (
-                  <g key={`ring1-border-tick-${seg.id}`} className="pointer-events-none" opacity={focusRing === 'all' || focusRing === 'outer_yuga' ? 1 : 0.25}>
+                  <g key={`ring1-border-tick-${seg.id}`} className="pointer-events-none select-none" opacity={focusRing === 'all' || focusRing === 'outer_yuga' ? 1 : 0.25}>
                     <line
                       x1={xInner}
                       y1={yInner}
-                      x2={xOuter + 6}
-                      y2={yOuter + 6 * Math.sin(rad)}
+                      x2={xTickEnd}
+                      y2={yTickEnd}
                       stroke="#2C1810"
-                      strokeWidth="2"
+                      strokeWidth={isSandhiStart || isSandhiEnd ? "1.5" : "2"}
                     />
                     <text
                       x={xDate}
                       y={yDate}
                       textAnchor="middle"
                       dominantBaseline="central"
-                      fontSize={10}
+                      fontSize={isSandhiStart || isSandhiEnd ? 9 : 10.5}
                       fontWeight="900"
-                      fill="#2A0800"
                       transform={`rotate(${dateRot}, ${xDate}, ${yDate})`}
                       className="font-mono tracking-tight"
                     >
-                      {dateText}
+                      <tspan fill="#2A0800">{yearNum}</tspan>
+                      <tspan dx={3} fontWeight="bold" fill={isBce ? "#B71C1C" : "#0277BD"}>
+                        {isBce ? 'BCE' : 'CE'}
+                      </tspan>
                     </text>
                   </g>
                 );
