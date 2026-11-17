@@ -412,6 +412,64 @@ export const getYugaEnglishDisplayName = (category: string): string => {
   }
 };
 
+export const getEpochShortDisplayName = (epoch: BharatCivilizationEpoch, isEn: boolean): string => {
+  if (isEn) {
+    switch (epoch.id) {
+      case 'epoch_prehistory_mehrgarh':
+        return 'Mehrgarh & Stone Age';
+      case 'epoch_ramayana_era':
+        return 'Ramayana Era';
+      case 'epoch_early_saraswati_sindhu':
+        return 'Indus-Saraswati';
+      case 'epoch_mahabharata_sandhi':
+        return 'Mahabharata (Gita)';
+      case 'epoch_vedic_civilization':
+        return 'Vedic Civilization';
+      case 'epoch_mahajanapadas_transition':
+        return '16 Mahajanapadas';
+      case 'epoch_imperial_dynasties':
+        return 'Imperial Dynasties';
+      case 'epoch_amrit_kaal_2026':
+        return 'Amrit Kaal (2026)';
+      case 'epoch_ascending_science_era':
+        return 'Space & Energy Era';
+      case 'epoch_ascending_mental_harmony':
+        return 'Intuition & Dharma';
+      case 'epoch_ascending_satya_apex':
+        return 'Ascending Satya';
+      default:
+        return epoch.nameEn.split('(')[0].trim();
+    }
+  } else {
+    switch (epoch.id) {
+      case 'epoch_prehistory_mehrgarh':
+        return 'మెహర్‌గఢ్ & శిలా యుగం';
+      case 'epoch_ramayana_era':
+        return 'రామాయణ యుగం';
+      case 'epoch_early_saraswati_sindhu':
+        return 'సింధు-సరస్వతి నాగరికత';
+      case 'epoch_mahabharata_sandhi':
+        return 'మహాభారతం (గీత)';
+      case 'epoch_vedic_civilization':
+        return 'వైదిక నాగరికత';
+      case 'epoch_mahajanapadas_transition':
+        return '16 మహాజనపదాలు';
+      case 'epoch_imperial_dynasties':
+        return 'భారతీయ సామ్రాజ్యాలు';
+      case 'epoch_amrit_kaal_2026':
+        return 'అమృత కాలం (2026)';
+      case 'epoch_ascending_science_era':
+        return 'రోదసి & విజ్ఞాన యుగం';
+      case 'epoch_ascending_mental_harmony':
+        return 'మనోశక్తి & రామరాజ్యం';
+      case 'epoch_ascending_satya_apex':
+        return 'ఆరోహణ సత్యయుగం';
+      default:
+        return epoch.nameTe.split('(')[0].replace(/[🏹🕉️🪨🏺📜🏛️👑🇮🇳🚀🧘🪷]/g, '').trim();
+    }
+  }
+};
+
 export type SelectedItemType = 
   | { kind: 'empire'; data: ChakraTimeEvent }
   | { kind: 'epoch'; data: BharatCivilizationEpoch }
@@ -930,10 +988,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                       <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
                         <text
                           x={xT}
-                          y={yT - 6}
+                          y={yT - 10}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={12}
+                          fontSize={16}
                           fontWeight="900"
                           fill={isSelected ? '#FFE082' : '#3E2723'}
                           className="font-telugu-serif"
@@ -942,10 +1000,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                         </text>
                         <text
                           x={xT}
-                          y={yT + 7}
+                          y={yT + 12}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={9.5}
+                          fontSize={12.5}
                           fontWeight="bold"
                           fill={isSelected ? '#FFFFFF' : '#6D4C41'}
                           className="font-mono"
@@ -958,10 +1016,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                         {/* Telugu Yuga Name */}
                         <text
                           x={xT}
-                          y={yT - 15}
+                          y={yT - 20}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={isKataklysmos || isEkpyrosis ? 14 : 16}
+                          fontSize={isKataklysmos || isEkpyrosis ? 20 : 23}
                           fontWeight="900"
                           fill={
                             isSelected 
@@ -976,10 +1034,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                         {/* English Subtitle */}
                         <text
                           x={xT}
-                          y={yT + 2}
+                          y={yT + 3}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={11.5}
+                          fontSize={15}
                           fontWeight="bold"
                           fontStyle={isKataklysmos || isEkpyrosis ? 'italic' : 'normal'}
                           fill={
@@ -995,15 +1053,15 @@ export const IndianHistoryChakraView: React.FC = () => {
                         {/* Duration */}
                         <text
                           x={xT}
-                          y={yT + 18}
+                          y={yT + 24}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={10.5}
+                          fontSize={13}
                           fontWeight="bold"
                           fill={
                             isSelected 
                               ? '#FFD54F' 
-                              : (isKataklysmos ? '#1976D2' : isEkpyrosis ? '#D32F2F' : '#757575')
+                              : (isKataklysmos ? '#1976D2' : isEkpyrosis ? '#D32F2F' : '#616161')
                           }
                           className="font-mono"
                         >
@@ -1056,13 +1114,13 @@ export const IndianHistoryChakraView: React.FC = () => {
                       y={yDate}
                       textAnchor="middle"
                       dominantBaseline="central"
-                      fontSize={isSandhiStart || isSandhiEnd ? 12 : 13.5}
+                      fontSize={isSandhiStart || isSandhiEnd ? 13.5 : 15}
                       fontWeight="900"
                       transform={`rotate(${dateRot}, ${xDate}, ${yDate})`}
                       className="font-mono tracking-tight"
                     >
                       <tspan fill="#2A0800">{yearNum}</tspan>
-                      <tspan dx={4} fontSize={isSandhiStart || isSandhiEnd ? 10.5 : 12} fontWeight="900" fill={isBce ? "#C62828" : "#0277BD"}>
+                      <tspan dx={4} fontSize={isSandhiStart || isSandhiEnd ? 12 : 13.5} fontWeight="900" fill={isBce ? "#C62828" : "#0277BD"}>
                         {isBce ? 'BCE' : 'CE'}
                       </tspan>
                     </text>
@@ -1123,11 +1181,49 @@ export const IndianHistoryChakraView: React.FC = () => {
                     />
 
                     {/* Content inside Middle Ring */}
-                    {epoch.spanDeg >= 12 ? (
+                    {epoch.spanDeg >= 14 ? (
                       <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
                           x={xM}
-                          y={yM - 20}
+                          y={yM - 22}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={24}
+                        >
+                          {epoch.icon}
+                        </text>
+
+                        <text
+                          x={xM}
+                          y={yM + 3}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={16}
+                          fontWeight="900"
+                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#2C1810')}
+                          className="font-telugu-serif tracking-tight"
+                        >
+                          {getEpochShortDisplayName(epoch, isEn)}
+                        </text>
+
+                        <text
+                          x={xM}
+                          y={yM + 24}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={12}
+                          fontWeight="bold"
+                          fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#5D4037')}
+                          className="font-mono"
+                        >
+                          {isEn ? epoch.durationLabelEn : epoch.durationLabelTe}
+                        </text>
+                      </g>
+                    ) : epoch.spanDeg >= 8 ? (
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                        <text
+                          x={xM}
+                          y={yM - 14}
                           textAnchor="middle"
                           dominantBaseline="central"
                           fontSize={20}
@@ -1137,7 +1233,7 @@ export const IndianHistoryChakraView: React.FC = () => {
 
                         <text
                           x={xM}
-                          y={yM + 2}
+                          y={yM + 12}
                           textAnchor="middle"
                           dominantBaseline="central"
                           fontSize={13.5}
@@ -1145,31 +1241,18 @@ export const IndianHistoryChakraView: React.FC = () => {
                           fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#2C1810')}
                           className="font-telugu-serif tracking-tight"
                         >
-                          {isEn ? epoch.nameEn.split(' ')[0] : epoch.nameTe.split(' ')[0]}
-                        </text>
-
-                        <text
-                          x={xM}
-                          y={yM + 20}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize={10.5}
-                          fontWeight="bold"
-                          fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#5D4037')}
-                          className="font-mono"
-                        >
-                          {isEn ? epoch.durationLabelEn : epoch.durationLabelTe}
+                          {getEpochShortDisplayName(epoch, isEn)}
                         </text>
                       </g>
                     ) : (
-                      // Transition / Short Epoch
+                      // Very Short Transition Epoch
                       <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
                           x={xM}
                           y={yM}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={15}
+                          fontSize={17}
                           fontWeight="900"
                           fill={isSelected ? '#FFE082' : '#7B1113'}
                         >
