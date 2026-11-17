@@ -68,16 +68,16 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     order: 1,
     nameTe: 'చరిత్రపూర్వ & మెహర్‌గఢ్ ఉషస్సు',
     nameEn: 'Prehistoric Stone Age & Mehrgarh',
-    periodTe: 'క్రీ.పూ. 10,876 – 6,976',
-    periodEn: '10,876 – 6,976 BCE',
-    durationLabelTe: '3,900 ఏళ్ళు',
-    durationLabelEn: '3,900 Years',
+    periodTe: 'క్రీ.పూ. 10,876 – 8,000',
+    periodEn: '10,876 – 8,000 BCE',
+    durationLabelTe: '2,876 ఏళ్ళు',
+    durationLabelEn: '2,876 Years',
     startAngleDeg: -98.37,
-    endAngleDeg: -43.95,
-    midAngleDeg: -71.16,
-    spanDeg: 54.42,
-    yugaEquivalentTe: 'కటాక్లిస్మోస్ & అవరోహణ త్రేతాయుగం',
-    yugaEquivalentEn: 'Kataklysmos & Descending Treta Yuga',
+    endAngleDeg: -68.00,
+    midAngleDeg: -83.19,
+    spanDeg: 30.37,
+    yugaEquivalentTe: 'కటాక్లిస్మోస్ & తొలి త్రేతా',
+    yugaEquivalentEn: 'Kataklysmos & Early Treta',
     icon: '🪨',
     color: '#EFEBE9',
     accentColor: '#5D4037',
@@ -91,14 +91,41 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     significanceEn: 'The monumental revolution from hunter-gatherers to agrarian civilization in Bharat.'
   },
   {
-    id: 'epoch_early_saraswati_sindhu',
+    id: 'epoch_ramayana_era',
     order: 2,
-    nameTe: 'తొలి సింధు-సరస్వతి నాగరికత',
-    nameEn: 'Early Indus-Saraswati Era',
-    periodTe: 'క్రీ.పూ. 6,976 – 3,976',
-    periodEn: '6,976 – 3,976 BCE',
-    durationLabelTe: '3,000 ఏళ్ళు',
-    durationLabelEn: '3,000 Years',
+    nameTe: '🏹 రామాయణ యుగం (సూర్యవంశం)',
+    nameEn: 'Ramayana Era (Ikshvaku Dynasty)',
+    periodTe: 'త్రేతాయుగం (~క్రీ.పూ. 7500 – 6000)',
+    periodEn: 'Treta Yuga (~7500 – 6000 BCE)',
+    durationLabelTe: '1,500 ఏళ్ళు',
+    durationLabelEn: '1,500 Years',
+    startAngleDeg: -68.00,
+    endAngleDeg: -43.95,
+    midAngleDeg: -55.98,
+    spanDeg: 24.05,
+    yugaEquivalentTe: 'అవరోహణ త్రేతాయుగం',
+    yugaEquivalentEn: 'Descending Treta Yuga',
+    icon: '🏹',
+    color: '#FFF3E0',
+    accentColor: '#D84315',
+    dynastiesIncludedCount: 1,
+    dynastiesIncludedIds: ['ramayana_ikshvaku_empire'],
+    descriptionTe: 'మర్యాదా పురుషోత్తముడు శ్రీరామచంద్రుని ధర్మపాలన, సత్యనిష్ఠ, ఏకపత్నీవ్రతం, పితృవాక్య పరిపాలన, వాల్మీకి రామాయణ ఆవిర్భావం మరియు రామరాజ్య స్వర్ణయుగం.',
+    descriptionEn: 'Dharmic rule of Bhagavan Sri Ramachandra, embodiment of truth, filial piety, Ramayana revelation by Sage Valmiki, and the pinnacle of Treta Yuga righteousness.',
+    achievementsTe: ['వాల్మీకి రామాయణ రచన (ఆది కావ్యం - 24,000 శ్లోకాలు)', 'అయోధ్య కేంద్రంగా ఆదర్శవంతమైన రామరాజ్య పరిపాలన', 'సేతుబంధనం (రామసేతు నిర్మాణం) & అధర్మ నిర్మూలన'],
+    achievementsEn: ['Composition of Valmiki Ramayana (Adi Kavya, 24,000 verses)', 'Exemplary dharmic governance of Ramarajya centered in Ayodhya', 'Construction of Ram Setu and triumph over adharma'],
+    significanceTe: 'సనాతన ధర్మ నైతిక జీవన విధానానికి మరియు ఆదర్శ పాలనకు శాశ్వత దిక్సూచి.',
+    significanceEn: 'The supreme moral and spiritual standard for righteous human civilization.'
+  },
+  {
+    id: 'epoch_early_saraswati_sindhu',
+    order: 3,
+    nameTe: 'సింధు-సరస్వతి నాగరికత',
+    nameEn: 'Indus-Saraswati Civilization',
+    periodTe: 'క్రీ.పూ. 6,676 – 3,976',
+    periodEn: '6,676 – 3,976 BCE',
+    durationLabelTe: '2,700 ఏళ్ళు',
+    durationLabelEn: '2,700 Years',
     startAngleDeg: -43.95,
     endAngleDeg: -2.09,
     midAngleDeg: -23.02,
@@ -109,61 +136,61 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     color: '#E8F5E9',
     accentColor: '#1B5E20',
     dynastiesIncludedCount: 1,
-    dynastiesIncludedIds: ['indus_saraswati'],
-    descriptionTe: 'రాఖీగఢీ, హరప్పా పూర్వపు గ్రామీణ వర్తక వికాసం, కాంస్య యుగ ప్రవేశం, సరస్వతీ నదీ తీరంలో బ్రహ్మాండ నివాసాల వికాసం.',
-    descriptionEn: 'Early bronze metallurgy, planned agrarian hamlets at Rakhigarhi, early Harappan craft specializations along the Vedic Saraswati River.',
-    achievementsTe: ['రాగి, కాంస్య లోహశాస్త్రం', 'రాఖీగఢీ & కునాల్ వద్ద మట్టి కుండల కళాకృతులు', 'విస్తృత నదీ వర్తక మార్గాల ఆవిర్భావం'],
-    achievementsEn: ['Early copper & bronze metallurgy', 'Pottery & terracotta arts at Rakhigarhi and Kunal', 'Trans-regional riverine trade networks'],
-    significanceTe: 'సరస్వతీ నదీ పరీవాహక ప్రాంతంలో ప్రపంచంలోనే విస్తృతమైన నాగరికతకు వేసిన పునాది.',
+    dynastiesIncludedIds: ['indus_saraswati_civilization'],
+    descriptionTe: 'రాఖీగఢీ, హరప్పా, మొహెంజొదారో, లోథాల్, ధోలవీర నగర నాగరికత, కాంస్య యుగ ప్రవేశం, సరస్వతీ నదీ తీరంలో బ్రహ్మాండ నివాసాల వికాసం.',
+    descriptionEn: 'Early bronze metallurgy, planned grid cities at Harappa and Mohenjo-daro, maritime docks at Lothal along the Vedic Saraswati River.',
+    achievementsTe: ['భూగర్భ మురుగునీటి పారుదల వ్యవస్థ & ధోలవీర జలాశయాలు', 'లోథాల్ టైడల్ ఓడరేవు & అంతర్జాతీయ సముద్ర వాణిజ్యం', 'ప్రామాణిక తూనికలు మరియు కొలతల విధానం'],
+    achievementsEn: ['Subterranean drainage & stone reservoirs of Dholavira', 'World\'s first tidal dockyard at Lothal', 'Standardized weights and measures'],
+    significanceTe: 'సరస్వతీ నదీ పరీవాహక ప్రాంతంలో ప్రపంచంలోనే అత్యున్నత నగర ప్రణాళికకు వేసిన పునాది.',
     significanceEn: 'The foundational bedrock of urban civilization along the Saraswati-Sindhu basin.'
   },
   {
     id: 'epoch_mahabharata_sandhi',
-    order: 3,
-    nameTe: 'పరిపక్వ సింధు & మహాభారత యుగసంధి',
-    nameEn: 'Mature Harappan & Mahabharata Sandhi',
-    periodTe: 'క్రీ.పూ. 3,976 – 3,676',
-    periodEn: '3,976 – 3,676 BCE',
+    order: 4,
+    nameTe: '🕉️ మహాభారత యుగం (కురుక్షేత్రం & గీత)',
+    nameEn: 'Mahabharata Era (Kurukshetra & Gita)',
+    periodTe: 'ద్వాపర-కలి సంధి (క్రీ.పూ. 3102 కలి ప్రవేశం)',
+    periodEn: 'Dwapara-Kali Sandhi (3102 BCE Kali Onset)',
     durationLabelTe: '300 ఏళ్ళు',
     durationLabelEn: '300 Years',
     startAngleDeg: -2.09,
-    endAngleDeg: 2.09,
-    midAngleDeg: 0,
-    spanDeg: 4.18,
-    yugaEquivalentTe: 'ద్వాపర-కలి సంధికాలం (క్రీ.పూ. 3102 కలి ప్రవేశం)',
+    endAngleDeg: 8.00,
+    midAngleDeg: 2.95,
+    spanDeg: 10.09,
+    yugaEquivalentTe: 'ద్వాపర-కలి సంధికాలం (క్రీ.పూ. 3102)',
     yugaEquivalentEn: 'Dwapara-Kali Transition (3102 BCE Kali Onset)',
-    icon: '🏹',
+    icon: '🕉️',
     color: '#FFF3E0',
     accentColor: '#BF360C',
     dynastiesIncludedCount: 1,
-    dynastiesIncludedIds: ['indus_saraswati'],
-    descriptionTe: 'మోహెంజొదారో, ధోలవీర పట్టణ ప్రణాళిక, కురుక్షేత్ర మహాభారత ధర్మయుద్ధం, ద్వాపర యుగ ముగింపు మరియు కలియుగ ప్రవేశ సంధి కాలం (క్రీ.పూ. 3102).',
-    descriptionEn: 'Peak urban planning at Mohenjo-daro & Dholavira, Kurukshetra Mahabharata War, and astronomical start of Kali Yuga in 3102 BCE.',
-    achievementsTe: ['భూగర్భ మురుగునీటి పారుదల వ్యవస్థ & ధోలవీర జలాశయాలు', 'మహాభారత ఇతిహాస సంస్కృతి & భగవద్గీత బోధన', 'ప్రామాణిక కొలతలు మరియు తూనికల విధానం'],
-    achievementsEn: ['Subterranean drainage & stone reservoirs of Dholavira', 'Kurukshetra War & eternal Bhagavad Gita revelation', 'Standardized weights and measures'],
-    significanceTe: 'ద్వాపర యుగ శ్రీకృష్ణ నిర్యాణం మరియు కలియుగ ప్రవేశ సంధికాలం.',
-    significanceEn: 'The supreme celestial turning point: Departure of Sri Krishna and commencement of Kali Yuga.'
+    dynastiesIncludedIds: ['mahabharata_kuru_empire'],
+    descriptionTe: 'కురుక్షేత్ర మహాభారత ధర్మయుద్ధం, శ్రీకృష్ణ పరమాత్మ గీతోపదేశం, ధర్మ సంస్థాపన, ద్వాపర యుగ ముగింపు మరియు కలియుగ ప్రవేశ సంధికాలం (క్రీ.పూ. 3102).',
+    descriptionEn: 'The monumental Kurukshetra War, revelation of the Bhagavad Gita by Sri Krishna, re-establishment of Dharma, departure of Sri Krishna and astronomical commencement of Kali Yuga (3102 BCE).',
+    achievementsTe: ['శ్రీమద్భగవద్గీత దివ్యోపదేశం (700 శ్లోకాలు - సర్వోపనిషత్ సారం)', 'మహర్షి వేదవ్యాస ప్రణీత లక్ష శ్లోకాల మహాభారతం', 'భీష్మ పితామహుని రాజధర్మ బోధన & శ్రీ విష్ణు సహస్రనామ స్తోత్రం'],
+    achievementsEn: ['Revelation of the Bhagavad Gita (supreme essence of the Upanishads)', 'Maharshi Veda Vyasa’s monumental Mahabharata epic', 'Bhishma’s ethical discourse & Vishnu Sahasranama Stotram'],
+    significanceTe: 'శ్రీకృష్ణ భగవానుని నిర్యాణం మరియు మానవాళికి గీతామృతాన్ని ప్రసాదించిన యుగ సంధి ఘట్టం.',
+    significanceEn: 'The supreme celestial turning point: Departure of Sri Krishna and eternal revelation of the Bhagavad Gita.'
   },
   {
     id: 'epoch_vedic_civilization',
-    order: 4,
+    order: 5,
     nameTe: 'వైదిక నాగరికత & వేద సంహితలు',
     nameEn: 'Vedic Civilization & Upanishads',
     periodTe: 'క్రీ.పూ. 3,676 – 976',
     periodEn: '3,676 – 976 BCE',
     durationLabelTe: '2,700 ఏళ్ళు',
     durationLabelEn: '2,700 Years',
-    startAngleDeg: 2.09,
+    startAngleDeg: 8.00,
     endAngleDeg: 39.77,
-    midAngleDeg: 20.93,
-    spanDeg: 37.68,
+    midAngleDeg: 23.88,
+    spanDeg: 31.77,
     yugaEquivalentTe: 'అవరోహణ కలియుగం (భాగం 1)',
     yugaEquivalentEn: 'Descending Kali Yuga (Part 1)',
     icon: '📜',
     color: '#EDE7F6',
     accentColor: '#4A148C',
     dynastiesIncludedCount: 2,
-    dynastiesIncludedIds: ['early_vedic_age', 'later_vedic_age'],
+    dynastiesIncludedIds: ['early_vedic_period', 'later_vedic_upanishads'],
     descriptionTe: 'చతుర్వేదాల (ఋగ్, యజుర్, సామ, అథర్వణ) మంత్ర సంహితలు, ఉపనిషత్తుల అద్వైత తాత్విక దర్శనాలు, సప్తసింధు నుండి గంగా పరీవాహక ప్రాంతానికి వైదిక విస్తరణ.',
     descriptionEn: 'Codification of the 4 Vedas (Rig, Yajur, Sama, Atharva), pristine Upanishadic Vedanta philosophy, and the dawn of Aryan civic order.',
     achievementsTe: ['సప్తర్షి జ్ఞాన సంప్రదాయం & వేద మంత్ర శాస్త్రం', 'ఉపనిషత్తుల బ్రహ్మ విచారణ (తత్త్వమసి, అహం బ్రహ్మాస్మి)', 'సభా, సమితి ప్రజాస్వామ్య వేదికలు'],
@@ -173,7 +200,7 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
   },
   {
     id: 'epoch_mahajanapadas_transition',
-    order: 5,
+    order: 6,
     nameTe: '16 మహాజనపదాలు & యుగ సంధి',
     nameEn: '16 Mahajanapadas & Mid-Kali Sandhi',
     periodTe: 'క్రీ.పూ. 976 – 676',
@@ -186,11 +213,11 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     spanDeg: 4.18,
     yugaEquivalentTe: 'కలియుగ మధ్యంతర సంధికాలం',
     yugaEquivalentEn: 'Mid-Kali Transition Period',
-    icon: '🛡️',
+    icon: '🏛️',
     color: '#FFF8E1',
     accentColor: '#C59B27',
     dynastiesIncludedCount: 2,
-    dynastiesIncludedIds: ['mahajanapadas_shramana', 'magadha_rise'],
+    dynastiesIncludedIds: ['mahajanapadas_shramana', 'magadha_dynasties'],
     descriptionTe: 'ఇనుప యుగ విప్లవం, గంగా మైదానంలో 16 మహాజనపదాల ఆవిర్భావం, నాణేల ముద్రణ, మగధ సామ్రాజ్య ఉషస్సు మరియు శ్రమణ తాత్విక ఉద్యమాలు.',
     descriptionEn: 'Second Urbanization, Iron Age metallurgy, formation of the 16 Mahajanapadas, early punch-marked coinage, and the rise of Magadha.',
     achievementsTe: ['ఇనుముతో వ్యవసాయ, రక్షణ పరికరాల ఆధునీకరణ', 'పంచ్-మార్క్డ్ వెండి నాణేల చలామణి', 'గణతంత్రాలు (లిచ్ఛవి) మరియు రాజరిక వ్యవస్థల స్థాపన'],
@@ -200,7 +227,7 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
   },
   {
     id: 'epoch_imperial_dynasties',
-    order: 6,
+    order: 7,
     nameTe: 'భారతీయ మహా సామ్రాజ్యాల స్వర్ణయుగం',
     nameEn: 'The Imperial Dynasties of Bharat',
     periodTe: 'క్రీ.పూ. 676 – క్రీ.శ. 2025',
@@ -218,11 +245,11 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     accentColor: '#D84315',
     dynastiesIncludedCount: 17,
     dynastiesIncludedIds: [
-      'mauryan_empire', 'shunga_kanva', 'satavahana_empire', 'kushan_empire', 'sangam_era',
-      'gupta_golden_age', 'harsha_chalukya_pallava', 'rashtrakuta_tripartite',
-      'imperial_chola', 'delhi_sultanate_resistance', 'vijayanagara_empire',
-      'mughal_empire', 'maratha_empire', 'british_colonial_era',
-      'freedom_struggle', 'independent_india_constitution', 'digital_revolution_space'
+      'maurya_empire', 'shunga_kanva_revival', 'satavahana_empire', 'kushan_silk_road', 'sangam_era_chola_cheras_pandyas',
+      'gupta_golden_age', 'harsha_chalukya_pallava', 'tripartite_rashtrakuta_pala',
+      'imperial_chola_navy', 'delhi_sultanate_kakatiyas', 'vijayanagara_empire',
+      'mughal_empire', 'maratha_empire', 'british_rule_1857',
+      'national_freedom_struggle', 'independent_republic', 'digital_economic_rise'
     ],
     descriptionTe: 'మౌర్య, గుప్త, శాతవాహన, చోళ, చాళుక్య, విజయనగర, మరాఠా మహా సామ్రాజ్యాలు, ప్రపంచ ప్రసిద్ధ దేవాలయ శిల్పకళ, నలంద-తక్షశిల విశ్వవిద్యాలయాలు మరియు స్వాతంత్ర్య సంగ్రామం.',
     descriptionEn: 'The golden zenith of Indian statecraft: Maurya, Gupta, Satavahana, Imperial Chola, Vijayanagara, Maratha Swarajya, and the epic National Freedom Struggle.',
@@ -233,7 +260,7 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
   },
   {
     id: 'epoch_amrit_kaal_2026',
-    order: 7,
+    order: 8,
     nameTe: 'వర్తమానం: అమృత కాలం (2026 CE)',
     nameEn: 'Present: Amrit Kaal (2026 CE)',
     periodTe: 'క్రీ.శ. 2025 – 3225',
@@ -251,7 +278,7 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     accentColor: '#C62828',
     isCurrentTime: true,
     dynastiesIncludedCount: 1,
-    dynastiesIncludedIds: ['amrit_kaal_2026'],
+    dynastiesIncludedIds: ['current_time_bharat'],
     descriptionTe: 'నేటి వర్తమాన క్షణం (2026 CE): చంద్రయాన్, ఆదిత్య L-1 రోదసి విజయాలు, 5 ట్రిలియన్ డాలర్ల ఆర్థిక శక్తిగా ఎదుగుదల, డిజిటల్ భారత్ మరియు విశ్వగురు హోదా వైపు ప్రస్థానం.',
     descriptionEn: 'The present moment (2026 CE): Chandrayaan-3 lunar landing, Aditya-L1 solar observatory, 5-trillion economy trajectory, and the dawn of the Ascending Cosmic Arc.',
     achievementsTe: ['చంద్రుని దక్షిణ ధ్రువంపై కాలుమోపిన తొలి దేశం (చంద్రయాన్-3)', 'యూపీఐ (UPI) డిజిటల్ విప్లవం & ఆధునిక మౌలిక వసతులు', 'ఆయుష్, యోగా మరియు ప్రాచీన విజ్ఞాన పునరుజ్జీవనం'],
@@ -261,7 +288,7 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
   },
   {
     id: 'epoch_ascending_science_era',
-    order: 8,
+    order: 9,
     nameTe: 'ఆరోహణ రోదసి & విజ్ఞాన యుగం',
     nameEn: 'Ascending Space & Energy Era',
     periodTe: 'క్రీ.శ. 3225 – 5925',
@@ -269,16 +296,16 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
     durationLabelTe: '2,700 ఏళ్ళు',
     durationLabelEn: '2,700 Years',
     startAngleDeg: 98.37,
-    endAngleDeg: 136.05,
-    midAngleDeg: 117.21,
-    spanDeg: 37.68,
+    endAngleDeg: 140.23,
+    midAngleDeg: 119.30,
+    spanDeg: 41.86,
     yugaEquivalentTe: 'ఆరోహణ ద్వాపర యుగం',
     yugaEquivalentEn: 'Ascending Dwapara Yuga',
     icon: '🚀',
     color: '#E0F7FA',
     accentColor: '#00838F',
-    dynastiesIncludedCount: 0,
-    dynastiesIncludedIds: [],
+    dynastiesIncludedCount: 1,
+    dynastiesIncludedIds: ['ascending_science_space'],
     descriptionTe: 'శ్రీ యుక్తేశ్వర్ సిద్ధాంతం ప్రకారం విద్యుత్, పరమాణు, రోదసి మరియు సూక్ష్మ తరంగ శక్తుల సంపూర్ణ అవగాహన; అంతరిక్ష యానం.',
     descriptionEn: 'Mastery over electro-magnetic spectrum, fine energy matrices, and awakening of higher mental faculties.',
     achievementsTe: ['శూన్య శక్తి (Zero Point Energy) & నక్షత్రయానం', 'శరీర-మనస్సుల ఏకీకృత స్వస్థత విజ్ఞానం', 'సకల ప్రాణుల పట్ల అహింస, పరస్పర సహకార వ్యవస్థ'],
@@ -288,24 +315,24 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
   },
   {
     id: 'epoch_ascending_mental_harmony',
-    order: 9,
-    nameTe: 'ఆరోహణ ఆధ్యాత్మిక సామరస్య యుగం',
-    nameEn: 'Ascending Intuitive Harmony',
+    order: 10,
+    nameTe: 'ఆరోహణ మనోశక్తి & రామరాజ్య యుగం',
+    nameEn: 'Ascending Intuition & Ramarajya',
     periodTe: 'క్రీ.శ. 5925 – 8925',
     periodEn: '5,925 – 8,925 CE',
     durationLabelTe: '3,000 ఏళ్ళు',
     durationLabelEn: '3,000 Years',
-    startAngleDeg: 136.05,
-    endAngleDeg: 177.91,
-    midAngleDeg: 156.98,
+    startAngleDeg: 140.23,
+    endAngleDeg: 182.09,
+    midAngleDeg: 161.16,
     spanDeg: 41.86,
     yugaEquivalentTe: 'ఆరోహణ త్రేతాయుగం',
     yugaEquivalentEn: 'Ascending Treta Yuga',
     icon: '🧘',
     color: '#FFF3E0',
     accentColor: '#E65100',
-    dynastiesIncludedCount: 0,
-    dynastiesIncludedIds: [],
+    dynastiesIncludedCount: 1,
+    dynastiesIncludedIds: ['ascending_mental_ramarajya'],
     descriptionTe: 'టెలిపతి, అంతఃచేతనా వికాసం, ఆలోచనా తరంగాలతో వస్తు సృష్టి, సమాజంలో నేరాలు లేని పవిత్ర ధర్మపాలన మరియు ప్రకృతితో సామరస్యం.',
     descriptionEn: 'Universal direct intuition, telepathic communion, thought-materialization, supreme ethical governance, and deep harmony with nature.',
     achievementsTe: ['మానసిక సంభాషణ (Telepathy) & దివ్య దృష్టి', 'రామరాజ్య ధర్మపాలన & కరుణామయ జీవనం', 'ప్రకృతి శక్తులపై స్వచ్ఛంద ఆధిపత్యం'],
@@ -315,24 +342,24 @@ export const BHARAT_CIVILIZATION_EPOCHS: BharatCivilizationEpoch[] = [
   },
   {
     id: 'epoch_ascending_satya_apex',
-    order: 10,
+    order: 11,
     nameTe: 'ఆరోహణ సత్యయుగ స్వర్ణ శిఖరం',
     nameEn: 'Ascending Satya Golden Age',
     periodTe: 'క్రీ.శ. 8925 – 14,625 / 10,876 BCE',
     periodEn: '8,925 – 14,625 CE / 10,876 BCE',
     durationLabelTe: '5,700 ఏళ్ళు',
     durationLabelEn: '5,700 Years',
-    startAngleDeg: 177.91,
+    startAngleDeg: 182.09,
     endAngleDeg: 261.63,
-    midAngleDeg: 219.77,
-    spanDeg: 83.72,
+    midAngleDeg: 221.86,
+    spanDeg: 79.54,
     yugaEquivalentTe: 'ఆరోహణ సత్యయుగం & పరమ వైదిక సృష్టి మూలాలు',
     yugaEquivalentEn: 'Ascending Satya Yuga & Cosmic Genesis',
-    icon: '🕉️',
+    icon: '🪷',
     color: '#FFFDE7',
     accentColor: '#F57F17',
-    dynastiesIncludedCount: 0,
-    dynastiesIncludedIds: [],
+    dynastiesIncludedCount: 1,
+    dynastiesIncludedIds: ['ascending_satya_apex'],
     descriptionTe: 'బ్రహ్మజ్ఞానం, సకల ప్రాణులలో భగవద్దర్శనం, మహర్షుల నిరంతర దివ్య తపస్సు, సత్యం మరియు ధర్మం నాలుగు పాదాలతో నడిచే పరిపూర్ణ స్వర్ణయుగం.',
     descriptionEn: 'Full spiritual liberation, omnipresent God-consciousness, Rishi tapasya, when Dharma stands whole upon all four pillars of truth.',
     achievementsTe: ['జీవన్ముక్తి & దివ్య బ్రహ్మ సాక్షాత్కారం', 'సత్యం, తపస్సు, దయ, దానం పరిపూర్ణత', 'భౌతిక, సూక్ష్మ, కారణ లోకాల సమన్వయం'],
@@ -394,10 +421,14 @@ export const IndianHistoryChakraView: React.FC = () => {
   const { language } = useMythology();
   const isEn = language === 'en';
 
-  // Active selection: Defaults to Dynasty 24 (Amrit Kaal: India at 2026 CE / Present Time)
+  // Active selection: Defaults to Amrit Kaal (2026 CE / Present Time)
+  const defaultEvent = useMemo(() => {
+    return INDIAN_HISTORY_CHAKRA_EVENTS.find(e => e.isCurrentTime) || INDIAN_HISTORY_CHAKRA_EVENTS[0];
+  }, []);
+
   const [selectedItem, setSelectedItem] = useState<SelectedItemType>({
     kind: 'empire',
-    data: INDIAN_HISTORY_CHAKRA_EVENTS[23] // Amrit Kaal (2026 CE / Current time)
+    data: defaultEvent
   });
 
   // Rotation angle of the wheel (in degrees)
@@ -494,9 +525,10 @@ export const IndianHistoryChakraView: React.FC = () => {
 
   // Jump to Current Time (2026 CE)
   const handleJumpToCurrentTime = () => {
+    const curr = INDIAN_HISTORY_CHAKRA_EVENTS.find(e => e.isCurrentTime) || INDIAN_HISTORY_CHAKRA_EVENTS[0];
     setSelectedItem({
       kind: 'empire',
-      data: INDIAN_HISTORY_CHAKRA_EVENTS[23] // Amrit Kaal India at 2026 CE
+      data: curr
     });
     playChime(880);
   };
@@ -518,7 +550,7 @@ export const IndianHistoryChakraView: React.FC = () => {
   const R_RING2_OUTER = 400;
   const R_RING2_INNER = 315;
 
-  // 3. INNER CHAKRA (Ring 3): 24 మహా సామ్రాజ్యాలు (24 Dynasties)
+  // 3. INNER CHAKRA (Ring 3): భారతీయ సామ్రాజ్యాలు & ఇతిహాసాలు (All Dynasties & Epics)
   // Radius: 310px to 210px (Width: 100px)
   const R_RING3_OUTER = 310;
   const R_RING3_INNER = 210;
@@ -548,22 +580,16 @@ export const IndianHistoryChakraView: React.FC = () => {
     });
   }, []);
 
-  // Inner Chakra: 24 Dynasties (15° each, spanning 360°)
-  // Spoke 1 starts at -90° (Top / 12 o'clock)
-  const dynasties24Segments = useMemo(() => {
-    const span = 360 / 24; // 15°
-    return INDIAN_HISTORY_CHAKRA_EVENTS.map((event, index) => {
-      const startDeg = -90 + index * span;
-      const endDeg = startDeg + span;
-      const midDeg = startDeg + span / 2;
-      return {
-        ...event,
-        startDeg,
-        endDeg,
-        midDeg,
-        spanDeg: span
-      };
-    });
+  // Inner Chakra: All Dynasties & Eras scaled directly along the 25,800-year cycle
+  // Every spoke matches the era time scale and outer ring!
+  const dynastySegments = useMemo(() => {
+    return INDIAN_HISTORY_CHAKRA_EVENTS.map(event => ({
+      ...event,
+      startDeg: event.startAngleDeg,
+      endDeg: event.endAngleDeg,
+      midDeg: event.midAngleDeg,
+      spanDeg: event.spanDeg
+    }));
   }, []);
 
   // Helper for SVG Arc path
@@ -625,7 +651,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                   {isEn ? 'All 3 Chakras Concentric In One' : '3 చక్రాల ఏకరీతి సమగ్ర దర్శిని'}
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full bg-red-950/80 text-[#FFE082] text-xs font-bold border border-[#D4AF37]/50">
-                  {isEn ? '1. Yuga Cycle • 2. Civilizational Eras • 3. 24 Dynasties' : '1. 25,800y యుగచక్రం • 2. భారతీయ కాలక్రమం • 3. 24 సామ్రాజ్యాలు'}
+                  {isEn ? '1. Yuga Cycle • 2. Ramayana & Mahabharata Eras • 3. Dynasties Scaled' : '1. 25,800y యుగచక్రం • 2. రామాయణ & మహాభారత కాలక్రమం • 3. మహా సామ్రాజ్యాలు'}
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 text-xs font-bold border border-emerald-500/50 flex items-center gap-1.5 animate-pulse">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -635,13 +661,13 @@ export const IndianHistoryChakraView: React.FC = () => {
 
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#FFE082] font-telugu-serif tracking-tight mt-1.5 drop-shadow-sm">
                 {isEn 
-                  ? 'The Tri-Chakra: Yuga Cycle, Civilizational Eras & 24 Dynasties' 
-                  : 'త్రిచక్ర సమగ్ర దర్శిని: 25,800 ఏళ్ల యుగచక్రం, భారత కాలక్రమం & 24 మహా సామ్రాజ్యాలు'}
+                  ? 'The Tri-Chakra: Yuga Cycle, Ramayana & Mahabharata Eras & Imperial Dynasties' 
+                  : 'త్రిచక్ర సమగ్ర దర్శిని: 25,800 ఏళ్ల యుగచక్రం, రామాయణ-మహాభారత యుగాలు & భారతీయ మహా సామ్రాజ్యాలు'}
               </h1>
               <p className="text-xs sm:text-sm text-[#FFECE4] mt-1.5 max-w-3xl leading-relaxed font-medium">
                 {isEn 
-                  ? 'All 3 Chakras unified in one majestic circle: (1) Outer Ring: 25,800-year Yuga Cycle with Telugu Yuga names; (2) Middle Ring: Indian Civilizational Chronology; (3) Inner Chakra: 24 Great Dynasties of Bharat. All perfectly scaled with the 2026 CE live needle at bottom.'
-                  : 'ఒకే బ్రహ్మాండ వృత్తంలో 3 వలయాల సమాహారం: (1) బయటి వలయం: 25,800 ఏళ్ల మహా యుగచక్రం (తెలుగు పేర్లతో); (2) మధ్య వలయం: లోపలి భారతీయ కాలక్రమం; (3) లోపలి చక్రం: భారతదేశపు 24 మహా సామ్రాజ్యాలు. సరిగ్గా చక్రం దిగువన 2026 CE లైవ్ సూచికతో సమన్వయం చేయబడ్డాయి.'}
+                  ? 'All 3 Chakras unified in one majestic circle: (1) Outer Ring: 25,800-year Yuga Cycle with Telugu Yuga names; (2) Middle Ring: Indian Civilizational Chronology featuring Ramayana & Mahabharata eras; (3) Inner Chakra: Dynasties and epics precisely scaled along the chronological arc. All 3 rings perfectly aligned with the 2026 CE live needle at bottom.'
+                  : 'ఒకే బ్రహ్మాండ వృత్తంలో 3 వలయాల సమాహారం: (1) బయటి వలయం: 25,800 ఏళ్ల మహా యుగచక్రం (తెలుగు పేర్లతో); (2) మధ్య వలయం: రామాయణ మరియు మహాభారత యుగాలతో కూడిన భారతీయ కాలక్రమం; (3) లోపలి చక్రం: కాలచక్ర ప్రమాణంలో సరిగ్గా అమర్చబడిన భారతీయ మహా సామ్రాజ్యాలు. సరిగ్గా చక్రం దిగువన (6 o\'clock) 2026 CE లైవ్ సూచికతో మూడు చక్రాలూ పరిపూర్ణంగా సమన్వయం చేయబడ్డాయి.'}
               </p>
             </div>
           </div>
@@ -713,7 +739,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                   : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
               }`}
             >
-              <span>{isEn ? '🏛️ Middle Ring: Bharat Chronology' : '🏛️ 2. మధ్య భారత కాలక్రమం'}</span>
+              <span>{isEn ? '🏛️ Middle Ring: Bharat Chronology (Ramayana & Mahabharata)' : '🏛️ 2. మధ్య భారత కాలక్రమం (రామాయణ, మహాభారతం)'}</span>
             </button>
 
             <button
@@ -724,7 +750,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                   : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
               }`}
             >
-              <span>{isEn ? '👑 Inner Chakra: 24 Dynasties' : '👑 3. లోపలి 24 మహా సామ్రాజ్యాలు'}</span>
+              <span>{isEn ? '👑 Inner Chakra: Scaled Dynasties' : '👑 3. లోపలి మహా సామ్రాజ్యాలు & ఇతిహాసాలు'}</span>
             </button>
           </div>
 
@@ -1146,13 +1172,14 @@ export const IndianHistoryChakraView: React.FC = () => {
               })}
 
               {/* ------------------------------------------------------------ */}
-              {/* TIER 3: INNER CHAKRA — 24 మహా సామ్రాజ్యాలు (r=310 to 210)     */}
+              {/* TIER 3: INNER CHAKRA — భారతీయ సామ్రాజ్యాలు & ఇతిహాసాలు (r=310 to 210) */}
+              {/* Scaled proportionally along the 25,800-year cycle             */}
               {/* ------------------------------------------------------------ */}
               <circle cx={CX} cy={CY} r={R_RING3_OUTER} fill="none" stroke="#D4AF37" strokeWidth="2.5" />
               <circle cx={CX} cy={CY} r={R_RING3_INNER} fill="none" stroke="#3E1004" strokeWidth="3" />
 
-              {/* All 24 Dynasties of Bharat (15° each) */}
-              {dynasties24Segments.map(event => {
+              {/* All Dynasties & Great Epics of Bharat (Ramayana, Mahabharata, Imperial Dynasties) */}
+              {dynastySegments.map(event => {
                 const isSelected = selectedItem.kind === 'empire' && selectedItem.data.id === event.id;
                 const isCurr = event.isCurrentTime;
                 const path = describeArcSector(CX, CY, R_RING3_INNER, R_RING3_OUTER, event.startDeg, event.endDeg);
@@ -1164,6 +1191,9 @@ export const IndianHistoryChakraView: React.FC = () => {
 
                 let rot = event.midDeg + 90;
                 if (event.midDeg > 0 && event.midDeg < 180) rot += 180;
+
+                const hasAmpleSpan = event.spanDeg >= 5.0;
+                const hasMidSpan = event.spanDeg >= 2.5 && event.spanDeg < 5.0;
 
                 return (
                   <g
@@ -1179,7 +1209,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                       d={path}
                       fill={
                         isSelected
-                          ? (isCurr ? '#006064' : '#7B1113')
+                          ? (isCurr ? '#B71C1C' : event.color || '#7B1113')
                           : (isCurr ? '#004D40' : (event.order % 2 === 0 ? '#FFFDF8' : '#FAF2E6'))
                       }
                       stroke={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#E8DCC4')}
@@ -1198,43 +1228,81 @@ export const IndianHistoryChakraView: React.FC = () => {
                     />
 
                     {/* Content inside Inner Chakra Spoke */}
-                    <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
-                      <text
-                        x={xM}
-                        y={yM - 24}
-                        textAnchor="middle"
-                        dominantBaseline="central"
-                        fontSize={18}
-                      >
-                        {event.icon}
-                      </text>
+                    {hasAmpleSpan ? (
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                        <text
+                          x={xM}
+                          y={yM - 22}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={16}
+                        >
+                          {event.icon}
+                        </text>
 
-                      <text
-                        x={xM}
-                        y={yM}
-                        textAnchor="middle"
-                        dominantBaseline="central"
-                        fontSize={12}
-                        fontWeight="900"
-                        fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#3E2723')}
-                        className="font-telugu-serif tracking-tight"
-                      >
-                        {isEn ? event.titleEn.split(' ')[0] : event.titleTe.split(' ')[0]}
-                      </text>
+                        <text
+                          x={xM}
+                          y={yM}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={11}
+                          fontWeight="900"
+                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#3E2723')}
+                          className="font-telugu-serif tracking-tight"
+                        >
+                          {isEn ? event.titleEn.split(' ')[0] : event.titleTe.split(' ')[0]}
+                        </text>
 
-                      <text
-                        x={xM}
-                        y={yM + 22}
-                        textAnchor="middle"
-                        dominantBaseline="central"
-                        fontSize={9}
-                        fontWeight="bold"
-                        fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#8D6E63')}
-                        className="font-mono"
-                      >
-                        #{event.order}
-                      </text>
-                    </g>
+                        <text
+                          x={xM}
+                          y={yM + 20}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={9}
+                          fontWeight="bold"
+                          fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#8D6E63')}
+                          className="font-mono"
+                        >
+                          #{event.order}
+                        </text>
+                      </g>
+                    ) : hasMidSpan ? (
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                        <text
+                          x={xM}
+                          y={yM - 12}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={13}
+                        >
+                          {event.icon}
+                        </text>
+                        <text
+                          x={xM}
+                          y={yM + 12}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={8}
+                          fontWeight="bold"
+                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#5D4037')}
+                          className="font-mono"
+                        >
+                          #{event.order}
+                        </text>
+                      </g>
+                    ) : (
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                        <text
+                          x={xM}
+                          y={yM}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={10}
+                        >
+                          {event.icon}
+                        </text>
+                      </g>
+                    )}
                   </g>
                 );
               })}
@@ -1393,8 +1461,8 @@ export const IndianHistoryChakraView: React.FC = () => {
             <span className="flex items-center gap-1.5 font-bold text-sm text-[#7B1113]">
               <Compass className="w-4 h-4 text-[#D4AF37]" />
               {isEn 
-                ? 'Outer: 25,800y Yuga Cycle • Middle: Bharat Chronology • Inner: 24 Dynasties' 
-                : '1. బయటి: 25,800 ఏళ్ల యుగచక్రం • 2. మధ్య: భారత కాలక్రమం • 3. లోపలి: 24 సామ్రాజ్యాలు'}
+                ? 'Outer: 25,800y Yuga Cycle • Middle: Bharat Chronology (Ramayana & Mahabharata) • Inner: Dynasties Scaled' 
+                : '1. బయటి: 25,800 ఏళ్ల యుగచక్రం • 2. మధ్య: భారత కాలక్రమం (రామాయణ, మహాభారత యుగాలు) • 3. లోపలి: మహా సామ్రాజ్యాలు'}
             </span>
             <button
               onClick={() => setRotationAngle(0)}
@@ -1402,6 +1470,53 @@ export const IndianHistoryChakraView: React.FC = () => {
             >
               {isEn ? 'Reset Position' : 'యథాస్థితికి తీసుకురా'}
             </button>
+          </div>
+
+          {/* Spoke / Dynasty Ribbon Carousel */}
+          <div className="w-full max-w-[740px] mt-3 bg-white/80 backdrop-blur-md rounded-2xl p-3 border border-[#D4AF37]/50 shadow-sm">
+            <div className="flex items-center justify-between gap-2 mb-2 px-1">
+              <span className="text-xs font-black text-[#7B1113] uppercase tracking-wider flex items-center gap-1.5">
+                <Crown className="w-3.5 h-3.5 text-[#D4AF37]" />
+                {isEn ? 'All Eras & Dynasties of Bharat (Click to Inspect):' : 'భారతీయ యుగాలు & సామ్రాజ్యాల క్రమ దర్శిని (క్లిక్ చేయండి):'}
+              </span>
+              <span className="text-[11px] font-mono font-bold text-[#8D6E63]">
+                {INDIAN_HISTORY_CHAKRA_EVENTS.length} {isEn ? 'Spokes' : 'ఆకులు'}
+              </span>
+            </div>
+            
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 scrollbar-thin scrollbar-thumb-amber-300">
+              {INDIAN_HISTORY_CHAKRA_EVENTS.map(event => {
+                const isSelected = selectedItem.kind === 'empire' && selectedItem.data.id === event.id;
+                const isCurr = event.isCurrentTime;
+
+                return (
+                  <button
+                    key={`ribbon-spoke-${event.id}`}
+                    onClick={() => {
+                      setSelectedItem({ kind: 'empire', data: event });
+                      playChime(isCurr ? 880 : 528);
+                    }}
+                    className={`shrink-0 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs ${
+                      isSelected
+                        ? (isCurr
+                            ? 'bg-red-700 text-white ring-2 ring-red-400 font-black shadow-md'
+                            : 'bg-amber-400 text-stone-950 ring-2 ring-amber-200 font-black shadow-md')
+                        : (isCurr
+                            ? 'bg-red-100 text-red-900 border border-red-300 hover:bg-red-200'
+                            : 'bg-stone-100 text-stone-800 border border-stone-200 hover:bg-stone-200')
+                    }`}
+                    title={isEn ? `${event.order}. ${event.titleEn} (${event.periodEn})` : `${event.order}. ${event.titleTe} (${event.periodTe})`}
+                  >
+                    <span className="font-mono text-[10px] opacity-75">#{event.order}</span>
+                    <span>{event.icon}</span>
+                    <span className="font-telugu-serif whitespace-nowrap">
+                      {isEn ? event.titleEn.split(' ')[0] : event.titleTe.split(' ')[0]}
+                    </span>
+                    {isCurr && <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
