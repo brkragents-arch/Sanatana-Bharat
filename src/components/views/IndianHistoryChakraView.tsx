@@ -832,7 +832,7 @@ export const IndianHistoryChakraView: React.FC = () => {
             {/* THE MASTER 3-TIER CONCENTRIC SVG CHAKRA                      */}
             {/* ============================================================ */}
             <svg
-              viewBox="-60 -60 1120 1120"
+              viewBox="-90 -90 1180 1180"
               className="w-full h-full drop-shadow-2xl transition-transform duration-700 ease-out"
               style={{
                 transform: `rotate(${rotationAngle}deg)`,
@@ -847,10 +847,9 @@ export const IndianHistoryChakraView: React.FC = () => {
                 </radialGradient>
 
                 <radialGradient id="hubGradient" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#FFF9E6" />
-                  <stop offset="50%" stopColor="#FFD54F" />
-                  <stop offset="85%" stopColor="#C59B27" />
-                  <stop offset="100%" stopColor="#3E1004" />
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="60%" stopColor="#FFF9E6" />
+                  <stop offset="100%" stopColor="#FFE082" />
                 </radialGradient>
 
                 <radialGradient id="currentTimeAura" cx="50%" cy="50%" r="50%">
@@ -866,9 +865,10 @@ export const IndianHistoryChakraView: React.FC = () => {
 
               {/* ------------------------------------------------------------ */}
               {/* TIER 1: OUTER RING — 25,800-YEAR YUGA CYCLE (r=490 to 405)   */}
+              {/* Bright, radiant parchment foundation (No dark center circle)  */}
               {/* ------------------------------------------------------------ */}
-              <circle cx={CX} cy={CY} r={R_RING1_OUTER + 2} fill="#2A0800" stroke="#D4AF37" strokeWidth="4" />
-              <circle cx={CX} cy={CY} r={R_RING1_INNER} fill="none" stroke="#3E1004" strokeWidth="2.5" />
+              <circle cx={CX} cy={CY} r={R_RING1_OUTER + 2} fill="#FFFDF8" stroke="#D4AF37" strokeWidth="4" />
+              <circle cx={CX} cy={CY} r={R_RING1_INNER} fill="none" stroke="#D4AF37" strokeWidth="2.5" />
 
               {/* 16 Yuga Cycle Sectors */}
               {yugaAngleSegments.map(seg => {
@@ -930,10 +930,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                       <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
                         <text
                           x={xT}
-                          y={yT - 5}
+                          y={yT - 6}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={10}
+                          fontSize={12}
                           fontWeight="900"
                           fill={isSelected ? '#FFE082' : '#3E2723'}
                           className="font-telugu-serif"
@@ -942,10 +942,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                         </text>
                         <text
                           x={xT}
-                          y={yT + 6}
+                          y={yT + 7}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={8}
+                          fontSize={9.5}
                           fontWeight="bold"
                           fill={isSelected ? '#FFFFFF' : '#6D4C41'}
                           className="font-mono"
@@ -958,10 +958,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                         {/* Telugu Yuga Name */}
                         <text
                           x={xT}
-                          y={yT - 14}
+                          y={yT - 15}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={isKataklysmos || isEkpyrosis ? 12 : 14}
+                          fontSize={isKataklysmos || isEkpyrosis ? 14 : 16}
                           fontWeight="900"
                           fill={
                             isSelected 
@@ -979,7 +979,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                           y={yT + 2}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={10}
+                          fontSize={11.5}
                           fontWeight="bold"
                           fontStyle={isKataklysmos || isEkpyrosis ? 'italic' : 'normal'}
                           fill={
@@ -995,10 +995,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                         {/* Duration */}
                         <text
                           x={xT}
-                          y={yT + 17}
+                          y={yT + 18}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={9}
+                          fontSize={10.5}
                           fontWeight="bold"
                           fill={
                             isSelected 
@@ -1015,16 +1015,16 @@ export const IndianHistoryChakraView: React.FC = () => {
                 );
               })}
 
-              {/* Boundary Ticks & External Dates (Staggered to prevent overlap & clearly display BCE / CE) */}
+              {/* Boundary Ticks & External Dates (Staggered on 2 radial tracks to prevent overlap & clearly display BCE / CE) */}
               {yugaAngleSegments.map((seg, idx, arr) => {
                 const rad = (seg.startAngleDeg * Math.PI) / 180;
                 const isSandhiStart = seg.category === 'transition';
                 const prevSeg = idx > 0 ? arr[idx - 1] : arr[arr.length - 1];
                 const isSandhiEnd = prevSeg && prevSeg.category === 'transition';
 
-                // Stagger distance: Sandhi start = 14px, Sandhi end = 32px, standard = 18px
-                const rOffset = isSandhiEnd ? 32 : (isSandhiStart ? 14 : 18);
-                const tickLen = isSandhiEnd ? 24 : (isSandhiStart ? 8 : 10);
+                // Generous stagger distance: Sandhi start = 20px, Sandhi end = 50px, standard = 26px
+                const rOffset = isSandhiEnd ? 50 : (isSandhiStart ? 20 : 26);
+                const tickLen = isSandhiEnd ? 40 : (isSandhiStart ? 10 : 16);
 
                 const xInner = CX + R_RING1_INNER * Math.cos(rad);
                 const yInner = CY + R_RING1_INNER * Math.sin(rad);
@@ -1048,7 +1048,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                       y1={yInner}
                       x2={xTickEnd}
                       y2={yTickEnd}
-                      stroke="#2C1810"
+                      stroke="#8D6E63"
                       strokeWidth={isSandhiStart || isSandhiEnd ? "1.5" : "2"}
                     />
                     <text
@@ -1056,13 +1056,13 @@ export const IndianHistoryChakraView: React.FC = () => {
                       y={yDate}
                       textAnchor="middle"
                       dominantBaseline="central"
-                      fontSize={isSandhiStart || isSandhiEnd ? 9 : 10.5}
+                      fontSize={isSandhiStart || isSandhiEnd ? 12 : 13.5}
                       fontWeight="900"
                       transform={`rotate(${dateRot}, ${xDate}, ${yDate})`}
                       className="font-mono tracking-tight"
                     >
                       <tspan fill="#2A0800">{yearNum}</tspan>
-                      <tspan dx={3} fontWeight="bold" fill={isBce ? "#B71C1C" : "#0277BD"}>
+                      <tspan dx={4} fontSize={isSandhiStart || isSandhiEnd ? 10.5 : 12} fontWeight="900" fill={isBce ? "#C62828" : "#0277BD"}>
                         {isBce ? 'BCE' : 'CE'}
                       </tspan>
                     </text>
@@ -1127,10 +1127,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                       <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
                           x={xM}
-                          y={yM - 18}
+                          y={yM - 20}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={16}
+                          fontSize={20}
                         >
                           {epoch.icon}
                         </text>
@@ -1140,7 +1140,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                           y={yM + 2}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={11}
+                          fontSize={13.5}
                           fontWeight="900"
                           fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#2C1810')}
                           className="font-telugu-serif tracking-tight"
@@ -1150,10 +1150,10 @@ export const IndianHistoryChakraView: React.FC = () => {
 
                         <text
                           x={xM}
-                          y={yM + 19}
+                          y={yM + 20}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={8}
+                          fontSize={10.5}
                           fontWeight="bold"
                           fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#5D4037')}
                           className="font-mono"
@@ -1169,7 +1169,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                           y={yM}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={11}
+                          fontSize={15}
                           fontWeight="900"
                           fill={isSelected ? '#FFE082' : '#7B1113'}
                         >
@@ -1242,10 +1242,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                       <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
                           x={xM}
-                          y={yM - 22}
+                          y={yM - 24}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={16}
+                          fontSize={20}
                         >
                           {event.icon}
                         </text>
@@ -1255,7 +1255,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                           y={yM}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={11}
+                          fontSize={13.5}
                           fontWeight="900"
                           fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#3E2723')}
                           className="font-telugu-serif tracking-tight"
@@ -1265,10 +1265,10 @@ export const IndianHistoryChakraView: React.FC = () => {
 
                         <text
                           x={xM}
-                          y={yM + 20}
+                          y={yM + 22}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={9}
+                          fontSize={11.5}
                           fontWeight="bold"
                           fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#8D6E63')}
                           className="font-mono"
@@ -1280,19 +1280,19 @@ export const IndianHistoryChakraView: React.FC = () => {
                       <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
                           x={xM}
-                          y={yM - 12}
+                          y={yM - 14}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={13}
+                          fontSize={16}
                         >
                           {event.icon}
                         </text>
                         <text
                           x={xM}
-                          y={yM + 12}
+                          y={yM + 14}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={8}
+                          fontSize={10.5}
                           fontWeight="bold"
                           fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#5D4037')}
                           className="font-mono"
@@ -1307,7 +1307,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                           y={yM}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={10}
+                          fontSize={13}
                         >
                           {event.icon}
                         </text>
@@ -1319,28 +1319,67 @@ export const IndianHistoryChakraView: React.FC = () => {
 
               {/* ------------------------------------------------------------ */}
               {/* TIER 4: CENTER HUB — ASHOKA DHARMA CHAKRA & SELECTION        */}
+              {/* Radiant White & Gold Luminous Hub (No dark center circle)   */}
               {/* ------------------------------------------------------------ */}
-              <circle cx={CX} cy={CY} r={R_ARROW_BAND} fill="none" stroke="#2C1810" strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
+              {/* Base inner parchment circle to guarantee bright luminous center */}
+              <circle cx={CX} cy={CY} r={R_RING3_INNER} fill="#FFFDF8" stroke="#D4AF37" strokeWidth="2.5" />
+
+              {/* Cycle indicator ring and labels in inner band */}
+              <circle cx={CX} cy={CY} r={R_ARROW_BAND} fill="none" stroke="#D4AF37" strokeWidth="1" strokeDasharray="5 3" opacity="0.6" />
+
+              {/* Ascending Cycle indicator (Left hemisphere) */}
+              <g className="pointer-events-none select-none">
+                <text
+                  x={CX - 175}
+                  y={CY}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={11.5}
+                  fontWeight="bold"
+                  fill="#795548"
+                  transform={`rotate(-90, ${CX - 175}, ${CY})`}
+                  className="font-telugu-serif tracking-widest uppercase"
+                >
+                  {isEn ? '↑ Ascending Cycle' : '↑ ఆరోహణ కాలచక్రం'}
+                </text>
+              </g>
+
+              {/* Descending Cycle indicator (Right hemisphere) */}
+              <g className="pointer-events-none select-none">
+                <text
+                  x={CX + 175}
+                  y={CY}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={11.5}
+                  fontWeight="bold"
+                  fill="#795548"
+                  transform={`rotate(90, ${CX + 175}, ${CY})`}
+                  className="font-telugu-serif tracking-widest uppercase"
+                >
+                  {isEn ? '↓ Descending Cycle' : '↓ అవరోహణ కాలచక్రం'}
+                </text>
+              </g>
 
               <circle
                 cx={CX}
                 cy={CY}
                 r={R_HUB_OUTER}
-                fill="#FAF7F0"
-                stroke="#2C1810"
-                strokeWidth="3.5"
+                fill="#FFFDF8"
+                stroke="#D4AF37"
+                strokeWidth="3"
               />
               <circle
                 cx={CX}
                 cy={CY}
                 r={R_HUB_MID}
                 fill="url(#hubGradient)"
-                stroke="#FFE082"
-                strokeWidth="2.5"
-                className="shadow-inner"
+                stroke="#C59B27"
+                strokeWidth="2"
+                className="shadow-sm"
               />
 
-              {/* 24 Spokes of Ashoka Chakra */}
+              {/* 24 Spokes of Ashoka Chakra in dignified Navy Blue / Gold */}
               {Array.from({ length: 24 }).map((_, i) => {
                 const spRad = (i * 15 * Math.PI) / 180;
                 return (
@@ -1350,9 +1389,10 @@ export const IndianHistoryChakraView: React.FC = () => {
                     y1={CY + R_HUB_INNER * Math.sin(spRad)}
                     x2={CX + (R_HUB_MID - 3) * Math.cos(spRad)}
                     y2={CY + (R_HUB_MID - 3) * Math.sin(spRad)}
-                    stroke="#3E1004"
-                    strokeWidth="1.5"
+                    stroke="#1E40AF"
+                    strokeWidth="1.8"
                     strokeLinecap="round"
+                    opacity="0.8"
                   />
                 );
               })}
@@ -1361,18 +1401,18 @@ export const IndianHistoryChakraView: React.FC = () => {
                 cx={CX}
                 cy={CY}
                 r={R_HUB_INNER}
-                fill="#FFFDF8"
-                stroke="#7B1113"
-                strokeWidth="3"
+                fill="#FFFFFF"
+                stroke="#1E40AF"
+                strokeWidth="2.5"
               />
 
               {/* Large Centered Emoji and Name in Hub */}
               <text
                 x={CX}
-                y={CY - 20}
+                y={CY - 22}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={30}
+                fontSize={36}
                 className="pointer-events-none select-none"
               >
                 {selectedItem.kind === 'yuga'
@@ -1385,9 +1425,9 @@ export const IndianHistoryChakraView: React.FC = () => {
                 y={CY + 16}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={13}
+                fontSize={15}
                 fontWeight="900"
-                fill="#2A0800"
+                fill="#1E293B"
                 className="pointer-events-none select-none font-telugu-serif"
               >
                 {isEn 
@@ -1405,12 +1445,12 @@ export const IndianHistoryChakraView: React.FC = () => {
 
               <text
                 x={CX}
-                y={CY + 34}
+                y={CY + 36}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize={9}
+                fontSize={11}
                 fontWeight="bold"
-                fill="#7B1113"
+                fill="#B45309"
                 className="pointer-events-none select-none font-mono"
               >
                 {selectedItem.kind === 'yuga' 
