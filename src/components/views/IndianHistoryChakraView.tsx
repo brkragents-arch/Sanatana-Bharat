@@ -591,6 +591,16 @@ export const IndianHistoryChakraView: React.FC = () => {
     playChime(880);
   };
 
+  // Jump to Year 0 (0 CE / క్రీ.శ. 0)
+  const handleJumpToYearZero = () => {
+    const zeroEvent = INDIAN_HISTORY_CHAKRA_EVENTS.find(e => e.id === 'satavahana_empire') || INDIAN_HISTORY_CHAKRA_EVENTS[10];
+    setSelectedItem({
+      kind: 'empire',
+      data: zeroEvent
+    });
+    playChime(784);
+  };
+
   // ============================================================
   // 3-TIER CONCENTRIC CHAKRA GEOMETRY CONSTANTS
   // All 3 Chakras in ONE Single Master Circle
@@ -745,14 +755,24 @@ export const IndianHistoryChakraView: React.FC = () => {
             <div className="text-xs text-[#FFE082]/90 font-medium">
               {formattedDate} • {isEn ? 'Kaliyuga 5127' : 'కలియుగం 5127'}
             </div>
-            <button
-              onClick={handleJumpToCurrentTime}
-              className="mt-1 px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-700 hover:from-cyan-500 hover:to-teal-600 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer border border-cyan-300/40"
-              title={isEn ? 'Jump to Current Time (2026 CE)' : 'చక్రంపై నేటి వర్తమాన సమయానికి వెళ్ళు'}
-            >
-              <Target className="w-4 h-4 text-cyan-200" />
-              <span>{isEn ? 'Jump to Current Time (2026)' : 'ప్రస్తుత సమయానికి వెళ్ళు (2026)'}</span>
-            </button>
+            <div className="flex items-center gap-2 mt-1">
+              <button
+                onClick={handleJumpToCurrentTime}
+                className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-700 hover:from-cyan-500 hover:to-teal-600 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer border border-cyan-300/40"
+                title={isEn ? 'Jump to Current Time (2026 CE)' : 'చక్రంపై నేటి వర్తమాన సమయానికి వెళ్ళు (2026 CE)'}
+              >
+                <Target className="w-3.5 h-3.5 text-cyan-200" />
+                <span>{isEn ? '2026 CE' : '2026 వర్తమానం'}</span>
+              </button>
+              <button
+                onClick={handleJumpToYearZero}
+                className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-rose-700 to-red-800 hover:from-rose-600 hover:to-red-700 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer border border-rose-300/40"
+                title={isEn ? 'Jump to Year 0 (0 CE / 1 BCE)' : 'క్రీ.శ. 0 (0 CE) స్థానానికి వెళ్ళు'}
+              >
+                <MapPin className="w-3.5 h-3.5 text-rose-200" />
+                <span>{isEn ? '0 CE Pin' : 'క్రీ.శ. 0 పిన్'}</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -867,13 +887,24 @@ export const IndianHistoryChakraView: React.FC = () => {
           
           <div className="w-full max-w-[740px] aspect-square relative select-none flex items-center justify-center p-2 sm:p-4 rounded-3xl bg-radial from-[#FFFDF8] via-[#FFF9EE] to-[#F5ECE0] border-2 border-[#D4AF37] shadow-2xl">
             
-            {/* Top Indicator Badge */}
-            <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-cyan-950/95 text-cyan-200 border border-cyan-400/60 px-3 py-1.5 rounded-full shadow-md text-xs font-black backdrop-blur-xs">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
-              </span>
-              <span>{isEn ? '2026 CE Needle • Passes Through All 3 Rings' : '2026 CE లైవ్ సూచిక • 3 చక్రాల గుండా ప్రవహిస్తుంది'}</span>
+            {/* Top Indicator Badges */}
+            <div className="absolute top-3 left-3 z-20 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+              <div className="flex items-center gap-1.5 bg-cyan-950/95 text-cyan-200 border border-cyan-400/60 px-3 py-1.5 rounded-full shadow-md text-xs font-black backdrop-blur-xs">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+                </span>
+                <span>{isEn ? '2026 CE Live Needle' : '2026 CE లైవ్ సూచిక'}</span>
+              </div>
+
+              <button
+                onClick={handleJumpToYearZero}
+                className="flex items-center gap-1.5 bg-rose-950/95 hover:bg-rose-900 text-rose-200 border border-rose-400/60 px-3 py-1.5 rounded-full shadow-md text-xs font-black backdrop-blur-xs cursor-pointer transition-all"
+                title={isEn ? 'Focus Year 0 Pin (0 CE)' : 'క్రీ.శ. 0 పిన్ వద్దకు వెళ్ళు'}
+              >
+                <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                <span>{isEn ? '📍 0 CE Pin (క్రీ.శ. 0)' : '📍 క్రీ.శ. 0 పిన్ (0 CE)'}</span>
+              </button>
             </div>
 
             {/* View Original Yuga Diagram Button */}
@@ -915,6 +946,23 @@ export const IndianHistoryChakraView: React.FC = () => {
                   <stop offset="50%" stopColor="#00838F" stopOpacity="0.5" />
                   <stop offset="100%" stopColor="#006064" stopOpacity="0" />
                 </radialGradient>
+
+                <radialGradient id="yearZeroAura" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#EF4444" stopOpacity="0.9" />
+                  <stop offset="60%" stopColor="#DC2626" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#991B1B" stopOpacity="0" />
+                </radialGradient>
+
+                <linearGradient id="pinGradientRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F87171" />
+                  <stop offset="40%" stopColor="#EF4444" />
+                  <stop offset="80%" stopColor="#DC2626" />
+                  <stop offset="100%" stopColor="#991B1B" />
+                </linearGradient>
+
+                <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#7B1113" floodOpacity="0.5" />
+                </filter>
 
                 <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto">
                   <polygon points="0 0, 8 4, 0 8" fill="#3E1004" />
@@ -1583,6 +1631,142 @@ export const IndianHistoryChakraView: React.FC = () => {
                       points={`${xPoint},${yPoint + 12} ${xPoint - 6},${yPoint + 26} ${xPoint + 6},${yPoint + 26}`}
                       fill="#E53935"
                     />
+                  </g>
+                );
+              })()}
+
+              {/* ------------------------------------------------------------ */}
+              {/* YEAR 0 (0 CE / క్రీ.శ. 0) PLACEHOLDER PIN & CHRONOLOGY DIVIDE */}
+              {/* Angle: 53.39° (SE Quadrant, between Satavahana & Kushan)     */}
+              {/* ------------------------------------------------------------ */}
+              {(() => {
+                const zeroDeg = 53.39;
+                const zeroRad = (zeroDeg * Math.PI) / 180;
+                const cosZero = Math.cos(zeroRad);
+                const sinZero = Math.sin(zeroRad);
+
+                // Coordinates across the rings
+                const xRing2Inner = CX + R_RING2_INNER * cosZero;
+                const yRing2Inner = CY + R_RING2_INNER * sinZero;
+                const xRing2Outer = CX + R_RING2_OUTER * cosZero;
+                const yRing2Outer = CY + R_RING2_OUTER * sinZero;
+                const xRing1Inner = CX + R_RING1_INNER * cosZero;
+                const yRing1Inner = CY + R_RING1_INNER * sinZero;
+                const xOuter = CX + R_RING1_OUTER * cosZero;
+                const yOuter = CY + R_RING1_OUTER * sinZero;
+
+                // Pin Tip and Head Positions
+                const pinRotation = zeroDeg + 90; // Tip points inward towards center
+                const labelRadius = R_RING1_OUTER + 68;
+                const xLabel = CX + labelRadius * cosZero;
+                const yLabel = CY + labelRadius * sinZero;
+
+                // Comfortable reading angle along wheel rim
+                const labelTextRot = zeroDeg - 90;
+
+                return (
+                  <g
+                    id="year-zero-pin-group"
+                    className="cursor-pointer group"
+                    onClick={handleJumpToYearZero}
+                  >
+                    {/* Radial Dividers Across Rings indicating Year 0 BCE/CE Boundary */}
+                    <line
+                      x1={xRing1Inner}
+                      y1={yRing1Inner}
+                      x2={xOuter}
+                      y2={yOuter}
+                      stroke="#DC2626"
+                      strokeWidth="2.5"
+                      strokeDasharray="4 2"
+                      opacity="0.9"
+                    />
+                    <line
+                      x1={xRing2Inner}
+                      y1={yRing2Inner}
+                      x2={xRing2Outer}
+                      y2={yRing2Outer}
+                      stroke="#DC2626"
+                      strokeWidth="2"
+                      strokeDasharray="3 3"
+                      opacity="0.75"
+                    />
+
+                    {/* Ring Contact Indicator Dot with Pulse */}
+                    <circle
+                      cx={xOuter}
+                      cy={yOuter}
+                      r={14}
+                      fill="url(#yearZeroAura)"
+                      className="animate-ping"
+                    />
+                    <circle
+                      cx={xOuter}
+                      cy={yOuter}
+                      r={6}
+                      fill="#DC2626"
+                      stroke="#FFE082"
+                      strokeWidth="2"
+                    />
+
+                    {/* The Classic Teardrop Placeholder Map Pin */}
+                    <g transform={`translate(${xOuter}, ${yOuter}) rotate(${pinRotation})`}>
+                      {/* Map Pin Body (Tip at (0, 0), Head at (0, -36)) */}
+                      <path
+                        d="M 0 0 C -12 -14, -18 -24, -18 -36 A 18 18 0 1 1 18 -36 C 18 -24, 12 -14, 0 0 Z"
+                        fill="url(#pinGradientRed)"
+                        stroke="#FFF8E1"
+                        strokeWidth="2.5"
+                        filter="url(#pinShadow)"
+                        className="transition-transform duration-200 group-hover:scale-110"
+                      />
+                      {/* Inner Circular Eye of Map Pin */}
+                      <circle cx="0" cy="-36" r="7.5" fill="#FFFFFF" />
+                      <circle cx="0" cy="-36" r="3.5" fill="#DC2626" />
+                    </g>
+
+                    {/* Prominent Floating Pill Badge for 'క్రీ.శ. 0' */}
+                    <g transform={`rotate(${labelTextRot}, ${xLabel}, ${yLabel})`} className="select-none">
+                      {/* Badge Background Pill */}
+                      <rect
+                        x={xLabel - 56}
+                        y={yLabel - 18}
+                        width={112}
+                        height={36}
+                        rx={18}
+                        fill="#7B1113"
+                        stroke="#FFE082"
+                        strokeWidth="2.5"
+                        className="drop-shadow-xl transition-all duration-200 group-hover:fill-[#991B1B]"
+                      />
+                      {/* Main Year 0 Label */}
+                      <text
+                        x={xLabel}
+                        y={yLabel - 2}
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        fontSize={16}
+                        fontWeight="900"
+                        fill="#FFE082"
+                        className="font-telugu-serif tracking-wide drop-shadow-sm"
+                      >
+                        {isEn ? '0 CE' : 'క్రీ.శ. 0'}
+                      </text>
+
+                      {/* Sub-label under badge: (BCE / CE Divide) */}
+                      <text
+                        x={xLabel}
+                        y={yLabel + 27}
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        fontSize={11.5}
+                        fontWeight="900"
+                        fill="#DC2626"
+                        className="font-mono tracking-tight"
+                      >
+                        {isEn ? '0 CE (క్రీ.శ. 0)' : '0 CE • యుగ విభజన'}
+                      </text>
+                    </g>
                   </g>
                 );
               })()}
