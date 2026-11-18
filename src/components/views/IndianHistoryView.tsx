@@ -49,8 +49,15 @@ import {
   GraduationCap,
   Landmark,
   Feather,
-  ExternalLink
+  ExternalLink,
+  Dna
 } from 'lucide-react';
+
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </svg>
+);
 
 // Exact crop percentages for illustrations from the uploaded Gupta Empire notebook infographic
 const GUPTA_IMAGE_CROPS = {
@@ -3620,10 +3627,175 @@ export const IndianHistoryView: React.FC = () => {
                   "{isEn ? focusedPeriod.legacyEn : focusedPeriod.legacyTe}"
                 </p>
               </div>
+
+              {/* SPECIAL DOSSIER: DRAVIDIAN & SOUTH INDIAN HERITAGE */}
+              {focusedPeriod.southIndianConnection && (
+                <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#FFFBEB] via-[#FAF7F0] to-[#FFF8E1] border-2 border-[#D4AF37] shadow-sm space-y-4">
+                  <div className="flex items-start gap-2.5 border-b border-[#D4AF37]/40 pb-3">
+                    <span className="p-2 rounded-xl bg-gradient-to-br from-[#B7791F] to-[#7B1113] text-white shadow-xs">
+                      <Dna className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <span className="px-2.5 py-0.5 rounded-full bg-[#7B1113] text-[#FFE082] text-[10px] font-black uppercase tracking-wider inline-block">
+                        {isEn ? 'Dravidian & South Indian Heritage' : 'ద్రావిడ & దక్షిణ భారత ప్రజల చరిత్ర'}
+                      </span>
+                      <h4 className="text-base sm:text-lg font-black text-[#7B1113] font-telugu-serif mt-1">
+                        {isEn ? focusedPeriod.southIndianConnection.titleEn : focusedPeriod.southIndianConnection.titleTe}
+                      </h4>
+                      <p className="text-xs text-[#8D6E63] font-medium mt-0.5">
+                        {isEn ? focusedPeriod.southIndianConnection.subtitleEn : focusedPeriod.southIndianConnection.subtitleTe}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-3 bg-white/90 rounded-xl border border-[#E8DCC4] text-xs sm:text-sm text-[#3E2723] leading-relaxed font-medium">
+                    {isEn ? focusedPeriod.southIndianConnection.introEn : focusedPeriod.southIndianConnection.introTe}
+                  </div>
+
+                  <div className="space-y-3">
+                    {/* 1. Waves of Migration */}
+                    <div className="p-3 bg-white rounded-xl border border-[#D4AF37]/50 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-black uppercase text-[#B7791F]">
+                        <span className="w-2 h-2 rounded-full bg-[#B7791F]" />
+                        <span>{isEn ? '1. Two Great Waves of Human Migration (50,000 BCE – IVC)' : '1. రెండు మహోన్నత మానవ వలస ప్రవాహాలు & AASI మూలాలు'}</span>
+                      </div>
+                      <div className="space-y-1.5 text-xs text-[#5D4037] leading-relaxed">
+                        <p className="bg-[#FAF7F0] p-2.5 rounded-lg border border-[#E8DCC4]">
+                          <strong className="text-[#7B1113]">{isEn ? 'Wave 1 (AASI ~50,000 BCE): ' : 'తొలి వలస (AASI ~50,000 ఏళ్ళు): '}</strong>
+                          {isEn ? focusedPeriod.southIndianConnection.firstMigrationEn : focusedPeriod.southIndianConnection.firstMigrationTe}
+                        </p>
+                        <p className="bg-[#FAF7F0] p-2.5 rounded-lg border border-[#E8DCC4]">
+                          <strong className="text-[#7B1113]">{isEn ? 'Wave 2 (Iran Farmers + Indigenous Mix): ' : 'రెండవ వలస (ఇరాన్ రైతులు + తొలి భారతీయుల కలయిక): '}</strong>
+                          {isEn ? focusedPeriod.southIndianConnection.secondMigrationEn : focusedPeriod.southIndianConnection.secondMigrationTe}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 2. Urban Planning, Language & Brahui Connection */}
+                    <div className="p-3 bg-white rounded-xl border border-[#D4AF37]/50 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-black uppercase text-[#B7791F]">
+                        <span className="w-2 h-2 rounded-full bg-[#B7791F]" />
+                        <span>{isEn ? '2. Harappan Script & Brahui Language Connection' : '2. హరప్పా నగరాలు, ద్రావిడ భాషా చర్చ & బ్రాహుయీ సంబంధం'}</span>
+                      </div>
+                      <p className="text-xs text-[#5D4037] leading-relaxed bg-[#FAF7F0] p-2.5 rounded-lg border border-[#E8DCC4]">
+                        {isEn ? focusedPeriod.southIndianConnection.urbanCivilizationEn : focusedPeriod.southIndianConnection.urbanCivilizationTe}
+                      </p>
+                      <p className="text-xs text-[#5D4037] leading-relaxed bg-[#FAF7F0] p-2.5 rounded-lg border border-[#E8DCC4]">
+                        <strong className="text-[#7B1113]">{isEn ? 'Brahui in Pakistan: ' : 'బలూచిస్తాన్‌లో బ్రాహుయీ భాష: '}</strong>
+                        {isEn ? focusedPeriod.southIndianConnection.languageDebateEn : focusedPeriod.southIndianConnection.languageDebateTe}
+                      </p>
+                      <p className="text-xs text-[#5D4037] leading-relaxed bg-[#FFF8E1] p-2 rounded-lg border border-[#D4AF37]/40">
+                        <strong className="text-[#7B1113]">{isEn ? 'Southward Integration: ' : 'దక్షిణాదికి విస్తరణ: '}</strong>
+                        {isEn ? focusedPeriod.southIndianConnection.southwardExpansionEn : focusedPeriod.southIndianConnection.southwardExpansionTe}
+                      </p>
+                    </div>
+
+                    {/* 3. Cultural Evolution in South India */}
+                    <div className="p-3 bg-white rounded-xl border border-[#D4AF37]/50 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-black uppercase text-[#B7791F]">
+                        <span className="w-2 h-2 rounded-full bg-[#B7791F]" />
+                        <span>{isEn ? '3. Cultural Evolution in South India' : '3. దక్షిణ భారతదేశంలో ద్రావిడ సంస్కృతి వికాసం'}</span>
+                      </div>
+                      <div className="grid grid-cols-1 gap-2 text-xs text-[#5D4037]">
+                        <div className="p-2.5 bg-[#FAF7F0] rounded-lg border border-[#E8DCC4]">
+                          <span className="font-bold text-[#7B1113]">{isEn ? 'Ash Mounds (బూడిద దిబ్బలు): ' : 'బూడిద దిబ్బలు (Ash Mounds): '}</span>
+                          {isEn ? focusedPeriod.southIndianConnection.southCultureEvolutionEn.ashMoundsEn : focusedPeriod.southIndianConnection.southCultureEvolutionTe.ashMoundsTe}
+                        </div>
+                        <div className="p-2.5 bg-[#FAF7F0] rounded-lg border border-[#E8DCC4]">
+                          <span className="font-bold text-[#7B1113]">{isEn ? 'Megalithic Burials (మెగాలిథిక్ సమాధులు): ' : 'మెగాలిథిక్ సమాధులు (Megaliths): '}</span>
+                          {isEn ? focusedPeriod.southIndianConnection.southCultureEvolutionEn.megalithsEn : focusedPeriod.southIndianConnection.southCultureEvolutionTe.megalithsTe}
+                        </div>
+                        <div className="p-2.5 bg-[#FAF7F0] rounded-lg border border-[#E8DCC4]">
+                          <span className="font-bold text-[#7B1113]">{isEn ? 'Keeladi & Adichanallur (కీలడి & ఆదిచనల్లూరు): ' : 'కీలడి & ఆదిచనల్లూరు పురావస్తు తవ్వకాలు: '}</span>
+                          {isEn ? focusedPeriod.southIndianConnection.southCultureEvolutionEn.excavationsEn : focusedPeriod.southIndianConnection.southCultureEvolutionTe.excavationsTe}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 4. Spiritual Beliefs & Deity Worship */}
+                    <div className="p-3 bg-white rounded-xl border border-[#D4AF37]/50 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-black uppercase text-[#B7791F]">
+                        <span className="w-2 h-2 rounded-full bg-[#B7791F]" />
+                        <span>{isEn ? '4. Spiritual Beliefs & Indigenous Deities' : '4. ద్రావిడుల ఆధ్యాత్మిక విశ్వాసాలు, దేవతా ఆరాధన'}</span>
+                      </div>
+                      <p className="text-xs text-[#5D4037] italic">
+                        {isEn ? focusedPeriod.southIndianConnection.spiritualBeliefsEn.introEn : focusedPeriod.southIndianConnection.spiritualBeliefsTe.introTe}
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                        {(isEn ? focusedPeriod.southIndianConnection.spiritualBeliefsEn.deitiesEn : focusedPeriod.southIndianConnection.spiritualBeliefsTe.deitiesTe).map((d: any, i: number) => (
+                          <div key={i} className="p-2 bg-[#FFF8E1] rounded-lg border border-[#D4AF37]/40">
+                            <span className="font-bold text-[#7B1113] block">{isEn ? d.nameEn : d.nameTe}</span>
+                            <span className="text-[11px] text-[#5D4037]">{isEn ? d.descEn : d.descTe}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-[#5D4037] leading-relaxed bg-[#FAF7F0] p-2 rounded-lg border border-[#E8DCC4]">
+                        {isEn ? focusedPeriod.southIndianConnection.spiritualBeliefsEn.syncretismEn : focusedPeriod.southIndianConnection.spiritualBeliefsTe.syncretismTe}
+                      </p>
+                      <p className="text-xs text-[#5D4037] leading-relaxed bg-[#FAF7F0] p-2 rounded-lg border border-[#E8DCC4]">
+                        <strong className="text-[#7B1113]">{isEn ? 'Temple Architecture & Chola Bronzes: ' : 'ఆలయ వాస్తుశిల్పం & చోళ కాంస్య కళలు: '}</strong>
+                        {isEn ? focusedPeriod.southIndianConnection.spiritualBeliefsEn.architectureEn : focusedPeriod.southIndianConnection.spiritualBeliefsTe.architectureTe}
+                      </p>
+                    </div>
+
+                    {/* 5. Genetic Roots */}
+                    <div className="p-3 bg-white rounded-xl border border-[#D4AF37]/50 space-y-2">
+                      <div className="flex items-center gap-2 text-xs font-black uppercase text-[#B7791F]">
+                        <Dna className="w-3.5 h-3.5 text-[#D84315]" />
+                        <span>{isEn ? '5. Archaeogenetic Ancestry Roots' : '5. ద్రావిడుల జన్యు మూలాలు'}</span>
+                      </div>
+                      <p className="text-xs text-[#5D4037]">
+                        {isEn ? focusedPeriod.southIndianConnection.geneticOriginsEn.introEn : focusedPeriod.southIndianConnection.geneticOriginsTe.introTe}
+                      </p>
+                      <ul className="space-y-1 text-xs">
+                        {(isEn ? focusedPeriod.southIndianConnection.geneticOriginsEn.componentsEn : focusedPeriod.southIndianConnection.geneticOriginsTe.componentsTe).map((comp, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5 p-1.5 bg-[#FAF7F0] rounded-md border border-[#E8DCC4]">
+                            <span className="text-[#D84315] font-bold">{idx + 1}.</span>
+                            <span className="font-semibold text-[#7B1113]">{comp}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-xs text-[#5D4037] italic">
+                        {isEn ? focusedPeriod.southIndianConnection.geneticOriginsEn.summaryEn : focusedPeriod.southIndianConnection.geneticOriginsTe.summaryTe}
+                      </p>
+                    </div>
+
+                    {/* 6. Conclusion */}
+                    <div className="p-3.5 bg-gradient-to-r from-[#FFF8E1] to-[#FFE082]/40 rounded-xl border border-[#D4AF37] text-xs text-[#5D4037] leading-relaxed">
+                      <strong className="text-[#7B1113] block mb-1">
+                        {isEn ? 'Concluding Perspective: ' : 'ముగింపు భావన: '}
+                      </strong>
+                      {isEn ? focusedPeriod.southIndianConnection.conclusionEn : focusedPeriod.southIndianConnection.conclusionTe}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Modal Footer */}
-            <div className="p-4 bg-[#FFFDF7] border-t border-[#E8DCC4] flex justify-end">
+            <div className="p-4 bg-[#FFFDF7] border-t border-[#E8DCC4] flex items-center justify-between gap-3 flex-wrap">
+              {focusedPeriod.referenceLink ? (
+                <div className="flex items-center gap-2.5">
+                  <span className="p-1.5 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-xs">
+                    <InstagramIcon className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-wider text-rose-900">
+                      {isEn ? 'Window Footer Reference Link' : 'విండో పాదపీఠ మూల రిఫరెన్స్ (Reference Link)'}
+                    </div>
+                    <a
+                      href={focusedPeriod.referenceLink.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs sm:text-sm font-bold text-rose-800 hover:text-rose-950 hover:underline flex items-center gap-1"
+                    >
+                      <span>{isEn ? focusedPeriod.referenceLink.labelEn : focusedPeriod.referenceLink.labelTe}</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-rose-600" />
+                    </a>
+                  </div>
+                </div>
+              ) : <div />}
+
               <button
                 onClick={() => setFocusedPeriod(null)}
                 className="px-4 py-2 rounded-xl text-xs font-bold bg-[#7B1113] text-[#FFE082] hover:bg-[#4A0012] transition-colors cursor-pointer"

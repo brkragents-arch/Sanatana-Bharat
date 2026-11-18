@@ -199,7 +199,81 @@ export const INDIAN_HISTORY_PERIODS: IndianHistoryPeriod[] = [
     legacyTe: 'భారతదేశానికి పట్టణ ప్రణాళిక, పారిశుద్ధ్యం, పత్తి నేత మరియు యోగ-పశుపతి వంటి ఆధ్యాత్మిక బీజాలను అందించిన మహోన్నత వారసత్వం.',
     infographicImage: './images/indian_history/civilizations_and_empires.jpg',
     imageCaptionEn: 'Ancient India: Indus Valley Civilization (3300–1300 BCE) Timeline Entry',
-    imageCaptionTe: 'ప్రాచీన భారతదేశం: సింధు లోయ నాగరికత కాలమాన పట్టిక'
+    imageCaptionTe: 'ప్రాచీన భారతదేశం: సింధు లోయ నాగరికత కాలమాన పట్టిక',
+    southIndianConnection: {
+      titleTe: 'ద్రావిడులు ఎవరు? – దక్షిణ భారతదేశ ప్రజలు, జన్యు మూలాలు & సింధు నాగరికత అనుసంధానం',
+      titleEn: 'Who are the Dravidians? South Indian Heritage, Genetics & Indus Valley Connection',
+      subtitleTe: '50,000 ఏళ్ళ మానవ వలసలు, AASI జన్యు వారసత్వం, బ్రాహుయీ భాష, మెగాలిథిక్ సంస్కృతి & ఆలయ వైభవం',
+      subtitleEn: '50,000-Year Migrations, AASI Genetics, Brahui Tongue, Megalithic Horizons & Classical Temple Arts',
+      introTe: 'నేటి ప్రపంచంలో 25 కోట్లకు పైగా ప్రజలు ద్రావిడ భాషలను మాట్లాడుతున్నారు. వాటిలో తమిళం, తెలుగు, కన్నడ, మలయాళం తదితర భాషలు ఉన్నాయి. అయితే అసలు ద్రావిడులు ఎవరు? వారు ఎక్కడి నుంచి వచ్చారు? వారి చరిత్ర ఎలా ప్రారంభమైంది? ఈ కథ దక్షిణాసియాలో నివసించిన తొలి మానవుల నుంచి ప్రారంభమవుతుంది.',
+      introEn: 'In today’s world, over 250 million people speak Dravidian languages, including Telugu, Tamil, Kannada, Malayalam, and related tongues. But who were the original Dravidians? Where did they originate, and how did their civilizational saga unfold? This epic story begins with the very first human inhabitants of South Asia.',
+      firstMigrationTe: 'సుమారు 50,000 సంవత్సరాల క్రితం ఆధునిక మానవులు ఆఫ్రికా నుంచి సముద్ర తీర మార్గం గుండా వలస వచ్చి భారతదేశంలో స్థిరపడ్డారు. జన్యు శాస్త్రవేత్తలు వారి వారసులను ప్రాచీన పూర్వీకుల దక్షిణ భారతీయులు (Ancient Ancestral South Indians – AASI) అని పిలుస్తారు. వారి జన్యు ఆనవాళ్లు నేటికీ భారత ఉపఖండంలోని దాదాపు అందరిలో కనిపిస్తాయి. ముఖ్యంగా దక్షిణ భారతదేశ ప్రజల్లో ఈ జన్యు లక్షణాలు అధికంగా ఉన్నాయి.',
+      firstMigrationEn: 'Around 50,000 years ago, anatomically modern humans migrated out of Africa along coastal maritime routes and settled in India. Geneticists designate their direct lineage as Ancient Ancestral South Indians (AASI). Their genetic imprint endures across virtually all inhabitants of the Indian subcontinent today, with the highest concentration preserved among South Indian populations.',
+      secondMigrationTe: 'ఆ తర్వాత రెండవ వలస ప్రవాహం ప్రారంభమైంది. ఇరాన్ ప్రాంతానికి చెందిన ప్రాచీన వేటగాళ్లు, వ్యవసాయదారులతో జన్యుపరమైన సంబంధం ఉన్న ప్రజలు భారతదేశానికి వచ్చి, అప్పటికే ఇక్కడ నివసిస్తున్న తొలి భారతీయులతో కలిసిపోయారు. ఈ రెండు జనాభాల కలయికతో సింధు లోయ నాగరికత (Indus Valley Civilization) ప్రజల జనాభా రూపుదిద్దుకుంది.',
+      secondMigrationEn: 'Subsequently, a second major migration wave arrived: ancient hunter-gatherers and pastoralists genetically linked to early Iranian agriculturalists entered northwestern South Asia, intermingling with the indigenous first Indians. The confluence of these two ancestral populations formed the foundational demographic core of the Indus Valley Civilization.',
+      urbanCivilizationTe: 'ఆ నాగరికతలోని నగరాలు అద్భుతమైన పట్టణ ప్రణాళికతో నిర్మించబడ్డాయి. గ్రిడ్ పద్ధతిలో వీధులు, మురుగునీటి కాలువలు, ప్రామాణిక తూనికలు, ఇంకా నేటికీ అర్థం కాని లిపి ఆ నాగరికత ప్రత్యేకతలు.',
+      urbanCivilizationEn: 'The cities of this civilization were engineered with master urban planning: orthogonal grid streets, subterranean covered drainage, standardized binary-decimal weights, and an enigmatic pictographic script that remains undeciphered.',
+      languageDebateTe: 'అయితే హరప్పా ప్రజలు ద్రావిడ భాష మాట్లాడేవారా? అనే ప్రశ్నపై ఇప్పటికీ చరిత్రకారులు, భాషా పరిశోధకుల మధ్య చర్చ కొనసాగుతోంది. పాకిస్తాన్లో నేటికీ బ్రాహుయీ (Brahui) అనే ద్రావిడ భాష మనుగడలో ఉండటం ఈ చర్చలో ప్రస్తావించదగిన అంశం.',
+      languageDebateEn: 'Did the Harappan people speak an ancestral Dravidian tongue? Intense scholarly discussion continues among historians and linguists. The living presence of Brahui—a Dravidian language still thriving today in Balochistan, Pakistan—remains a powerful and frequently cited piece of evidence in this debate.',
+      southwardExpansionTe: 'సింధు నాగరికత నగరాలు క్రమంగా క్షీణించినప్పుడు, అక్కడి ప్రజలు దక్షిణ, తూర్పు ప్రాంతాలకు విస్తరించి, స్థానిక ప్రజలతో మరింతగా కలిసిపోయారు.',
+      southwardExpansionEn: 'When the Indus cities gradually decentralized due to ecological shifts, their inhabitants expanded southward and eastward across the subcontinent, integrating intimately with local communities.',
+      southCultureEvolutionTe: {
+        ashMoundsTe: 'దక్కన్ ప్రాంతంలో నవీన శిలాయుగానికి చెందిన పశుపోషకులు పశువుల పేడను దహనం చేయడం ద్వారా ఏర్పడిన భారీ బూడిద దిబ్బలను విడిచిపెట్టారు. ఇవి వారి జీవన విధానానికి, పశుపోషణ సంస్కృతికి నిదర్శనాలుగా నిలిచాయి.',
+        megalithsTe: 'ఇనుప యుగానికి చెందిన సమాజాలు తమ మరణించిన వారిని మెగాలిథిక్ సమాధులలో (Megaliths) ఖననం చేసేవారు. డాల్మెన్లు (Dolmens), రాతి వలయాలు (Stone Circles) వంటి నిర్మాణాలతో కూడిన ఈ సమాధుల్లో ఎరుపు, నలుపు రంగుల మట్టి పాత్రలు, ఇనుప పనిముట్లు లభించాయి.',
+        excavationsTe: 'కీలడి (Keeladi), ఆదిచనల్లూరు (Adichanallur) వంటి పురావస్తు ప్రదేశాల్లో పురావస్తు శాస్త్రవేత్తలు తమిళ-బ్రాహ్మీ లిపి శాసనాలు, పూసలు, పట్టణ వృత్తి పరిశ్రమలకు సంబంధించిన ఆనవాళ్లను కనుగొన్నారు.'
+      },
+      southCultureEvolutionEn: {
+        ashMoundsEn: 'In the Deccan, Neolithic pastoralists left behind monumental Ash Mounds formed by the ritual burning of cattle dung, serving as enduring testaments to their pastoral lifeways and livestock culture.',
+        megalithsEn: 'Iron Age communities entombed their deceased in monumental Megalithic burial structures—dolmens, stone circles, and cists—yielding black-and-red ware ceramics and iron tools.',
+        excavationsEn: 'At historic archaeological sites like Keeladi and Adichanallur, excavators have unearthed Tamil-Brahmi inscribed potsherds, semiprecious beads, and signs of thriving urban craft guilds.'
+      },
+      spiritualBeliefsTe: {
+        introTe: 'ద్రావిడుల ప్రాచీన దేవతా ఆరాధన వారి ప్రకృతి, భూమి, స్థానిక జీవన విధానాలతో ముడిపడి ఉండేది.',
+        deitiesTe: [
+          { nameTe: 'మురుగన్', descTe: 'పర్వత ప్రాంతాలకు సంబంధించిన దేవుడు.' },
+          { nameTe: 'గ్రామదేవతలు', descTe: 'మారియమ్మన్ వంటి గ్రామమాతృ దేవతలు.' },
+          { nameTe: 'వీరశిలలు', descTe: 'యుద్ధంలో లేదా సమాజ రక్షణలో ప్రాణాలు కోల్పోయిన వీరుల జ్ఞాపకార్థం ఏర్పాటు చేసిన వీరగల్లులు.' }
+        ],
+        syncretismTe: 'కాలక్రమేణా ఈ స్థానిక ఆచారాలు, విశ్వాసాలు వైదిక, జైన, బౌద్ధ సంప్రదాయాలతో మిళితమయ్యాయి. ఈ సాంస్కృతిక సమ్మేళనం ఫలితంగా తమిళ భక్తి సాహిత్యం వికసించింది.',
+        architectureTe: 'పల్లవులు, చోళులు, పాండ్యుల పాలనలో అద్భుతమైన దేవాలయ సంస్కృతి అభివృద్ధి చెందింది. కాంస్యంతో రూపొందించిన శివుని విగ్రహాలు, గ్రానైట్ రాతితో నిర్మించిన ఎత్తైన గోపురాలు, ఆగ్నేయాసియా వరకు విస్తరించిన నౌకాదళాలు ఈ రాజవంశాల వైభవానికి ప్రతీకలుగా నిలిచాయి.'
+      },
+      spiritualBeliefsEn: {
+        introEn: 'Ancient Dravidian spiritual beliefs were rooted deeply in the natural landscape, mother earth, and indigenous agrarian-pastoral life.',
+        deitiesEn: [
+          { nameEn: 'Murugan', descEn: 'The revered primordial deity of mountainous and hilly terrains.' },
+          { nameEn: 'Gramadevatas (Village Deities)', descEn: 'Maternal guardian goddesses such as Mariamman protecting communities from illness and drought.' },
+          { nameEn: 'Hero Stones (Veergallu / Nadukal)', descEn: 'Memorial monoliths raised in honor of fallen warriors who sacrificed their lives for the community.' }
+        ],
+        syncretismEn: 'Over centuries, these indigenous traditions fused synergistically with Vedic, Jain, and Buddhist streams, sparking the magnificent Tamil Bhakti literary awakening.',
+        architectureEn: 'Under the Pallavas, Cholas, and Pandyas, an awe-inspiring temple civilization flourished: transcendent lost-wax bronze sculptures of Lord Shiva (Nataraja), soaring monolithic granite gopurams, and maritime armadas reaching Southeast Asia.'
+      },
+      geneticOriginsTe: {
+        introTe: 'జన్యు శాస్త్ర పరిశోధనల ప్రకారం, ద్రావిడ భాషలు మాట్లాడే ప్రజల్లో ప్రధానంగా రెండు ప్రాచీన పూర్వీకుల జన్యు వారసత్వాలు కనిపిస్తాయి:',
+        componentsTe: [
+          'ప్రాచీన దక్షిణ భారతీయ వేటగాళ్లు, ఆహార సేకరణదారులు (Ancient South Indian Hunter-Gatherers – AASI)',
+          'ఇరాన్ ప్రాంతానికి సంబంధించిన ప్రాచీన వ్యవసాయదారులు (Iran-related Ancient Farmers)'
+        ],
+        summaryTe: 'ఈ రెండు ప్రాచీన జనాభాల కలయిక దక్షిణాసియా ప్రజల జన్యు చరిత్రలో ముఖ్యమైన పాత్ర పోషించింది.'
+      },
+      geneticOriginsEn: {
+        introEn: 'According to modern archaeogenetic research, Dravidian-speaking populations exhibit an ancestral genetic legacy primarily tracing back to two ancient populations:',
+        componentsEn: [
+          'Ancient South Indian Hunter-Gatherers (AASI)',
+          'Iran-related Ancient Pastoralists and Farmers'
+        ],
+        summaryEn: 'The historic amalgamation of these two ancient gene pools played a central role in shaping the genetic tapestry of South Asian humanity.'
+      },
+      conclusionTe: 'ముగింపు భావన: ద్రావిడుల చరిత్ర అనేది కేవలం ఒక భాషా సమూహం చరిత్ర మాత్రమే కాదు. వేల సంవత్సరాల మానవ వలసలు, జన్యు సమ్మేళనాలు, వ్యవసాయ వికాసం, పట్టణ నాగరికతలు, స్థానిక దేవతా ఆరాధనలు, భక్తి సంప్రదాయాలు, దేవాలయ నిర్మాణ కళల సమ్మిళిత పరిణామ క్రమం.',
+      conclusionEn: 'Concluding Insight: The history of the Dravidians is far more than the chronicle of a language family. It is an integrated saga of millennia of human migrations, genetic synthesis, agricultural development, urban civilizations, indigenous earth and deity veneration, Bhakti devotional traditions, and monumental temple architecture.',
+      referenceUrl: 'https://www.instagram.com/reel/Df4WxdeR9Rf/?utm_source=ig_web_copy_link&jplx=NTc4MTIwNjQ2YQ==',
+      referenceLabelTe: 'ద్రావిడులు ఎవరు? దక్షిణ భారతీయ మూలాలు – ఇన్‌స్టాగ్రామ్ పరిశోధనా వీడియో (Instagram Reel)',
+      referenceLabelEn: 'Who are the Dravidians? South Indian Roots – Instagram Research Video (Reel)'
+    },
+    referenceLink: {
+      url: 'https://www.instagram.com/reel/Df4WxdeR9Rf/?utm_source=ig_web_copy_link&jplx=NTc4MTIwNjQ2YQ==',
+      labelTe: 'సింధు నాగరికత & దక్షిణ భారత ప్రజల మూల పరిశోధన (Instagram Reel)',
+      labelEn: 'Indus Civilization & South Indian Heritage Reference (Instagram Reel)'
+    }
   },
   {
     id: 'vedic_period',

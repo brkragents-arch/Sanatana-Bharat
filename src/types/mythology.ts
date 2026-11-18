@@ -166,6 +166,62 @@ export interface VedicComparisonDimension {
   icon: string;
 }
 
+export interface DravidianSouthIndianData {
+  titleTe: string;
+  titleEn: string;
+  subtitleTe: string;
+  subtitleEn: string;
+  introTe: string;
+  introEn: string;
+  firstMigrationTe: string;
+  firstMigrationEn: string;
+  secondMigrationTe: string;
+  secondMigrationEn: string;
+  urbanCivilizationTe: string;
+  urbanCivilizationEn: string;
+  languageDebateTe: string;
+  languageDebateEn: string;
+  southwardExpansionTe: string;
+  southwardExpansionEn: string;
+  southCultureEvolutionTe: {
+    ashMoundsTe: string;
+    megalithsTe: string;
+    excavationsTe: string;
+  };
+  southCultureEvolutionEn: {
+    ashMoundsEn: string;
+    megalithsEn: string;
+    excavationsEn: string;
+  };
+  spiritualBeliefsTe: {
+    introTe: string;
+    deitiesTe: { nameTe: string; descTe: string }[];
+    syncretismTe: string;
+    architectureTe: string;
+  };
+  spiritualBeliefsEn: {
+    introEn: string;
+    deitiesEn: { nameEn: string; descEn: string }[];
+    syncretismEn: string;
+    architectureEn: string;
+  };
+  geneticOriginsTe: {
+    introTe: string;
+    componentsTe: string[];
+    summaryTe: string;
+  };
+  geneticOriginsEn: {
+    introEn: string;
+    componentsEn: string[];
+    summaryEn: string;
+  };
+  conclusionTe: string;
+  conclusionEn: string;
+  referenceUrl: string;
+  referenceLabelTe: string;
+  referenceLabelEn: string;
+}
+
 export interface IndianHistoryPeriod {
   id: string;
   order: number;
@@ -197,4 +253,10 @@ export interface IndianHistoryPeriod {
   infographicImage?: string;
   imageCaptionEn?: string;
   imageCaptionTe?: string;
+  southIndianConnection?: DravidianSouthIndianData;
+  referenceLink?: {
+    url: string;
+    labelTe: string;
+    labelEn: string;
+  };
 }
