@@ -29,8 +29,11 @@ import {
   CheckCircle2,
   Dna,
   ExternalLink,
+  ScrollText,
   X
 } from 'lucide-react';
+import { MahabharataKuruTimelineSection } from './MahabharataKuruTimelineSection';
+import { KURU_TIMELINE_METADATA } from '../../data/kuruTimelineData';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -485,7 +488,7 @@ export type SelectedItemType =
   | { kind: 'yuga'; data: YugaCycleSegment };
 
 export const IndianHistoryChakraView: React.FC = () => {
-  const { language } = useMythology();
+  const { language, setViewMode } = useMythology();
   const isEn = language === 'en';
 
   // Active selection: Defaults to Amrit Kaal (2026 CE / Present Time)
@@ -511,10 +514,13 @@ export const IndianHistoryChakraView: React.FC = () => {
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
   // Lightbox for thumbnail image
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [previewImage, setPreviewImage] = useState<{ src: string; title: string; subtitle?: string } | null>(null);
 
   // Pop-up modal for Dravidian & South Indian Heritage deep dive
   const [isDravidianModalOpen, setIsDravidianModalOpen] = useState<boolean>(false);
+
+  // Pop-up modal for కురువంశ మహాభారత కాలరేఖ (Kuru Mahabharata Timeline) Window
+  const [isKuruTimelineModalOpen, setIsKuruTimelineModalOpen] = useState<boolean>(false);
 
   // Filter focus: 'all' | 'outer_yuga' | 'middle_epoch' | 'inner_dynasties'
   const [focusRing, setFocusRing] = useState<'all' | 'outer_yuga' | 'middle_epoch' | 'inner_dynasties'>('all');
@@ -921,7 +927,10 @@ export const IndianHistoryChakraView: React.FC = () => {
 
             {/* View Original Yuga Diagram Button */}
             <button
-              onClick={() => setPreviewImage('./images/indian_history/yuga_cycle_25800.jpg')}
+              onClick={() => setPreviewImage({
+                src: './images/indian_history/yuga_cycle_25800.jpg',
+                title: isEn ? 'Master Reference: Yuga Cycle 25,800 Years' : 'మూల పటం: 25,800 ఏళ్ల యుగచక్రం (Ascending & Descending)'
+              })}
               className="absolute top-3 right-3 z-20 flex items-center gap-1.5 bg-[#7B1113]/90 hover:bg-[#7B1113] text-[#FFE082] px-3 py-1 rounded-full text-xs font-bold shadow-sm border border-[#D4AF37] cursor-pointer transition-all"
               title={isEn ? 'View Original Uploaded 25,800-Year Yuga Diagram' : 'మూల 25,800 ఏళ్ల యుగచక్ర పటం చూడండి'}
             >
@@ -2102,6 +2111,32 @@ export const IndianHistoryChakraView: React.FC = () => {
                       {isEn ? selectedItem.data.significanceEn : selectedItem.data.significanceTe}
                     </p>
                   </div>
+
+                  {/* KURU TIMELINE LINK FOR MAHABHARATA EPOCH */}
+                  {selectedItem.data.id === 'epoch_mahabharata_sandhi' && (
+                    <div className="mt-3 p-3.5 rounded-2xl bg-gradient-to-r from-[#FFF5F5] via-[#FFF8E1] to-[#FFFDF7] border-2 border-[#B71C1C] flex items-center justify-between gap-3 shadow-xs">
+                      <div className="flex items-center gap-2.5">
+                        <span className="p-2 rounded-xl bg-gradient-to-br from-[#B71C1C] to-[#7B1113] text-white shadow-2xs">
+                          <ScrollText className="w-4 h-4 text-[#FFE082]" />
+                        </span>
+                        <div>
+                          <div className="text-xs sm:text-sm font-black text-[#7B1113]">
+                            {isEn ? KURU_TIMELINE_METADATA.titleEn : KURU_TIMELINE_METADATA.titleTe}
+                          </div>
+                          <div className="text-[11px] text-[#5D4037] font-medium">
+                            {isEn ? '227 Years Astronomical Chronology (3329–3102 BCE)' : 'క్రీ.పూ. 3329 నుండి 3102 వరకు సమగ్ర ఖగోళ కాలగణన'}
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setIsKuruTimelineModalOpen(true)}
+                        className="px-3.5 py-2 rounded-xl bg-[#B71C1C] hover:bg-[#880E4F] text-[#FFE082] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs hover:scale-105"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5" />
+                        <span>{isEn ? 'Open Timeline Window' : 'కాలరేఖ విండో'}</span>
+                      </button>
+                    </div>
+                  )}
                 </>
               )}
 
@@ -2316,6 +2351,78 @@ export const IndianHistoryChakraView: React.FC = () => {
                       </div>
                     </div>
                   )}
+
+                  {/* SPECIAL DOSSIER: KURU TIMELINE LINK FOR MAHABHARATA SPOKE */}
+                  {selectedItem.data.id === 'mahabharata_kuru_empire' && (
+                    <div className="mt-4 p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-[#FFF5F5] via-[#FFF8E1] to-[#FFFDF7] border-2 border-[#B71C1C] shadow-md space-y-4">
+                      <div className="flex items-start justify-between gap-3 border-b border-[#B71C1C]/30 pb-3">
+                        <div className="flex items-start gap-2.5">
+                          <span className="p-2.5 rounded-2xl bg-gradient-to-br from-[#B71C1C] to-[#7B1113] text-white shadow-xs text-xl">
+                            🏹
+                          </span>
+                          <div>
+                            <span className="px-2.5 py-0.5 rounded-full bg-[#B71C1C] text-[#FFE082] text-[10px] font-black uppercase tracking-wider inline-block">
+                              {isEn ? 'Astronomical Chronology' : 'కురువంశ ఖగోళ కాలగణన'}
+                            </span>
+                            <h3 className="text-base sm:text-lg font-black text-[#7B1113] font-telugu-serif mt-1">
+                              {isEn ? KURU_TIMELINE_METADATA.titleEn : KURU_TIMELINE_METADATA.titleTe}
+                            </h3>
+                            <p className="text-xs text-[#8D6E63] font-medium mt-0.5">
+                              {isEn ? KURU_TIMELINE_METADATA.subtitleEn : KURU_TIMELINE_METADATA.subtitleTe}
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setIsKuruTimelineModalOpen(true)}
+                          className="px-3 py-1.5 rounded-xl bg-[#B71C1C] hover:bg-[#880E4F] text-[#FFE082] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shrink-0 shadow-xs hover:scale-105"
+                          title={isEn ? 'Open Kuru Timeline Window' : 'కురువంశ కాలరేఖ విండో తెరవండి'}
+                        >
+                          <Maximize2 className="w-3.5 h-3.5" />
+                          <span className="hidden sm:inline">{isEn ? 'Full Window' : 'పూర్తి విండో'}</span>
+                        </button>
+                      </div>
+
+                      {/* Highlights Banner */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                        <div className="p-2.5 bg-white/95 rounded-xl border border-red-200 shadow-2xs">
+                          <span className="text-[10px] uppercase font-bold text-red-900 block font-mono">క్రీ.పూ. 3329</span>
+                          <span className="font-extrabold text-[#7B1113] text-xs">భీష్ముని జననం</span>
+                        </div>
+                        <div className="p-2.5 bg-white/95 rounded-xl border border-amber-200 shadow-2xs">
+                          <span className="text-[10px] uppercase font-bold text-amber-900 block font-mono">క్రీ.పూ. 3228</span>
+                          <span className="font-extrabold text-[#7B1113] text-xs">శ్రీకృష్ణ జననం</span>
+                        </div>
+                        <div className="p-2.5 bg-white/95 rounded-xl border border-red-200 shadow-2xs">
+                          <span className="text-[10px] uppercase font-bold text-red-900 block font-mono">క్రీ.పూ. 3138</span>
+                          <span className="font-extrabold text-[#7B1113] text-xs">కురుక్షేత్ర యుద్ధం</span>
+                        </div>
+                        <div className="p-2.5 bg-white/95 rounded-xl border border-purple-200 shadow-2xs">
+                          <span className="text-[10px] uppercase font-bold text-purple-900 block font-mono">క్రీ.పూ. 3102</span>
+                          <span className="font-extrabold text-[#7B1113] text-xs">కలియుగారంభం</span>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-[#5D4037] leading-relaxed bg-white/80 p-3 rounded-xl border border-[#E8DCC4]">
+                        {isEn
+                          ? 'A 227-year historical sequence precisely dated through astronomical planetary configurations (Graha Samyogas), solar and lunar eclipses recorded in Maharshi Vyasa’s Mahabharata.'
+                          : 'మహర్షి వేదవ్యాస మహాభారతంలోని గ్రహ సంయోగాలు, సూర్య-చంద్ర గ్రహణాలు మరియు ఖగోళ స్థితిగతుల ఆధారంగా ఖచ్చితంగా నిర్ణయించబడిన 227 సంవత్సరాల సమగ్ర కాల ప్రవాహం.'}
+                      </p>
+
+                      {/* Big Action Button to open the window */}
+                      <button
+                        onClick={() => setIsKuruTimelineModalOpen(true)}
+                        className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#B71C1C] via-[#D32F2F] to-[#7B1113] hover:from-[#880E4F] hover:to-[#B71C1C] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all hover:shadow-lg group"
+                      >
+                        <ScrollText className="w-4 h-4 text-[#FFE082] group-hover:scale-110 transition-transform" />
+                        <span>
+                          {isEn 
+                            ? '📜 Open Complete Kuru Dynasty Timeline Window (3329 – 3102 BCE)' 
+                            : '📜 కురువంశ మహాభారత సమగ్ర కాలరేఖ విండోను తెరవండి (క్రీ.పూ. 3329 – 3102)'}
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-[#FFE082] group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  )}
                 </>
               )}
 
@@ -2359,14 +2466,22 @@ export const IndianHistoryChakraView: React.FC = () => {
                     src="./images/indian_history/yuga_cycle_25800.jpg"
                     alt="Yuga Cycle 25800 Years Master Diagram"
                     className="w-16 h-16 rounded-xl object-cover border border-[#D4AF37] shadow-sm cursor-pointer hover:scale-105 transition-transform"
-                    onClick={() => setPreviewImage('./images/indian_history/yuga_cycle_25800.jpg')}
+                    onClick={() => setPreviewImage({
+                      src: './images/indian_history/yuga_cycle_25800.jpg',
+                      title: isEn ? 'Master Reference: Yuga Cycle 25,800 Years (Ascending & Descending)' : 'మూల పటం: 25,800 ఏళ్ల యుగచక్రం (Ascending & Descending)',
+                      subtitle: isEn ? 'Comprehensive 25,800-Year Precession of Equinoxes Timeline' : 'సమగ్ర 25,800 ఏళ్ల సంపూర్ణ యుగ పరిభ్రమణ కాలరేఖ'
+                    })}
                   />
                   <div>
                     <div className="text-xs sm:text-sm font-black text-[#7B1113]">
                       {isEn ? 'Master Reference Infographic' : 'మూల యుగచక్ర ఇన్ఫోగ్రాఫిక్'}
                     </div>
                     <button
-                      onClick={() => setPreviewImage('./images/indian_history/yuga_cycle_25800.jpg')}
+                      onClick={() => setPreviewImage({
+                        src: './images/indian_history/yuga_cycle_25800.jpg',
+                        title: isEn ? 'Master Reference: Yuga Cycle 25,800 Years (Ascending & Descending)' : 'మూల పటం: 25,800 ఏళ్ల యుగచక్రం (Ascending & Descending)',
+                        subtitle: isEn ? 'Comprehensive 25,800-Year Precession of Equinoxes Timeline' : 'సమగ్ర 25,800 ఏళ్ల సంపూర్ణ యుగ పరిభ్రమణ కాలరేఖ'
+                      })}
                       className="text-xs text-[#D84315] hover:underline font-bold flex items-center gap-1 cursor-pointer mt-0.5"
                     >
                       <Maximize2 className="w-3.5 h-3.5" />
@@ -2407,31 +2522,39 @@ export const IndianHistoryChakraView: React.FC = () => {
       </div>
 
       {/* ============================================================ */}
-      {/* 3. LIGHTBOX MODAL FOR SOURCE POSTER                          */}
+      {/* 3. LIGHTBOX MODAL FOR SOURCE POSTER / TIMELINE CHART         */}
       {/* ============================================================ */}
       {previewImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[70] bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-5"
           onClick={() => setPreviewImage(null)}
         >
-          <div className="relative max-w-4xl max-h-[92vh] bg-stone-900 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shadow-2xl p-2" onClick={e => e.stopPropagation()}>
+          <div className="relative max-w-5xl w-full max-h-[94vh] bg-stone-900 rounded-2xl overflow-hidden border-2 border-[#D4AF37] shadow-2xl flex flex-col p-2" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between p-2 text-white border-b border-stone-700 mb-2">
-              <span className="text-sm font-bold text-[#FFE082] flex items-center gap-1.5">
-                <Maximize2 className="w-4 h-4" />
-                {isEn ? 'Master Reference: Yuga Cycle 25,800 Years' : 'మూల పటం: 25,800 ఏళ్ల యుగచక్రం (Ascending & Descending)'}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-[#FFE082] flex items-center gap-1.5">
+                  <Maximize2 className="w-4 h-4 text-[#FFD54F]" />
+                  {previewImage.title}
+                </span>
+                {previewImage.subtitle && (
+                  <span className="text-xs text-stone-300 mt-0.5">{previewImage.subtitle}</span>
+                )}
+              </div>
               <button
                 onClick={() => setPreviewImage(null)}
-                className="w-8 h-8 rounded-full bg-stone-800 text-white flex items-center justify-center hover:bg-red-700 transition-colors font-bold cursor-pointer"
+                className="w-8 h-8 rounded-full bg-stone-800 text-white flex items-center justify-center hover:bg-red-700 transition-colors font-bold cursor-pointer shrink-0 ml-2"
+                title={isEn ? 'Close' : 'మూసివేయండి'}
               >
                 ✕
               </button>
             </div>
-            <img
-              src={previewImage}
-              alt="Yuga Cycle 25800 Years Chart"
-              className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
-            />
+            <div className="flex-1 overflow-auto flex items-center justify-center p-1 bg-black/40 rounded-xl">
+              <img
+                src={previewImage.src}
+                alt={previewImage.title}
+                className="w-full h-auto max-h-[82vh] object-contain rounded-xl"
+              />
+            </div>
           </div>
         </div>
       )}
@@ -2666,6 +2789,94 @@ export const IndianHistoryChakraView: React.FC = () => {
               >
                 {isEn ? 'Close Window' : 'విండో మూసివేయండి'}
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================ */}
+      {/* 5. POP-UP WINDOW MODAL: కురువంశ మహాభారత కాలరేఖ WINDOW         */}
+      {/* ============================================================ */}
+      {isKuruTimelineModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 overflow-y-auto"
+          onClick={() => setIsKuruTimelineModalOpen(false)}
+        >
+          <div
+            className="bg-[#FAF7F0] rounded-3xl border-2 border-[#D4AF37] max-w-6xl w-full max-h-[94vh] overflow-hidden flex flex-col shadow-2xl my-auto animate-fadeIn"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Modal Top Header */}
+            <div className="bg-gradient-to-r from-[#4A0012] via-[#7B1113] to-[#B71C1C] text-[#FFE082] p-4 sm:p-5 flex items-start justify-between gap-3 border-b-2 border-[#D4AF37] sticky top-0 z-20">
+              <div className="flex items-start gap-3">
+                <span className="p-2.5 rounded-2xl bg-white/10 text-2xl border border-white/20 shadow-xs">
+                  📜
+                </span>
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#FFE082] text-[#7B1113] text-[10px] font-black uppercase tracking-wider">
+                      {isEn ? 'Spoke #4 Linked Window • Mahabharata Era' : 'ఆకు #4 అనుసంధాన విండో • మహాభారత యుగం'}
+                    </span>
+                    <span className="text-xs text-[#FFE082] font-mono font-bold bg-black/30 px-2.5 py-0.5 rounded-full border border-white/20">
+                      {isEn ? '3329 – 3102 BCE (227 Years)' : 'క్రీ.పూ. 3329 – 3102 (227 సంవత్సరాలు)'}
+                    </span>
+                  </div>
+                  <h2 className="text-lg sm:text-2xl font-black font-telugu-serif text-[#FFE082] mt-1">
+                    {isEn ? KURU_TIMELINE_METADATA.titleEn : KURU_TIMELINE_METADATA.titleTe}
+                  </h2>
+                  <p className="text-xs text-white/90 font-medium">
+                    {isEn ? KURU_TIMELINE_METADATA.subtitleEn : KURU_TIMELINE_METADATA.subtitleTe}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setIsKuruTimelineModalOpen(false)}
+                className="p-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-white transition-colors cursor-pointer shrink-0"
+                title={isEn ? 'Close Window' : 'విండో మూసివేయండి'}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Scrollable Body: Houses the entire interactive MahabharataKuruTimelineSection */}
+            <div className="p-3 sm:p-6 overflow-y-auto flex-1 bg-gradient-to-b from-[#FFFBEB] via-[#FAF7F0] to-[#FFFDF7]">
+              <MahabharataKuruTimelineSection 
+                onOpenChartModal={(img) => setPreviewImage({
+                  src: img.src,
+                  title: img.title || (isEn ? 'Original Mahabharata Kuru Timeline Chart' : 'కురువంశ మహాభారత మూల చార్ట్'),
+                  subtitle: img.subtitle
+                })} 
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 bg-[#FFFDF7] border-t-2 border-[#E8DCC4] flex items-center justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-2 text-xs text-[#5D4037]">
+                <span className="font-bold text-[#7B1113]">🔗 అనుసంధానం:</span>
+                <span>{isEn ? 'Linked to Spoke #4: Mahabharata Era – Kuru Dynasty & Dharma Yuddha' : 'ఆకు #4 కు అనుసంధానించబడింది: మహాభారత యుగం – కురు వంశం & ధర్మయుద్ధం'}</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    setIsKuruTimelineModalOpen(false);
+                    setViewMode('sanatana_chronology');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="px-3.5 py-2 rounded-xl text-xs font-bold bg-[#FAF7F0] hover:bg-[#FFE082] text-[#7B1113] border border-[#D4AF37] transition-colors cursor-pointer flex items-center gap-1.5"
+                  title={isEn ? 'View in Full Vedic Chronology Tree' : 'సంపూర్ణ వైదిక వంశవృక్షంలో వీక్షించండి'}
+                >
+                  <span>🌳 {isEn ? 'View Kuru Family Tree' : 'కురు వంశవృక్షం చూడండి'}</span>
+                </button>
+
+                <button
+                  onClick={() => setIsKuruTimelineModalOpen(false)}
+                  className="px-5 py-2 rounded-xl text-xs font-bold bg-[#7B1113] text-[#FFE082] hover:bg-[#4A0012] transition-colors cursor-pointer shadow-xs"
+                >
+                  {isEn ? 'Close Window' : 'విండో మూసివేయండి'}
+                </button>
+              </div>
             </div>
           </div>
         </div>
