@@ -504,8 +504,8 @@ export const IndianHistoryChakraView: React.FC = () => {
   // Lightbox for thumbnail image
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  // Filter focus: 'all' | 'outer_yuga' | 'middle_epoch' | 'inner_dynasties'
-  const [focusRing, setFocusRing] = useState<'all' | 'outer_yuga' | 'middle_epoch' | 'inner_dynasties'>('all');
+  // Filter focus: 'all' | 'outer_dynasties' | 'middle_epoch' | 'inner_yuga'
+  const [focusRing, setFocusRing] = useState<'all' | 'outer_dynasties' | 'middle_epoch' | 'inner_yuga'>('all');
 
   // Sound generator using Web Audio API
   const playChime = (freq = 528) => {
@@ -734,8 +734,8 @@ export const IndianHistoryChakraView: React.FC = () => {
               </h1>
               <p className="text-xs sm:text-sm text-[#FFECE4] mt-1.5 max-w-3xl leading-relaxed font-medium">
                 {isEn 
-                  ? 'All 3 Chakras unified in one majestic circle: (1) Outer Ring: 25,800-year Yuga Cycle with Telugu Yuga names; (2) Middle Ring: Indian Civilizational Chronology featuring Ramayana & Mahabharata eras; (3) Inner Chakra: Dynasties and epics precisely scaled along the chronological arc. All 3 rings perfectly aligned with the 2026 CE live needle at bottom.'
-                  : 'ఒకే బ్రహ్మాండ వృత్తంలో 3 వలయాల సమాహారం: (1) బయటి వలయం: 25,800 ఏళ్ల మహా యుగచక్రం (తెలుగు పేర్లతో); (2) మధ్య వలయం: రామాయణ మరియు మహాభారత యుగాలతో కూడిన భారతీయ కాలక్రమం; (3) లోపలి చక్రం: కాలచక్ర ప్రమాణంలో సరిగ్గా అమర్చబడిన భారతీయ మహా సామ్రాజ్యాలు. సరిగ్గా చక్రం దిగువన (6 o\'clock) 2026 CE లైవ్ సూచికతో మూడు చక్రాలూ పరిపూర్ణంగా సమన్వయం చేయబడ్డాయి.'}
+                  ? 'All 3 Chakras unified in one majestic circle: (1) Outer Ring: Indian Dynasties & Great Epics scaled along the chronological timeline; (2) Middle Ring: Indian Civilizational Chronology featuring Ramayana & Mahabharata eras; (3) Inner Ring: 25,800-year Yuga Cycle with Telugu Yuga names. All 3 rings perfectly aligned with the 2026 CE live needle at bottom.'
+                  : 'ఒకే బ్రహ్మాండ వృత్తంలో 3 వలయాల సమాహారం: (1) బయటి వలయం: కాలచక్ర ప్రమాణంలో సరిగ్గా అమర్చబడిన భారతీయ మహా సామ్రాజ్యాలు & ఇతిహాసాలు; (2) మధ్య వలయం: రామాయణ మరియు మహాభారత యుగాలతో కూడిన భారతీయ కాలక్రమం; (3) లోపలి వలయం: 25,800 ఏళ్ల మహా యుగచక్రం (తెలుగు పేర్లతో). సరిగ్గా చక్రం దిగువన (6 o\'clock) 2026 CE లైవ్ సూచికతో మూడు చక్రాలూ పరిపూర్ణంగా సమన్వయం చేయబడ్డాయి.'}
               </p>
             </div>
           </div>
@@ -799,14 +799,14 @@ export const IndianHistoryChakraView: React.FC = () => {
             </button>
 
             <button
-              onClick={() => setFocusRing('outer_yuga')}
+              onClick={() => setFocusRing('outer_dynasties')}
               className={`px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm ${
-                focusRing === 'outer_yuga'
+                focusRing === 'outer_dynasties'
                   ? 'bg-amber-400 text-stone-950 font-black ring-2 ring-white shadow-md'
                   : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
               }`}
             >
-              <span>{isEn ? '🌌 Outer Ring: Yuga Cycle' : '🌌 1. బయటి యుగచక్రం (25,800y)'}</span>
+              <span>{isEn ? '👑 1. Outer Ring: Dynasties & Epics' : '👑 1. బయటి మహా సామ్రాజ్యాలు & ఇతిహాసాలు'}</span>
             </button>
 
             <button
@@ -817,18 +817,18 @@ export const IndianHistoryChakraView: React.FC = () => {
                   : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
               }`}
             >
-              <span>{isEn ? '🏛️ Middle Ring: Bharat Chronology (Ramayana & Mahabharata)' : '🏛️ 2. మధ్య భారత కాలక్రమం (రామాయణ, మహాభారతం)'}</span>
+              <span>{isEn ? '🏛️ 2. Middle Ring: Bharat Chronology (Ramayana & Mahabharata)' : '🏛️ 2. మధ్య భారత కాలక్రమం (రామాయణ, మహాభారతం)'}</span>
             </button>
 
             <button
-              onClick={() => setFocusRing('inner_dynasties')}
+              onClick={() => setFocusRing('inner_yuga')}
               className={`px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm ${
-                focusRing === 'inner_dynasties'
+                focusRing === 'inner_yuga'
                   ? 'bg-amber-400 text-stone-950 font-black ring-2 ring-white shadow-md'
                   : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
               }`}
             >
-              <span>{isEn ? '👑 Inner Chakra: Scaled Dynasties' : '👑 3. లోపలి మహా సామ్రాజ్యాలు & ఇతిహాసాలు'}</span>
+              <span>{isEn ? '🌌 3. Inner Ring: Yuga Cycle (25,800y)' : '🌌 3. లోపలి యుగచక్రం (25,800 ఏళ్ళు)'}</span>
             </button>
           </div>
 
@@ -970,150 +970,134 @@ export const IndianHistoryChakraView: React.FC = () => {
               </defs>
 
               {/* ------------------------------------------------------------ */}
-              {/* TIER 1: OUTER RING — 25,800-YEAR YUGA CYCLE (r=490 to 405)   */}
-              {/* Bright, radiant parchment foundation (No dark center circle)  */}
+              {/* TIER 1: OUTER RING — భారతీయ సామ్రాజ్యాలు & ఇతిహాసాలు (r=490 to 405) */}
+              {/* All Dynasties & Epics of Bharat scaled along the 25,800-year cycle */}
               {/* ------------------------------------------------------------ */}
               <circle cx={CX} cy={CY} r={R_RING1_OUTER + 2} fill="#FFFDF8" stroke="#D4AF37" strokeWidth="4" />
               <circle cx={CX} cy={CY} r={R_RING1_INNER} fill="none" stroke="#D4AF37" strokeWidth="2.5" />
 
-              {/* 16 Yuga Cycle Sectors */}
-              {yugaAngleSegments.map(seg => {
-                const isSelected = selectedItem.kind === 'yuga' && selectedItem.data.id === seg.id;
-                const isCurr = seg.isCurrentTime;
-                const path = describeArcSector(CX, CY, R_RING1_INNER, R_RING1_OUTER, seg.startAngleDeg, seg.endAngleDeg);
+              {/* All Dynasties & Great Epics of Bharat (Ramayana, Mahabharata, Imperial Dynasties) */}
+              {dynastySegments.map(event => {
+                const isSelected = selectedItem.kind === 'empire' && selectedItem.data.id === event.id;
+                const isCurr = event.isCurrentTime;
+                const path = describeArcSector(CX, CY, R_RING1_INNER, R_RING1_OUTER, event.startDeg, event.endDeg);
 
-                const rad = (seg.midAngleDeg * Math.PI) / 180;
-                const rText = (R_RING1_OUTER + R_RING1_INNER) / 2;
-                const xT = CX + rText * Math.cos(rad);
-                const yT = CY + rText * Math.sin(rad);
+                const midRad = (event.midDeg * Math.PI) / 180;
+                const rMid = (R_RING1_OUTER + R_RING1_INNER) / 2;
+                const xM = CX + rMid * Math.cos(midRad);
+                const yM = CY + rMid * Math.sin(midRad);
 
-                let textRot = seg.midAngleDeg + 90;
-                if (seg.midAngleDeg > 0 && seg.midAngleDeg < 180) {
-                  textRot += 180;
-                }
+                let rot = event.midDeg + 90;
+                if (event.midDeg > 0 && event.midDeg < 180) rot += 180;
 
-                const isKataklysmos = seg.category === 'kataklysmos';
-                const isEkpyrosis = seg.category === 'ekpyrosis';
-                const teluguYuga = getYugaTeluguDisplayName(seg.category);
-                const englishYuga = getYugaEnglishDisplayName(seg.category);
+                const hasAmpleSpan = event.spanDeg >= 3.0;
+                const hasMidSpan = event.spanDeg >= 1.6 && event.spanDeg < 3.0;
 
                 return (
                   <g
-                    key={`ring1-yuga-${seg.id}`}
+                    key={`ring1-empire-${event.id}`}
                     className="cursor-pointer group"
                     onClick={() => {
-                      setSelectedItem({ kind: 'yuga', data: seg });
+                      setSelectedItem({ kind: 'empire', data: event });
                       playChime(isCurr ? 880 : 528);
                     }}
-                    opacity={focusRing === 'all' || focusRing === 'outer_yuga' ? 1 : 0.25}
+                    opacity={focusRing === 'all' || focusRing === 'outer_dynasties' ? 1 : 0.25}
                   >
                     <path
                       d={path}
                       fill={
                         isSelected
-                          ? (isCurr ? '#B71C1C' : seg.color)
-                          : (seg.category === 'kataklysmos'
-                              ? '#E3F2FD'
-                              : seg.category === 'ekpyrosis'
-                                ? '#FFEBEE'
-                                : seg.category === 'transition'
-                                  ? '#F0EDE6'
-                                  : seg.category === 'satya'
-                                    ? '#FFFDE7'
-                                    : seg.category === 'treta'
-                                      ? '#FFF3E0'
-                                      : seg.category === 'dwapara'
-                                        ? '#E8F5E9'
-                                        : '#EDE7F6')
+                          ? (isCurr ? '#B71C1C' : event.color || '#7B1113')
+                          : (isCurr ? '#004D40' : (event.order % 2 === 0 ? '#FFFDF8' : '#FAF2E6'))
                       }
-                      stroke={isSelected ? '#FFE082' : (isCurr ? '#E53935' : '#3E1004')}
-                      strokeWidth={isSelected ? 3.5 : (isCurr ? 2.5 : 1.5)}
+                      stroke={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#E8DCC4')}
+                      strokeWidth={isSelected ? 3.5 : (isCurr ? 2.5 : 1)}
                       className="transition-colors duration-200"
                     />
 
-                    {/* Sector Content */}
-                    {seg.category === 'transition' ? (
-                      <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
+                    {/* Radial dividing spoke */}
+                    <line
+                      x1={CX + R_RING1_INNER * Math.cos((event.startDeg * Math.PI) / 180)}
+                      y1={CY + R_RING1_INNER * Math.sin((event.startDeg * Math.PI) / 180)}
+                      x2={CX + R_RING1_OUTER * Math.cos((event.startDeg * Math.PI) / 180)}
+                      y2={CY + R_RING1_OUTER * Math.sin((event.startDeg * Math.PI) / 180)}
+                      stroke="#C59B27"
+                      strokeWidth="1.2"
+                    />
+
+                    {/* Content inside Outer Chakra Spoke */}
+                    {hasAmpleSpan ? (
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
-                          x={xT}
-                          y={yT - 10}
+                          x={xM}
+                          y={yM - 24}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={16}
-                          fontWeight="900"
-                          fill={isSelected ? '#FFE082' : '#3E2723'}
-                          className="font-telugu-serif"
+                          fontSize={22}
                         >
-                          సంధి
+                          {event.icon}
                         </text>
+
                         <text
-                          x={xT}
-                          y={yT + 12}
+                          x={xM}
+                          y={yM}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={12.5}
+                          fontSize={14}
+                          fontWeight="900"
+                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#3E2723')}
+                          className="font-telugu-serif tracking-tight"
+                        >
+                          {isEn ? event.titleEn.split(' ')[0] : event.titleTe.split(' ')[0]}
+                        </text>
+
+                        <text
+                          x={xM}
+                          y={yM + 22}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={11}
                           fontWeight="bold"
-                          fill={isSelected ? '#FFFFFF' : '#6D4C41'}
+                          fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#8D6E63')}
                           className="font-mono"
                         >
-                          300y
+                          #{event.order}
+                        </text>
+                      </g>
+                    ) : hasMidSpan ? (
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                        <text
+                          x={xM}
+                          y={yM - 14}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={17}
+                        >
+                          {event.icon}
+                        </text>
+                        <text
+                          x={xM}
+                          y={yM + 14}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={10.5}
+                          fontWeight="bold"
+                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#5D4037')}
+                          className="font-mono"
+                        >
+                          #{event.order}
                         </text>
                       </g>
                     ) : (
-                      <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
-                        {/* Telugu Yuga Name */}
+                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
                         <text
-                          x={xT}
-                          y={yT - 20}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize={isKataklysmos || isEkpyrosis ? 20 : 23}
-                          fontWeight="900"
-                          fill={
-                            isSelected 
-                              ? '#FFE082' 
-                              : (isKataklysmos ? '#0D47A1' : isEkpyrosis ? '#B71C1C' : '#1A0500')
-                          }
-                          className="font-telugu-serif tracking-tight"
-                        >
-                          {teluguYuga}
-                        </text>
-
-                        {/* English Subtitle */}
-                        <text
-                          x={xT}
-                          y={yT + 3}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize={15}
-                          fontWeight="bold"
-                          fontStyle={isKataklysmos || isEkpyrosis ? 'italic' : 'normal'}
-                          fill={
-                            isSelected 
-                              ? '#FFFFFF' 
-                              : (isKataklysmos ? '#1565C0' : isEkpyrosis ? '#C62828' : '#4E342E')
-                          }
-                          className="font-serif tracking-wide"
-                        >
-                          {englishYuga}
-                        </text>
-
-                        {/* Duration */}
-                        <text
-                          x={xT}
-                          y={yT + 24}
+                          x={xM}
+                          y={yM}
                           textAnchor="middle"
                           dominantBaseline="central"
                           fontSize={13}
-                          fontWeight="bold"
-                          fill={
-                            isSelected 
-                              ? '#FFD54F' 
-                              : (isKataklysmos ? '#1976D2' : isEkpyrosis ? '#D32F2F' : '#616161')
-                          }
-                          className="font-mono"
                         >
-                          {isEn ? seg.durationLabelEn : `${seg.durationYears} ఏళ్ళు`}
+                          {event.icon}
                         </text>
                       </g>
                     )}
@@ -1121,7 +1105,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                 );
               })}
 
-              {/* Boundary Ticks & External Dates (Staggered on 2 radial tracks to prevent overlap & clearly display BCE / CE) */}
+              {/* Boundary Ticks & External Dates (Staggered on 2 radial tracks along Outer Ring) */}
               {yugaAngleSegments.map((seg, idx, arr) => {
                 const rad = (seg.startAngleDeg * Math.PI) / 180;
                 const isSandhiStart = seg.category === 'transition';
@@ -1148,7 +1132,7 @@ export const IndianHistoryChakraView: React.FC = () => {
                 const yearNum = rawDate.replace(/[^0-9,]/g, '');
 
                 return (
-                  <g key={`ring1-border-tick-${seg.id}`} className="pointer-events-none select-none" opacity={focusRing === 'all' || focusRing === 'outer_yuga' ? 1 : 0.25}>
+                  <g key={`ring1-border-tick-${seg.id}`} className="pointer-events-none select-none" opacity={focusRing === 'all' || focusRing === 'outer_dynasties' ? 1 : 0.25}>
                     <line
                       x1={xInner}
                       y1={yInner}
@@ -1313,134 +1297,160 @@ export const IndianHistoryChakraView: React.FC = () => {
               })}
 
               {/* ------------------------------------------------------------ */}
-              {/* TIER 3: INNER CHAKRA — భారతీయ సామ్రాజ్యాలు & ఇతిహాసాలు (r=310 to 210) */}
-              {/* Scaled proportionally along the 25,800-year cycle             */}
+              {/* TIER 3: INNER RING — 25,800-YEAR YUGA CYCLE (r=310 to 210)    */}
+              {/* Telugu Yuga Names & Durations                                */}
               {/* ------------------------------------------------------------ */}
               <circle cx={CX} cy={CY} r={R_RING3_OUTER} fill="none" stroke="#D4AF37" strokeWidth="2.5" />
               <circle cx={CX} cy={CY} r={R_RING3_INNER} fill="none" stroke="#3E1004" strokeWidth="3" />
 
-              {/* All Dynasties & Great Epics of Bharat (Ramayana, Mahabharata, Imperial Dynasties) */}
-              {dynastySegments.map(event => {
-                const isSelected = selectedItem.kind === 'empire' && selectedItem.data.id === event.id;
-                const isCurr = event.isCurrentTime;
-                const path = describeArcSector(CX, CY, R_RING3_INNER, R_RING3_OUTER, event.startDeg, event.endDeg);
+              {/* 16 Yuga Cycle Sectors */}
+              {yugaAngleSegments.map(seg => {
+                const isSelected = selectedItem.kind === 'yuga' && selectedItem.data.id === seg.id;
+                const isCurr = seg.isCurrentTime;
+                const path = describeArcSector(CX, CY, R_RING3_INNER, R_RING3_OUTER, seg.startAngleDeg, seg.endAngleDeg);
 
-                const midRad = (event.midDeg * Math.PI) / 180;
-                const rMid = (R_RING3_OUTER + R_RING3_INNER) / 2;
-                const xM = CX + rMid * Math.cos(midRad);
-                const yM = CY + rMid * Math.sin(midRad);
+                const rad = (seg.midAngleDeg * Math.PI) / 180;
+                const rText = (R_RING3_OUTER + R_RING3_INNER) / 2;
+                const xT = CX + rText * Math.cos(rad);
+                const yT = CY + rText * Math.sin(rad);
 
-                let rot = event.midDeg + 90;
-                if (event.midDeg > 0 && event.midDeg < 180) rot += 180;
+                let textRot = seg.midAngleDeg + 90;
+                if (seg.midAngleDeg > 0 && seg.midAngleDeg < 180) {
+                  textRot += 180;
+                }
 
-                const hasAmpleSpan = event.spanDeg >= 5.0;
-                const hasMidSpan = event.spanDeg >= 2.5 && event.spanDeg < 5.0;
+                const isKataklysmos = seg.category === 'kataklysmos';
+                const isEkpyrosis = seg.category === 'ekpyrosis';
+                const teluguYuga = getYugaTeluguDisplayName(seg.category);
+                const englishYuga = getYugaEnglishDisplayName(seg.category);
 
                 return (
                   <g
-                    key={`ring3-empire-${event.id}`}
+                    key={`ring3-yuga-${seg.id}`}
                     className="cursor-pointer group"
                     onClick={() => {
-                      setSelectedItem({ kind: 'empire', data: event });
+                      setSelectedItem({ kind: 'yuga', data: seg });
                       playChime(isCurr ? 880 : 528);
                     }}
-                    opacity={focusRing === 'all' || focusRing === 'inner_dynasties' ? 1 : 0.25}
+                    opacity={focusRing === 'all' || focusRing === 'inner_yuga' ? 1 : 0.25}
                   >
                     <path
                       d={path}
                       fill={
                         isSelected
-                          ? (isCurr ? '#B71C1C' : event.color || '#7B1113')
-                          : (isCurr ? '#004D40' : (event.order % 2 === 0 ? '#FFFDF8' : '#FAF2E6'))
+                          ? (isCurr ? '#B71C1C' : seg.color)
+                          : (seg.category === 'kataklysmos'
+                              ? '#E3F2FD'
+                              : seg.category === 'ekpyrosis'
+                                ? '#FFEBEE'
+                                : seg.category === 'transition'
+                                  ? '#F0EDE6'
+                                  : seg.category === 'satya'
+                                    ? '#FFFDE7'
+                                    : seg.category === 'treta'
+                                      ? '#FFF3E0'
+                                      : seg.category === 'dwapara'
+                                        ? '#E8F5E9'
+                                        : '#EDE7F6')
                       }
-                      stroke={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#E8DCC4')}
-                      strokeWidth={isSelected ? 3.5 : (isCurr ? 2.5 : 1)}
+                      stroke={isSelected ? '#FFE082' : (isCurr ? '#E53935' : '#C59B27')}
+                      strokeWidth={isSelected ? 3.5 : (isCurr ? 2.5 : 1.5)}
                       className="transition-colors duration-200"
                     />
 
                     {/* Radial dividing line */}
                     <line
-                      x1={CX + R_RING3_INNER * Math.cos((event.startDeg * Math.PI) / 180)}
-                      y1={CY + R_RING3_INNER * Math.sin((event.startDeg * Math.PI) / 180)}
-                      x2={CX + R_RING3_OUTER * Math.cos((event.startDeg * Math.PI) / 180)}
-                      y2={CY + R_RING3_OUTER * Math.sin((event.startDeg * Math.PI) / 180)}
+                      x1={CX + R_RING3_INNER * Math.cos((seg.startAngleDeg * Math.PI) / 180)}
+                      y1={CY + R_RING3_INNER * Math.sin((seg.startAngleDeg * Math.PI) / 180)}
+                      x2={CX + R_RING3_OUTER * Math.cos((seg.startAngleDeg * Math.PI) / 180)}
+                      y2={CY + R_RING3_OUTER * Math.sin((seg.startAngleDeg * Math.PI) / 180)}
                       stroke="#C59B27"
-                      strokeWidth="1.2"
+                      strokeWidth="1.5"
                     />
 
-                    {/* Content inside Inner Chakra Spoke */}
-                    {hasAmpleSpan ? (
-                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                    {/* Sector Content */}
+                    {seg.category === 'transition' ? (
+                      <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
                         <text
-                          x={xM}
-                          y={yM - 24}
+                          x={xT}
+                          y={yT - 10}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={20}
-                        >
-                          {event.icon}
-                        </text>
-
-                        <text
-                          x={xM}
-                          y={yM}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize={13.5}
+                          fontSize={14}
                           fontWeight="900"
-                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#3E2723')}
-                          className="font-telugu-serif tracking-tight"
+                          fill={isSelected ? '#FFE082' : '#3E2723'}
+                          className="font-telugu-serif"
                         >
-                          {isEn ? event.titleEn.split(' ')[0] : event.titleTe.split(' ')[0]}
+                          సంధి
                         </text>
-
                         <text
-                          x={xM}
-                          y={yM + 22}
+                          x={xT}
+                          y={yT + 12}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={11.5}
+                          fontSize={11}
                           fontWeight="bold"
-                          fill={isSelected ? '#FFFFFF' : (isCurr ? '#80DEEA' : '#8D6E63')}
+                          fill={isSelected ? '#FFFFFF' : '#6D4C41'}
                           className="font-mono"
                         >
-                          #{event.order}
-                        </text>
-                      </g>
-                    ) : hasMidSpan ? (
-                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
-                        <text
-                          x={xM}
-                          y={yM - 14}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize={16}
-                        >
-                          {event.icon}
-                        </text>
-                        <text
-                          x={xM}
-                          y={yM + 14}
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize={10.5}
-                          fontWeight="bold"
-                          fill={isSelected ? '#FFE082' : (isCurr ? '#00E5FF' : '#5D4037')}
-                          className="font-mono"
-                        >
-                          #{event.order}
+                          300y
                         </text>
                       </g>
                     ) : (
-                      <g transform={`rotate(${rot}, ${xM}, ${yM})`} className="pointer-events-none select-none">
+                      <g transform={`rotate(${textRot}, ${xT}, ${yT})`} className="pointer-events-none select-none">
+                        {/* Telugu Yuga Name */}
                         <text
-                          x={xM}
-                          y={yM}
+                          x={xT}
+                          y={yT - 18}
                           textAnchor="middle"
                           dominantBaseline="central"
-                          fontSize={13}
+                          fontSize={isKataklysmos || isEkpyrosis ? 17 : 19}
+                          fontWeight="900"
+                          fill={
+                            isSelected 
+                              ? '#FFE082' 
+                              : (isKataklysmos ? '#0D47A1' : isEkpyrosis ? '#B71C1C' : '#1A0500')
+                          }
+                          className="font-telugu-serif tracking-tight"
                         >
-                          {event.icon}
+                          {teluguYuga}
+                        </text>
+
+                        {/* English Subtitle */}
+                        <text
+                          x={xT}
+                          y={yT + 2}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={12.5}
+                          fontWeight="bold"
+                          fontStyle={isKataklysmos || isEkpyrosis ? 'italic' : 'normal'}
+                          fill={
+                            isSelected 
+                              ? '#FFFFFF' 
+                              : (isKataklysmos ? '#1565C0' : isEkpyrosis ? '#C62828' : '#4E342E')
+                          }
+                          className="font-serif tracking-wide"
+                        >
+                          {englishYuga}
+                        </text>
+
+                        {/* Duration */}
+                        <text
+                          x={xT}
+                          y={yT + 21}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={11}
+                          fontWeight="bold"
+                          fill={
+                            isSelected 
+                              ? '#FFD54F' 
+                              : (isKataklysmos ? '#1976D2' : isEkpyrosis ? '#D32F2F' : '#616161')
+                          }
+                          className="font-mono"
+                        >
+                          {isEn ? seg.durationLabelEn : `${seg.durationYears} ఏళ్ళు`}
                         </text>
                       </g>
                     )}
@@ -1778,8 +1788,8 @@ export const IndianHistoryChakraView: React.FC = () => {
             <span className="flex items-center gap-1.5 font-bold text-sm text-[#7B1113]">
               <Compass className="w-4 h-4 text-[#D4AF37]" />
               {isEn 
-                ? 'Outer: 25,800y Yuga Cycle • Middle: Bharat Chronology (Ramayana & Mahabharata) • Inner: Dynasties Scaled' 
-                : '1. బయటి: 25,800 ఏళ్ల యుగచక్రం • 2. మధ్య: భారత కాలక్రమం (రామాయణ, మహాభారత యుగాలు) • 3. లోపలి: మహా సామ్రాజ్యాలు'}
+                ? 'Outer: Indian Dynasties & Epics Scaled • Middle: Bharat Chronology (Ramayana & Mahabharata) • Inner: 25,800y Yuga Cycle' 
+                : '1. బయటి: భారతీయ సామ్రాజ్యాలు & ఇతిహాసాలు • 2. మధ్య: భారత కాలక్రమం (రామాయణ, మహాభారతం) • 3. లోపలి: 25,800 ఏళ్ల యుగచక్రం'}
             </span>
             <button
               onClick={() => setRotationAngle(0)}
@@ -1873,11 +1883,11 @@ export const IndianHistoryChakraView: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 flex-wrap">
                   <div className="flex items-center gap-2">
                     <span className="px-3 py-1 rounded-full bg-white/20 text-[#FFE082] text-xs font-mono font-bold">
-                      {selectedItem.kind === 'yuga' 
-                        ? 'TIER 1: OUTER YUGA RING' 
+                      {selectedItem.kind === 'empire'
+                        ? (isEn ? `TIER 1: OUTER DYNASTY #${selectedItem.data.order}` : `టియర్ 1: బాహ్య సామ్రాజ్యం #${selectedItem.data.order}`)
                         : selectedItem.kind === 'epoch'
-                          ? `TIER 2: MIDDLE EPOCH #${selectedItem.data.order}`
-                          : `TIER 3: INNER DYNASTY #${selectedItem.data.order}`}
+                          ? (isEn ? `TIER 2: MIDDLE EPOCH #${selectedItem.data.order}` : `టియర్ 2: మధ్య భారత కాలక్రమం #${selectedItem.data.order}`)
+                          : (isEn ? 'TIER 3: INNER YUGA CYCLE' : 'టియర్ 3: లోపలి యుగచక్రం (25,800 ఏళ్ళు)')}
                     </span>
                     <span className="px-3 py-1 rounded-full bg-black/40 text-white text-xs font-bold border border-white/20">
                       {selectedItem.kind === 'yuga'
@@ -2176,23 +2186,23 @@ export const IndianHistoryChakraView: React.FC = () => {
 
                 <button
                   onClick={() => {
-                    if (selectedItem.kind === 'yuga') {
-                      setSelectedItem({ kind: 'epoch', data: BHARAT_CIVILIZATION_EPOCHS[5] });
+                    if (selectedItem.kind === 'empire') {
+                      setSelectedItem({ kind: 'epoch', data: BHARAT_CIVILIZATION_EPOCHS[1] }); // Ramayana
                     } else if (selectedItem.kind === 'epoch') {
-                      setSelectedItem({ kind: 'empire', data: INDIAN_HISTORY_CHAKRA_EVENTS[6] }); // Maurya
-                    } else {
                       setSelectedItem({ kind: 'yuga', data: YUGA_CYCLE_25800_SEGMENTS[0] }); // Kataklysmos
+                    } else {
+                      setSelectedItem({ kind: 'empire', data: INDIAN_HISTORY_CHAKRA_EVENTS[6] }); // Maurya
                     }
                     playChime(640);
                   }}
                   className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#FFF8E1] to-[#FFE082] text-[#7B1113] border border-[#D4AF37] text-xs sm:text-sm font-black transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>
-                    {selectedItem.kind === 'yuga' 
-                      ? (isEn ? 'View Middle Ring' : 'మధ్య వలయం') 
+                    {selectedItem.kind === 'empire' 
+                      ? (isEn ? 'View Middle Ring (Epochs)' : 'మధ్య వలయం (కాలక్రమం)') 
                       : selectedItem.kind === 'epoch'
-                        ? (isEn ? 'View 24 Dynasties' : '24 సామ్రాజ్యాలు')
-                        : (isEn ? 'View Yuga Ring' : 'యుగాల వలయం')}
+                        ? (isEn ? 'View Inner Ring (Yugas)' : 'లోపలి వలయం (యుగాలు)')
+                        : (isEn ? 'View Outer Ring (Dynasties)' : 'బాహ్య వలయం (సామ్రాజ్యాలు)')}
                   </span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
