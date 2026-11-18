@@ -30,10 +30,12 @@ import {
   Dna,
   ExternalLink,
   ScrollText,
+  BookOpen,
   X
 } from 'lucide-react';
 import { MahabharataKuruTimelineSection } from './MahabharataKuruTimelineSection';
 import { RamayanaTretaTimelineSection } from './RamayanaTretaTimelineSection';
+import { BharatiyaKalagananaArticleView } from './BharatiyaKalagananaArticleView';
 import { KURU_TIMELINE_METADATA } from '../../data/kuruTimelineData';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
@@ -526,6 +528,9 @@ export const IndianHistoryChakraView: React.FC = () => {
   // Pop-up modal for రామాయణ యుగము & త్రేతాయుగ చక్రవర్తులు (Ramayana Era & Treta Dynasties) Window
   const [isRamayanaTimelineModalOpen, setIsRamayanaTimelineModalOpen] = useState<boolean>(false);
 
+  // Sub-view page: 'chakra_wheel' | 'kalaganana_article'
+  const [activeChakraSubView, setActiveChakraSubView] = useState<'chakra_wheel' | 'kalaganana_article'>('chakra_wheel');
+
   // Filter focus: 'all' | 'outer_yuga' | 'middle_epoch' | 'inner_dynasties'
   const [focusRing, setFocusRing] = useState<'all' | 'outer_yuga' | 'middle_epoch' | 'inner_dynasties'>('all');
 
@@ -759,6 +764,39 @@ export const IndianHistoryChakraView: React.FC = () => {
                   ? 'All 3 Chakras unified in one majestic circle: (1) Outer Ring: 25,800-year Yuga Cycle with Telugu Yuga names; (2) Middle Ring: Indian Civilizational Chronology featuring Ramayana & Mahabharata eras; (3) Inner Chakra: Dynasties and epics precisely scaled along the chronological arc. All 3 rings perfectly aligned with the 2026 CE live needle at bottom.'
                   : 'ఒకే బ్రహ్మాండ వృత్తంలో 3 వలయాల సమాహారం: (1) బయటి వలయం: 25,800 ఏళ్ల మహా యుగచక్రం (తెలుగు పేర్లతో); (2) మధ్య వలయం: రామాయణ మరియు మహాభారత యుగాలతో కూడిన భారతీయ కాలక్రమం; (3) లోపలి చక్రం: కాలచక్ర ప్రమాణంలో సరిగ్గా అమర్చబడిన భారతీయ మహా సామ్రాజ్యాలు. సరిగ్గా చక్రం దిగువన (6 o\'clock) 2026 CE లైవ్ సూచికతో మూడు చక్రాలూ పరిపూర్ణంగా సమన్వయం చేయబడ్డాయి.'}
               </p>
+
+              {/* PAGE SWITCHER TABS: CHAKRA WHEEL VS KALAGANANA RESEARCH PAGE */}
+              <div className="mt-4 flex items-center gap-2.5 flex-wrap">
+                <button
+                  onClick={() => {
+                    setActiveChakraSubView('chakra_wheel');
+                    playChime(528);
+                  }}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer flex items-center gap-2 shadow-sm ${
+                    activeChakraSubView === 'chakra_wheel'
+                      ? 'bg-gradient-to-r from-[#D4AF37] to-[#FFE082] text-[#2A0800] ring-2 ring-white shadow-md'
+                      : 'bg-white/10 hover:bg-white/20 text-[#FFE082] border border-white/20'
+                  }`}
+                >
+                  <Orbit className="w-4 h-4 text-inherit" />
+                  <span>{isEn ? '☸️ 3-Chakra Interactive View' : '☸️ త్రిచక్ర సమగ్ర దర్శిని (కాలచక్రం)'}</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActiveChakraSubView('kalaganana_article');
+                    playChime(640);
+                  }}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer flex items-center gap-2 shadow-sm ${
+                    activeChakraSubView === 'kalaganana_article'
+                      ? 'bg-gradient-to-r from-[#D4AF37] to-[#FFE082] text-[#2A0800] ring-2 ring-white shadow-md'
+                      : 'bg-white/10 hover:bg-white/20 text-[#FFE082] border border-white/20'
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4 text-inherit" />
+                  <span>{isEn ? '📜 Bharatiya Kalaganana Page' : '📜 భారతీయ కాలగణన – ఖగోళ గణనలపై ఆధారపడిన కాల వ్యవస్థ'}</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -898,9 +936,17 @@ export const IndianHistoryChakraView: React.FC = () => {
       </div>
 
       {/* ============================================================ */}
-      {/* 2. MAIN WORKSPACE: THE 3-TIER CONCENTRIC CHAKRA + DOSSIER    */}
+      {/* 2. MAIN WORKSPACE: CHAKRA WHEEL VS KALAGANANA RESEARCH PAGE  */}
       {/* ============================================================ */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4 sm:p-6 lg:p-8 items-start">
+      {activeChakraSubView === 'kalaganana_article' ? (
+        <div className="p-4 sm:p-6 lg:p-8">
+          <BharatiyaKalagananaArticleView onBackToChakra={() => {
+            setActiveChakraSubView('chakra_wheel');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-4 sm:p-6 lg:p-8 items-start">
         
         {/* ============================================================ */}
         {/* LEFT COLUMN: THE MASTER 3-TIER CONCENTRIC SVG CHAKRA         */}
@@ -2645,6 +2691,7 @@ export const IndianHistoryChakraView: React.FC = () => {
         </div>
 
       </div>
+      )}
 
       {/* ============================================================ */}
       {/* 3. LIGHTBOX MODAL FOR SOURCE POSTER / TIMELINE CHART         */}
